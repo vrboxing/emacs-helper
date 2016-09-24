@@ -91,6 +91,24 @@
                     (setplist s nil)
                     (when (autoloadp s)
                       (unintern s)))))))
+
+(defun eh-update-load-path ()
+  (interactive)
+  (let (dirs)
+    (dolist (x '("~" "c:" "d:" "e:" "f:" "g:"))
+      (push (file-name-as-directory
+             (concat x "/projects/emacs-packages")) dirs)
+      (push (file-name-as-directory
+             (concat x "/project/emacs-packages")) dirs))
+    (dolist (dir dirs)
+      (dolist (x (directory-files "~/project/emacs-packages" t))
+        (when (and (file-directory-p x)
+                   (not (string-match-p "/\\.$" x))
+                   (not (string-match-p "/\\.\\.$" x)))
+          (add-to-list 'load-path x)))))
+  (when eh-enable-load-path-hack
+    (eh-hack-load-path)))
+
 (eh-hack-load-path)
 
 ;; package
