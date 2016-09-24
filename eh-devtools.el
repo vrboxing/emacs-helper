@@ -41,7 +41,7 @@
  '("emacs-helper"
    :repository-directory (:eval eh-website-repository)
    :remote (git "https://github.com/tumashu/emacs-helper.git" "gh-pages")
-   :site-domain "http://tumashu.github.com/emacs-helper"
+   :site-domain "https://tumashu.github.io/emacs-helper"
    :site-main-title "Emacs-helper"
    :site-sub-title "(Tumashu 的 emacs 配置)"
    :default-category "documents"
