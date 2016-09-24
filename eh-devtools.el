@@ -48,6 +48,7 @@
    :theme (worg killjs)
    :force-absolute-url t
    :source-browse-url ("GitHub" "https://github.com/tumashu/emacs-helper")
+   :category-ignore-list ("themes" "assets" "uploaders" "elpa")
    :personal-avatar nil
    :preparation-function owp/lentic-preparation-function
    :org-export-function owp/lentic-org-export-function
