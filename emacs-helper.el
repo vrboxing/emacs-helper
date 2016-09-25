@@ -24,21 +24,22 @@
 
 ;;; Commentary:
 
-;; * emacs-helper 使用说明                                          :README:doc:
+;; * Emacs-helper 使用说明                                          :README:doc:
 ;; ** 简介
-;; emacs-helper 是 [[https://github.com/tumashu][Tumashu]] 同学的个人配置，
-;; 可以做为 emacs 中文用户的一个参考。
+;; Emacs-helper 是 [[https://github.com/tumashu][Tumashu]] 同学的个人配置，
+;; 可以做为 Emacs 中文用户的一个参考。
 
-;; ** 使用
-;; 将下面的代码粘贴到 "~/.emacs" , 然后 `eval-buffer', emacs-helper 加载时，
-;; 其依赖的包会通过 use-package 自动安装。
-
-;; #+BEGIN_EXAMPLE
-;; (add-to-list 'load-path "d:/projects/emacs-packages/emacs-helper")
-;; (setq use-package-always-ensure t)
-;; (setq eh-enable-load-path-update nil)
-;; (require 'emacs-helper)
-;; #+END_EXAMPLE
+;; ** 使用方法
+;; 1. 下载: [[https://github.com/tumashu/emacs-helper/archive/master.zip][emacs-helper]]
+;; 2. 解压缩到目录："d:/projects/emacs-packages/emacs-helper"
+;; 3. 将下面的代码粘贴到 "~/.emacs"
+;;    #+BEGIN_EXAMPLE
+;;    (add-to-list 'load-path "d:/projects/emacs-packages/emacs-helper")
+;;    (setq use-package-always-ensure t)
+;;    (setq eh-enable-load-path-update nil)
+;;    (require 'emacs-helper)
+;;    #+END_EXAMPLE
+;; 4. 重启 Emacs, 第一次加载 Emacs-helper 的时候，它依赖的包会自动安装。
 
 ;; * 代码                                                                 :code:
 ;; #+BEGIN_SRC emacs-lisp
