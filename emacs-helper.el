@@ -36,6 +36,7 @@
 ;; #+BEGIN_EXAMPLE
 ;; (add-to-list 'load-path "d:/projects/emacs-packages/emacs-helper")
 ;; (setq use-package-always-ensure t)
+;; (setq eh-enable-load-path-update nil)
 ;; (require 'emacs-helper)
 ;; #+END_EXAMPLE
 

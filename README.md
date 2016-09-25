@@ -14,4 +14,5 @@ emacs-helper 是 [Tumashu](https://github.com/tumashu) 同学的个人配置，�
 
     (add-to-list 'load-path "d:/projects/emacs-packages/emacs-helper")
     (setq use-package-always-ensure t)
+    (setq eh-enable-load-path-update nil)
     (require 'emacs-helper)
