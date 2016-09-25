@@ -75,6 +75,7 @@
 
 ;; load-path
 (defvar eh-enable-load-path-hack t)
+(defvar eh-enable-load-path-update nil)
 
 (defun eh-hack-load-path ()
   ;; Delete buildin org's PATH
@@ -109,7 +110,9 @@
   (when eh-enable-load-path-hack
     (eh-hack-load-path)))
 
-(eh-hack-load-path)
+(when eh-enable-load-path-update
+  (eh-update-load-path)
+  (message "emacs-helper update load-path success!"))
 
 ;; package
 (require 'package)
