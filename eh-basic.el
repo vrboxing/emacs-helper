@@ -102,11 +102,12 @@
       (push (file-name-as-directory
              (concat x "/project/emacs-packages")) dirs))
     (dolist (dir dirs)
-      (dolist (x (directory-files "~/project/emacs-packages" t))
-        (when (and (file-directory-p x)
-                   (not (string-match-p "/\\.$" x))
-                   (not (string-match-p "/\\.\\.$" x)))
-          (add-to-list 'load-path x)))))
+      (when (file-directory-p dir)
+        (dolist (x (directory-files dir t))
+          (when (and (file-directory-p x)
+                     (not (string-match-p "/\\.$" x))
+                     (not (string-match-p "/\\.\\.$" x)))
+            (add-to-list 'load-path x))))))
   (when eh-enable-load-path-hack
     (eh-hack-load-path)))
 
