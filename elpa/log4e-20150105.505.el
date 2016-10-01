@@ -4,9 +4,9 @@
 
 ;; Author: Hiroaki Otsu <ootsuhiroaki@gmail.com>
 ;; Keywords: log
+;; Package-Version: 20150105.505
 ;; URL: https://github.com/aki2o/log4e
-;; Version: 20150105.505
-;; X-Original-Version: 0.3.0
+;; Version: 0.3.0
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by

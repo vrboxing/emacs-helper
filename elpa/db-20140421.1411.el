@@ -5,10 +5,10 @@
 ;; Author: Nic Ferrier <nferrier@ferrier.me.uk>
 ;; Maintainer: Nic Ferrier <nferrier@ferrier.me.uk>
 ;; Keywords: data, lisp
+;; Package-Version: 20140421.1411
 ;; Created: 23rd September 2012
 ;; Package-Requires: ((kv "0.0.11"))
-;; Version: 20140421.1411
-;; X-Original-Version: 0.0.6
+;; Version: 0.0.6
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
