@@ -86,17 +86,13 @@
 (use-package lisp-mode
   :ensure nil
   :config
-  (use-package aggressive-indent
-    :config
-    (defun eh-elisp-setup ()
-      ;; 跟踪行尾空格
-      (setq show-trailing-whitespace t)
-      ;; 高亮TAB
-      (setq highlight-tabs t)
-      ;; 自动缩进
-      (aggressive-indent-mode))
-    (add-hook 'emacs-lisp-mode-hook
-              #'eh-elisp-setup)))
+  (defun eh-elisp-setup ()
+    ;; 跟踪行尾空格
+    (setq show-trailing-whitespace t)
+    ;; 高亮TAB
+    (setq highlight-tabs t))
+  (add-hook 'emacs-lisp-mode-hook
+            #'eh-elisp-setup))
 
 ;; org-journal
 (use-package org-journal
@@ -109,8 +105,8 @@
   (setq org-journal-file-format "%Y%m%d.org")
   (setq org-agenda-files
         (if (file-directory-p org-journal-dir)
-            (append (directory-files org-journal-dir t ".org$")
-                    org-agenda-files)
+            (append (directory-files org-journal-dir t ".org$"
+                                     org-agenda-files))
           org-agenda-files))
   :bind
   (("C-c C-j" . org-journal-new-entry)))
@@ -125,9 +121,31 @@
 (use-package aggressive-indent)
 
 ;; autopair
-(use-package autopair
-  :config
-  (autopair-global-mode 1))
+(use-package autopair)
+
+(use-package parinfer
+  :ensure t
+  :bind
+  (("C-c C-c" . parinfer-toggle-mode)
+   ;; You can use other structual edit plugin with parinfer.
+   ;; This is an example for Paredit.
+   ;; To avoid the conflicts, just bind commands those you want.
+   ;; do NOT enable paredit-mode.
+   ("M-r" . paredit-raise-sexp)
+   ("M-S" . paredit-split-sexp)
+   ("M-J" . paredit-join-sexp)
+   ("C-)" . paredit-forward-slurp-sexp)
+   ("C-(" . paredit-backward-slurp-sexp)
+   ("C-\}" . paredit-forward-barf-sexp)
+   ("C-{" . paredit-backward-barf-sexp))
+   ;; Other command you may want.
+   ;; ("M-j" . parinfer-transpose-sexps)
+   ;; ("M-k" . parinfer-reverse-transpose-sexps))
+  :init
+  ;; Enable Parinfer for Emacs Lisp and Clojure.
+  (progn
+    (add-hook 'clojure-mode-hook #'parinfer-mode)
+    (add-hook 'emacs-lisp-mode-hook #'parinfer-mode)))
 
 ;; visual-regexp
 (use-package visual-regexp
@@ -304,29 +322,29 @@
           (holiday-lunar 1 3 "春节" 0)
           (holiday-lunar 1 15 "元宵节" 0)
           (holiday-solar-term "清明" "清明节")
-          (holiday-solar-term "小寒" "小寒" )
-          (holiday-solar-term "大寒" "大寒" )
-          (holiday-solar-term "立春" "立春" )
-          (holiday-solar-term "雨水" "雨水" )
-          (holiday-solar-term "惊蛰" "惊蛰" )
-          (holiday-solar-term "春分" "春分" )
-          (holiday-solar-term "谷雨" "谷雨" )
-          (holiday-solar-term "立夏" "立夏" )
-          (holiday-solar-term "小满" "小满" )
-          (holiday-solar-term "芒种" "芒种" )
-          (holiday-solar-term "夏至" "夏至" )
-          (holiday-solar-term "小暑" "小暑" )
-          (holiday-solar-term "大暑" "大暑" )
-          (holiday-solar-term "立秋" "立秋" )
-          (holiday-solar-term "处暑" "处暑" )
-          (holiday-solar-term "白露" "白露" )
-          (holiday-solar-term "秋分" "秋分" )
-          (holiday-solar-term "寒露" "寒露" )
-          (holiday-solar-term "霜降" "霜降" )
-          (holiday-solar-term "立冬" "立冬" )
-          (holiday-solar-term "小雪" "小雪" )
-          (holiday-solar-term "大雪" "大雪" )
-          (holiday-solar-term "冬至" "冬至" )
+          (holiday-solar-term "小寒" "小寒")
+          (holiday-solar-term "大寒" "大寒")
+          (holiday-solar-term "立春" "立春")
+          (holiday-solar-term "雨水" "雨水")
+          (holiday-solar-term "惊蛰" "惊蛰")
+          (holiday-solar-term "春分" "春分")
+          (holiday-solar-term "谷雨" "谷雨")
+          (holiday-solar-term "立夏" "立夏")
+          (holiday-solar-term "小满" "小满")
+          (holiday-solar-term "芒种" "芒种")
+          (holiday-solar-term "夏至" "夏至")
+          (holiday-solar-term "小暑" "小暑")
+          (holiday-solar-term "大暑" "大暑")
+          (holiday-solar-term "立秋" "立秋")
+          (holiday-solar-term "处暑" "处暑")
+          (holiday-solar-term "白露" "白露")
+          (holiday-solar-term "秋分" "秋分")
+          (holiday-solar-term "寒露" "寒露")
+          (holiday-solar-term "霜降" "霜降")
+          (holiday-solar-term "立冬" "立冬")
+          (holiday-solar-term "小雪" "小雪")
+          (holiday-solar-term "大雪" "大雪")
+          (holiday-solar-term "冬至" "冬至")
           (holiday-lunar 5 5 "端午节" 0)
           (holiday-lunar 8 15 "中秋节" 0)
           (holiday-lunar 7 7 "七夕情人节" 0)
@@ -374,7 +392,7 @@
         cfw:fchar-right-junction ?+
         cfw:fchar-top-junction ?+
         cfw:fchar-top-left-corner ?+
-        cfw:fchar-top-right-corner ?+ )
+        cfw:fchar-top-right-corner ?+)
 
   (defun eh-cfw-render-toolbar (width current-view prev-cmd next-cmd)
     "Translate words: 'Month', 'Week', 'Day' and 'Two day' to Chinese"
