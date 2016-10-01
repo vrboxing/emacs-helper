@@ -151,10 +151,9 @@
                             (insert-file-contents file)
                             (buffer-string))))))))
 
-(defvar eh-enable-full-install t)
+(defvar eh-enable-full-install nil)
 
-(if (and eh-enable-full-install
-         (yes-or-no-p "Emacs-helper: Install all packages in \"emacs/elpa\" directory? "))
+(if eh-enable-full-install
     (eh-packages-install (eh-get-elpa-mirror-packages))
   (eh-packages-install '(use-package org org-plus-contrib)))
 

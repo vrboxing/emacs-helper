@@ -37,6 +37,7 @@
 ;;    (add-to-list 'load-path "d:/projects/emacs-packages/emacs-helper")
 ;;    (setq use-package-always-ensure t)
 ;;    (setq eh-enable-load-path-update nil)
+;;    (setq eh-enable-full-install t)
 ;;    (require 'emacs-helper)
 ;;    #+END_EXAMPLE
 ;; 4. 重启 Emacs, 第一次加载 Emacs-helper 的时候，它依赖的包会自动安装。
