@@ -88,7 +88,7 @@
   :config
   (defun eh-elisp-setup ()
     ;; 跟踪行尾空格
-    (setq show-trailing-whitespace t)
+    (setq show-trailing-whitespace nil)
     ;; 高亮TAB
     (setq highlight-tabs t))
   (add-hook 'emacs-lisp-mode-hook
@@ -126,26 +126,16 @@
 (use-package parinfer
   :ensure t
   :bind
-  (("C-c C-c" . parinfer-toggle-mode)
-   ;; You can use other structual edit plugin with parinfer.
-   ;; This is an example for Paredit.
-   ;; To avoid the conflicts, just bind commands those you want.
-   ;; do NOT enable paredit-mode.
-   ("M-r" . paredit-raise-sexp)
-   ("M-S" . paredit-split-sexp)
-   ("M-J" . paredit-join-sexp)
-   ("C-)" . paredit-forward-slurp-sexp)
-   ("C-(" . paredit-backward-slurp-sexp)
-   ("C-\}" . paredit-forward-barf-sexp)
-   ("C-{" . paredit-backward-barf-sexp))
-   ;; Other command you may want.
-   ;; ("M-j" . parinfer-transpose-sexps)
-   ;; ("M-k" . parinfer-reverse-transpose-sexps))
+  (("C-c C-c" . parinfer-toggle-mode))
   :init
-  ;; Enable Parinfer for Emacs Lisp and Clojure.
   (progn
     (add-hook 'clojure-mode-hook #'parinfer-mode)
-    (add-hook 'emacs-lisp-mode-hook #'parinfer-mode)))
+    (add-hook 'emacs-lisp-mode-hook #'parinfer-mode))
+  :config
+  (setq parinfer-extensions
+        '(smart-tab smart-yank companye pretty-parens))
+  (define-key parinfer-region-mode-map (kbd "<tab>") 'parinfer-smart-tab:shift-right)
+  (define-key parinfer-region-mode-map (kbd "<backtab>") 'parinfer-smart-tab:shift-left))
 
 ;; visual-regexp
 (use-package visual-regexp
