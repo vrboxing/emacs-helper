@@ -107,7 +107,7 @@
       (setq org2elcomment-last-source (read-file-name prompt
                                                       nil
                                                       org2elcomment-last-source
-                                                      t)))))
+                                                      "\\.org$")))))
   (let* ((src-buf (find-file-noselect file-name))
          (bounds (org2elcomment--find-bounds src-buf))
          (output (org-export-as org2elcomment-backend))
