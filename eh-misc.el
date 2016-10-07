@@ -135,7 +135,10 @@
   (setq parinfer-extensions
         '(smart-tab smart-yank companye pretty-parens))
   (define-key parinfer-region-mode-map (kbd "<tab>") 'parinfer-smart-tab:shift-right)
-  (define-key parinfer-region-mode-map (kbd "<backtab>") 'parinfer-smart-tab:shift-left))
+  (define-key parinfer-region-mode-map (kbd "<backtab>") 'parinfer-smart-tab:shift-left)
+  (define-key parinfer-mode-map (kbd "<tab>") 'parinfer-smart-tab:dwim-right)
+  (define-key parinfer-mode-map (kbd "<backtab>") 'parinfer-smart-tab:dwim-left))
+
 
 ;; visual-regexp
 (use-package visual-regexp

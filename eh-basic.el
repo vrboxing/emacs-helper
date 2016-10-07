@@ -277,9 +277,17 @@
   (use-package chinese-pyim-basedict
     :ensure nil
     :config (chinese-pyim-basedict-enable))
+
+  (use-package chinese-pyim-wbdict
+    :ensure nil
+    :config (chinese-pyim-wbdict-gbk-enable))
+
   (setq default-input-method "chinese-pyim")
-  ;; 使用双拼
-  (setq pyim-default-pinyin-scheme 'default)
+
+  ;; 使用全拼
+  (setq pyim-default-scheme 'quanpin)
+
+  ;; pyim 探针设置
   (setq-default pyim-english-input-switch-functions
                 '(pyim-probe-dynamic-english
                   pyim-probe-isearch-mode
@@ -292,8 +300,12 @@
 
   ;; 开启拼音搜索功能
   (setq pyim-isearch-enable-pinyin-search t)
-  (setq pyim-use-tooltip 'popup
-        pyim-page-length 5)
+
+  ;; 使用 pupup 来绘制选词框。
+  (setq pyim-use-tooltip 'popup)
+
+  ;; 显示5个候选词。
+  (setq pyim-page-length 5)
 
   ;; emacs 启动时加载 pyim 词库
   (add-hook 'emacs-startup-hook
