@@ -311,7 +311,7 @@
   (add-hook 'emacs-startup-hook
             #'(lambda () (pyim-restart-1 t)))
   :bind
-  (("M-j" . pyim-convert-pinyin-at-point)
+  (("M-j" . pyim-convert-code-at-point)
    ("C-;" . pyim-delete-word-from-personal-buffer)))
 
 ;; Chinese fonts setup
