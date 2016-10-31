@@ -197,7 +197,17 @@
       (add-hook 'after-make-frame-functions
                 (lambda (x)
                   (global-company-mode)))
-    (global-company-mode)))
+    (global-company-mode))
+
+  (defun eh-company-grab (orig-fun regexp &optional expression limit)
+    "这个 advice 的功能就是：取消中文补全。"
+    (let ((string (pyim-char-before-to-string 0)))
+      (if (pyim-string-match-p "\\cc" string)
+          ""
+        (funcall orig-fun regexp expression limit))))
+  (advice-add 'company-grab :around #'eh-company-grab))
+
+
 ;; #+END_SRC
 
 ;; * Footer
