@@ -199,13 +199,13 @@
                   (global-company-mode)))
     (global-company-mode))
 
-  (defun eh-company-grab (orig-fun regexp &optional expression limit)
-    "这个 advice 的功能就是：取消中文补全。"
+  (defun eh-company-dabbrev--prefix (orig-fun)
+    "取消中文补全"
     (let ((string (pyim-char-before-to-string 0)))
       (if (pyim-string-match-p "\\cc" string)
-          ""
-        (funcall orig-fun regexp expression limit))))
-  (advice-add 'company-grab :around #'eh-company-grab))
+          nil
+        (funcall orig-fun))))
+  (advice-add 'company-dabbrev--prefix :around #'eh-company-dabbrev--prefix))
 
 
 ;; #+END_SRC
