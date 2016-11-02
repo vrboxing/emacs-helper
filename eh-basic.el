@@ -302,7 +302,7 @@
   (setq pyim-isearch-enable-pinyin-search t)
 
   ;; 使用 pupup 来绘制选词框。
-  (setq pyim-use-tooltip 'popup)
+  (setq pyim-page-tooltip 'popup)
 
   ;; 显示5个候选词。
   (setq pyim-page-length 5)
