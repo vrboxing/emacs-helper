@@ -86,13 +86,17 @@
 (use-package lisp-mode
   :ensure nil
   :config
-  (defun eh-elisp-setup ()
-    ;; 跟踪行尾空格
-    (setq show-trailing-whitespace nil)
-    ;; 高亮TAB
-    (setq highlight-tabs t))
-  (add-hook 'emacs-lisp-mode-hook
-            #'eh-elisp-setup))
+  (use-package aggressive-indent
+    :config
+    (defun eh-elisp-setup ()
+      ;; 跟踪行尾空格
+      (setq show-trailing-whitespace t)
+      ;; 高亮TAB
+      (setq highlight-tabs t)
+      ;; 自动缩进
+      (aggressive-indent-mode))
+    (add-hook 'emacs-lisp-mode-hook
+              #'eh-elisp-setup)))
 
 ;; org-journal
 (use-package org-journal
@@ -105,8 +109,8 @@
   (setq org-journal-file-format "%Y%m%d.org")
   (setq org-agenda-files
         (if (file-directory-p org-journal-dir)
-            (append (directory-files org-journal-dir t ".org$"
-                                     org-agenda-files))
+            (append (directory-files org-journal-dir t ".org$")
+                    org-agenda-files)
           org-agenda-files))
   :bind
   (("C-c C-j" . org-journal-new-entry)))
@@ -121,7 +125,9 @@
 (use-package aggressive-indent)
 
 ;; autopair
-(use-package autopair)
+(use-package autopair
+  :config
+  (autopair-global-mode 1))
 
 (use-package parinfer
   :ensure t
@@ -133,12 +139,7 @@
     (add-hook 'emacs-lisp-mode-hook #'parinfer-mode))
   :config
   (setq parinfer-extensions
-        '(smart-tab smart-yank companye pretty-parens))
-  (define-key parinfer-region-mode-map (kbd "<tab>") 'parinfer-smart-tab:shift-right)
-  (define-key parinfer-region-mode-map (kbd "<backtab>") 'parinfer-smart-tab:shift-left)
-  (define-key parinfer-mode-map (kbd "<tab>") 'parinfer-smart-tab:dwim-right)
-  (define-key parinfer-mode-map (kbd "<backtab>") 'parinfer-smart-tab:dwim-left))
-
+        '(smart-tab smart-yank companye pretty-parens)))
 
 ;; visual-regexp
 (use-package visual-regexp
