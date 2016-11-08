@@ -130,7 +130,8 @@
   (autopair-global-mode 1))
 
 (use-package parinfer
-  :ensure t
+  :ensure nil
+  :disabled t
   :bind
   (("C-c C-c" . parinfer-toggle-mode))
   :init
