@@ -55,7 +55,8 @@
 ;; easy-lentic
 (use-package easy-lentic
   :config
-  (easy-lentic-mode-setup))
+  ;; (easy-lentic-mode-setup)
+  )
 
 ;; bbdb
 (use-package eh-ebib
