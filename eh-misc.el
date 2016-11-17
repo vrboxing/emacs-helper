@@ -122,24 +122,17 @@
   (setq ess-eval-visibly-p nil)
   (setq ess-ask-for-ess-directory nil)
 
-  (defun eh-ess-show-ESS-buffer (eob-p)
+  (defun eh-ess-popup-ESS-buffer (eob-p)
     (interactive "P")
     (ess-force-buffer-current)
-    (if (and ess-current-process-name
-             (get-process ess-current-process-name))
-        (let ((buffer (buffer-name
-                       (process-buffer
-                        (get-process ess-current-process-name)))))
-          (with-current-buffer buffer
-            (if eob-p (goto-char (point-max))))
-          (ess-show-buffer buffer))
-      (message "No inferior ESS process")
-      (ding)))
+    (let ((buffer (current-buffer)))
+      (ess-switch-to-ESS eob-p)
+      (ess-show-buffer buffer t)))
 
   (defun eh-ess-eval-paragraph (vis)
     (interactive "P")
     (ess-eval-paragraph-and-step vis)
-    (eh-ess-show-ESS-buffer t))
+    (eh-ess-popup-ESS-buffer t))
 
   :bind (:map
          ess-mode-map
