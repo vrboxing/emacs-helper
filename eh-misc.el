@@ -120,7 +120,30 @@
 (use-package ess
   :config
   (setq ess-eval-visibly-p nil)
-  (setq ess-ask-for-ess-directory nil))
+  (setq ess-ask-for-ess-directory nil)
+
+  (defun eh-ess-show-ESS-buffer (eob-p)
+    (interactive "P")
+    (ess-force-buffer-current)
+    (if (and ess-current-process-name
+             (get-process ess-current-process-name))
+        (let ((buffer (buffer-name
+                       (process-buffer
+                        (get-process ess-current-process-name)))))
+          (with-current-buffer buffer
+            (if eob-p (goto-char (point-max))))
+          (ess-show-buffer buffer))
+      (message "No inferior ESS process")
+      (ding)))
+
+  (defun eh-ess-eval-paragraph (vis)
+    (interactive "P")
+    (ess-eval-paragraph-and-step vis)
+    (eh-ess-show-ESS-buffer t))
+
+  :bind (:map
+         ess-mode-map
+         ("C-c C-c" . eh-ess-eval-paragraph)))
 
 ;; aggressive-indent
 (use-package aggressive-indent)
