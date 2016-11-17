@@ -201,6 +201,7 @@
   (set-terminal-coding-system 'utf-8-unix)
 
   (when (eq system-type 'windows-nt)
+    (set-language-environment "Chinese-GBK")
     (set-selection-coding-system 'gbk-dos)
     (set-next-selection-coding-system 'gbk-dos)
     (set-clipboard-coding-system 'gbk-dos)))
