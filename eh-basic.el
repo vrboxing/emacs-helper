@@ -367,6 +367,8 @@
   :init (global-unset-key (kbd "C-x C-x"))
   :bind
   (("C-x <SPC>" . set-mark-command)
+   ;; QQ 将会在 emacs 之前捕捉 M-w 快捷键，记得取消。
+   ;; 另外绑定 C-c w 作为备用。
    ("C-c w" . kill-ring-save)
    ("C-x C-x C-x" . exchange-point-and-mark)))
 
