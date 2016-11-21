@@ -367,6 +367,7 @@
   :init (global-unset-key (kbd "C-x C-x"))
   :bind
   (("C-x <SPC>" . set-mark-command)
+   ("C-c w" . kill-ring-save)
    ("C-x C-x C-x" . exchange-point-and-mark)))
 
 (use-package rect
