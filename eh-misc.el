@@ -121,7 +121,7 @@
   :config
   (setq ess-eval-visibly-p nil)
   (setq ess-ask-for-ess-directory nil)
-  (setq ess-smart-S-assign-key "<")
+  (setq ess-smart-S-assign-key "@")
 
   (defun eh-ess-popup-ESS-buffer (eob-p)
     (interactive "P")
