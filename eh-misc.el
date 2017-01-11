@@ -288,13 +288,6 @@
     (("C-x F" . projectile-find-file)
      ("C-S-s" . projectile-grep))))
 
-;; ebib-handy
-(use-package org
-  :config
-  (use-package ebib-handy
-    :config
-    (ebib-handy-enable)))
-
 ;; undo tree
 (use-package undo-tree
   :bind (("C-c /" . undo-tree-visualize))
