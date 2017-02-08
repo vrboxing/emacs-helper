@@ -53,16 +53,7 @@
       :ensure nil)))
 
 ;; easy-lentic
-(use-package easy-lentic
-  :config
-  ;; (easy-lentic-mode-setup)
-  )
-
-;; bbdb
-(use-package eh-ebib
-  :ensure nil
-  :if (not (eq system-type 'windows-nt))
-  :bind (("C-c b" . eh-ebib)))
+(use-package easy-lentic)
 
 ;; sdcv
 (use-package chinese-yasdcv
@@ -73,15 +64,6 @@
 ;; emms
 (use-package eh-emms
   :ensure nil)
-
-;; sql
-(use-package sql-mssql
-  :ensure nil)
-
-;; xah-fly-keys
-(use-package xah-fly-keys
-  :ensure nil
-  :disabled t)
 
 ;; elisp setting
 (use-package lisp-mode
@@ -147,27 +129,6 @@
   :config
   (autopair-global-mode 1))
 
-(use-package parinfer
-  :ensure nil
-  :disabled t
-  :bind
-  (("C-c C-c" . parinfer-toggle-mode))
-  :init
-  (progn
-    (add-hook 'clojure-mode-hook #'parinfer-mode)
-    (add-hook 'emacs-lisp-mode-hook #'parinfer-mode))
-  :config
-  (setq parinfer-extensions
-        '(smart-tab smart-yank companye pretty-parens)))
-
-;; visual-regexp
-(use-package visual-regexp
-  :config
-  (use-package visual-regexp-steroids)
-  :bind (("C-c r" . vr/replace)
-         ("C-c q" . vr/query-replace)
-         ("C-c m" . vr/mc-mark)))
-
 ;; multi-term
 (use-package multi-term
   :config
@@ -224,25 +185,11 @@
   (use-package wdired)
   (use-package dired-ranger))
 
-;; multiple-cursors
-(use-package multiple-cursors
-  :bind (("C-x C-x m" . mc/edit-lines)
-         ("C-c >" . mc/mark-next-like-this)
-         ("C-c <" . mc/mark-previous-like-this)
-         ("C-c C-<" . mc/mark-all-like-this)))
-
 ;; ace-jump
 (use-package ace-jump-mode
   :init
   (autoload 'ace-jump-mode "ace-jump-mode" nil t)
   (bind-key "C-j" 'ace-jump-mode))
-
-(use-package ace-window
-  :disabled t
-  :bind (("C-x o" . ace-window))
-  :config
-  (setq aw-keys '(?a ?b ?c ?d ?e ?f ?g ?h ?i))
-  (ace-window-display-mode))
 
 ;; switch window
 (use-package switch-window
@@ -254,27 +201,6 @@
   :config
   (setq switch-window-increase 8)
   (setq switch-window-shortcut-style 'qwerty))
-
-;; expand-region
-(use-package expand-region
-  :bind (("C-c =" . er/expand-region)))
-
-;; wrap-region
-(use-package wrap-region
-  :ensure t
-  :config
-  (wrap-region-add-wrappers
-   '(("*" "*" nil org-mode)
-     ("~" "~" nil org-mode)
-     ("/" "/" nil org-mode)
-     ("=" "=" "+" org-mode)
-     ("_" "_" nil org-mode)
-     ("$" "$" nil (org-mode latex-mode))
-     ("\n#+BEGIN_SRC emacs-lisp\n" "\n#+END_SRC\n" "#" org-mode)
-     ("\n;; #+BEGIN_SRC emacs-lisp\n" "\n;; #+END_SRC\n" "#" emacs-lisp-mode)))
-  (add-hook 'org-mode-hook 'wrap-region-mode)
-  (add-hook 'emacs-lisp-mode-hook 'wrap-region-mode)
-  (add-hook 'latex-mode-hook 'wrap-region-mode))
 
 ;; General project support
 (use-package projectile
