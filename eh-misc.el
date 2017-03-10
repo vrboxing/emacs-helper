@@ -52,8 +52,8 @@
     (use-package chinese-pyim-devtools
       :ensure nil)))
 
-;; easy-lentic
-(use-package easy-lentic)
+;; el2org
+(use-package el2org)
 
 ;; sdcv
 (use-package chinese-yasdcv
