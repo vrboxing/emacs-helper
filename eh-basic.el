@@ -137,9 +137,9 @@
   (interactive)
   (setq package-archives
         `(("eh-elpa" . ,eh-elpa-directory)
-          ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-          ("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-          ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/"))))
+          ("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
+          ("org-cn"   . "http://elpa.emacs-china.org/org/")
+          ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/"))))
 
 ;; 安装 emacs-helper/elpa 目录下的所有的包
 (defun eh-get-elpa-mirror-packages ()
