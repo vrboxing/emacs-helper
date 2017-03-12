@@ -32,7 +32,7 @@
 (require 'emacs-helper)
 (require 'org-webpage)
 (require 'owp-web-server)
-(require 'owp-lentic)
+(require 'owp-el2org)
 
 (defvar eh-website-repository
   "~/project/emacs-packages/emacs-helper/")
