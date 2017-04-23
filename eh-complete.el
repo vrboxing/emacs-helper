@@ -148,9 +148,7 @@
     (interactive)
     (when ivy--directory
       (ivy-set-action 'eh-open-typed-path)
-      (ivy-done)))
-
-  (define-key ivy-minibuffer-map (kbd "<return>") 'ivy-alt-done))
+      (ivy-done))))
 
 ;; company-mode
 (use-package company
