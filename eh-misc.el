@@ -199,7 +199,7 @@
          ("C-x 3" . switch-window-then-split-right)
          ("C-x 0" . switch-window-then-delete))
   :config
-  (setq switch-window-increase 8)
+  (setq switch-window-increase 6)
   (setq switch-window-shortcut-style 'qwerty))
 
 ;; General project support
