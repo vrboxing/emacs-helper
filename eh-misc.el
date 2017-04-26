@@ -193,7 +193,6 @@
 
 ;; switch window
 (use-package switch-window
-  :disabled t
   :bind (("C-x o" . switch-window)
          ("C-x 1" . switch-window-then-maximize)
          ("C-x 2" . switch-window-then-split-below)
@@ -205,6 +204,7 @@
 
 ;; ace-window
 (use-package ace-window
+  :disabled t
   :bind (("C-x o" . ace-window))
   :config
   (set-face-attribute 'aw-leading-char-face nil
