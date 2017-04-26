@@ -193,6 +193,7 @@
 
 ;; switch window
 (use-package switch-window
+  :disabled t
   :bind (("C-x o" . switch-window)
          ("C-x 1" . switch-window-then-maximize)
          ("C-x 2" . switch-window-then-split-below)
@@ -201,6 +202,36 @@
   :config
   (setq switch-window-increase 6)
   (setq switch-window-shortcut-style 'qwerty))
+
+;; ace-window
+(use-package ace-window
+  :bind (("C-x o" . ace-window))
+  :config
+  (set-face-attribute 'aw-leading-char-face nil
+                      :foreground "white"
+                      :weight 'bold
+                      :height 3.0)
+  (set-face-attribute 'aw-mode-line-face nil
+                      :inherit 'mode-line-buffer-id
+                      :foreground "red"
+                      :weight 'bold)
+  (setq aw-scope 'frame)
+  (setq aw-reverse-frame-list t)
+  (setq-default cursor-in-non-selected-windows 'hollow)
+  (setq aw-keys '(?a ?s ?d ?f ?j ?k ?l))
+  (setq aw-dispatch-always nil)
+  (setq aw-dispatch-alist ;key prefix to window label
+        '((?x aw-delete-window     "Ace - Delete Window")
+          (?c aw-swap-window       "Ace - Swap Window")
+          (?n aw-flip-window)
+          (?v aw-split-window-vert "Ace - Split Vert Window")
+          (?h aw-split-window-horz "Ace - Split Horz Window")
+          (?m delete-other-windows "Ace - Maximize Window")
+          (?g delete-other-windows)
+          (?b balance-windows)
+          (?u winner-undo)
+          (?r winner-redo)))
+  (ace-window-display-mode t))
 
 ;; General project support
 (use-package projectile
