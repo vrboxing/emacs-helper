@@ -386,7 +386,7 @@
 (use-package menu-bar
   :ensure nil
   :config
-  (menu-bar-mode 1)
+  (menu-bar-mode 0)
   :bind (("C-x k" . kill-this-buffer)))
 
 (use-package scroll-bar
