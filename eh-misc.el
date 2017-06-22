@@ -55,6 +55,19 @@
 ;; el2org
 (use-package el2org)
 
+;; EPG
+
+;; 1. Put the below to your ~/.gnupg/gpg-agent.conf:
+;;       allow-emacs-pinentry
+;;       allow-loopback-pinentry
+;; 2. gpgconf --reload gpg-agent
+;; 3. (setq epa-pinentry-mode 'loopback)
+;; 4. (pinentry-start)
+
+(use-package epg
+  :config
+  (setq epa-pinentry-mode 'loopback))
+
 ;; sdcv
 (use-package chinese-yasdcv
   :ensure nil
