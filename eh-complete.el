@@ -114,7 +114,6 @@
     :config
     (setq counsel-yank-pop-separator
           (concat "\n\n" (make-string 70 ?-) "\n"))
-    (define-key counsel-find-file-map (kbd "C-f") 'eh-ivy-open-typed-path)
     :bind
     (("C-c C-r" . ivy-resume)
      ("M-x" . counsel-M-x)
@@ -128,29 +127,13 @@
   (ivy-mode 1)
   (setq ivy-count-format ""
         ;; ivy-count-format "%-2d "
+        ivy-use-virtual-buffers t
         ivy-extra-directories nil
         ivy-format-function 'ivy-format-function-arrow
         ivy-display-style 'fancy)
   (push '(counsel-M-x . "") ivy-initial-inputs-alist)
   (push '(counsel-describe-function . "") ivy-initial-inputs-alist)
-  (push '(counsel-describe-variable . "") ivy-initial-inputs-alist)
-
-  (defun eh-open-typed-path (path)
-    (let ((parent-directory
-           (if (file-directory-p path)
-               (file-name-directory (directory-file-name path))
-             (file-name-directory path))))
-      (find-file (concat parent-directory ivy-text))))
-
-  (ivy-set-actions
-   'counsel-find-file
-   '(("f" eh-open-typed-path  "Open typed path")))
-
-  (defun eh-ivy-open-typed-path ()
-    (interactive)
-    (when ivy--directory
-      (ivy-set-action 'eh-open-typed-path)
-      (ivy-done))))
+  (push '(counsel-describe-variable . "") ivy-initial-inputs-alist))
 
 ;; company-mode
 (use-package company
