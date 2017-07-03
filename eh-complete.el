@@ -118,7 +118,7 @@
     (("C-c C-r" . ivy-resume)
      ("M-x" . counsel-M-x)
      ("C-x b" . ivy-switch-buffer)
-     ("C-x f" . ivy-recentf)
+     ("C-x f" . counsel-recentf)
      ("C-x C-b" . ivy-switch-buffer)
      ("C-x C-f" . counsel-find-file)
      ("C-h f" . counsel-describe-function)
