@@ -64,7 +64,10 @@
         ivy-display-style 'fancy)
   (push '(counsel-M-x . "") ivy-initial-inputs-alist)
   (push '(counsel-describe-function . "") ivy-initial-inputs-alist)
-  (push '(counsel-describe-variable . "") ivy-initial-inputs-alist))
+  (push '(counsel-describe-variable . "") ivy-initial-inputs-alist)
+  ;; I use "C-x C-f" to open file, so bind "C-f" to
+  ;; `ivy-immediate-done' is very useful.
+  (define-key ivy-minibuffer-map (kbd "C-f") 'ivy-immediate-done))
 
 ;; company-mode
 (use-package company
