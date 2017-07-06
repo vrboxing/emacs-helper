@@ -49,8 +49,8 @@
    :source-browse-url ("GitHub" "https://github.com/tumashu/emacs-helper")
    :category-ignore-list ("themes" "assets" "uploaders" "elpa")
    :personal-avatar nil
-   :preparation-function owp/lentic-preparation-function
-   :org-export-function owp/lentic-org-export-function
+   :preparation-function owp/el2org-preparation-function
+   :org-export-function owp/el2org-org-export-function
    :lentic-doc-sources ("eh-.*\\.el$")
    :lentic-readme-sources ("emacs-helper.el")
    :lentic-index-sources ("emacs-helper.el")
