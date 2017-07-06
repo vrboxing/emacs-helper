@@ -59,7 +59,6 @@
   (setq ivy-count-format ""
         ;; ivy-count-format "%-2d "
         ivy-use-virtual-buffers t
-        ivy-extra-directories nil
         ivy-format-function 'ivy-format-function-arrow
         ivy-display-style 'fancy)
   (push '(counsel-M-x . "") ivy-initial-inputs-alist)
