@@ -35,7 +35,6 @@
 ;;; Code:
 
 ;; * 代码                                                      :code:
-;; #+BEGIN_SRC emacs-lisp
 (use-package emms
   :config
 
@@ -365,10 +364,8 @@ Return the previous point-max before adding."
   (define-key emms-playlist-mode-map (kbd "S m") 'emms-score-more-tolerant)
   (define-key emms-playlist-mode-map (kbd "S t") 'emms-score-set-tolerance)
   (define-key emms-playlist-mode-map (kbd "S s") 'emms-score-show-playing))
-;; #+END_SRC
 
 ;; * Footer
-;; #+BEGIN_SRC emacs-lisp
 (provide 'eh-emms)
 
 ;; Local Variables:
@@ -377,4 +374,3 @@ Return the previous point-max before adding."
 ;; End:
 
 ;;; eh-emms.el ends here
-;; #+END_SRC

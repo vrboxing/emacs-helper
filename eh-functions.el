@@ -35,7 +35,6 @@
 ;;; Code:
 
 ;; * 代码                                                      :code:
-;; #+BEGIN_SRC emacs-lisp
 (defun eh-shutdown-emacs-server ()
   (interactive)
   (when (not (eq window-system 'x))
@@ -204,10 +203,8 @@ this function  derived from `article-strip-multiple-blank-lines' in
   (set-next-selection-coding-system 'gbk-dos)
   (set-selection-coding-system 'gbk-dos)
   (set-terminal-coding-system 'gbk-dos))
-;; #+END_SRC
 
 ;; * Footer
-;; #+BEGIN_SRC emacs-lisp
 (provide 'eh-functions)
 
 ;; Local Variables:
@@ -216,4 +213,3 @@ this function  derived from `article-strip-multiple-blank-lines' in
 ;; End:
 
 ;;; eh-functions.el ends here
-;; #+END_SRC

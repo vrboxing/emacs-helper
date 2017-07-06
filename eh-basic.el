@@ -34,7 +34,6 @@
 ;;; Code:
 
 ;; * 代码                                                                 :code:
-;; #+BEGIN_SRC emacs-lisp
 (defvar eh-directory
   (file-name-directory
    (locate-library "eh-basic.el"))
@@ -399,10 +398,8 @@
   :config
   ;; 高亮配对的括号
   (show-paren-mode 1))
-;; #+END_SRC
 
 ;; * Footer
-;; #+BEGIN_SRC emacs-lisp
 (provide 'eh-basic)
 
 ;; Local Variables:
@@ -411,4 +408,3 @@
 ;; End:
 
 ;;; eh-basic.el ends here
-;; #+END_SRC

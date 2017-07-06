@@ -34,7 +34,6 @@
 ;;; Code:
 
 ;; * 代码                                                      :code:
-;; #+BEGIN_SRC emacs-lisp
 (use-package org-capture
   :ensure nil
   :config
@@ -92,7 +91,6 @@
 ;; #+END_SRC
 
 ;; * Footer
-;; #+BEGIN_SRC emacs-lisp
 (provide 'eh-org-capture)
 
 ;; Local Variables:
@@ -101,4 +99,3 @@
 ;; End:
 
 ;;; eh-org-capture.el ends here
-;; #+END_SRC

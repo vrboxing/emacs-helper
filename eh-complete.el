@@ -34,7 +34,6 @@
 ;;; Code:
 
 ;; * 代码                                                      :code:
-;; #+BEGIN_SRC emacs-lisp
 ;; smex swiper and ivy-mode
 (use-package smex
   :config (smex-initialize))
@@ -122,11 +121,7 @@
         (funcall orig-fun))))
   (advice-add 'company-dabbrev--prefix :around #'eh-company-dabbrev--prefix))
 
-
-;; #+END_SRC
-
 ;; * Footer
-;; #+BEGIN_SRC emacs-lisp
 (provide 'eh-complete)
 
 ;; Local Variables:
@@ -135,4 +130,3 @@
 ;; End:
 
 ;;; eh-complete.el ends here
-;; #+END_SRC

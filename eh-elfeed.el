@@ -35,7 +35,6 @@
 ;;; Code:
 
 ;; * 代码                                                      :code:
-;; #+BEGIN_SRC emacs-lisp
 (use-package elfeed
   :config
   (setq elfeed-use-curl t)
@@ -121,10 +120,8 @@
         (elfeed-search-update :force))))
 
   (define-key elfeed-search-mode-map "s" 'eh-elfeed-search-live-filter))
-;; #+END_SRC
 
 ;; * Footer
-;; #+BEGIN_SRC emacs-lisp
 (provide 'eh-elfeed)
 
 ;; Local Variables:
@@ -133,4 +130,3 @@
 ;; End:
 
 ;;; eh-elfeed.el ends here
-;; #+END_SRC

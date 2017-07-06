@@ -36,7 +36,6 @@
 ;;; Code:
 
 ;; * 代码                                                      :code:
-;; #+BEGIN_SRC emacs-lisp
 (use-package gnus
   :ensure nil
   :config
@@ -562,10 +561,8 @@
     :config
     (add-hook 'gnus-after-getting-new-news-hook
               'gnus-notifications)))
-;; #+END_SRC
 
 ;; * Footer
-;; #+BEGIN_SRC emacs-lisp
 (provide 'eh-gnus-common)
 
 ;; Local Variables:
@@ -574,4 +571,3 @@
 ;; End:
 
 ;;; eh-gnus-common.el ends here
-;; #+END_SRC

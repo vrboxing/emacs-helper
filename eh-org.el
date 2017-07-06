@@ -34,8 +34,6 @@
 ;;; Code:
 
 ;; * 代码                                                       :code:
-;; #+BEGIN_SRC emacs-lisp
-
 (use-package org
   :ensure nil
   :config
@@ -265,10 +263,8 @@
     (interactive)
     (let ((fill-column 10000000))
       (org-fill-paragraph))))
-;; #+END_SRC
 
 ;; * Footer
-;; #+BEGIN_SRC emacs-lisp
 (provide 'eh-org)
 
 ;; Local Variables:
@@ -277,4 +273,3 @@
 ;; End:
 
 ;;; eh-org.el ends here
-;; #+END_SRC

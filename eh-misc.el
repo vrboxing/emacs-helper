@@ -34,8 +34,6 @@
 ;;; Code:
 
 ;; * 代码                                                      :code:
-;; #+BEGIN_SRC emacs-lisp
-
 ;; eh-website
 (use-package org-webpage
   :config
@@ -404,10 +402,8 @@
      (list
       ;; orgmode source
       (cfw:org-create-source "Green")))))
-;; #+END_SRC
 
 ;; * Footer
-;; #+BEGIN_SRC emacs-lisp
 (provide 'eh-misc)
 
 ;; Local Variables:
@@ -416,4 +412,3 @@
 ;; End:
 
 ;;; eh-misc.el ends here
-;; #+END_SRC

@@ -1,7 +1,5 @@
 ;;; eh-gnus.el --- Tumashu's gnus configuation file
 
-
-
 ;; * Header
 ;; Copyright (c) 2011-2016, Feng Shu
 
@@ -43,7 +41,6 @@
 ;;; Code:
 
 ;; * 代码                                                      :code:
-;; #+BEGIN_SRC emacs-lisp
 (defcustom eh-gnus-personal-file "~/Gnus/eh-gnus-personal.el"
   "eh-gnus用于存储个人帐号信息的文件")
 
@@ -67,10 +64,8 @@
                    (unless (gnus-alive-p)
                      (gnus))
                    (gnus-msg-mail)))
-;; #+END_SRC
 
 ;; * Footer
-;; #+BEGIN_SRC emacs-lisp
 (provide 'eh-gnus)
 
 ;; Local Variables:
@@ -79,4 +74,3 @@
 ;; End:
 
 ;;; eh-gnus.el ends here
-;; #+END_SRC

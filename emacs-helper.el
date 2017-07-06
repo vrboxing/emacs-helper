@@ -43,7 +43,6 @@
 ;; 4. 重启 Emacs, 第一次加载 Emacs-helper 的时候，它依赖的包会自动安装。
 
 ;; * 代码                                                                 :code:
-;; #+BEGIN_SRC emacs-lisp
 (load-library "eh-basic")
 (load-library "eh-org")
 (load-library "eh-bbdb3")
@@ -51,10 +50,8 @@
 (load-library "eh-functions")
 (load-library "eh-elfeed")
 (load-library "eh-misc")
-;; #+END_SRC
 
 ;; * Footer
-;; #+BEGIN_SRC emacs-lisp
 (provide 'emacs-helper)
 
 ;; Local Variables:
@@ -63,4 +60,3 @@
 ;; End:
 
 ;;; emacs-helper.el ends here
-;; #+END_SRC

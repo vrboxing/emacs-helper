@@ -28,7 +28,6 @@
 ;;; Code:
 
 ;; * 代码                                                                 :code:
-;; #+BEGIN_SRC emacs-lisp
 (require 'emacs-helper)
 (require 'org-webpage)
 (require 'owp-web-server)
@@ -56,10 +55,8 @@
    :lentic-readme-sources ("emacs-helper.el")
    :lentic-index-sources ("emacs-helper.el")
    :web-server-port 8765))
-;; #+END_SRC
 
 ;; * Footer
-;; #+BEGIN_SRC emacs-lisp
 (provide 'eh-devtools)
 
 ;; Local Variables:
@@ -67,4 +64,3 @@
 ;; End:
 
 ;;; eh-devtools.el ends here
-;; #+END_SRC
