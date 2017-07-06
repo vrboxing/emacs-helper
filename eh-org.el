@@ -121,9 +121,6 @@
     :ensure nil
     :config (ox-bibtex-chinese-enable))
 
-  (use-package ebib-handy
-    :ensure nil)
-
   ;; (use-package ob-R
   ;;   :ensure nil)
 
@@ -152,10 +149,7 @@
     (setq org-confirm-babel-evaluate nil))
 
   (use-package org-capture
-    :ensure nil
-    :config
-    (use-package eh-org-capture
-      :ensure nil))
+    :ensure nil)
 
   ;; 自定义变量
   (setq eh-org-mathtoweb-file "~/bin/mathtoweb.jar")
@@ -205,25 +199,6 @@
      ;; (shell . nil)
      (sql . nil)
      (sqlite . nil)))
-
-  ;; export filter
-  ;; (defun eh-convert-punctuation (text backend info)
-  ;;   "将半角标点符号全部替换为全角标点符号"
-  ;;   (when (memq backend '(odt html))
-  ;;     (replace-regexp-in-string
-  ;;      ";" "；"
-  ;;      (replace-regexp-in-string
-  ;;       ":" "："
-  ;;       (replace-regexp-in-string
-  ;;        "·" "。"
-  ;;        (replace-regexp-in-string
-  ;;	","  "，"
-  ;;	(replace-regexp-in-string
-  ;;   "\\."  "。"
-  ;;   (replace-regexp-in-string "\n" "" text))))))))
-
-  ;; (add-to-list 'org-export-filter-plain-text-functions
-  ;;              'eh-convert-punctuation)
 
   ;; Use Cairo graphics device by default,which can get better graphics quality.
   ;; you shoule add below lines to you ~/.Rprofile

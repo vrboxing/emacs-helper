@@ -543,11 +543,12 @@
             'gnus-group-first-unread-group)
 
   ;; 每隔10分钟刷新一下
-  (add-hook 'gnus-startup-hook
-            '(lambda ()
-               (progn (setq gnus-use-demon t)
-                      (gnus-demon-add-handler
-                       'gnus-demon-scan-news 10 nil))))
+  ;; (add-hook 'gnus-startup-hook
+  ;;           (lambda ()
+  ;;             (progn (setq gnus-use-demon t)
+  ;;                    (gnus-demon-add-handler
+  ;;                     'gnus-demon-scan-news 10 nil))))
+
   (use-package org
     :ensure nil
     :config

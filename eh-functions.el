@@ -35,31 +35,6 @@
 ;;; Code:
 
 ;; * 代码                                                      :code:
-(defun eh-shutdown-emacs-server ()
-  (interactive)
-  (when (not (eq window-system 'x))
-    (message "Initializing x windows system.")
-    (x-initialize-window-system)
-    (when (not x-display-name) (setq x-display-name (getenv "DISPLAY")))
-    (select-frame (make-frame-on-display x-display-name '((window-system . x)))))
-  (let ((last-nonmenu-event nil)(window-system "x"))(save-buffers-kill-emacs)))
-
-(defun eh-isearch-string (string)
-  "search a string with isearch"
-  (isearch-mode t nil nil nil)
-  (isearch-yank-string string)
-  (isearch-exit))
-
-(defun eh-mark-word ()
-  "Mark the entire word around or in front of point."
-  (interactive)
-  (let ((word-regexp "\\sw"))
-    (when (or (looking-at word-regexp)
-              (looking-back word-regexp (line-beginning-position)))
-      (skip-syntax-forward "w")
-      (set-mark (point))
-      (skip-syntax-backward "w"))))
-
 (defun eh-directory-files-recursively (directory &optional type regexp)
   "recursively list all the files in a directory"
   (let* ((directory (or directory default-directory))
@@ -149,18 +124,6 @@ this function  derived from `article-strip-multiple-blank-lines' in
   (interactive)
   (goto-char (point-min))
   (while (search-forward "\n" nil t) (replace-match "\r\n")))
-
-(defun eh-remove-white-space ()
-  "删除多余空格"
-  (interactive)
-  ;; 删除行首空格
-  (goto-char (point-min))
-  (while (re-search-forward "^ +\\(\\cc+\\)" nil t)
-    (replace-match "\\1"))
-  ;; 删除汉字之间的空格
-  (goto-char (point-min))
-  (while (re-search-forward "\\(\\cc+\\) +" nil t)
-    (replace-match "\\1")))
 
 (defun eh-revert-buffer-with-gbk ()
   (interactive)

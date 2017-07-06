@@ -58,12 +58,11 @@
           :ensure nil))
     (message "eh-gnus个人帐号文件不存在，eh-gnus启动失败!!!")))
 
-(global-set-key (kbd "C-x m")
-                '(lambda ()
-                   (interactive)
-                   (unless (gnus-alive-p)
-                     (gnus))
-                   (gnus-msg-mail)))
+(global-set-key (kbd "C-x m") (lambda ()
+                                (interactive)
+                                (unless (gnus-alive-p)
+                                  (gnus))
+                                (gnus-msg-mail)))
 
 ;; * Footer
 (provide 'eh-gnus)

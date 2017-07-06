@@ -51,7 +51,8 @@
 ;; Startup screen
 (setq inhibit-startup-screen t)
 (setq initial-buffer-choice nil)
-(setq initial-scratch-message ";; This is *scratch* buffer.\n\n")
+(setq initial-scratch-message
+      ";; This is *scratch* buffer.\n\n")
 
 ;; 使用空格缩进
 (setq-default indent-tabs-mode nil)
@@ -70,7 +71,7 @@
         nil)
     t))
 
-(add-hook 'kill-buffer-query-functions 'eh-unkillable-scratch-buffer)
+(add-hook 'kill-buffer-query-functions #'eh-unkillable-scratch-buffer)
 
 ;; load-path
 (defvar eh-enable-load-path-hack t)
@@ -154,7 +155,7 @@
 
 (if eh-enable-full-install
     (eh-packages-install (eh-get-elpa-mirror-packages))
-  (eh-packages-install '(use-package org org-plus-contrib)))
+  (eh-packages-install '(use-package org-plus-contrib)))
 
 ;; use-package
 (require 'use-package)
@@ -209,17 +210,17 @@
 (use-package files
   :ensure nil
   :config
+  ;; 使用下面这一行配置后，org-mode 的源代码总是莫名其妙的
+  ;;     (add-hook 'before-save-hook 'whitespace-cleanup)
+  ;; 更改，这会导致生成的 diff 相当乱。
   (use-package whitespace
-    :ensure nil
-    :config)
-    ;; 开启这个 hook 后，org-mode 的源代码总是莫名其妙的
-    ;; 被更改，导致 diff 相当乱，暂时禁用吧。
-    ;; (add-hook 'before-save-hook 'whitespace-cleanup)
-
+    :ensure nil)
   (use-package simple
     :ensure nil
     :config
-    (add-hook 'before-save-hook (lambda () (delete-trailing-whitespace)))))
+    (add-hook 'before-save-hook
+              (lambda ()
+                (delete-trailing-whitespace)))))
 
 ;; eshell
 (use-package eshell
@@ -334,26 +335,11 @@
   (recentf-mode 1)
   (setq recentf-max-saved-items 99)
   (setq recentf-max-menu-items 99)
+  (setq recentf-show-file-shortcuts-flag nil)
   (setq recentf-exclude
         '("COMMIT" "autoloads" "archive-contents" "eld" "newsrc"
           ".recentf" "emacs-font-size.conf"
           "pyim-dcache-.*"))
-  (setq recentf-menu-filter 'eh-recentf-buffer-filter)
-  (setq recentf-show-file-shortcuts-flag nil)
-
-  (defun eh-recentf-buffer-filter (l)
-    (let ((index 0)
-          filtered-list element list name recentf-string)
-      (dolist (elt l (nreverse filtered-list))
-        (setq index (1+ index)
-              element (recentf-menu-element-value elt)
-              list (reverse (split-string element "/"))
-              name (if (> (length (nth 0 list)) 0)
-                       (format "%s" (nth 0 list))
-                     (format "%s/" (nth 1 list)))
-              recentf-string (format "[%2s]:  %-30s (%s)" index name element))
-        (push (recentf-make-menu-element recentf-string element) filtered-list))))
-
   ;; 自动保存recentf文件。
   (add-hook 'find-file-hook 'recentf-save-list))
 

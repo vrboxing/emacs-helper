@@ -76,8 +76,7 @@
   (setq company-tooltip-limit 10)
   (setq company-echo-delay 0)
   (setq company-global-modes
-        '(not message-mode git-commit-mode eshell-mode
-              sfh/sawfish-console-mode))
+        '(not message-mode git-commit-mode eshell-mode))
 
   ;; company-dabbrev
   (setq company-dabbrev-char-regexp "[[:word:]_:@.-]+")
@@ -96,9 +95,6 @@
   (setq company-frontends
         '(company-pseudo-tooltip-frontend
           company-echo-metadata-frontend))
-
-  ;; 禁用 dabberv 中文补全
-  (setq pyim-company-complete-chinese-enable nil)
 
   (global-set-key (kbd "M-/") 'company-complete)
   (define-key company-active-map (kbd "M-i") 'company-complete-selection)
@@ -119,6 +115,7 @@
       (if (pyim-string-match-p "\\cc" string)
           nil
         (funcall orig-fun))))
+
   (advice-add 'company-dabbrev--prefix :around #'eh-company-dabbrev--prefix))
 
 ;; * Footer

@@ -185,7 +185,6 @@
 ;; magit
 (use-package magit
   :config
-  (setq magit-completing-read-function 'magit-ido-completing-read)
   (setq magit-completing-read-function 'ivy-completing-read)
   :bind (("C-c g" . magit-status)))
 
@@ -211,38 +210,8 @@
          ("C-x 0" . switch-window-then-delete))
   :config
   (setq switch-window-increase 6)
-  (setq switch-window-shortcut-style 'qwerty))
-
-;; ace-window
-(use-package ace-window
-  :disabled t
-  :bind (("C-x o" . ace-window))
-  :config
-  (set-face-attribute 'aw-leading-char-face nil
-                      :foreground "white"
-                      :weight 'bold
-                      :height 3.0)
-  (set-face-attribute 'aw-mode-line-face nil
-                      :inherit 'mode-line-buffer-id
-                      :foreground "red"
-                      :weight 'bold)
-  (setq aw-scope 'frame)
-  (setq aw-reverse-frame-list t)
-  (setq-default cursor-in-non-selected-windows 'hollow)
-  (setq aw-keys '(?a ?s ?d ?f ?j ?k ?l))
-  (setq aw-dispatch-always nil)
-  (setq aw-dispatch-alist ;key prefix to window label
-        '((?x aw-delete-window     "Ace - Delete Window")
-          (?c aw-swap-window       "Ace - Swap Window")
-          (?n aw-flip-window)
-          (?v aw-split-window-vert "Ace - Split Vert Window")
-          (?h aw-split-window-horz "Ace - Split Horz Window")
-          (?m delete-other-windows "Ace - Maximize Window")
-          (?g delete-other-windows)
-          (?b balance-windows)
-          (?u winner-undo)
-          (?r winner-redo)))
-  (ace-window-display-mode t))
+  (setq switch-window-shortcut-style 'qwerty)
+  (setq switch-window-input-style 'minibuffer))
 
 ;; General project support
 (use-package projectile
@@ -251,10 +220,10 @@
   (use-package wgrep
     :config
     (projectile-global-mode 1)
-    (setq projectile-enable-caching nil)
-    :bind
-    (("C-x F" . projectile-find-file)
-     ("C-S-s" . projectile-grep))))
+    (setq projectile-enable-caching nil))
+  :bind
+  (("C-x F" . projectile-find-file)
+   ("C-S-s" . projectile-grep)))
 
 ;; undo tree
 (use-package undo-tree

@@ -1,4 +1,3 @@
-;; #+BEGIN_SRC emacs-lisp
 ;; Gnus邮件设置。
 (setq gnus-select-method '(nnml ""))
 (setq mail-sources
@@ -74,4 +73,3 @@
 ;; coding: utf-8-unix
 ;; no-byte-compile: t
 ;; End:
-;; #+END_SRC
