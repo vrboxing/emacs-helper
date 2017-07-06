@@ -50,19 +50,15 @@
       (progn
         ;; 加载个人帐号信息。
         (load eh-gnus-personal-file)
-        ;; bbdb
-        (use-package eh-bbdb3
-          :ensure nil)
         ;; 加载 gnus 可共享的配置
-        (use-package eh-gnus-common
-          :ensure nil))
+        (use-package eh-gnus-common :ensure nil))
     (message "eh-gnus个人帐号文件不存在，eh-gnus启动失败!!!")))
 
-(global-set-key (kbd "C-x m") (lambda ()
-                                (interactive)
-                                (unless (gnus-alive-p)
-                                  (gnus))
-                                (gnus-msg-mail)))
+(global-set-key (kbd "C-x m") #'(lambda ()
+                                  (interactive)
+                                  (unless (gnus-alive-p)
+                                    (gnus))
+                                  (gnus-msg-mail)))
 
 ;; * Footer
 (provide 'eh-gnus)
