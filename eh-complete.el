@@ -49,9 +49,8 @@
     :config
     (setq org-completion-use-ido t))
 
-  (use-package ido-ubiquitous
+  (use-package ido-completing-read+
     :config
-    (setq ido-everywhere t)
     (ido-ubiquitous-mode 1))
 
   (use-package flx-ido
