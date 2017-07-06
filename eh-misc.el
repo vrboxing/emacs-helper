@@ -231,7 +231,7 @@
   :config
   (global-undo-tree-mode)
   (add-hook 'undo-tree-visualizer-mode-hook
-            'eh-undo-tree-visualizer-settings)
+            #'eh-undo-tree-visualizer-settings)
   (defun eh-undo-tree-visualizer-settings ()
     (interactive)
     (define-key undo-tree-visualizer-mode-map (kbd "C-c C-k") 'undo-tree-visualizer-quit)
@@ -294,7 +294,6 @@
           (holiday-lunar 12 8 "腊八节" 0)
           (holiday-lunar 9 9 "重阳节" 0)
           (holiday-lunar 12 22 "冬至" 0)))
-
   (setq calendar-holidays eh-calendar-holidays))
 
 (use-package calendar
@@ -311,12 +310,10 @@
 
 (use-package calfw
   :config
-
   (use-package calfw-cal :ensure calfw)
   (use-package calfw-ical :ensure calfw)
   (use-package calfw-org :ensure calfw)
   (use-package cal-china-x)
-
   (use-package org-capture
     :ensure org
     :config

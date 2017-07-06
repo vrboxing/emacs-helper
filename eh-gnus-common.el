@@ -39,19 +39,12 @@
 (use-package gnus
   :ensure nil
   :config
-
-  (use-package mm-encode
-    :ensure nil)
-  (use-package mm-decode
-    :ensure nil)
-  (use-package rfc2047
-    :ensure nil)
-  (use-package nnir
-    :ensure nil)
-  (use-package gnus-demon
-    :ensure nil)
-  (use-package eww
-    :ensure nil)
+  (use-package mm-encode :ensure nil)
+  (use-package mm-decode :ensure nil)
+  (use-package rfc2047 :ensure nil)
+  (use-package nnir :ensure nil)
+  (use-package gnus-demon :ensure nil)
+  (use-package eww :ensure nil)
 
   ;; 邮件分类设置
   (setq nnmail-treat-duplicates 'delete

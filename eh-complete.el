@@ -36,7 +36,8 @@
 ;; * 代码                                                      :code:
 ;; smex swiper and ivy-mode
 (use-package smex
-  :config (smex-initialize))
+  :config
+  (smex-initialize))
 
 (use-package swiper
   :config
@@ -57,9 +58,8 @@
 
   (ivy-mode 1)
   (setq ivy-count-format ""
-        ;; ivy-count-format "%-2d "
         ivy-use-virtual-buffers t
-        ivy-format-function 'ivy-format-function-arrow
+        ivy-format-function #'ivy-format-function-arrow
         ivy-display-style 'fancy)
   (push '(counsel-M-x . "") ivy-initial-inputs-alist)
   (push '(counsel-describe-function . "") ivy-initial-inputs-alist)

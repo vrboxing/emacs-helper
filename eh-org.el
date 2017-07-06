@@ -48,9 +48,6 @@
     :ensure nil
     :config (org-chinese-utils-enable))
 
-  (use-package ox-odt
-    :ensure nil)
-
   (use-package ox-html
     :ensure nil
     :config
@@ -76,23 +73,20 @@
     :ensure nil
     :config (oxlc/toggle-ox-latex-chinese t))
 
-  (use-package ox-ascii
-    :ensure nil)
-
-  (use-package ox-beamer
-    :ensure nil)
-
-  (use-package ox-md
-    :ensure nil)
-
-  (use-package ox-deck
-    :ensure nil)
-
-  (use-package ox-rss
-    :ensure nil)
-
-  (use-package ox-s5
-    :ensure nil)
+  (use-package org-capture :ensure nil)
+  (use-package ox-odt :ensure nil)
+  (use-package ox-ascii :ensure nil)
+  (use-package ox-beamer :ensure nil)
+  (use-package ox-md :ensure nil)
+  (use-package ox-deck :ensure nil)
+  (use-package ox-rss :ensure nil)
+  (use-package ox-s5 :ensure nil)
+  (use-package org-mime :ensure nil)
+  (use-package org-bookmark :ensure nil)
+  (use-package org-protocol :ensure nil)
+  (use-package org-screenshot :ensure nil)
+  (use-package ox-bibtex :ensure nil)
+  ;; (use-package ob-R :ensure nil)
 
   ;; org-plus-contrib
   (use-package ox-extra
@@ -102,27 +96,9 @@
     ;; 但对它的内容没有影响。
     (ox-extras-activate '(latex-header-blocks ignore-headlines)))
 
-  (use-package org-mime
-    :ensure nil)
-
-  (use-package org-bookmark
-    :ensure nil)
-
-  (use-package org-protocol
-    :ensure nil)
-
-  (use-package org-screenshot
-    :ensure nil)
-
-  (use-package ox-bibtex
-    :ensure nil)
-
   (use-package ox-bibtex-chinese
     :ensure nil
     :config (ox-bibtex-chinese-enable))
-
-  ;; (use-package ob-R
-  ;;   :ensure nil)
 
   (use-package ob-plantuml
     :ensure nil
@@ -134,13 +110,11 @@
     :config
     (setq org-agenda-files
           (append (file-expand-wildcards "~/org/*.org")))
-
     (setq org-agenda-custom-commands
           '(("l" "agenda:"
              ((agenda  "" ((org-agenda-overriding-header "Two-Days")
                            (org-agenda-span 2)))
               (tags-todo "生活|IT|购物")))))
-
     (setq org-agenda-remove-tags t))
 
   (use-package ob-core
@@ -148,27 +122,22 @@
     :config
     (setq org-confirm-babel-evaluate nil))
 
-  (use-package org-capture
-    :ensure nil)
-
   ;; 自定义变量
   (setq eh-org-mathtoweb-file "~/bin/mathtoweb.jar")
-
   (setq org-latex-to-mathml-convert-command
         "java -jar %j -unicode -force -df %o %I"
         org-latex-to-mathml-jar-file
         eh-org-mathtoweb-file)
-
   (setq org-todo-keywords
         '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
-
-  (add-to-list 'auto-mode-alist '("\.\(org\|org_archive\)$" . org-mode))
   (setq org-insert-heading-respect-content nil)
   (setq org-log-done t)
   (setq org-startup-indented nil)
   (setq org-edit-src-content-indentation 0)
   (setq org-export-backends
         '(ascii beamer html latex md deck rss s5 odt))
+  (add-to-list 'auto-mode-alist
+               '("\.\(org\|org_archive\)$" . org-mode))
 
   ;; org默认使用"_下标"来定义一个下标，使用"^上标"定义一个上标，
   ;; 但这种方式在中文环境中与下划线冲突。
@@ -181,9 +150,8 @@
 
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '(
+   '((org . t)
      ;; (R . t)
-     (org . t)
      (ditaa . nil)
      (dot . nil)
      (emacs-lisp . t)

@@ -34,6 +34,8 @@
 ;;; Code:
 
 ;; * 代码                                                                 :code:
+(require 'cl-lib)
+
 (defvar eh-directory
   (file-name-directory
    (locate-library "eh-basic.el"))
@@ -71,7 +73,8 @@
         nil)
     t))
 
-(add-hook 'kill-buffer-query-functions #'eh-unkillable-scratch-buffer)
+(add-hook 'kill-buffer-query-functions
+          #'eh-unkillable-scratch-buffer)
 
 ;; load-path
 (defvar eh-enable-load-path-hack t)
@@ -80,23 +83,23 @@
 (defun eh-hack-load-path ()
   ;; Delete buildin org's PATH
   (setq load-path
-        (delq nil (mapcar
-                   #'(lambda (p)
-                       (unless (or (string-match "lisp/org$" p))
-                         p))
-                   load-path)))
+        (cl-remove-if
+         #'(lambda (path)
+             (string-match "lisp/org$" path))
+         load-path))
   ;; Demove property lists to defeat cus-load and remove autoloads
-  (mapatoms #'(lambda (s)
-                (let ((sn (symbol-name s)))
-                  (when (string-match "^\\(org\\|ob\\|ox\\)-?" sn)
-                    (setplist s nil)
-                    (when (autoloadp s)
-                      (unintern s)))))))
+  (mapatoms
+   #'(lambda (sym)
+       (let ((sym-name (symbol-name sym)))
+         (when (string-match "^\\(org\\|ob\\|ox\\)-?" sym-name)
+           (setplist sym nil)
+           (when (autoloadp sym)
+             (unintern sym)))))))
 
 (defun eh-update-load-path ()
   (interactive)
   (let (dirs)
-    (dolist (x '("~" "c:" "d:" "e:" "f:" "g:"))
+    (dolist (x '("~" "c:" "d:" "e:" "f:" "g:" "h:" "i:"))
       (push (file-name-as-directory
              (concat x "/projects/emacs-packages")) dirs)
       (push (file-name-as-directory
@@ -117,7 +120,8 @@
 
 ;; package
 (require 'package)
-(setq package-archives `(("eh-elpa" . ,eh-elpa-directory)))
+(setq package-archives
+      `(("eh-elpa" . ,eh-elpa-directory)))
 (package-initialize)
 
 (defun eh-packages-install (packages)
@@ -141,28 +145,31 @@
           ("org-cn"   . "http://elpa.emacs-china.org/org/")
           ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/"))))
 
+(defun eh-package-list-packages ()
+  (interactive)
+  (eh-update-package-archives)
+  (package-list-packages))
+
 ;; 安装 emacs-helper/elpa 目录下的所有的包
 (defun eh-get-elpa-mirror-packages ()
   (let ((file (concat (file-name-directory eh-elpa-directory)
                       "archive-contents")))
     (when (file-exists-p file)
-      (mapcar #'car (cdr (read
-                          (with-temp-buffer
-                            (insert-file-contents file)
-                            (buffer-string))))))))
+      (mapcar #'car
+              (cdr (read (with-temp-buffer
+                           (insert-file-contents file)
+                           (buffer-string))))))))
 
 (defvar eh-enable-full-install nil)
 
 (if eh-enable-full-install
-    (eh-packages-install (eh-get-elpa-mirror-packages))
-  (eh-packages-install '(use-package org-plus-contrib)))
+    (eh-packages-install
+     (eh-get-elpa-mirror-packages))
+  (eh-packages-install
+   '(use-package org-plus-contrib)))
 
 ;; use-package
 (require 'use-package)
-
-;; 默认不显示 *Async Shell Command* buffer
-;; (add-to-list 'display-buffer-alist
-;;              '("\\*Async Shell Command\\*.*"  display-buffer-no-window nil))
 
 ;; Theme 设置
 (use-package cyberpunk-theme
@@ -219,29 +226,26 @@
     :ensure nil
     :config
     (add-hook 'before-save-hook
-              (lambda ()
-                (delete-trailing-whitespace)))))
+              #'(lambda ()
+                  (delete-trailing-whitespace)))))
 
 ;; eshell
 (use-package eshell
   :bind (("C-x c" . eshell))
   :ensure nil
   :config
-
-  (use-package em-term
-    :ensure nil)
-  (use-package em-unix
-    :ensure nil)
-
+  (use-package em-term :ensure nil)
+  (use-package em-unix :ensure nil)
   (setq eshell-visual-commands
-        (append '("aptitude" "mutt" "nano" "crontab" "vim" "less")
+        (append '("top" "htop" "aptitude" "mutt"
+                  "nano" "crontab" "vim" "less" "zile")
                 eshell-visual-commands))
   (setq eshell-visual-subcommands
         (list (append '("sudo") eshell-visual-commands)
-              '("git" "log" "diff" "show")))
+              '("git" "log" "diff" "show" "grep"
+                "commit" "rebase" "pull" "push")))
   (setq eshell-visual-options
-        '(("git" "--help")))
-
+        '(("git" "--help" "--paginate")))
   (defun eh-eshell (&optional arg)
     (interactive)
     ;; 使用eshell-exec-visual第一次打开term时，
@@ -249,16 +253,6 @@
     ;; 首先运行一下less, 从而让multi-term的键盘绑定生效。
     (eshell-command "less")
     (eshell arg)))
-
-;; (setenv "PATH"
-;;         (concat "/usr/local/texlive/2014/bin/i386-linux:"
-;;                 (getenv "PATH")))
-;; (setenv "PYTHONPATH"
-;;         (concat "~/project/emacs-packages/emacs-helper/doc/configs:"
-;;                 (getenv "PYTHONPATH")))
-;; (setq exec-path
-;;       (append '("/usr/local/texlive/2014/bin/i386-linux")
-;;               exec-path))
 
 ;; eww
 (use-package eww
@@ -278,10 +272,6 @@
   (use-package chinese-pyim-basedict
     :ensure nil
     :config (chinese-pyim-basedict-enable))
-
-  (use-package chinese-pyim-wbdict
-    :ensure nil
-    :config (chinese-pyim-wbdict-gbk-enable))
 
   (setq default-input-method "chinese-pyim")
 
@@ -310,7 +300,8 @@
 
   ;; emacs 启动时加载 pyim 词库
   (add-hook 'emacs-startup-hook
-            #'(lambda () (pyim-restart-1 t)))
+            #'(lambda ()
+                (pyim-restart-1 t)))
   :bind
   (("M-j" . pyim-convert-code-at-point)
    ("C-;" . pyim-delete-word-from-personal-buffer)))
@@ -320,7 +311,8 @@
   :demand t
   :init (setq cfs-verbose nil)
   :config
-  (setq cfs-use-face-font-rescale (eq system-type 'gnu/linux))
+  (setq cfs-use-face-font-rescale
+        (eq system-type 'gnu/linux))
   (chinese-fonts-setup-enable)
   :bind (("C--" . cfs-decrease-fontsize)
          ("C-=" . cfs-increase-fontsize)
@@ -341,7 +333,7 @@
           ".recentf" "emacs-font-size.conf"
           "pyim-dcache-.*"))
   ;; 自动保存recentf文件。
-  (add-hook 'find-file-hook 'recentf-save-list))
+  (add-hook 'find-file-hook #'recentf-save-list))
 
 ;; ibuffer
 (use-package ibuffer

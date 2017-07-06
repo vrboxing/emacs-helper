@@ -37,18 +37,15 @@
 ;; * 代码                                                      :code:
 (use-package emms
   :config
-
-  (use-package emms-setup
-    :ensure nil)
-  (use-package emms-info-libtag
-    :ensure nil)
-  (use-package dired
-    :ensure nil)
+  (use-package emms-setup :ensure nil)
+  (use-package emms-info-libtag :ensure nil)
+  (use-package dired :ensure nil)
   (use-package chinese-pyim)
 
   (emms-devel)
   (emms-default-players)
-  (when (fboundp 'emms-cache) (emms-cache 1))
+  (when (fboundp 'emms-cache)
+    (emms-cache 1))
 
   ;; EMMS 目录
   (setq emms-source-file-default-directory "~/Music")
@@ -85,11 +82,11 @@
   (setq emms-source-file-directory-tree-function
         'emms-source-file-directory-tree-find)
 
-  ;; 在minibuffer中显示播放信息(emms-show)
+  ;; 在 minibuffer 中显示播放信息 (emms-show)
   (add-hook 'emms-player-started-hook 'emms-show)
   (setq emms-show-format "正在播放: [%s]")
 
-  ;;设置Mode-line的显示方式
+  ;;设置 Mode-line 的显示方式
   (setq emms-mode-line-format "%s")
   (setq emms-playing-time-display-format "%s ]")
   (setq global-mode-string
