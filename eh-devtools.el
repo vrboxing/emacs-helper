@@ -51,9 +51,9 @@
    :personal-avatar nil
    :preparation-function owp/el2org-preparation-function
    :org-export-function owp/el2org-org-export-function
-   :lentic-doc-sources ("eh-.*\\.el$")
-   :lentic-readme-sources ("emacs-helper.el")
-   :lentic-index-sources ("emacs-helper.el")
+   :el2org-doc-sources ("eh-.*\\.el$")
+   :el2org-readme-sources ("emacs-helper.el")
+   :el2org-index-sources ("emacs-helper.el")
    :web-server-port 8765))
 
 ;; * Footer
