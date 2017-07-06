@@ -46,25 +46,25 @@
    (concat eh-directory "elpa/"))
   "emacs-helper 内置 elpa 镜像的目录。")
 
-;; Full name and email
+;; ** Full name and Email
 (setq user-full-name "Feng Shu")
 (setq user-mail-address "tumashu@163.com")
 
-;; Startup screen
+;; ** 启动时默认打开的 buffer.
 (setq inhibit-startup-screen t)
 (setq initial-buffer-choice nil)
 (setq initial-scratch-message
       ";; This is *scratch* buffer.\n\n")
 
-;; 使用空格缩进
+;; ** 使用空格缩进
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq tab-width 4)
 
-;; 关闭 beep
+;; ** 关闭 beep
 (setq visible-bell t)
 
-;; Don't delete *scratch* buffer
+;; ** 让 *scratch* buffer 无法删除
 (defun eh-unkillable-scratch-buffer ()
   (if (string= (buffer-name (current-buffer)) "*scratch*")
       (progn
@@ -76,7 +76,7 @@
 (add-hook 'kill-buffer-query-functions
           #'eh-unkillable-scratch-buffer)
 
-;; load-path
+;; ** 设置 load-path
 (defvar eh-enable-load-path-hack t)
 (defvar eh-enable-load-path-update nil)
 
@@ -118,7 +118,7 @@
   (eh-update-load-path)
   (message "emacs-helper update load-path success!"))
 
-;; package
+;; 设置 emacs 包管理器
 (require 'package)
 (setq package-archives
       `(("eh-elpa" . ,eh-elpa-directory)))
@@ -150,7 +150,7 @@
   (eh-update-package-archives)
   (package-list-packages))
 
-;; 安装 emacs-helper/elpa 目录下的所有的包
+;; ** 安装 emacs-helper/elpa 目录下的所有的包
 (defun eh-get-elpa-mirror-packages ()
   (let ((file (concat (file-name-directory eh-elpa-directory)
                       "archive-contents")))
@@ -168,19 +168,19 @@
   (eh-packages-install
    '(use-package org-plus-contrib)))
 
-;; use-package
+;; ** 使用 use-package
 (require 'use-package)
 
-;; Theme 设置
+;; ** 设置主题
 (use-package cyberpunk-theme
   :config
   (add-hook 'after-init-hook
             #'(lambda ()
                 (load-theme 'cyberpunk t))))
-;; async
+;; ** 启用 async
 (use-package async)
 
-;; elpa-mirror 设置
+;; ** 设置 elpa-mirror
 (use-package elpa-mirror
   :config
   (defun eh-update-elpa ()
@@ -193,7 +193,7 @@
         (make-directory dir t))
       (elpamr-create-mirror-for-installed))))
 
-;; Charset 设置
+;; ** 设置 Charset
 (use-package mule
   :ensure nil
   :config
@@ -213,7 +213,7 @@
     (set-next-selection-coding-system 'gbk-dos)
     (set-clipboard-coding-system 'gbk-dos)))
 
-;; 保存文件之前，删除无用的空格
+;; ** 保存文件之前，删除无用的空格
 (use-package files
   :ensure nil
   :config
@@ -229,7 +229,7 @@
               #'(lambda ()
                   (delete-trailing-whitespace)))))
 
-;; eshell
+;; ** 设置 Eshell
 (use-package eshell
   :bind (("C-x c" . eshell))
   :ensure nil
@@ -254,7 +254,7 @@
     (eshell-command "less")
     (eshell arg)))
 
-;; eww
+;; ** 设置 EWW
 (use-package eww
   :ensure nil
   :config
@@ -264,7 +264,7 @@
   ;; 必应:  http://cn.bing.com/search?q=
   (setq eww-search-prefix "http://www.sogou.com/sogou?query="))
 
-;; Pinyin Input Method
+;; ** 设置拼音输入法
 (use-package chinese-pyim
   :ensure nil
   :config
@@ -306,7 +306,7 @@
   (("M-j" . pyim-convert-code-at-point)
    ("C-;" . pyim-delete-word-from-personal-buffer)))
 
-;; Chinese fonts setup
+;; ** 设置中文字体
 (use-package chinese-fonts-setup
   :demand t
   :init (setq cfs-verbose nil)
@@ -318,7 +318,7 @@
          ("C-=" . cfs-increase-fontsize)
          ("C-+" . cfs-next-profile)))
 
-;; recentf
+;; 设置 recentf
 (use-package recentf
   :ensure nil
   :bind (("C-x f" . recentf-open-files))
@@ -335,7 +335,7 @@
   ;; 自动保存recentf文件。
   (add-hook 'find-file-hook #'recentf-save-list))
 
-;; ibuffer
+;; 设置 ibuffer
 (use-package ibuffer
   :ensure nil
   :bind (("C-x b" . ibuffer)))
