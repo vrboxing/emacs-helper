@@ -34,11 +34,12 @@
 ;;; Code:
 
 ;; * 代码                                                      :code:
-;; smex swiper and ivy-mode
+;; ** 设置 smex
 (use-package smex
   :config
   (smex-initialize))
 
+;; ** 设置 swiper 和 ivy-mode
 (use-package swiper
   :config
   (use-package counsel
@@ -68,7 +69,7 @@
   ;; `ivy-immediate-done' is very useful.
   (define-key ivy-minibuffer-map (kbd "C-f") 'ivy-immediate-done))
 
-;; company-mode
+;; ** 设置 company-mode
 (use-package company
   :config
   (setq company-idle-delay 0.2)

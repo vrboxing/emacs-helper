@@ -34,7 +34,7 @@
 ;;; Code:
 
 ;; * 代码                                                      :code:
-;; eh-website
+;; ** eh-website
 (use-package org-webpage
   :config
   ;; my website's owp config
@@ -50,10 +50,10 @@
     (use-package chinese-pyim-devtools
       :ensure nil)))
 
-;; el2org
+;; ** el2org
 (use-package el2org)
 
-;; EPG
+;; ** EPG
 
 ;; 1. Put the below to your ~/.gnupg/gpg-agent.conf:
 ;;       allow-emacs-pinentry
@@ -66,17 +66,17 @@
   :config
   (setq epa-pinentry-mode 'loopback))
 
-;; sdcv
+;; ** sdcv
 (use-package chinese-yasdcv
   :ensure nil
   :if (not (eq system-type 'windows-nt))
   :bind (("C-c d" . yasdcv-translate-at-point)))
 
-;; emms
+;; ** emms
 (use-package eh-emms
   :ensure nil)
 
-;; elisp setting
+;; ** elisp setting
 (use-package lisp-mode
   :ensure nil
   :config
@@ -92,7 +92,7 @@
     (add-hook 'emacs-lisp-mode-hook
               #'eh-elisp-setup)))
 
-;; org-journal
+;; ** org-journal
 (use-package org-journal
   :config
   (use-package org
@@ -109,7 +109,7 @@
   :bind
   (("C-c C-j" . org-journal-new-entry)))
 
-;; ESS
+;; ** ESS
 (use-package ess
   :config
   (setq ess-eval-visibly-p nil)
@@ -132,15 +132,15 @@
          ess-mode-map
          ("C-c C-c" . eh-ess-eval-paragraph)))
 
-;; aggressive-indent
+;; ** aggressive-indent
 (use-package aggressive-indent)
 
-;; autopair
+;; ** autopair
 (use-package autopair
   :config
   (autopair-global-mode 1))
 
-;; multi-term
+;; ** multi-term
 (use-package multi-term
   :config
   (setq multi-term-program "/bin/bash")
@@ -182,26 +182,26 @@
     (interactive)
     (term-send-raw-string "\C-h")))
 
-;; magit
+;; ** magit
 (use-package magit
   :config
   (setq magit-completing-read-function 'ivy-completing-read)
   :bind (("C-c g" . magit-status)))
 
-;; wdired and dired-ranger
+;; ** wdired and dired-ranger
 (use-package dired
   :ensure nil
   :config
   (use-package wdired)
   (use-package dired-ranger))
 
-;; ace-jump
+;; ** ace-jump
 (use-package ace-jump-mode
   :init
   (autoload 'ace-jump-mode "ace-jump-mode" nil t)
   (bind-key "C-j" 'ace-jump-mode))
 
-;; switch window
+;; ** switch-window
 (use-package switch-window
   :bind (("C-x o" . switch-window)
          ("C-x 1" . switch-window-then-maximize)
@@ -213,7 +213,7 @@
   (setq switch-window-shortcut-style 'qwerty)
   (setq switch-window-input-style 'minibuffer))
 
-;; General project support
+;; ** projectile
 (use-package projectile
   :config
   (setq projectile-completion-system 'ivy)
@@ -225,7 +225,7 @@
   (("C-x F" . projectile-find-file)
    ("C-S-s" . projectile-grep)))
 
-;; undo tree
+;; ** undo-tree
 (use-package undo-tree
   :bind (("C-c /" . undo-tree-visualize))
   :config
@@ -239,7 +239,7 @@
     (define-key undo-tree-visualizer-mode-map (kbd "k") 'undo-tree-visualizer-quit)
     (define-key undo-tree-visualizer-mode-map (kbd "C-g") 'undo-tree-visualizer-abort)))
 
-;; calfw
+;; ** emacs-calfw
 (use-package holidays
   :ensure nil
   :config
