@@ -340,6 +340,7 @@
   :ensure nil
   :bind (("C-x b" . ibuffer)))
 
+;; ** 设置区域选择快捷键
 (use-package simple
   :ensure nil
   :init (global-unset-key (kbd "C-x C-x"))
@@ -354,27 +355,30 @@
   :ensure nil
   :bind (("C-x C-x <SPC>" . rectangle-mark-mode)))
 
+;; ** 关闭 tool-bar
 (use-package tool-bar
   :ensure nil
   :config
   (tool-bar-mode -1)
   :bind (("C-x k" . kill-this-buffer)))
 
+;; ** 关闭 menu-bar
 (use-package menu-bar
   :ensure nil
   :config
   (menu-bar-mode 0)
   :bind (("C-x k" . kill-this-buffer)))
 
+;; ** 关闭 scroll-bar
 (use-package scroll-bar
   :ensure nil
   :config
   (scroll-bar-mode -1))
 
+;; ** 配对括号高亮显示
 (use-package paren
   :ensure nil
   :config
-  ;; 高亮配对的括号
   (show-paren-mode 1))
 
 ;; * Footer
