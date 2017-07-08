@@ -118,7 +118,7 @@
   (eh-update-load-path)
   (message "emacs-helper update load-path success!"))
 
-;; 设置 emacs 包管理器
+;; ** 设置 emacs 包管理器
 (require 'package)
 (setq package-archives
       `(("eh-elpa" . ,eh-elpa-directory)))
@@ -318,7 +318,7 @@
          ("C-=" . cfs-increase-fontsize)
          ("C-+" . cfs-next-profile)))
 
-;; 设置 recentf
+;; ** 设置 recentf
 (use-package recentf
   :ensure nil
   :bind (("C-x f" . recentf-open-files))
@@ -335,7 +335,7 @@
   ;; 自动保存recentf文件。
   (add-hook 'find-file-hook #'recentf-save-list))
 
-;; 设置 ibuffer
+;; ** 设置 ibuffer
 (use-package ibuffer
   :ensure nil
   :bind (("C-x b" . ibuffer)))
