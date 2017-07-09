@@ -385,9 +385,7 @@
   (defun eh-gnus-select-mail-account ()
     (interactive)
     (let* ((accounts-info
-            `(("# None")
-              ("# Sendmail" :type sendmail)
-              ,@(mapcar
+            `(,@(mapcar
                  #'(lambda (account)
                      (let* ((user (plist-get account :user))
                             (host (plist-get account :host))
@@ -401,7 +399,8 @@
                        `(,name :type imap :user ,user :port ,port :host ,host
                                :user-full-name ,user-full-name
                                :user-mail-address ,(or user-mail-address name))))
-                 (auth-source-search :max 1000 :port '("smtp" "25" "465" "587")))))
+                 (auth-source-search :max 1000 :port '("smtp" "25" "465" "587")))
+              ("sendmail" :type sendmail)))
            (account-used
             (cdr (assoc (completing-read
                          "Which account will be used? "
