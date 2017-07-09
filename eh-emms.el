@@ -91,9 +91,7 @@
 
   (defun eh-emms-track-simple-description (track)
     (let ((type (emms-track-type track)))
-      ;; The space in " ♪" can not be deleted, it used to align with:
-      ;; `emms-browser-playlist-info-title-format'
-      (concat " ♪ "
+      (concat "♪ "
               (cond ((eq 'file type)
                      (file-relative-name
                       (emms-track-name track)
@@ -140,17 +138,24 @@
    (lambda (track)
      (not (funcall (emms-browser-filter-only-recent 30) track))))
 
-  ;; 设置 emms browser 中英语的显示格式
+  ;; 设置 emms browser 和 browser-playlist 中音乐的显示格式
+  (setq emms-browser-current-indent "")
   (setq emms-browser-info-artist-format "* %n")
   (setq emms-browser-info-album-format  "   - %n")
-  (setq emms-browser-info-title-format  "    ♪ %n")
-
-  ;; 从 emms browser 中获取音乐到 playlist 时，默认插入 title
-  ;; 我认为 playlist 中 title 没什么用处，禁用。
+  (setq emms-browser-info-title-format  "     ♪ %n")
   (setq emms-browser-playlist-info-title-format "♪ %n")
-  (advice-add 'emms-browser-playlist-insert-group
-              :override (lambda (_)))
-  )
+
+  ;; 禁止在 playlist 中插入 group 信息。
+  (advice-add 'emms-browser-playlist-insert-bdata
+              :override #'eh-emms-browser-playlist-insert-bdata)
+
+  (defun eh-emms-browser-playlist-insert-bdata (bdata starting-level)
+    (let ((type (emms-browser-bdata-type bdata))
+          (name (emms-browser-bdata-name bdata)))
+      (dolist (item (emms-browser-bdata-data bdata))
+        (if (not (eq type 'info-title))
+            (emms-browser-playlist-insert-bdata item starting-level)
+          (emms-browser-playlist-insert-track bdata))))))
 
 ;; * Footer
 (provide 'eh-emms)
