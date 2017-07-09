@@ -40,7 +40,7 @@
   (use-package emms-info-libtag :ensure nil)
   (use-package dired :ensure nil)
 
-  (emms-devel)
+  (emms-all)
   (emms-default-players)
   (when (fboundp 'emms-cache)
     (emms-cache 1))
@@ -102,6 +102,10 @@
 
   ;; 显示歌词
   (emms-lyrics 1)
+
+  ;; Track information, function `emms-info-libtag' need emms-print-metadata
+  ;; command in emms, which build with: make emms-print-metadata
+  (setq emms-info-functions '(emms-info-libtag))
 
   ;; 设置 Playlist 的显示方式
   (setq emms-last-played-format-alist
