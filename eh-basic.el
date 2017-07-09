@@ -218,7 +218,7 @@
   :ensure nil
   :config
   ;; 使用下面这一行配置后，org-mode 的源代码总是莫名其妙的
-  ;;     (add-hook 'before-save-hook 'whitespace-cleanup)
+  ;;     (add-hook 'before-save-hook #'whitespace-cleanup)
   ;; 更改，这会导致生成的 diff 相当乱。
   (use-package whitespace
     :ensure nil)

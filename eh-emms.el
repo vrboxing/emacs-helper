@@ -83,7 +83,7 @@
         'emms-source-file-directory-tree-find)
 
   ;; 在 minibuffer 中显示播放信息 (emms-show)
-  (add-hook 'emms-player-started-hook 'emms-show)
+  (add-hook 'emms-player-started-hook #'emms-show)
   (setq emms-show-format "正在播放: [%s]")
 
   ;;设置 Mode-line 的显示方式

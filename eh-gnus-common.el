@@ -553,7 +553,7 @@
     :ensure nil
     :config
     (add-hook 'gnus-after-getting-new-news-hook
-              'gnus-notifications)))
+              #'gnus-notifications)))
 
 ;; * Footer
 (provide 'eh-gnus-common)

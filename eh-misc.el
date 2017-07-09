@@ -157,9 +157,9 @@
   (remove-hook 'term-mode-hook 'multi-term-keystroke-setup)
   (remove-hook 'kill-buffer-hook 'multi-term-kill-buffer-hook)
 
-  (add-hook 'term-mode-hook 'eh-term-setup)
-  (add-hook 'term-mode-hook 'multi-term-keystroke-setup)
-  (add-hook 'kill-buffer-hook 'multi-term-kill-buffer-hook)
+  (add-hook 'term-mode-hook #'eh-term-setup)
+  (add-hook 'term-mode-hook #'multi-term-keystroke-setup)
+  (add-hook 'kill-buffer-hook #'multi-term-kill-buffer-hook)
 
   (defun eh-term-setup ()
     (setq truncate-lines t)
