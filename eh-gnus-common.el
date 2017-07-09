@@ -54,7 +54,7 @@
 
   ;; 存储设置
   (setq gnus-startup-file "~/Gnus/.newsrc")                  ;初始文件
-  (setq gnus-init-file "~/Gnus/.gnus")                       ;.gnus位置
+  (setq gnus-init-file "~/Gnus/.gnus")                       ;.gnus 位置
   (setq gnus-default-directory nil)                          ;默认目录
   (setq gnus-home-directory "~/")                            ;主目录
   (setq gnus-dribble-directory "~/Gnus/")                    ;恢复目录
@@ -67,20 +67,15 @@
   (setq message-directory "~/Gnus/Mail/")                    ;邮件的存储目录
   (setq message-auto-save-directory "~/Gnus/Mail/drafts")    ;自动保存的目录
   (setq mail-source-directory "~/Gnus/Mail/incoming")        ;邮件的源目录
-  (setq nnmail-message-id-cache-file "~/Gnus/.nnmail-cache") ;nnmail的消息ID缓存
+  (setq nnmail-message-id-cache-file "~/Gnus/.nnmail-cache") ;nnmail 的消息ID缓存
   (setq nnml-newsgroups-file "~/Gnus/Mail/newsgroup")        ;邮件新闻组解释文件
-  (setq nntp-marks-directory "~/Gnus/News/marks")            ;nntp组存储目录
+  (setq nntp-marks-directory "~/Gnus/News/marks")            ;nntp 组存储目录
   (setq mml-default-directory "~/")                          ;附件的存储位置
 
-  ;; 设置桌面提醒功能
-  (setq gnus-notifications-minimum-level 1)
-  (setq gnus-notifications-use-google-contacts nil)
-  (setq gnus-notifications-use-gravatar nil)
-
-  ;; 默认禁用nnfolder
+  ;; 默认禁用 nnfolder
   (setq gnus-message-archive-group nil)
 
-  ;; 设置message-mode发信的方式，这里默认使用/usr/sbin/sendmail.
+  ;; 设置 message-mode 发信的方式，这里默认使用/usr/sbin/sendmail.
   ;; 在 `gnus-posting-styles' 中设置 "X-Message-SMTP-Method" 邮件头可以实现
   ;; 更为复杂的邮件发送方式。
   (setq message-send-mail-function 'message-smtpmail-send-it)
@@ -143,28 +138,21 @@
   (setq nnmail-expiry-wait 7)                         ; 邮件自动删除的期限 (单位: 天)
   (setq nnmairix-allowfast-default t)                 ; 加快进入搜索结果的组
   (setq gnus-use-correct-string-widths t)             ; 使用正确的字符宽度
-  (setq gc-cons-threshold 3500000)                    ; 加快gnus的速度
+  (setq gc-cons-threshold 3500000)                    ; 加快 gnus 的速度
   (setq gnus-use-cross-reference t)                   ; 开启交叉索引
-  (setq gnus-summary-display-while-building 50)       ; 生成summary时,每50封显示一下
+  (setq gnus-summary-display-while-building 50)       ; 生成 summary 时,每50封显示一下
 
-  ;; 进入summer模式时，禁止自动选择第一个article,
-  ;; 这样设置主要是因为有些article下载速度极慢，
+  ;; 进入 summer 模式时，禁止自动选择第一个article,
+  ;; 这样设置主要是因为有些 article 下载速度极慢，
   ;; 会降低响应速度
   (setq gnus-auto-select-first nil)
   (setq gnus-auto-select-next nil)
 
-  ;; 设置gnus启动时,组级别大于3的不自动更新。
-  ;; 当你添加了许多速度慢的组时，比如rss,imap等，启动速度会相当慢。这时你
+  ;; 设置 gnus 启动时,组级别大于3的不自动更新。
+  ;; 当你添加了许多速度慢的组时，比如 rss,imap 等，启动速度会相当慢。这时你
   ;; 可以把它们的组级别设置为大于3的值，这样启动时就不自动更新了。
   ;; 当你需要更新这些组的时候，使用 "4-g" "5-g" 等快捷键
   (setq gnus-activate-level 3)
-
-  ;; 双窗口布局(垂直)
-  ;; (gnus-add-configuration
-  ;;  '(article
-  ;;    (horizontal 1.0
-  ;;         (summary 0.50 point)
-  ;;         (article 1.0))))
 
   ;; 双窗口布局(水平)
   (gnus-add-configuration
@@ -173,124 +161,28 @@
                (summary 0.25 point)
                (article 1.0))))
 
-  ;; 三窗口布局
-  ;; (gnus-add-configuration
-  ;;  '(article
-  ;;    (horizontal 1.0
-  ;;         (vertical 25
-  ;;           (group 1.0))
-  ;;         (vertical 1.0
-  ;;           (summary 0.25 point)
-  ;;           (article 1.0)))))
-  ;; (gnus-add-configuration
-  ;;  '(summary
-  ;;    (horizontal 1.0
-  ;;         (vertical 25
-  ;;           (group 1.0))
-  ;;         (vertical 1.0
-  ;;           (summary 1.0 point)))))
-
   ;; 设置图片显示方式
   (setq mm-inline-large-images t)
   (add-to-list 'mm-attachment-override-types "image/*")
 
   ;; 设置summary缓冲区的显示格式
-  (setq gnus-extra-headers
-        '(To From))
+  (setq gnus-extra-headers '(To From))
   (setq nnmail-extra-headers gnus-extra-headers)
   (setq gnus-summary-gather-subject-limit 'fuzzy)
-  (setq gnus-summary-make-false-root 'adopt)
-  (setq gnus-summary-line-format
-        (concat
-         "%U%R |"
-         "%ua"
-         "%2{%ub%}"
-         "%uc"
-         "%B"
-         "%I"
-         "%2{%ud%}"
-         "%ue"
-         "%3{%uf%}"
-         "\n"))
+  (setq gnus-summary-make-false-root 'dummy)
+  (setq gnus-summary-dummy-line-format "   ⊙⊙⊙ %S\n")
+  (setq gnus-summary-line-format "%U%R%z%I%B%(%[%a%]%) %s\n")
 
-  (defun eh-gnus-find-invisible-foreground ()
-    (let ((candidates
-           (remove
-            "unspecified-bg"
-            (nconc
-             (list (face-background 'default))
-             (mapcar
-              (lambda (alist)
-                (when (boundp alist)
-                  (cdr (assoc 'background-color (symbol-value alist)))))
-              '(default-frame-alist initial-frame-alist
-                 window-system-default-frame-alist))
-             (list (face-foreground 'eh-gnus-face-3))))))
-      (car (remove nil candidates))))
-
-  (defface eh-gnus-face-2
-    '((t :inherit default))
-    "Face used by `gnus-face-2'")
-
-  (defface eh-gnus-face-3
-    '((t :inherit default))
-    "Face used by `gnus-face-3'")
-
-  (setq gnus-face-2 'eh-gnus-face-2)
-  (setq gnus-face-3 'eh-gnus-face-3)
-
-  ;; 显示箭头设置
-  (defun gnus-user-format-function-a (header)
-    (let ((date (mail-header-date header)))
-      (if (zerop gnus-tmp-level)
-          "-> " "")))
-
-  ;; 显示时间设置
-  (defun gnus-user-format-function-b (header)
-    (let ((date (mail-header-date header)))
-      (if (zerop gnus-tmp-level)
-          "" (concat "     " (concat (gnus-user-date date) "  ")))))
-
-  ;; 显示主题设置
-  (defun gnus-user-format-function-c (header)
-    (let ((date (mail-header-date header))
-          (subject (mail-header-subject header)))
-      (if (zerop gnus-tmp-level)
-          (concat subject
-                  " ("
-                  (gnus-user-date date)")") "")))
-
-  ;; 提取From名字
-  (defun eh-mail-header-from-name (from)
-    (cond
-     ((string-match "<[^>]+> *$" from)
-      (let ((beg (match-beginning 0)))
-        (or (and (string-match "^\".+\"" from)
-                 (substring from 1 (1- (match-end 0))))
-            (substring from 0 beg))))
-     ((string-match "(.+)" from)
-      (substring from
-                 (1+ (match-beginning 0)) (1- (match-end 0))))
-     (t from)))
-
-  ;; 显示发件人设置
-  (defun gnus-user-format-function-d (header)
-    (let ((from (mail-header-from header)))
-      (if (zerop gnus-tmp-level)
-          "" (eh-mail-header-from-name from))))
-
-  ;; 显示箭头设置
-  (defun gnus-user-format-function-e (header)
-    (if (zerop gnus-tmp-level)
-        "" "----> "))
-
-  ;; 显示隐藏Subject, 用于搜索
-  (defun gnus-user-format-function-f (header)
-    (let ((date (mail-header-date header))
-          (subject (mail-header-subject header)))
-      (if (zerop gnus-tmp-level)
-          ""
-        subject)))
+  ;; 设置threads的样式
+  (setq gnus-thread-indent-level 0)
+  (setq gnus-summary-same-subject "")
+  (setq gnus-sum-thread-tree-indent "    ")
+  (setq gnus-sum-thread-tree-single-indent "⊙⊙⊙ ")
+  (setq gnus-sum-thread-tree-root "⊙⊙⊙ ")
+  (setq gnus-sum-thread-tree-false-root "⊙⊙⊙ ")
+  (setq gnus-sum-thread-tree-vertical "|")
+  (setq gnus-sum-thread-tree-leaf-with-other "|-> ")
+  (setq gnus-sum-thread-tree-single-leaf " `-> ")
 
   (setq gnus-user-date-format-alist
         '(((gnus-seconds-today) . "%H:%M")
@@ -302,53 +194,16 @@
           ((gnus-seconds-year)  . "%m-%d")
           (t . "%Y ")))
 
-  ;; 设置threads的样式
-  (setq gnus-thread-indent-level 0)
-  (setq gnus-summary-same-subject "")
-  (setq gnus-sum-thread-tree-indent "    ")
-  (setq gnus-sum-thread-tree-single-indent "")
-  (setq gnus-sum-thread-tree-root "")
-  (setq gnus-sum-thread-tree-false-root "")
-  (setq gnus-sum-thread-tree-vertical "|")
-  (setq gnus-sum-thread-tree-leaf-with-other "|----")
-  (setq gnus-sum-thread-tree-single-leaf " `----")
-
-  ;; 高亮当前行
-  (defface eh-gnus-hl-line
-    '((t :inherit hl-line))
-    "Face used for highlight gnus line")
-
-  (defun eh-gnus-hl-line ()
-    (hl-line-mode 1)
-    (set (make-local-variable 'hl-line-face) 'eh-gnus-hl-line)
-    (setq cursor-type nil))
-
-  (add-hook 'gnus-summary-mode-hook #'eh-gnus-hl-line)
-  (add-hook 'gnus-group-mode-hook #'eh-gnus-hl-line)
-
   ;; 将邮件的发出时间转换为本地时间
   (add-hook 'gnus-article-prepare-hook #'gnus-article-date-local)
 
   ;; 跟踪组的时间轴
   (add-hook 'gnus-select-group-hook #'gnus-group-set-timestamp)
 
-  ;; 将新闻组分组
-  ;; (add-hook 'gnus-group-mode-hook #'gnus-topic-mode)
-
   (defun eh-gnus-summary-setup ()
     (interactive)
     ;; summary buffer行距设置
-    (setq line-spacing 3)
-
-    ;; summary线程中日期和发邮人名字使用的face。
-    (set-face-foreground 'eh-gnus-face-2 "orange")
-
-    ;; 设置一个face,用来隐藏不需要显示的文字
-    (set-face-foreground 'eh-gnus-face-3
-                         (eh-gnus-find-invisible-foreground))
-
-    ;; summary buffer不显示右fringe
-    (set-fringe-style  '(nil . 0))
+    (setq line-spacing 5)
 
     ;; 重新定义键盘绑定
     (local-set-key (kbd "SPC")
@@ -375,13 +230,95 @@
                    (lambda ()
                      (interactive)
                      (delete-other-windows)
-                     (next-line 1)))
-    (local-set-key (kbd "<f1>") 'gnus-uu-mark-all)
-    (local-set-key (kbd "<f2>") 'gnus-uu-unmark-thread)
-    (local-set-key (kbd "<f3>") 'gnus-uu-mark-thread))
+                     (next-line 1))))
 
   (add-hook 'gnus-summary-mode-hook #'eh-gnus-summary-setup)
 
+  ;; visual
+  (setq gnus-treat-emphasize t
+        gnus-treat-buttonize t
+        gnus-treat-buttonize-head 'head
+        gnus-treat-unsplit-urls 'last
+        gnus-treat-leading-whitespace 'head
+        gnus-treat-highlight-citation t
+        gnus-treat-highlight-signature t
+        gnus-treat-date-lapsed 'head
+        gnus-treat-strip-trailing-blank-lines t
+        gnus-treat-strip-cr t
+        gnus-treat-overstrike nil
+        gnus-treat-display-x-face t
+        gnus-treat-display-face t
+        gnus-treat-display-smileys nil
+        gnus-treat-x-pgp-sig 'head)
+
+  ;; 设置邮件报头显示的信息
+  (setq gnus-visible-headers
+        (mapconcat 'regexp-quote
+                   '("From:" "Newsgroups:" "Subject:" "Date:"
+                     "Organization:" "To:" "Cc:" "Followup-To" "Gnus-Warnings:"
+                     "X-Sent:" "X-URL:" "User-Agent:" "X-Newsreader:"
+                     "X-Mailer:" "Reply-To:" "X-Spam:" "X-Spam-Status:" "X-Now-Playing"
+                     "X-Attachments" "X-Diagnostic" "X-RSS-URL")
+                   "\\|"))
+
+  ;; 设置邮件日期显示格式,使用两行日期，一行具体日期时间，
+  ;; 另一行显示article, 距现在多长时间
+  (setq gnus-article-date-headers '(user-defined))
+  (setq gnus-article-time-format
+        (lambda (time)
+          (concat "X-Sent:   "
+                  (format-time-string "%Y年%m月%d日 星期%u %R" time)
+                  "\n"
+                  "X-Lasped: "
+                  (article-lapsed-string time))))
+
+  ;; 用 Supercite 显示多种多样的引文形式
+  (setq sc-attrib-selection-list nil
+        sc-auto-fill-region-p nil
+        sc-blank-lines-after-headers 1
+        sc-citation-delimiter-regexp "[>]+\\|\\(: \\)+"
+        sc-cite-blank-lines-p nil
+        sc-confirm-always-p nil
+        sc-electric-references-p nil
+        sc-fixup-whitespace-p t
+        sc-nested-citation-p nil
+        sc-preferred-header-style 4
+        sc-use-only-preference-p nil)
+
+  ;; 构建 threads 时抓取旧文章标题,
+  ;; 注意： 网速不快时不要使用这个选项。
+  (setq gnus-fetch-old-headers nil)
+
+  ;; 聚集 threads 的方式
+  (setq gnus-summary-thread-gathering-function
+        'gnus-gather-threads-by-subject)
+
+  ;; Thread root 排序
+  (setq gnus-thread-sort-functions
+        '(gnus-thread-sort-by-most-recent-number
+          gnus-thread-sort-by-most-recent-date))
+
+  ;; Subthread 排序
+  (setq gnus-subthread-sort-functions
+        '(gnus-thread-sort-by-number
+          gnus-thread-sort-by-date))
+
+  ;; 自动跳到第一个没有阅读的组
+  (add-hook 'gnus-switch-on-after-hook
+            #'gnus-group-first-unread-group)
+
+  (add-hook 'gnus-summary-exit-hook
+            #'gnus-group-first-unread-group)
+
+  ;; org struct 支持
+  (use-package org
+    :ensure nil
+    :config
+    ;; 在message-mode中使用org-mode
+    (add-hook 'message-mode-hook #'turn-on-orgstruct)
+    (add-hook 'message-mode-hook #'turn-on-orgstruct++))
+
+  ;; 设置多帐号支持
   (defun eh-gnus-select-mail-account ()
     (interactive)
     (let* ((accounts-info
@@ -447,113 +384,7 @@
           ;; Move cursor to "To: " header
           (message-goto-to)))))
 
-  (add-hook 'message-setup-hook #'eh-gnus-select-mail-account)
-
-  ;; visual
-  (setq gnus-treat-emphasize t
-        gnus-treat-buttonize t
-        gnus-treat-buttonize-head 'head
-        gnus-treat-unsplit-urls 'last
-        gnus-treat-leading-whitespace 'head
-        gnus-treat-highlight-citation t
-        gnus-treat-highlight-signature t
-        gnus-treat-date-lapsed 'head
-        gnus-treat-strip-trailing-blank-lines t
-        gnus-treat-strip-cr t
-        gnus-treat-overstrike nil
-        gnus-treat-display-x-face t
-        gnus-treat-display-face t
-        gnus-treat-display-smileys nil
-        gnus-treat-x-pgp-sig 'head)
-
-  ;; 设置邮件报头显示的信息
-  (setq gnus-visible-headers
-        (mapconcat 'regexp-quote
-                   '("From:" "Newsgroups:" "Subject:" "Date:"
-                     "Organization:" "To:" "Cc:" "Followup-To" "Gnus-Warnings:"
-                     "X-Sent:" "X-URL:" "User-Agent:" "X-Newsreader:"
-                     "X-Mailer:" "Reply-To:" "X-Spam:" "X-Spam-Status:" "X-Now-Playing"
-                     "X-Attachments" "X-Diagnostic" "X-RSS-URL")
-                   "\\|"))
-
-  ;; 设置邮件日期显示格式,使用两行日期，一行具体日期时间，
-  ;; 另一行显示article, 距现在多长时间
-  (setq gnus-article-date-headers '(user-defined))
-  (setq gnus-article-time-format
-        (lambda (time)
-          (concat "X-Sent:   "
-                  (format-time-string "%Y年%m月%d日 星期%u %R" time)
-                  "\n"
-                  "X-Lasped: "
-                  (article-lapsed-string time))))
-
-  ;; 用 Supercite 显示多种多样的引文形式
-  (setq sc-attrib-selection-list nil
-        sc-auto-fill-region-p nil
-        sc-blank-lines-after-headers 1
-        sc-citation-delimiter-regexp "[>]+\\|\\(: \\)+"
-        sc-cite-blank-lines-p nil
-        sc-confirm-always-p nil
-        sc-electric-references-p nil
-        sc-fixup-whitespace-p t
-        sc-nested-citation-p nil
-        sc-preferred-header-style 4
-        sc-use-only-preference-p nil)
-
-  ;; 使用threads显示文章标题。
-  (setq gnus-use-trees t)
-
-  ;; 用最小窗口显示
-  (setq gnus-tree-minimize-window nil)
-
-  ;; 构建threads时抓取旧文章标题,
-  ;; 注意： 网速不快时不要使用这个选项。
-  (setq gnus-fetch-old-headers nil)
-
-  ;; 生成水平树
-  (setq gnus-generate-tree-function
-        'gnus-generate-horizontal-tree)
-
-  ;; 聚集threads的方式
-  (setq gnus-summary-thread-gathering-function
-        'gnus-gather-threads-by-subject)
-
-  ;; Thread root排序
-  (setq gnus-thread-sort-functions
-        '(gnus-thread-sort-by-most-recent-number
-          gnus-thread-sort-by-most-recent-date))
-
-  ;; Subthread排序
-  (setq gnus-subthread-sort-functions
-        '(gnus-thread-sort-by-number
-          gnus-thread-sort-by-date))
-
-  ;; 自动跳到第一个没有阅读的组
-  (add-hook 'gnus-switch-on-after-hook
-            #'gnus-group-first-unread-group)
-  (add-hook 'gnus-summary-exit-hook
-            #'gnus-group-first-unread-group)
-
-  ;; 每隔10分钟刷新一下
-  ;; (add-hook 'gnus-startup-hook
-  ;;           (lambda ()
-  ;;             (progn (setq gnus-use-demon t)
-  ;;                    (gnus-demon-add-handler
-  ;;                     'gnus-demon-scan-news 10 nil))))
-
-  (use-package org
-    :ensure nil
-    :config
-    ;; 在message-mode中使用org-mode
-    (add-hook 'message-mode-hook #'turn-on-orgstruct)
-    (add-hook 'message-mode-hook #'turn-on-orgstruct++))
-
-  ;; 启用桌面提醒功能
-  (use-package gnus-notifications
-    :ensure nil
-    :config
-    (add-hook 'gnus-after-getting-new-news-hook
-              #'gnus-notifications)))
+  (add-hook 'message-setup-hook #'eh-gnus-select-mail-account))
 
 ;; * Footer
 (provide 'eh-gnus-common)
