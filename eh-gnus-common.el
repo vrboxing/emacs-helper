@@ -447,7 +447,7 @@
           ;; Move cursor to "To: " header
           (message-goto-to)))))
 
-  (add-hook 'message-setup-hook 'eh-gnus-select-mail-account)
+  (add-hook 'message-setup-hook #'eh-gnus-select-mail-account)
 
   ;; visual
   (setq gnus-treat-emphasize t
