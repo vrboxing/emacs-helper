@@ -181,8 +181,8 @@
   (setq gnus-sum-thread-tree-root "⊙⊙⊙ ")
   (setq gnus-sum-thread-tree-false-root "⊙⊙⊙ ")
   (setq gnus-sum-thread-tree-vertical "|")
-  (setq gnus-sum-thread-tree-leaf-with-other "|-> ")
-  (setq gnus-sum-thread-tree-single-leaf " `-> ")
+  (setq gnus-sum-thread-tree-leaf-with-other " |-> ")
+  (setq gnus-sum-thread-tree-single-leaf "  `-> ")
 
   (setq gnus-user-date-format-alist
         '(((gnus-seconds-today) . "%H:%M")
