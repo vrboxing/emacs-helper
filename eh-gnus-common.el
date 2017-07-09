@@ -169,20 +169,19 @@
   (setq gnus-extra-headers '(To From))
   (setq nnmail-extra-headers gnus-extra-headers)
   (setq gnus-summary-gather-subject-limit 'fuzzy)
-  (setq gnus-summary-make-false-root 'dummy)
-  (setq gnus-summary-dummy-line-format "   ⊙⊙⊙ %S\n")
-  (setq gnus-summary-line-format "%U%R%z%I%B%(%[%a%]%) %s\n")
+  (setq gnus-summary-make-false-root 'adopt)
+  (setq gnus-summary-line-format "%U%R%z %&user-date;|%I%B%s\n")
 
   ;; 设置threads的样式
   (setq gnus-thread-indent-level 0)
   (setq gnus-summary-same-subject "")
-  (setq gnus-sum-thread-tree-indent "    ")
-  (setq gnus-sum-thread-tree-single-indent "⊙⊙⊙ ")
-  (setq gnus-sum-thread-tree-root "⊙⊙⊙ ")
-  (setq gnus-sum-thread-tree-false-root "⊙⊙⊙ ")
-  (setq gnus-sum-thread-tree-vertical "|")
-  (setq gnus-sum-thread-tree-leaf-with-other " |-> ")
-  (setq gnus-sum-thread-tree-single-leaf "  `-> ")
+  (setq gnus-sum-thread-tree-indent "  ")
+  (setq gnus-sum-thread-tree-single-indent "> ")
+  (setq gnus-sum-thread-tree-root "> ")
+  (setq gnus-sum-thread-tree-false-root "> ")
+  (setq gnus-sum-thread-tree-vertical "   |")
+  (setq gnus-sum-thread-tree-leaf-with-other "   |-> ")
+  (setq gnus-sum-thread-tree-single-leaf "    `-> ")
 
   (setq gnus-user-date-format-alist
         '(((gnus-seconds-today) . "%H:%M")
@@ -202,8 +201,11 @@
 
   (defun eh-gnus-summary-setup ()
     (interactive)
-    ;; summary buffer行距设置
+    ;; summary buffer 行距设置
     (setq line-spacing 5)
+
+    ;; Highlight 当前行
+    (hl-line-mode 1)
 
     ;; 重新定义键盘绑定
     (local-set-key (kbd "SPC")
