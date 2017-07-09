@@ -91,14 +91,17 @@
 
   (defun eh-emms-track-simple-description (track)
     (let ((type (emms-track-type track)))
-      (cond ((eq 'file type)
-             (file-relative-name
-              (emms-track-name track)
-              emms-source-file-default-directory))
-            ((eq 'url type)
-             (emms-format-url-track-name (emms-track-name track)))
-            (t (concat (symbol-name type)
-                       ": " (emms-track-name track))))))
+      ;; The space in " ♪" can not be deleted, it used to align with:
+      ;; `emms-browser-playlist-info-title-format'
+      (concat " ♪ "
+              (cond ((eq 'file type)
+                     (file-relative-name
+                      (emms-track-name track)
+                      emms-source-file-default-directory))
+                    ((eq 'url type)
+                     (emms-format-url-track-name (emms-track-name track)))
+                    (t (concat (symbol-name type)
+                               ": " (emms-track-name track)))))))
 
   ;; 显示歌词
   (emms-lyrics 1)
@@ -137,14 +140,17 @@
    (lambda (track)
      (not (funcall (emms-browser-filter-only-recent 30) track))))
 
-  ;; EMMS 浏览器, 删除文件不提醒
-  (put 'emms-browser-delete-files 'disabled nil)
-
-  ;; 设置 emms buffer 显示格式
+  ;; 设置 emms browser 中英语的显示格式
   (setq emms-browser-info-artist-format "* %n")
-  (setq emms-browser-info-album-format  "  - %n")
-  (setq emms-browser-info-title-format  "    ♪. %n")
-  (setq emms-browser-playlist-info-title-format "%n"))
+  (setq emms-browser-info-album-format  "   - %n")
+  (setq emms-browser-info-title-format  "    ♪ %n")
+
+  ;; 从 emms browser 中获取音乐到 playlist 时，默认插入 title
+  ;; 我认为 playlist 中 title 没什么用处，禁用。
+  (setq emms-browser-playlist-info-title-format "♪ %n")
+  (advice-add 'emms-browser-playlist-insert-group
+              :override (lambda (_)))
+  )
 
 ;; * Footer
 (provide 'eh-emms)
