@@ -323,17 +323,17 @@
     (set (make-local-variable 'hl-line-face) 'eh-gnus-hl-line)
     (setq cursor-type nil))
 
-  (add-hook 'gnus-summary-mode-hook 'eh-gnus-hl-line)
-  (add-hook 'gnus-group-mode-hook 'eh-gnus-hl-line)
+  (add-hook 'gnus-summary-mode-hook #'eh-gnus-hl-line)
+  (add-hook 'gnus-group-mode-hook #'eh-gnus-hl-line)
 
   ;; 将邮件的发出时间转换为本地时间
-  (add-hook 'gnus-article-prepare-hook 'gnus-article-date-local)
+  (add-hook 'gnus-article-prepare-hook #'gnus-article-date-local)
 
   ;; 跟踪组的时间轴
-  (add-hook 'gnus-select-group-hook 'gnus-group-set-timestamp)
+  (add-hook 'gnus-select-group-hook #'gnus-group-set-timestamp)
 
   ;; 将新闻组分组
-  ;; (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
+  ;; (add-hook 'gnus-group-mode-hook #'gnus-topic-mode)
 
   (defun eh-gnus-summary-setup ()
     (interactive)
@@ -380,7 +380,7 @@
     (local-set-key (kbd "<f2>") 'gnus-uu-unmark-thread)
     (local-set-key (kbd "<f3>") 'gnus-uu-mark-thread))
 
-  (add-hook 'gnus-summary-mode-hook 'eh-gnus-summary-setup)
+  (add-hook 'gnus-summary-mode-hook #'eh-gnus-summary-setup)
 
   (defun eh-gnus-select-mail-account ()
     (interactive)
@@ -530,9 +530,9 @@
 
   ;; 自动跳到第一个没有阅读的组
   (add-hook 'gnus-switch-on-after-hook
-            'gnus-group-first-unread-group)
+            #'gnus-group-first-unread-group)
   (add-hook 'gnus-summary-exit-hook
-            'gnus-group-first-unread-group)
+            #'gnus-group-first-unread-group)
 
   ;; 每隔10分钟刷新一下
   ;; (add-hook 'gnus-startup-hook
@@ -545,8 +545,8 @@
     :ensure nil
     :config
     ;; 在message-mode中使用org-mode
-    (add-hook 'message-mode-hook 'turn-on-orgstruct)
-    (add-hook 'message-mode-hook 'turn-on-orgstruct++))
+    (add-hook 'message-mode-hook #'turn-on-orgstruct)
+    (add-hook 'message-mode-hook #'turn-on-orgstruct++))
 
   ;; 启用桌面提醒功能
   (use-package gnus-notifications
