@@ -172,7 +172,7 @@
   (setq gnus-summary-make-false-root 'adopt)
   (setq gnus-summary-line-format "%U%R%z %&user-date;|%I%B%s\n")
 
-  ;; 设置threads的样式
+  ;; 设置 threads 的样式
   (setq gnus-thread-indent-level 0)
   (setq gnus-summary-same-subject "")
   (setq gnus-sum-thread-tree-indent "  ")
@@ -183,6 +183,7 @@
   (setq gnus-sum-thread-tree-leaf-with-other "   |-> ")
   (setq gnus-sum-thread-tree-single-leaf "    `-> ")
 
+  ;; 设置 `gnus-summary-line-format' 中的 %&user-date;
   (setq gnus-user-date-format-alist
         '(((gnus-seconds-today) . "%H:%M")
           ((+ (* 24 3600)    (gnus-seconds-today)) . "YD   ")
