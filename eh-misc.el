@@ -234,10 +234,10 @@
             #'eh-undo-tree-visualizer-settings)
   (defun eh-undo-tree-visualizer-settings ()
     (interactive)
-    (define-key undo-tree-visualizer-mode-map (kbd "C-c C-k") 'undo-tree-visualizer-quit)
-    (define-key undo-tree-visualizer-mode-map (kbd "C-k") 'undo-tree-visualizer-quit)
-    (define-key undo-tree-visualizer-mode-map (kbd "k") 'undo-tree-visualizer-quit)
-    (define-key undo-tree-visualizer-mode-map (kbd "C-g") 'undo-tree-visualizer-abort)))
+    (define-key undo-tree-visualizer-mode-map (kbd "C-c C-k") #'undo-tree-visualizer-quit)
+    (define-key undo-tree-visualizer-mode-map (kbd "C-k") #'undo-tree-visualizer-quit)
+    (define-key undo-tree-visualizer-mode-map (kbd "k") #'undo-tree-visualizer-quit)
+    (define-key undo-tree-visualizer-mode-map (kbd "C-g") #'undo-tree-visualizer-abort)))
 
 ;; ** emacs-calfw
 (use-package holidays

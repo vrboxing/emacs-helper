@@ -67,7 +67,7 @@
   (push '(counsel-describe-variable . "") ivy-initial-inputs-alist)
   ;; I use "C-x C-f" to open file, so bind "C-f" to
   ;; `ivy-immediate-done' is very useful.
-  (define-key ivy-minibuffer-map (kbd "C-f") 'ivy-immediate-done))
+  (define-key ivy-minibuffer-map (kbd "C-f") #'ivy-immediate-done))
 
 ;; ** 设置 company-mode
 (use-package company
@@ -100,11 +100,11 @@
           company-echo-metadata-frontend))
 
   (global-set-key (kbd "M-/") 'company-complete)
-  (define-key company-active-map (kbd "M-i") 'company-complete-selection)
-  (define-key company-active-map (kbd "C-n") 'company-select-next)
-  (define-key company-active-map (kbd "C-p")'company-select-previous)
-  (define-key company-active-map (kbd "M-n") 'company-select-next)
-  (define-key company-active-map (kbd "M-p")'company-select-previous)
+  (define-key company-active-map (kbd "M-i") #'company-complete-selection)
+  (define-key company-active-map (kbd "C-n") #'company-select-next)
+  (define-key company-active-map (kbd "C-p") #'company-select-previous)
+  (define-key company-active-map (kbd "M-n") #'company-select-next)
+  (define-key company-active-map (kbd "M-p") #'company-select-previous)
 
   (if (and (fboundp 'daemonp) (daemonp))
       (add-hook 'after-make-frame-functions
