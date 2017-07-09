@@ -99,7 +99,7 @@
         '(company-pseudo-tooltip-frontend
           company-echo-metadata-frontend))
 
-  (global-set-key (kbd "M-/") 'company-complete)
+  (global-set-key (kbd "M-/") #'company-complete)
   (define-key company-active-map (kbd "M-i") #'company-complete-selection)
   (define-key company-active-map (kbd "C-n") #'company-select-next)
   (define-key company-active-map (kbd "C-p") #'company-select-previous)

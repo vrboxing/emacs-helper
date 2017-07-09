@@ -236,7 +236,7 @@ Otherwise, date ascending."
      (define-key calendar-mode-map (kbd "f y") 'org-journal-search-calendar-year)))
 
 ;;;###autoload
-(global-set-key (kbd "C-c C-j") 'org-journal-new-entry)
+(global-set-key (kbd "C-c C-j") #'org-journal-new-entry)
 
 (defun org-journal-get-entry-path (&optional time)
   "Return the path to an entry given a TIME.

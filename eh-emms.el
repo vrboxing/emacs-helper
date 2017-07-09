@@ -307,26 +307,26 @@ Return the previous point-max before adding."
 
   ;; Global keybinding for emms
   (global-unset-key (kbd "C-c e"))
-  (global-set-key (kbd "C-c e e") 'eh-emms)
-  (global-set-key (kbd "C-c e d") 'eh-emms-add-directory-tree)
-  (global-set-key (kbd "C-c e f") 'eh-emms-add-file)
+  (global-set-key (kbd "C-c e e") #'eh-emms)
+  (global-set-key (kbd "C-c e d") #'eh-emms-add-directory-tree)
+  (global-set-key (kbd "C-c e f") #'eh-emms-add-file)
 
-  (global-set-key (kbd "C-c e SPC") 'eh-emms-toggle-playing)
-  (global-set-key (kbd "C-c e q") 'emms-stop)
+  (global-set-key (kbd "C-c e SPC") #'eh-emms-toggle-playing)
+  (global-set-key (kbd "C-c e q") #'emms-stop)
 
-  (global-set-key (kbd "C-c e n") 'emms-next)
-  (global-set-key (kbd "C-c e p") 'emms-previous)
-  (global-set-key (kbd "C-c e o") 'emms-show)
+  (global-set-key (kbd "C-c e n") #'emms-next)
+  (global-set-key (kbd "C-c e p") #'emms-previous)
+  (global-set-key (kbd "C-c e o") #'emms-show)
 
-  (global-set-key (kbd "C-c e h") 'emms-shuffle)
-  (global-set-key (kbd "C-c e H") 'emms-sort)
+  (global-set-key (kbd "C-c e h") #'emms-shuffle)
+  (global-set-key (kbd "C-c e H") #'emms-sort)
 
-  (global-set-key (kbd "C-c e r")   'emms-toggle-repeat-track)
-  (global-set-key (kbd "C-c e R")   'emms-toggle-repeat-playlist)
+  (global-set-key (kbd "C-c e r")   #'emms-toggle-repeat-track)
+  (global-set-key (kbd "C-c e R")   #'emms-toggle-repeat-playlist)
 
-  (global-set-key (kbd "C-c e s u") 'emms-score-up-playing)
-  (global-set-key (kbd "C-c e s d") 'emms-score-down-playing)
-  (global-set-key (kbd "C-c e s o") 'emms-score-show-playing)
+  (global-set-key (kbd "C-c e s u") #'emms-score-up-playing)
+  (global-set-key (kbd "C-c e s d") #'emms-score-down-playing)
+  (global-set-key (kbd "C-c e s o") #'emms-score-show-playing)
 
   ;; browser mode map
   (define-key emms-browser-mode-map (kbd "SPC") #'emms-browser-next-non-track)
