@@ -139,20 +139,13 @@
      (not (funcall (emms-browser-filter-only-recent 30) track))))
 
   ;; 设置 emms browser 和 browser-playlist 中音乐的显示格式
+  (setq emms-browser-current-indent "")
   (setq emms-browser-info-artist-format "* %n")
   (setq emms-browser-info-album-format  "   - %n")
   (setq emms-browser-info-title-format  "     ♪ %n")
   (setq emms-browser-playlist-info-artist-format "* %n")
   (setq emms-browser-playlist-info-album-format  "   - %n")
-  (setq emms-browser-playlist-info-title-format  "     ♪ %n")
-
-  ;; 设置 emms browser 的 face, 参考 cyberpunk 中 org 的主题。
-  (set-face-attribute 'emms-browser-artist-face nil
-                      :height 1.0 :foreground "#ff1493")
-  (set-face-attribute 'emms-browser-album-face nil
-                      :height 1.0 :foreground "#ffff00")
-  (set-face-attribute 'emms-browser-track-face nil
-                      :height 1.0 :foreground "#4c83ff"))
+  (setq emms-browser-playlist-info-title-format  "     ♪ %n"))
 
 ;; * Footer
 (provide 'eh-emms)
