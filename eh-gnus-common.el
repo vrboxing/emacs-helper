@@ -170,7 +170,7 @@
   (setq nnmail-extra-headers gnus-extra-headers)
   (setq gnus-summary-gather-subject-limit 'fuzzy)
   (setq gnus-summary-make-false-root 'adopt)
-  (setq gnus-summary-line-format "%U%R%z %&user-date;|%I%B%s\n")
+  (setq gnus-summary-line-format "%U%R%z %&user-date; |%I%B%s\n")
 
   ;; 设置 threads 的样式
   (setq gnus-thread-indent-level 0)
