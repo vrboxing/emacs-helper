@@ -146,14 +146,13 @@
   (setq emms-browser-playlist-info-album-format  "   - %n")
   (setq emms-browser-playlist-info-title-format  "     ♪ %n")
 
-  ;; Set fontsize of face.
-  (dolist (face '(emms-browser-year/genre-face
-                  emms-browser-artist-face
-                  emms-browser-composer-face
-                  emms-browser-performer-face
-                  ;; emms-browser-track-face
-                  emms-browser-album-face))
-    (set-face-attribute face nil :height 1.0 :foreground "#ffdab9")))
+  ;; 设置 emms browser 的 face, 参考 cyberpunk 中 org 的主题。
+  (set-face-attribute 'emms-browser-artist-face nil
+                      :height 1.0 :foreground "#ff1493")
+  (set-face-attribute 'emms-browser-album-face nil
+                      :height 1.0 :foreground "#ffff00")
+  (set-face-attribute 'emms-browser-track-face nil
+                      :height 1.0 :foreground "#4c83ff"))
 
 ;; * Footer
 (provide 'eh-emms)
