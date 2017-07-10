@@ -151,9 +151,9 @@
                   emms-browser-artist-face
                   emms-browser-composer-face
                   emms-browser-performer-face
-                  emms-browser-album-face
-                  emms-browser-track-face))
-    (set-face-attribute face nil :height 1.0)))
+                  ;; emms-browser-track-face
+                  emms-browser-album-face))
+    (set-face-attribute face nil :height 1.0 :foreground "#ffdab9")))
 
 ;; * Footer
 (provide 'eh-emms)
