@@ -140,12 +140,20 @@
 
   ;; 设置 emms browser 和 browser-playlist 中音乐的显示格式
   (setq emms-browser-current-indent "")
-  (setq emms-browser-info-artist-format "* %n")
-  (setq emms-browser-info-album-format  "  - %n")
-  (setq emms-browser-info-title-format  "    ♪ %n")
-  (setq emms-browser-playlist-info-artist-format "* %n")
-  (setq emms-browser-playlist-info-album-format  "  - %n")
-  (setq emms-browser-playlist-info-title-format  "    ♪ %n"))
+  (setq emms-browser-info-year-format                "* %n")
+  (setq emms-browser-info-genre-format               "* %n")
+  (setq emms-browser-info-performer-format           "* %n")
+  (setq emms-browser-info-composer-format            "* %n")
+  (setq emms-browser-info-artist-format              "** %n")
+  (setq emms-browser-info-album-format               "*** %n")
+  (setq emms-browser-info-title-format               "    ♪ %n")
+  (setq emms-browser-playlist-info-year-format       "* %n")
+  (setq emms-browser-playlist-info-genre-format      "* %n")
+  (setq emms-browser-playlist-info-performer-format  "* %n")
+  (setq emms-browser-playlist-info-composer-format   "* %n")
+  (setq emms-browser-playlist-info-artist-format     "** %n")
+  (setq emms-browser-playlist-info-album-format      "*** %n")
+  (setq emms-browser-playlist-info-title-format      "    ♪ %n"))
 
 ;; * Footer
 (provide 'eh-emms)
