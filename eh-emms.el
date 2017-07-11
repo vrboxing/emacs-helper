@@ -138,30 +138,21 @@
    (lambda (track)
      (not (funcall (emms-browser-filter-only-recent 30) track))))
 
-  ;; 设置 emms browser 中音乐的显示格式
-  (setq emms-browser-current-indent "")
-  (setq emms-browser-info-year-format      "* %n")
-  (setq emms-browser-info-genre-format     "* %n")
-  (setq emms-browser-info-performer-format "* %n")
-  (setq emms-browser-info-composer-format  "* %n")
-  (setq emms-browser-info-artist-format    "** %n")
-  (setq emms-browser-info-album-format     "*** %n")
-  (setq emms-browser-info-title-format     "  ♪ %n")
-
-  ;; 设置 browser-playlist 中音乐的显示格式，并禁止在 playlist
-  ;; 中插入 group 信息。
-  (setq emms-browser-playlist-info-title-format "♪ %n")
-
-  (advice-add 'emms-browser-playlist-insert-bdata
-              :override #'eh-emms-browser-playlist-insert-bdata)
-
-  (defun eh-emms-browser-playlist-insert-bdata (bdata starting-level)
-    (let ((type (emms-browser-bdata-type bdata))
-          (name (emms-browser-bdata-name bdata)))
-      (dolist (item (emms-browser-bdata-data bdata))
-        (if (not (eq type 'info-title))
-            (emms-browser-playlist-insert-bdata item starting-level)
-          (emms-browser-playlist-insert-track bdata))))))
+  ;; 设置 emms browser 和 browser-list 中音乐的显示格式
+  (setq emms-browser-info-year-format      "%i* %n")
+  (setq emms-browser-info-genre-format     "%i* %n")
+  (setq emms-browser-info-performer-format "%i* %n")
+  (setq emms-browser-info-composer-format  "%i* %n")
+  (setq emms-browser-info-artist-format    "%i* %n")
+  (setq emms-browser-info-album-format     "%i- %n")
+  (setq emms-browser-info-title-format     "%i♪ %n")
+  (setq emms-browser-playlist-info-year-format      "%i* %n")
+  (setq emms-browser-playlist-info-genre-format     "%i* %n")
+  (setq emms-browser-playlist-info-performer-format "%i* %n")
+  (setq emms-browser-playlist-info-composer-format  "%i* %n")
+  (setq emms-browser-playlist-info-artist-format    "%i* %n")
+  (setq emms-browser-playlist-info-album-format     "%i- %n")
+  (setq emms-browser-playlist-info-title-format     "%i♪ %n"))
 
 ;; * Footer
 (provide 'eh-emms)
