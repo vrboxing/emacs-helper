@@ -318,56 +318,37 @@
     :ensure org
     :config
     ;; 为calfw设置一个capture模板并添加到org-capture-templates
-    (setq cfw:org-capture-template
-          '("calfw2org" "calfw2org" entry (file+headline eh-org-schedule-file "Schedule")
-            "* %?\n %(cfw:org-capture-day)\n %a"))
+    (setq calfw-org-capture-template
+          '("calfw2org" "calfw2org" entry (file+headline "~/org/calfw.org" "Schedule")
+            "* %?\n %(calfw-org-capture-day)\n %a"))
     (setq org-capture-templates
-          (append org-capture-templates (list cfw:org-capture-template))))
+          (append org-capture-templates (list calfw-org-capture-template))))
 
   ;; 日历表格边框设置
-  (setq cfw:fchar-junction ?+
-        cfw:fchar-vertical-line ?|
-        cfw:fchar-horizontal-line ?-
-        cfw:fchar-left-junction ?+
-        cfw:fchar-right-junction ?+
-        cfw:fchar-top-junction ?+
-        cfw:fchar-top-left-corner ?+
-        cfw:fchar-top-right-corner ?+)
+  (setq calfw-fchar-junction ?+
+        calfw-fchar-vertical-line ?|
+        calfw-fchar-horizontal-line ?-
+        calfw-fchar-left-junction ?+
+        calfw-fchar-right-junction ?+
+        calfw-fchar-top-junction ?+
+        calfw-fchar-top-left-corner ?+
+        calfw-fchar-top-right-corner ?+)
 
-  (defun eh-cfw-render-toolbar (width current-view prev-cmd next-cmd)
-    "Translate words: 'Month', 'Week', 'Day' and 'Two day' to Chinese"
-    (let* ((prev (cfw:render-button " < " prev-cmd))
-           (today (cfw:render-button "今天" 'cfw:navi-goto-today-command))
-           (next (cfw:render-button " > " next-cmd))
-           (month (cfw:render-button
-                   "显示一月" 'cfw:change-view-month
-                   (eq current-view 'month)))
-           (tweek (cfw:render-button
-                   "显示两周" 'cfw:change-view-two-weeks
-                   (eq current-view 'two-weeks)))
-           (week (cfw:render-button
-                  "显示一周" 'cfw:change-view-week
-                  (eq current-view 'week)))
-           (day (cfw:render-button
-                 "显示一天" 'cfw:change-view-day
-                 (eq current-view 'day)))
-           (sp  " ")
-           (toolbar-text
-            (cfw:render-add-right
-             width (concat sp prev sp next sp today sp)
-             (concat day sp week sp tweek sp month sp))))
-      (cfw:render-default-content-face toolbar-text 'cfw:face-toolbar)))
-
-  (advice-add 'cfw:render-toolbar :override #'eh-cfw-render-toolbar)
+  (setq calfw-gettext-alist
+        '(("Today" . "今天")
+          ("Month" . "一月")
+          ("Week" . "一周")
+          ("Two Weeks" . "两周")
+          ("Day" . "一天")))
 
   (defun eh-calendar ()
     (interactive)
-    (cfw:open-calendar-buffer
+    (calfw-open-calendar-buffer
      :view 'month
      :contents-sources
      (list
       ;; orgmode source
-      (cfw:org-create-source "Green")))))
+      (calfw-org-create-source "Green")))))
 
 ;; * Footer
 (provide 'eh-misc)
