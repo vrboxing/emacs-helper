@@ -394,7 +394,8 @@
     (interactive)
     (let ((file (or (when (and (eq major-mode 'magit-status-mode)
                                magit--default-directory
-                               (stringp magit--default-directory))
+                               (stringp magit--default-directory)
+                               (magit-file-at-point))
                       (concat (file-name-as-directory magit--default-directory)
                               (magit-file-at-point)))
                     (read-file-name "Please select a patch: ")))
