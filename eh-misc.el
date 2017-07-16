@@ -335,11 +335,11 @@
         calfw-fchar-top-right-corner ?+)
 
   (setq calfw-gettext-alist
-        '(("Today" . "今天")
-          ("Month" . "一月")
-          ("Week" . "一周")
-          ("Two Weeks" . "两周")
-          ("Day" . "一天")))
+        '(("Today" . "t:今天")
+          ("Month" . "M:一月")
+          ("Week" . "W:一周")
+          ("Two Weeks" . "T:两周")
+          ("Day" . "D:一天")))
 
   (defun eh-calendar ()
     (interactive)
