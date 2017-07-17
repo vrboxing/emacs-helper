@@ -231,7 +231,7 @@
   (use-package gitpatch-mail
     :ensure nil
     :config
-    (define-key magit-status-mode-map (kbd "C-x m") 'gitpatch-mail)))
+    (define-key magit-status-mode-map (kbd "C-c m") 'gitpatch-mail)))
 
 ;; ** projectile
 (use-package projectile
