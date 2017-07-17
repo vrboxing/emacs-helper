@@ -213,6 +213,18 @@
   (setq switch-window-shortcut-style 'qwerty)
   (setq switch-window-input-style 'minibuffer))
 
+;; ** gitpatch
+(use-package gitpatch
+  :ensure nil
+  :config
+  (setq gitpatch-mail-function 'gnus-msg-mail)
+  (setq gitpatch-mail-database
+        '("guix-patches@gnu.org"
+          "guix-devel@gnu.org"
+          "emms-help@gnu.org"
+          "emacs-orgmode@gnu.org"
+          "emacs-devel@gnu.org")))
+
 ;; ** projectile
 (use-package projectile
   :config
