@@ -228,7 +228,7 @@
 ;; *** magit
 (use-package magit
   :config
-  (use-package gitpatch-mail
+  (use-package gitpatch
     :ensure nil
     :config
     (define-key magit-status-mode-map (kbd "C-c m") 'gitpatch-mail)))
