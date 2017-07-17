@@ -225,6 +225,14 @@
           "emacs-orgmode@gnu.org"
           "emacs-devel@gnu.org")))
 
+;; *** magit
+(use-package magit
+  :config
+  (use-package gitpatch-mail
+    :ensure nil
+    :config
+    (define-key magit-status-mode-map (kbd "C-x m") 'gitpatch-mail)))
+
 ;; ** projectile
 (use-package projectile
   :config
