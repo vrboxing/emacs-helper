@@ -248,7 +248,7 @@
                  (append (pyim-hanzi2pinyin str nil "" t)
                          (pyim-hanzi2pinyin str t "" t)))))))))
 
-;; *** magit
+;; ** magit
 (use-package magit
   :config
   (use-package gitpatch
