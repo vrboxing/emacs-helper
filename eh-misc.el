@@ -225,6 +225,29 @@
           "emacs-orgmode@gnu.org"
           "emacs-devel@gnu.org")))
 
+;; ** ebdb
+(use-package ebdb
+  :ensure nil
+  :config
+  (require 'ebdb-mua)
+  (require 'ebdb-com)
+  (require 'ebdb-chn)
+  (require 'ebdb-vcard)
+  (require 'ebdb-complete)
+  (ebdb-complete-enable)
+  (use-package chinese-pyim
+    :config
+    (cl-defmethod ebdb-field-search
+        :around (field criterion)
+        (or (cl-call-next-method)
+            (when (stringp criterion)
+              (let ((str (ebdb-string field)))
+                (cl-some
+                 (lambda (pinyin)
+                   (string-match-p criterion pinyin))
+                 (append (pyim-hanzi2pinyin str nil "" t)
+                         (pyim-hanzi2pinyin str t "" t)))))))))
+
 ;; *** magit
 (use-package magit
   :config
