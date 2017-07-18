@@ -401,7 +401,7 @@
   (defun eh-calendar ()
     (interactive)
     (calfw-open-calendar-buffer
-     :view 'month
+     :view 'two-weeks
      :contents-sources
      (list
       ;; orgmode source
