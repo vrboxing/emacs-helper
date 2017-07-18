@@ -245,6 +245,20 @@
   (("C-x F" . projectile-find-file)
    ("C-S-s" . projectile-grep)))
 
+;; ** guix
+(use-package guix
+  :config
+  (use-package geiser
+    :config
+    (setq geiser-debug-jump-to-debug-p nil)
+    ;; NOTE: "~/.config/guix/latest/" is invaild,
+    ;; use "~/.config/guix/latest" instead.
+    (with-eval-after-load 'geiser-guile
+      (add-to-list 'geiser-guile-load-path "~/.config/guix/latest")))
+  (setq guix-directory "~/project/guix")
+  (add-hook 'scheme-mode-hook 'guix-devel-mode)
+  (add-hook 'after-init-hook 'global-guix-prettify-mode))
+
 ;; ** undo-tree
 (use-package undo-tree
   :bind (("C-c /" . undo-tree-visualize))
