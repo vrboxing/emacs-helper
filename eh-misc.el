@@ -367,31 +367,29 @@
 
 (use-package calfw
   :config
-  (use-package calfw-cal :ensure calfw)
-  (use-package calfw-ical :ensure calfw)
-  (use-package calfw-org :ensure calfw)
+  (use-package calfw-org)
   (use-package cal-china-x)
   (use-package org-capture
     :ensure org
     :config
     ;; 为calfw设置一个capture模板并添加到org-capture-templates
-    (setq calfw-org-capture-template
+    (setq cfw:org-capture-template
           '("calfw2org" "calfw2org" entry (file+headline "~/org/calfw.org" "Schedule")
-            "* %?\n %(calfw-org-capture-day)\n %a"))
+            "* %?\n %(cfw:org-capture-day)\n %a"))
     (setq org-capture-templates
-          (append org-capture-templates (list calfw-org-capture-template))))
+          (append org-capture-templates (list cfw:org-capture-template))))
 
   ;; 日历表格边框设置
-  (setq calfw-fchar-junction ?+
-        calfw-fchar-vertical-line ?|
-        calfw-fchar-horizontal-line ?-
-        calfw-fchar-left-junction ?+
-        calfw-fchar-right-junction ?+
-        calfw-fchar-top-junction ?+
-        calfw-fchar-top-left-corner ?+
-        calfw-fchar-top-right-corner ?+)
+  (setq cfw:fchar-junction ?+
+        cfw:fchar-vertical-line ?|
+        cfw:fchar-horizontal-line ?-
+        cfw:fchar-left-junction ?+
+        cfw:fchar-right-junction ?+
+        cfw:fchar-top-junction ?+
+        cfw:fchar-top-left-corner ?+
+        cfw:fchar-top-right-corner ?+)
 
-  (setq calfw-gettext-alist
+  (setq cfw:gettext-alist
         '(("Today" . "t:今天")
           ("Month" . "M:一月")
           ("Week" . "W:一周")
@@ -400,12 +398,12 @@
 
   (defun eh-calendar ()
     (interactive)
-    (calfw-open-calendar-buffer
+    (cfw:open-calendar-buffer
      :view 'two-weeks
      :contents-sources
      (list
       ;; orgmode source
-      (calfw-org-create-source "Green")))))
+      (cfw:org-create-source "Green")))))
 
 ;; * Footer
 (provide 'eh-misc)
