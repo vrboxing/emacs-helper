@@ -30,7 +30,7 @@
 ;; 可以做为 Emacs 中文用户的一个参考。
 
 ;; ** 使用方法
-;; 1. 下载 emacs-helper 压缩包: [[https://github.com/tumashu/emacs-helper/archive/master.zip][emacs-helper]]
+;; 1. 下载 [[https://github.com/tumashu/emacs-helper/archive/master.zip][emacs-helper 压缩包]] .
 ;; 2. 将压缩包解压缩到任意一个目录，比如："d:/emacs-helper"
 ;; 3. 用 emacs 打开 installer 文件： "d:/emacs-helper/eh-installer.el"
 ;; 4. 运行下面的命令来安装 "d:/emacs-helper/elpa" 目录下所有的包，
