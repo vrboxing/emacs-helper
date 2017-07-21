@@ -139,9 +139,9 @@
 ;; ** 设置 elpa-mirror
 (use-package elpa-mirror
   :config
-  (defun eh-update-elpa ()
+  (defun eh-elpa-mirror ()
     (interactive)
-    (let ((directory (file-name-as-directory eh-elpa-directory)))
+    (let ((directory (file-name-as-directory (eh-elpa-directory))))
       (when (y-or-n-p (format "更新 emacs-helper/elpa 目录：%S ? " dir))
         (when (file-directory-p directory)
           (delete-directory directory t))
