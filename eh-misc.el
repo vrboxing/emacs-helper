@@ -274,19 +274,17 @@
   :ensure nil
   :config
   (setq guix-directory "~/project/guix")
+  (setq geiser-debug-jump-to-debug-p nil)
   (add-hook 'after-init-hook 'global-guix-prettify-mode)
-  (use-package scheme
-    :ensure nil
+  (add-hook 'scheme-mode-hook 'guix-devel-mode)
+  (with-eval-after-load 'geiser-guile
+    ;; NOTE: "~/.config/guix/latest/" is invaild,
+    ;; use "~/.config/guix/latest" instead.
     :config
-    (add-hook 'scheme-mode-hook 'guix-devel-mode))
-  (use-package geiser
-    :config
-    (setq geiser-debug-jump-to-debug-p nil)
-    (use-package geiser-guile
-      :ensure nil
-      ;; NOTE: "~/.config/guix/latest/" is invaild,
-      ;; use "~/.config/guix/latest" instead.
-      :config (add-to-list 'geiser-guile-load-path "~/.config/guix/latest"))))
+    (add-to-list 'geiser-guile-load-path
+                 (concat (file-name-directory (locate-library "geiser.el"))
+                         "scheme/guile"))
+    (add-to-list 'geiser-guile-load-path "~/.config/guix/latest")))
 
 ;; ** undo-tree
 (use-package undo-tree
