@@ -73,9 +73,6 @@
 
 (eh-update-load-path)
 
-;; ** 使用 use-package
-(require 'use-package)
-
 ;; ** Full name and Email
 (setq user-full-name "Feng Shu")
 (setq user-mail-address "tumashu@163.com")
@@ -105,6 +102,9 @@
 
 (add-hook 'kill-buffer-query-functions
           #'eh-unkillable-scratch-buffer)
+
+;; ** 使用 use-package
+(require 'use-package)
 
 ;; ** 设置 emacs 包管理器
 (use-package package
