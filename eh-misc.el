@@ -280,7 +280,6 @@
   (with-eval-after-load 'geiser-guile
     ;; NOTE: "~/.config/guix/latest/" is invaild,
     ;; use "~/.config/guix/latest" instead.
-    :config
     (add-to-list 'geiser-guile-load-path
                  (concat (file-name-directory (locate-library "geiser.el"))
                          "scheme/guile"))
