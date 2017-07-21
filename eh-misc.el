@@ -258,15 +258,16 @@
 
 ;; ** projectile
 (use-package projectile
+  :bind (("C-x F" . projectile-find-file)
+         ("C-S-s" . projectile-grep))
   :config
-  (setq projectile-completion-system 'ivy)
+  (use-package swiper
+    :ensure nil
+    :config (setq projectile-completion-system 'ivy))
   (use-package wgrep
     :config
     (projectile-global-mode 1)
-    (setq projectile-enable-caching nil))
-  :bind
-  (("C-x F" . projectile-find-file)
-   ("C-S-s" . projectile-grep)))
+    (setq projectile-enable-caching nil)))
 
 ;; ** guix
 (use-package guix
