@@ -70,13 +70,13 @@
 
 (defvar eh-config-template
   "
-;; ------------------------------------
-;; Add by emacs-helper installer
+%% ------------------------------------
+%% Add by emacs-helper installer
 
 (add-to-list 'load-path %S)
 (require 'emacs-helper)
 
-;; ------------------------------------
+%% ------------------------------------
 ")
 
 (defun eh-installer ()
@@ -87,7 +87,7 @@
     (concat (eh-current-directory) "elpa/")))
   ;; 在 "~/.emacs" 文件中插入配置片断
   (append-to-file
-   (format eh-config-template
+   (format (replace-regexp-in-string "%%" ";;" eh-config-template)
            (eh-current-directory)) nil "~/.emacs")
   (message "Emacs-helper 安装完成，请重新启动 Emacs"))
 
