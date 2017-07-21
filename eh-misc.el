@@ -273,16 +273,20 @@
 (use-package guix
   :ensure nil
   :config
+  (setq guix-directory "~/project/guix")
+  (add-hook 'after-init-hook 'global-guix-prettify-mode)
+  (use-package scheme
+    :ensure nil
+    :config
+    (add-hook 'scheme-mode-hook 'guix-devel-mode))
   (use-package geiser
     :config
     (setq geiser-debug-jump-to-debug-p nil)
-    ;; NOTE: "~/.config/guix/latest/" is invaild,
-    ;; use "~/.config/guix/latest" instead.
-    (with-eval-after-load 'geiser-guile
-      (add-to-list 'geiser-guile-load-path "~/.config/guix/latest")))
-  (setq guix-directory "~/project/guix")
-  (add-hook 'scheme-mode-hook 'guix-devel-mode)
-  (add-hook 'after-init-hook 'global-guix-prettify-mode))
+    (use-package geiser-guile
+      :ensure nil
+      ;; NOTE: "~/.config/guix/latest/" is invaild,
+      ;; use "~/.config/guix/latest" instead.
+      :config (add-to-list 'geiser-guile-load-path "~/.config/guix/latest"))))
 
 ;; ** undo-tree
 (use-package undo-tree
@@ -370,17 +374,10 @@
 (use-package calfw
   :ensure nil
   :config
-  (use-package calfw-org :ensure nil)
   (use-package cal-china-x :ensure nil)
-  (use-package org-capture
-    :ensure nil
-    :config
-    ;; 为calfw设置一个capture模板并添加到org-capture-templates
-    (setq cfw:org-capture-template
-          '("calfw2org" "calfw2org" entry (file+headline "~/org/calfw.org" "Schedule")
-            "* %?\n %(cfw:org-capture-day)\n %a"))
-    (setq org-capture-templates
-          (append org-capture-templates (list cfw:org-capture-template))))
+
+  (defvar eh-calfw-org-file nil)
+  (setq eh-calfw-org-file "~/org/calfw.org")
 
   ;; 日历表格边框设置
   (setq cfw:fchar-junction ?+
@@ -399,14 +396,32 @@
           ("Two Weeks" . "T:两周")
           ("Day" . "D:一天")))
 
-  (defun eh-calendar ()
-    (interactive)
-    (cfw:open-calendar-buffer
-     :view 'two-weeks
-     :contents-sources
-     (list
-      ;; orgmode source
-      (cfw:org-create-source "Green")))))
+  (use-package calfw-org
+    :ensure nil
+    :config
+    (defun eh-calendar ()
+      (interactive)
+      (cfw:open-calendar-buffer
+       :view 'two-weeks
+       :contents-sources
+       (list
+        ;; orgmode source
+        (cfw:org-create-source "Green")))))
+
+  (use-package org-agenda
+    :ensure nil
+    :config
+    (unless (member eh-calfw-org-file org-agenda-files)
+      (push eh-calfw-org-file org-agenda-files))
+    (use-package org-capture
+      :ensure nil
+      :config
+      ;; 为calfw设置一个capture模板并添加到org-capture-templates
+      (setq cfw:org-capture-template
+            '("calfw2org" "calfw2org" entry (file+headline eh-calfw-org-file "Schedule")
+              "* %?\n %(cfw:org-capture-day)\n %a"))
+      (setq org-capture-templates
+            (append org-capture-templates (list cfw:org-capture-template))))))
 
 ;; * Footer
 (provide 'eh-misc)
