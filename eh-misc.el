@@ -182,12 +182,6 @@
     (interactive)
     (term-send-raw-string "\C-h")))
 
-;; ** magit
-(use-package magit
-  :config
-  (setq magit-completing-read-function 'ivy-completing-read)
-  :bind (("C-c g" . magit-status)))
-
 ;; ** wdired and dired-ranger
 (use-package dired
   :ensure nil
@@ -235,6 +229,15 @@
   (require 'ebdb-vcard)
   (require 'ebdb-complete)
   (ebdb-complete-enable)
+
+  ;; (defun eh-ebdb-search-chinese (string)
+  ;;   (if (functionp 'pyim-isearch-build-search-regexp)
+  ;;       (pyim-isearch-build-search-regexp string)
+  ;;     string))
+
+  ;; (setq ebdb-search-transform-functions
+  ;;       '(eh-ebdb-search-chinese))
+
   (use-package chinese-pyim
     :config
     (cl-defmethod ebdb-field-search
@@ -250,7 +253,9 @@
 
 ;; ** magit
 (use-package magit
+  :bind (("C-c g" . magit-status))
   :config
+  (setq magit-completing-read-function 'ivy-completing-read)
   (use-package gitpatch
     :ensure nil
     :config
