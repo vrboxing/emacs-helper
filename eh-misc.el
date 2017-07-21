@@ -38,32 +38,27 @@
 (use-package org-webpage
   :config
   ;; my website's owp config
-  (use-package eh-website
-    :ensure nil)
+  (use-package eh-website :ensure nil)
   ;; org-webpage's owp config
-  (use-package owp-devtools
-    :ensure nil)
+  (use-package owp-devtools :ensure nil)
   (use-package chinese-pyim
     :ensure nil
     :config
     ;; chinese-pyim owp config
-    (use-package chinese-pyim-devtools
-      :ensure nil)))
+    (use-package chinese-pyim-devtools :ensure nil)))
 
 ;; ** el2org
 (use-package el2org)
 
 ;; ** EPG
-
-;; 1. Put the below to your ~/.gnupg/gpg-agent.conf:
-;;       allow-emacs-pinentry
-;;       allow-loopback-pinentry
-;; 2. gpgconf --reload gpg-agent
-;; 3. (setq epa-pinentry-mode 'loopback)
-;; 4. (pinentry-start)
-
 (use-package epg
   :config
+  ;; 1. Put the below to your ~/.gnupg/gpg-agent.conf:
+  ;;       allow-emacs-pinentry
+  ;;       allow-loopback-pinentry
+  ;; 2. gpgconf --reload gpg-agent
+  ;; 3. (setq epa-pinentry-mode 'loopback)
+  ;; 4. (pinentry-start)
   (setq epa-pinentry-mode 'loopback))
 
 ;; ** sdcv
@@ -73,8 +68,7 @@
   :bind (("C-c d" . yasdcv-translate-at-point)))
 
 ;; ** emms
-(use-package eh-emms
-  :ensure nil)
+(use-package eh-emms :ensure nil)
 
 ;; ** elisp setting
 (use-package lisp-mode
@@ -94,23 +88,26 @@
 
 ;; ** org-journal
 (use-package org-journal
+  :bind (("C-c C-j" . org-journal-new-entry))
+  :ensure nil
   :config
-  (use-package org
-    :ensure nil)
-  (use-package org-agenda
-    :ensure nil)
   (setq org-journal-dir "E:/doc/journal/")
   (setq org-journal-file-format "%Y%m%d.org")
-  (setq org-agenda-files
-        (if (file-directory-p org-journal-dir)
-            (append (directory-files org-journal-dir t ".org$")
-                    org-agenda-files)
-          org-agenda-files))
-  :bind
-  (("C-c C-j" . org-journal-new-entry)))
+  (use-package org
+    :ensure nil
+    :config
+    (use-package org-agenda
+      :ensure nil
+      :config
+      (setq org-agenda-files
+            (if (file-directory-p org-journal-dir)
+                (append (directory-files org-journal-dir t ".org$")
+                        org-agenda-files)
+              org-agenda-files)))))
 
 ;; ** ESS
 (use-package ess
+  :ensure nil
   :config
   (setq ess-eval-visibly-p nil)
   (setq ess-ask-for-ess-directory nil)
@@ -142,6 +139,7 @@
 
 ;; ** multi-term
 (use-package multi-term
+  :ensure nil
   :config
   (setq multi-term-program "/bin/bash")
   (setq multi-term-buffer-name "term")
@@ -186,14 +184,13 @@
 (use-package dired
   :ensure nil
   :config
-  (use-package wdired)
-  (use-package dired-ranger))
+  (use-package wdired :ensure nil)
+  (use-package dired-ranger :ensure nil))
 
 ;; ** ace-jump
 (use-package ace-jump-mode
-  :init
-  (autoload 'ace-jump-mode "ace-jump-mode" nil t)
-  (bind-key "C-j" 'ace-jump-mode))
+  :ensure nil
+  :bind (("C-j" . ace-jump-mode)))
 
 ;; ** switch-window
 (use-package switch-window
@@ -209,12 +206,12 @@
 
 ;; ** gitpatch
 (use-package gitpatch
+  :bind (("C-c m" . gitpatch-mail))
   :ensure nil
   :config
   (setq gitpatch-mail-function 'gnus-msg-mail)
   (setq gitpatch-mail-database
         '("guix-patches@gnu.org"
-          "guix-devel@gnu.org"
           "emms-help@gnu.org"
           "emacs-orgmode@gnu.org"
           "emacs-devel@gnu.org")))
@@ -255,11 +252,9 @@
 (use-package magit
   :bind (("C-c g" . magit-status))
   :config
-  (setq magit-completing-read-function 'ivy-completing-read)
-  (use-package gitpatch
-    :ensure nil
+  (use-package swiper
     :config
-    (define-key magit-status-mode-map (kbd "C-c m") 'gitpatch-mail)))
+    (setq magit-completing-read-function 'ivy-completing-read)))
 
 ;; ** projectile
 (use-package projectile
@@ -275,6 +270,7 @@
 
 ;; ** guix
 (use-package guix
+  :ensure nil
   :config
   (use-package geiser
     :config
@@ -371,11 +367,12 @@
   (setq calendar-week-start-day 0))
 
 (use-package calfw
+  :ensure nil
   :config
-  (use-package calfw-org)
-  (use-package cal-china-x)
+  (use-package calfw-org :ensure nil)
+  (use-package cal-china-x :ensure nil)
   (use-package org-capture
-    :ensure org
+    :ensure nil
     :config
     ;; 为calfw设置一个capture模板并添加到org-capture-templates
     (setq cfw:org-capture-template
