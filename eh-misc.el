@@ -227,16 +227,15 @@
   (require 'ebdb-complete)
   (ebdb-complete-enable)
 
-  ;; (defun eh-ebdb-search-chinese (string)
-  ;;   (if (functionp 'pyim-isearch-build-search-regexp)
-  ;;       (pyim-isearch-build-search-regexp string)
-  ;;     string))
-
-  ;; (setq ebdb-search-transform-functions
-  ;;       '(eh-ebdb-search-chinese))
-
   (use-package chinese-pyim
     :config
+    ;; (defun eh-ebdb-search-chinese (string)
+    ;;   (if (functionp 'pyim-isearch-build-search-regexp)
+    ;;       (pyim-isearch-build-search-regexp string)
+    ;;     string))
+
+    ;; (setq ebdb-search-transform-functions
+    ;;       '(eh-ebdb-search-chinese))
     (cl-defmethod ebdb-field-search
         :around (field criterion)
         (or (cl-call-next-method)
