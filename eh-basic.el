@@ -73,23 +73,8 @@
 
 (eh-update-load-path)
 
-;; ** 设置 emacs 包管理器
-(require 'package)
-(package-initialize)
-
-(defun eh-elpa-directory ()
-  "返回 emacs-helper 内置 elpa 镜像的目录。"
-  (file-name-as-directory
-   (concat
-    (file-name-directory
-     (locate-library "eh-basic.el"))
-    "elpa/")))
-
-(setq package-archives
-      `(("eh-elpa" . ,(eh-elpa-directory))
-        ("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
-        ("org-cn"   . "http://elpa.emacs-china.org/org/")
-        ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
+;; ** 使用 use-package
+(require 'use-package)
 
 ;; ** Full name and Email
 (setq user-full-name "Feng Shu")
@@ -121,8 +106,24 @@
 (add-hook 'kill-buffer-query-functions
           #'eh-unkillable-scratch-buffer)
 
-;; ** 使用 use-package
-(require 'use-package)
+;; ** 设置 emacs 包管理器
+(use-package package
+  :config
+  (package-initialize)
+
+  (defun eh-elpa-directory ()
+    "返回 emacs-helper 内置 elpa 镜像的目录。"
+    (file-name-as-directory
+     (concat
+      (file-name-directory
+       (locate-library "eh-basic.el"))
+      "elpa/")))
+
+  (setq package-archives
+        `(("eh-elpa" . ,(eh-elpa-directory))
+          ("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
+          ("org-cn"   . "http://elpa.emacs-china.org/org/")
+          ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/"))))
 
 ;; ** 设置主题
 (use-package cyberpunk-theme
