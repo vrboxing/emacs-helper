@@ -39,7 +39,7 @@
 (owp/add-project-config
  '("emacs-helper"
    :repository-directory (:eval eh-website-repository)
-   :remote (git-simple "https://github.com/tumashu/emacs-helper.git" "gh-pages")
+   :remote (git-simple "git@github.com:tumashu/emacs-helper.git" "gh-pages")
    :site-domain "https://tumashu.github.io/emacs-helper"
    :site-main-title "Emacs-helper"
    :site-sub-title "(Tumashu 的 emacs 配置)"
