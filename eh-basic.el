@@ -35,51 +35,9 @@
 
 ;; * 代码                                                                 :code:
 (require 'cl-lib)
-
-(defvar eh-directory
-  (file-name-directory
-   (locate-library "eh-basic.el"))
-  "eh-basic.el 文件所在的目录。")
-
-(defvar eh-elpa-directory
-  (file-name-as-directory
-   (concat eh-directory "elpa/"))
-  "emacs-helper 内置 elpa 镜像的目录。")
-
-;; ** Full name and Email
-(setq user-full-name "Feng Shu")
-(setq user-mail-address "tumashu@163.com")
-
-;; ** 启动时默认打开的 buffer.
-(setq inhibit-startup-screen t)
-(setq initial-buffer-choice nil)
-(setq initial-scratch-message
-      ";; This is *scratch* buffer.\n\n")
-
-;; ** 使用空格缩进
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
-(setq tab-width 4)
-
-;; ** 关闭 beep
-(setq visible-bell t)
-
-;; ** 让 *scratch* buffer 无法删除
-(defun eh-unkillable-scratch-buffer ()
-  (if (string= (buffer-name (current-buffer)) "*scratch*")
-      (progn
-        (delete-region (point-min) (point-max))
-        (insert initial-scratch-message)
-        nil)
-    t))
-
-(add-hook 'kill-buffer-query-functions
-          #'eh-unkillable-scratch-buffer)
+(require 'eh-functions)
 
 ;; ** 设置 load-path
-(defvar eh-enable-load-path-hack t)
-(defvar eh-enable-load-path-update nil)
-
 (defun eh-hack-load-path ()
   ;; Delete buildin org's PATH
   (setq load-path
@@ -111,62 +69,60 @@
                      (not (string-match-p "/\\.$" x))
                      (not (string-match-p "/\\.\\.$" x)))
             (add-to-list 'load-path x))))))
-  (when eh-enable-load-path-hack
-    (eh-hack-load-path)))
+  (eh-hack-load-path))
 
-(when eh-enable-load-path-update
-  (eh-update-load-path)
-  (message "emacs-helper update load-path success!"))
+(eh-update-load-path)
 
 ;; ** 设置 emacs 包管理器
 (require 'package)
-(setq package-archives
-      `(("eh-elpa" . ,eh-elpa-directory)))
 (package-initialize)
 
-(defun eh-packages-install (packages)
-  (let ((refreshed nil))
-    (when (not package-archive-contents)
-      (package-refresh-contents)
-      (setq refreshed t))
-    (dolist (pkg packages)
-      (when (and (not (package-installed-p pkg))
-                 (assoc pkg package-archive-contents))
-        (unless refreshed
-          (package-refresh-contents)
-          (setq refreshed t))
-        (package-install pkg)))))
-
-(defun eh-update-package-archives ()
-  (interactive)
-  (setq package-archives
-        `(("eh-elpa" . ,eh-elpa-directory)
-          ("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
-          ("org-cn"   . "http://elpa.emacs-china.org/org/")
-          ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/"))))
+(defun eh-elpa-directory ()
+  "返回 emacs-helper 内置 elpa 镜像的目录。"
+  (file-name-as-directory
+   (concat
+    (file-name-directory
+     (locate-library "eh-basic.el"))
+    "elpa/")))
 
 (defun eh-package-list-packages ()
   (interactive)
-  (eh-update-package-archives)
+  (setq package-archives
+        `(("eh-elpa" . ,(eh-elpa-directory))
+          ("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
+          ("org-cn"   . "http://elpa.emacs-china.org/org/")
+          ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
   (package-list-packages))
 
-;; ** 安装 emacs-helper/elpa 目录下的所有的包
-(defun eh-get-elpa-mirror-packages ()
-  (let ((file (concat (file-name-directory eh-elpa-directory)
-                      "archive-contents")))
-    (when (file-exists-p file)
-      (mapcar #'car
-              (cdr (read (with-temp-buffer
-                           (insert-file-contents file)
-                           (buffer-string))))))))
+;; ** Full name and Email
+(setq user-full-name "Feng Shu")
+(setq user-mail-address "tumashu@163.com")
 
-(defvar eh-enable-full-install nil)
+;; ** 启动时默认打开的 buffer.
+(setq inhibit-startup-screen t)
+(setq initial-buffer-choice nil)
+(setq initial-scratch-message
+      ";; This is *scratch* buffer.\n\n")
 
-(if eh-enable-full-install
-    (eh-packages-install
-     (eh-get-elpa-mirror-packages))
-  (eh-packages-install
-   '(use-package org-plus-contrib)))
+;; ** 使用空格缩进
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq tab-width 4)
+
+;; ** 关闭 beep
+(setq visible-bell t)
+
+;; ** 让 *scratch* buffer 无法删除
+(defun eh-unkillable-scratch-buffer ()
+  (if (string= (buffer-name (current-buffer)) "*scratch*")
+      (progn
+        (delete-region (point-min) (point-max))
+        (insert initial-scratch-message)
+        nil)
+    t))
+
+(add-hook 'kill-buffer-query-functions
+          #'eh-unkillable-scratch-buffer)
 
 ;; ** 使用 use-package
 (require 'use-package)
@@ -185,13 +141,12 @@
   :config
   (defun eh-update-elpa ()
     (interactive)
-    (let* ((dir (file-name-as-directory eh-elpa-directory))
-           (elpamr-default-output-directory dir))
-      (when (y-or-n-p (format "更新 emacs/elpa 目录：%S ? " dir))
-        (when (file-directory-p dir)
-          (delete-directory dir t))
-        (make-directory dir t))
-      (elpamr-create-mirror-for-installed))))
+    (let ((directory (file-name-as-directory eh-elpa-directory)))
+      (when (y-or-n-p (format "更新 emacs-helper/elpa 目录：%S ? " dir))
+        (when (file-directory-p directory)
+          (delete-directory directory t))
+        (make-directory directory t))
+      (elpamr-create-mirror-for-installed directory))))
 
 ;; ** 设置 Charset
 (use-package mule

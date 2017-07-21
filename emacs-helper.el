@@ -30,23 +30,20 @@
 ;; 可以做为 Emacs 中文用户的一个参考。
 
 ;; ** 使用方法
-;; 1. 下载: [[https://github.com/tumashu/emacs-helper/archive/master.zip][emacs-helper]]
-;; 2. 解压缩到目录："d:/projects/emacs-packages/emacs-helper"
-;; 3. 将下面的代码粘贴到 "~/.emacs"
+;; 1. 下载 emacs-helper 压缩包: [[https://github.com/tumashu/emacs-helper/archive/master.zip][emacs-helper]]
+;; 2. 将压缩包解压缩到任意一个目录，比如："d:/emacs-helper"
+;; 3. 用 emacs 打开 installer 文件： "d:/emacs-helper/eh-installer.el"
+;; 4. 运行下面的命令来安装 "d:/emacs-helper/elpa" 目录下所有的包，
+;;    并在 "~/.emacs" 文件中插入相应的配置片断。
 ;;    #+BEGIN_EXAMPLE
-;;    (add-to-list 'load-path "d:/projects/emacs-packages/emacs-helper")
-;;    (setq use-package-always-ensure t)
-;;    (setq eh-enable-load-path-update nil)
-;;    (setq eh-enable-full-install t)
-;;    (require 'emacs-helper)
+;;    M-x eval-buffer
 ;;    #+END_EXAMPLE
-;; 4. 重启 Emacs, 第一次加载 Emacs-helper 的时候，它依赖的包会自动安装。
+;; 5. 重启 Emacs
 
 ;; * 代码                                                                 :code:
 (load-library "eh-basic")
 (load-library "eh-org")
 (load-library "eh-complete")
-(load-library "eh-functions")
 (load-library "eh-misc")
 
 ;; * Footer

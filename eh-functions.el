@@ -35,27 +35,6 @@
 ;;; Code:
 
 ;; * 代码                                                      :code:
-(defun eh-directory-files-recursively (directory &optional type regexp)
-  "recursively list all the files in a directory"
-  (let* ((directory (or directory default-directory))
-         (regexp  (if regexp regexp ".*"))
-         (predfunc (case type
-                     (dir 'file-directory-p)
-                     (file 'file-regular-p)
-                     (otherwise 'identity)))
-         (files (delete-if
-                 (lambda (s)
-                   (string-match (rx bol (repeat 1 2 ".") eol)
-                                 (file-name-nondirectory s)))
-                 (directory-files directory t nil t))))
-    (loop for file in files
-          when (and (funcall predfunc file)
-                    (string-match regexp (file-name-nondirectory file)))
-          collect file into ret
-          when (file-directory-p file)
-          nconc (eh-directory-files-recursively file type regexp) into ret
-          finally return ret)))
-
 (defun eh-wash-text (text &optional fill-width indent)
   "Insert text into a temp buffer and wash it,
 if `fill-width' is a number, the temp buffer will be filled to the number,
