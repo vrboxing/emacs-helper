@@ -85,14 +85,11 @@
      (locate-library "eh-basic.el"))
     "elpa/")))
 
-(defun eh-package-list-packages ()
-  (interactive)
-  (setq package-archives
-        `(("eh-elpa" . ,(eh-elpa-directory))
-          ("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
-          ("org-cn"   . "http://elpa.emacs-china.org/org/")
-          ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
-  (package-list-packages))
+(setq package-archives
+      `(("eh-elpa" . ,(eh-elpa-directory))
+        ("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
+        ("org-cn"   . "http://elpa.emacs-china.org/org/")
+        ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
 
 ;; ** Full name and Email
 (setq user-full-name "Feng Shu")
