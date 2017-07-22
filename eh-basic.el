@@ -137,6 +137,18 @@
 ;; ** 设置 elpa-mirror
 (use-package elpa-mirror
   :config
+
+  (defun eh-elpa-mirror-github ()
+    (interactive)
+    (let ((directory "~/.eh-elpa-mirror/"))
+      (elpamr-create-mirror-for-installed directory t)
+      (shell-command
+       (concat "cd " directory " && "
+               "git init &&"
+               "git add -A && "
+               "git commit -m \"Update elpa mirror\" && "
+               "git push -f git@github.com:tumashu/elpa.git master &"))))
+
   (defun eh-elpa-mirror ()
     (interactive)
     (let* ((directory (file-name-as-directory (eh-elpa-directory)))
