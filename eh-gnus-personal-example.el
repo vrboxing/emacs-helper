@@ -12,6 +12,21 @@
               :stream ssl
               :fetchflag "\\Seen")))
 
+;; ** Account file: "~/.authinfo.gpg" template
+
+;; #### pop or imap ####
+;; machine imap.163.com login xxx@163.com port 993 password PASSWORD
+;; machine pop.163.com  login xxx@163.com port 995 password PASSWORD
+;; machine imap.qq.com  login xxx@qq.com  port 993 password PASSWORD
+;; machine pop.qq.com   login xxx@qq.com  port 995 password PASSWORD
+
+;; #### smtp ####
+;; machine smtp.163.com login xxxr@163.com port 465 password PASSWORD user-full-name "XXX" user-mail-address xxx@163.com
+;; machine smtp.qq.com  login xxx@qq.com   port 465 password PASSWORD user-full-name "XXX" user-mail-address xxx@qq.com
+
+;; #### erc ####
+;; machine irc.freenode.net login xxx port 6667 secret PASSWORD
+
 ;; ** 设置 gnus-posting-styles
 
 ;; 1. 邮件发送时字符编码设置.
