@@ -210,6 +210,7 @@
   :ensure nil
   :config
   (setq gitpatch-mail-function 'gnus-msg-mail)
+  (setq gitpatch-mail-attach-patch-key "C-c i")
   (setq gitpatch-mail-database
         '("guix-patches@gnu.org"
           "emms-help@gnu.org"
