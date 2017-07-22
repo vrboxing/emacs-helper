@@ -1,7 +1,7 @@
 ;; ** Gnus 邮件基本设置。
 (setq gnus-select-method '(nnml ""))
 (setq mail-sources
-      `((pop :server "pop.163.com"
+      '((pop :server "pop.163.com"
              :user "myname@163.com"
              :port 995
              :stream ssl
