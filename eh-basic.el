@@ -139,12 +139,10 @@
   :config
   (defun eh-elpa-mirror ()
     (interactive)
-    (let ((directory (file-name-as-directory (eh-elpa-directory))))
-      (when (y-or-n-p (format "更新 emacs-helper/elpa 目录：%S ? " directory))
-        (when (file-directory-p directory)
-          (delete-directory directory t))
-        (make-directory directory t))
-      (elpamr-create-mirror-for-installed directory))))
+    (let* ((directory (file-name-as-directory (eh-elpa-directory)))
+           (recreate-directory
+            (yes-or-no-p (format "重新创建目录：%S ? " directory))))
+      (elpamr-create-mirror-for-installed directory recreate-directory))))
 
 ;; ** 设置 Charset
 (use-package mule
