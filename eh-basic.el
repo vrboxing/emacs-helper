@@ -228,15 +228,15 @@
   (setq eww-search-prefix "http://www.sogou.com/sogou?query="))
 
 ;; ** 设置拼音输入法
-(use-package chinese-pyim
+(use-package pyim
   :ensure nil
   :config
   ;; 激活 basedict 词库
-  (use-package chinese-pyim-basedict
+  (use-package pyim-basedict
     :ensure nil
-    :config (chinese-pyim-basedict-enable))
+    :config (pyim-basedict-enable))
 
-  (setq default-input-method "chinese-pyim")
+  (setq default-input-method "pyim")
 
   ;; 使用全拼
   (setq pyim-default-scheme 'quanpin)
