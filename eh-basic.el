@@ -272,14 +272,14 @@
 ;; ** 设置中文字体
 (use-package chinese-fonts-setup
   :demand t
-  :init (setq cfs-verbose nil)
+  :init (setq cnfonts-verbose nil)
   :config
-  (setq cfs-use-face-font-rescale
+  (setq cnfonts-use-face-font-rescale
         (eq system-type 'gnu/linux))
-  (chinese-fonts-setup-enable)
-  :bind (("C--" . cfs-decrease-fontsize)
-         ("C-=" . cfs-increase-fontsize)
-         ("C-+" . cfs-next-profile)))
+  (cnfonts-enable)
+  :bind (("C--" . cnfonts-decrease-fontsize)
+         ("C-=" . cnfonts-increase-fontsize)
+         ("C-+" . cnfonts-next-profile)))
 
 ;; ** 设置 recentf
 (use-package recentf
