@@ -46,6 +46,9 @@
     :config
     (setq counsel-yank-pop-separator
           (concat "\n\n" (make-string 70 ?-) "\n"))
+    (setq counsel-git-log-cmd
+          "GIT_PAGER=cat git log --pretty='TUMASHU%%s%%n %%n%%b' --grep '%s'")
+    (setq counsel-git-log-split-string-re "TUMASHU")
     :bind
     (("C-c C-r" . ivy-resume)
      ("M-x" . counsel-M-x)
