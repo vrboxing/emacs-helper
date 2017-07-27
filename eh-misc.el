@@ -283,7 +283,48 @@
     (add-to-list 'geiser-guile-load-path
                  (concat (file-name-directory (locate-library "geiser.el"))
                          "scheme/guile"))
-    (add-to-list 'geiser-guile-load-path "~/.config/guix/latest")))
+    (add-to-list 'geiser-guile-load-path "~/.config/guix/latest"))
+
+  (defvar guix-export-directory "~/myguix/")
+
+  (defun guix-export-package ()
+    (interactive)
+    (let* ((directory (file-name-as-directory guix-export-directory))
+           (current-module (guix-guile-current-module))
+           (define-public-string
+             (save-excursion
+               (end-of-defun)
+               (let ((end (point)))
+                 (beginning-of-defun)
+                 (buffer-substring (point) end))))
+           (package-name
+            (progn (string-match "\\(define-public +\\)\\([a-z-]+\\)\n+"
+                                 define-public-string)
+                   (match-string 2 define-public-string)))
+           (define-module-string
+             (replace-regexp-in-string
+              " *(define-module.*\n"
+              (format (concat "(define-module (%s)\n"
+                              "  #:use-module %s\n")
+                      package-name current-module)
+              (save-excursion
+                (goto-char (point-min))
+                (search-forward "(define-module")
+                (end-of-defun)
+                (let ((end (point)))
+                  (beginning-of-defun)
+                  (buffer-substring (point) end)))))
+           (command (format "guix package --load-path='%s' -i %s "
+                            directory package-name)))
+      (unless (file-directory-p directory)
+        (make-directory directory t))
+      (with-temp-buffer
+        (insert define-module-string)
+        (insert "\n")
+        (insert define-public-string)
+        (write-file (concat directory package-name ".scm"))
+        (kill-new command)
+        (message command)))))
 
 ;; ** undo-tree
 (use-package undo-tree
