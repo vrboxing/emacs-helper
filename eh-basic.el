@@ -270,7 +270,7 @@
    ("C-;" . pyim-delete-word-from-personal-buffer)))
 
 ;; ** 设置中文字体
-(use-package chinese-fonts-setup
+(use-package cnfonts
   :demand t
   :init (setq cnfonts-verbose nil)
   :config
