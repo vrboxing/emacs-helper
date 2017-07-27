@@ -41,11 +41,11 @@
   (use-package eh-website :ensure nil)
   ;; org-webpage's owp config
   (use-package owp-devtools :ensure nil)
-  (use-package chinese-pyim
+  (use-package pyim
     :ensure nil
     :config
-    ;; chinese-pyim owp config
-    (use-package chinese-pyim-devtools :ensure nil)))
+    ;; pyim owp config
+    (use-package pyim-devtools :ensure nil)))
 
 ;; ** el2org
 (use-package el2org)
@@ -228,7 +228,7 @@
   (require 'ebdb-complete)
   (ebdb-complete-enable)
 
-  (use-package chinese-pyim
+  (use-package pyim
     :config
     ;; (defun eh-ebdb-search-chinese (string)
     ;;   (if (functionp 'pyim-isearch-build-search-regexp)
