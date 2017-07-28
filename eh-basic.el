@@ -37,7 +37,7 @@
 (require 'cl-lib)
 (require 'eh-functions)
 
-;; ** 设置 load-path
+;; ** 设置 load-path (Can not use use-package)
 (defun eh-hack-load-path ()
   ;; Delete buildin org's PATH
   (setq load-path
@@ -73,25 +73,25 @@
 
 (eh-update-load-path)
 
-;; ** Full name and Email
+;; ** Full name and Email (Can not use use-package)
 (setq user-full-name "Feng Shu")
 (setq user-mail-address "tumashu@163.com")
 
-;; ** 启动时默认打开的 buffer.
+;; ** 启动时默认打开的 buffer. (Can not use use-package)
 (setq inhibit-startup-screen t)
 (setq initial-buffer-choice nil)
 (setq initial-scratch-message
       ";; This is *scratch* buffer.\n\n")
 
-;; ** 使用空格缩进
+;; ** 使用空格缩进 (Can not use use-package)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq tab-width 4)
 
-;; ** 关闭 beep
+;; ** 关闭 beep (Can not use use-package)
 (setq visible-bell t)
 
-;; ** 让 *scratch* buffer 无法删除
+;; ** 让 *scratch* buffer 无法删除 (Can not use use-package)
 (defun eh-unkillable-scratch-buffer ()
   (if (string= (buffer-name (current-buffer)) "*scratch*")
       (progn
@@ -103,7 +103,7 @@
 (add-hook 'kill-buffer-query-functions
           #'eh-unkillable-scratch-buffer)
 
-;; ** 设置 emacs 包管理器
+;; ** 设置 emacs 包管理器 (Can not use use-package)
 (require 'package)
 (package-initialize)
 
