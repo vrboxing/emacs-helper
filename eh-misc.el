@@ -250,7 +250,9 @@
 
 ;; ** magit
 (use-package magit
-  :bind (("C-c g" . magit-status))
+  :bind (("C-c g" . magit-status)
+         :map magit-status-mode-map
+         ("C-c f" . magit-format-patch))
   :config
   (use-package swiper
     :config
