@@ -291,7 +291,8 @@
 
   (defun guix-export-package ()
     (interactive)
-    (let* ((directory (file-name-as-directory guix-export-directory))
+    (let* ((directory (expand-file-name
+                       (file-name-as-directory guix-export-directory)))
            (current-module (guix-guile-current-module))
            (define-public-string
              (save-excursion
