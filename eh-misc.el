@@ -206,7 +206,7 @@
 
 ;; ** gitpatch
 (use-package gitpatch
-  :bind (("C-c m" . gitpatch-mail))
+  :bind (("C-c m" . eh-gitpatch-mail))
   :ensure nil
   :config
   (setq gitpatch-mail-function 'gnus-msg-mail)
@@ -215,7 +215,14 @@
         '("guix-patches@gnu.org"
           "emms-help@gnu.org"
           "emacs-orgmode@gnu.org"
-          "emacs-devel@gnu.org")))
+          "emacs-devel@gnu.org"))
+  (defun eh-gitpatch-mail ()
+    (interactive)
+    ;; 如果 gnus 没有开启，强制开启。
+    (unless (gnus-alive-p)
+      (gnus)
+      (previous-buffer))
+    (call-interactively 'gitpatch-mail)))
 
 ;; ** ebdb
 (use-package ebdb
