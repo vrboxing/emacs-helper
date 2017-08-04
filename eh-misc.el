@@ -219,10 +219,11 @@
   (defun eh-gitpatch-mail ()
     (interactive)
     ;; 如果 gnus 没有开启，强制开启。
-    (unless (gnus-alive-p)
-      (gnus)
-      (previous-buffer))
-    (call-interactively 'gitpatch-mail)))
+    (let ((buffer (current-buffer)))
+      (unless (gnus-alive-p)
+        (gnus)
+        (switch-to-buffer buffer))
+      (call-interactively 'gitpatch-mail))))
 
 ;; ** ebdb
 (use-package ebdb
