@@ -286,7 +286,9 @@
   (setq guix-directory "~/project/guix")
   (setq geiser-debug-jump-to-debug-p nil)
   (add-hook 'after-init-hook 'global-guix-prettify-mode)
-  (add-hook 'scheme-mode-hook 'guix-devel-mode))
+  (add-hook 'scheme-mode-hook 'guix-devel-mode)
+  (with-eval-after-load 'geiser-guile
+    (add-to-list 'geiser-guile-load-path "~/.config/guix/latest")))
 
 ;; ** undo-tree
 (use-package undo-tree
