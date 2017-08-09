@@ -35,16 +35,16 @@
 
 ;; * 代码                                                      :code:
 ;; ** eh-website
-(use-package org-webpage
+(use-package org2web
   :config
-  ;; my website's owp config
+  ;; my website's org2web config
   (use-package eh-website :ensure nil)
-  ;; org-webpage's owp config
-  (use-package owp-devtools :ensure nil)
+  ;; org2web's org2web config
+  (use-package org2web-devtools :ensure nil)
   (use-package pyim
     :ensure nil
     :config
-    ;; pyim owp config
+    ;; pyim org2web config
     (use-package pyim-devtools :ensure nil)))
 
 ;; ** el2org

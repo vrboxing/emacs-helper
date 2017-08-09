@@ -29,14 +29,12 @@
 
 ;; * 代码                                                                 :code:
 (require 'emacs-helper)
-(require 'org-webpage)
-(require 'owp-web-server)
-(require 'owp-el2org)
+(require 'org2web)
 
 (defvar eh-website-repository
   "~/project/emacs-packages/emacs-helper/")
 
-(owp/add-project-config
+(org2web-add-project
  '("emacs-helper"
    :repository-directory (:eval eh-website-repository)
    :remote (git-simple "git@github.com:tumashu/emacs-helper.git" "gh-pages")
