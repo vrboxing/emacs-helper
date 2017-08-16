@@ -230,6 +230,7 @@
   :ensure nil
   :config
   (require 'ebdb-mua)
+  (require 'ebdb-gnus)
   (require 'ebdb-com)
   (require 'ebdb-vcard)
   (require 'ebdb-complete)
