@@ -231,13 +231,13 @@
   :config
   (require 'ebdb-mua)
   (require 'ebdb-com)
-  (require 'ebdb-chn)
   (require 'ebdb-vcard)
   (require 'ebdb-complete)
   (ebdb-complete-enable)
 
   (use-package pyim
     :config
+    (require 'ebdb-chn)
     ;; (defun eh-ebdb-search-chinese (string)
     ;;   (if (functionp 'pyim-isearch-build-search-regexp)
     ;;       (pyim-isearch-build-search-regexp string)
