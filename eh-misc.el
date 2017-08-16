@@ -237,7 +237,8 @@
 
   (use-package pyim
     :config
-    (require 'ebdb-chn)
+    (use-package ebdb-chn
+      :ensure ebdb-i18n-chn)
     ;; (defun eh-ebdb-search-chinese (string)
     ;;   (if (functionp 'pyim-isearch-build-search-regexp)
     ;;       (pyim-isearch-build-search-regexp string)
