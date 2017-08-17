@@ -4,7 +4,7 @@
 
 ;; Author: Eric Abrahamsen <eric@ericabrahamsen.net>
 ;; Maintainer: Eric Abrahamsen <eric@ericabrahamsen.net>
-;; Version: 1
+;; Version: 1.0.1
 ;; Package-Requires: ((pyim "1.6.0") (ebdb "0.2"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -72,8 +72,8 @@
 
 (cl-defmethod ebdb-string-i18n ((adr ebdb-field-address)
 				(_cc (eql chn)))
-  (if (eql (aref char-script-table (aref (car streets) 0)) 'han)
-      (with-slots (streets locality region postcode) adr
+  (with-slots (streets locality region postcode) adr
+    (if (eql (aref char-script-table (aref (car streets) 0)) 'han)
 	(concat
 	 ;; There are four municipalities, we don't need to repeat
 	 ;; city-plus-province for them.
@@ -81,8 +81,8 @@
 	   region)
 	 locality
 	 (mapconcat #'identity streets "")
-	 ", " postcode))
-    (ebdb-format-address address 2)))
+	 ", " postcode)
+      (ebdb-format-address adr 2))))
 
 ;; This isn't all of them, but it seems like a reasonable subset.  See
 ;; https://en.wikipedia.org/wiki/Chinese_compound_surname for a fuller
@@ -187,6 +187,20 @@ searchs via pinyin will find the record."
 
 ;;;; ChangeLog:
 
+;; 2017-08-16  Eric Abrahamsen  <eric@ericabrahamsen.net>
+;; 
+;; 	Provide the right package name for ebdb-i18n-chn
+;; 
+;; 	* packages/ebdb-i18n-chn/ebdb-i18n-chn.el: You'd almost think I hadn't
+;; 	 tested this.
+;; 
+;; 2017-08-16  Eric Abrahamsen  <eric@ericabrahamsen.net>
+;; 
+;; 	Re-convolute ebdb-string-i18n for addresses
+;; 
+;; 	* packages/ebdb-i18n-chn/ebdb-i18n-chn.el (ebdb-string-i18n): Dunno
+;; 	 how that happened.
+;; 
 ;; 2017-08-15  Stefan Monnier  <monnier@iro.umontreal.ca>
 ;; 
 ;; 	* edbd-i18n-chn.el: Fix typo in metadata
@@ -219,5 +233,5 @@ searchs via pinyin will find the record."
 ;; 
 
 
-(provide 'ebdb-chn)
-;;; ebdb-chn.el ends here
+(provide 'ebdb-i18n-chn)
+;;; ebdb-i18n-chn.el ends here
