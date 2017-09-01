@@ -251,7 +251,7 @@
                   pyim-probe-punctuation-after-punctuation))
 
   ;; 开启拼音搜索功能
-  (setq pyim-isearch-enable-pinyin-search t)
+  (pyim-isearch-enable)
 
   ;; 使用 pupup 来绘制选词框。
   (setq pyim-page-tooltip 'popup)
