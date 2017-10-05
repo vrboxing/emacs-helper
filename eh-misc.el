@@ -286,6 +286,11 @@
   :config
   (setq guix-directory "~/project/guix")
   (setq geiser-debug-jump-to-debug-p nil)
+  (setq geiser-guile-binary
+        (list (executable-find "guile")
+              ;; Avoid auto-compilation as it is slow and error-prone:
+              ;; <https://notabug.org/alezost/emacs-guix/issues/2>.
+              "--no-auto-compile"))
   (add-hook 'after-init-hook 'global-guix-prettify-mode)
   (add-hook 'scheme-mode-hook 'guix-devel-mode)
   (with-eval-after-load 'geiser-guile
