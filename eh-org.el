@@ -69,9 +69,9 @@
     (setq org-format-latex-options
           (plist-put org-format-latex-options :html-scale 2.5)))
 
-  (use-package ox-latex-chinese
+  (use-package org2ctex
     :ensure nil
-    :config (oxlc/toggle-ox-latex-chinese t))
+    :config (org2ctex-toggle t))
 
   (use-package org-capture :ensure nil)
   (use-package ox-odt :ensure nil)
