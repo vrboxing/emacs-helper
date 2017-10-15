@@ -46,6 +46,7 @@
 (load-library "eh-org")
 (load-library "eh-complete")
 (load-library "eh-misc")
+(load-library "eh-utils")
 
 ;; * Footer
 (provide 'emacs-helper)
