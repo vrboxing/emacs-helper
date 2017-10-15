@@ -61,7 +61,6 @@
  (noflet . [(20141102 654) nil "locally override functions" single])
  (org . [(20171009) nil "Outline-based notes management and organizer" tar])
  (org-capture-pop-frame . [(20160518 308) ((emacs (24 4))) "Run org-capture in a new pop frame" single])
- (org-chinese-utils . [(20170313 2148) nil "A org-mode utils manager for Chinese users" single])
  (org-journal . [(20170928 231) nil "a simple org-mode based journaling mode" single])
  (org-plus-contrib . [(20171009) nil "Outline-based notes management and organizer" tar])
  (org2ctex . [(20170924 1108) ((emacs (24 4))) "Export org to ctex (a latex macro for Chinese)" single])
