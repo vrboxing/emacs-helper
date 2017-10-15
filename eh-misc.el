@@ -61,12 +61,6 @@
   ;; 4. (pinentry-start)
   (setq epa-pinentry-mode 'loopback))
 
-;; ** sdcv
-(use-package chinese-yasdcv
-  :ensure nil
-  :if (not (eq system-type 'windows-nt))
-  :bind (("C-c d" . yasdcv-translate-at-point)))
-
 ;; ** emms
 (use-package eh-emms :ensure nil)
 
