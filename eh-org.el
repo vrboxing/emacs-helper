@@ -44,10 +44,6 @@
     ;; Export language
     (setq org-export-default-language "zh-CN"))
 
-  (use-package org-chinese-utils
-    :ensure nil
-    :config (org-chinese-utils-enable))
-
   (use-package ox-html
     :ensure nil
     :config
@@ -244,7 +240,7 @@
 
   (defun eh-org-smart-truncate-lines (&optional arg)
     (interactive)
-    (org-defkey org-mode-map "\C-c\C-c" 'eh-utils:ctrl-c-ctrl-c))
+    (org-defkey org-mode-map "\C-c\C-c" 'eh-org-ctrl-c-ctrl-c))
 
   (defun eh-org-align-babel-table (&optional info)
     "Align all tables in the result of the current babel source."
