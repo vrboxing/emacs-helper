@@ -205,7 +205,87 @@
     "Fill org paragraph"
     (interactive)
     (let ((fill-column 10000000))
-      (org-fill-paragraph))))
+      (org-fill-paragraph)))
+
+  (defun eh-org-wash-text (text backend info)
+    "导出 org file 时，删除中文之间不必要的空格。"
+    (when (org-export-derived-backend-p backend 'html)
+      (let ((regexp "[[:multibyte:]]")
+            (string text))
+        ;; org-mode 默认将一个换行符转换为空格，但中文不需要这个空格，删除。
+        (setq string
+              (replace-regexp-in-string
+               (format "\\(%s\\) *\n *\\(%s\\)" regexp regexp)
+               "\\1\\2" string))
+        ;; 删除粗体之后的空格
+        (dolist (str '("</b>" "</code>" "</del>" "</i>"))
+          (setq string
+                (replace-regexp-in-string
+                 (format "\\(%s\\)\\(%s\\)[ ]+\\(%s\\)" regexp str regexp)
+                 "\\1\\2\\3" string)))
+        ;; 删除粗体之前的空格
+        (dolist (str '("<b>" "<code>" "<del>" "<i>" "<span class=\"underline\">"))
+          (setq string
+                (replace-regexp-in-string
+                 (format "\\(%s\\)[ ]+\\(%s\\)\\(%s\\)" regexp str regexp)
+                 "\\1\\2\\3" string)))
+        string)))
+
+  (defun eh-org-ctrl-c-ctrl-c (&optional arg)
+    "根据光标处内容，智能折行，比如，在表格中禁止折行。"
+    (interactive "P")
+    (let* ((context (org-element-context))
+           (type (org-element-type context)))
+      (pcase type
+        ((or `table `table-cell `table-row `item `plain-list)
+         (toggle-truncate-lines 1))
+        (_ (toggle-truncate-lines -1))))
+    (org-ctrl-c-ctrl-c arg))
+
+  (defun eh-org-smart-truncate-lines (&optional arg)
+    (interactive)
+    (org-defkey org-mode-map "\C-c\C-c" 'eh-utils:ctrl-c-ctrl-c))
+
+  (defun eh-org-align-babel-table (&optional info)
+    "Align all tables in the result of the current babel source."
+    (interactive)
+    (when (not org-export-current-backend)
+      (let ((location (org-babel-where-is-src-block-result nil info)))
+        (when location
+          (save-excursion
+            (goto-char location)
+            (when (looking-at (concat org-babel-result-regexp ".*$"))
+              (while (< (point) (progn (forward-line 1) (org-babel-result-end)))
+                (when (org-at-table-p)
+                  (toggle-truncate-lines 1)
+                  (org-table-align)
+                  (goto-char (org-table-end)))
+                (forward-line))))))))
+
+  (defun eh-org-visual-line-mode ()
+    (setq visual-line-fringe-indicators '(nil nil))
+    (visual-line-mode)
+    (if visual-line-mode
+        (setq word-wrap nil)))
+
+  (defun eh-org-show-babel-image ()
+    (when (not org-export-current-backend)
+      (org-display-inline-images)))
+
+  (defun eh-org-cdlatex ()
+    (if (featurep 'cdlatex)
+        (turn-on-org-cdlatex)
+      (message "Fail to active org-cdlatex, you should load cdlatex first.")))
+
+  (add-hook 'org-mode-hook 'eh-org-cdlatex)
+  (add-hook 'org-mode-hook 'eh-org-visual-line-mode)
+  (add-hook 'org-mode-hook 'eh-org-smart-truncate-lines)
+  (add-hook 'org-babel-after-execute-hook #'eh-org-show-babel-image)
+  (add-hook 'org-babel-after-execute-hook #'eh-org-align-babel-table)
+  (add-hook 'org-export-filter-headline-functions #'eh-org-wash-text)
+  (add-hook 'org-export-filter-paragraph-functions #'eh-org-wash-text)
+
+  )
 
 ;; * Footer
 (provide 'eh-org)
