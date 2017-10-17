@@ -420,8 +420,8 @@
       :config
       ;; 为calfw设置一个capture模板并添加到org-capture-templates
       (setq cfw:org-capture-template
-            '("calfw2org" "calfw2org" entry (file+headline eh-calfw-org-file "Schedule")
-              "* %?\n %(cfw:org-capture-day)\n %a"))
+            '("calfw2org" "calfw2org" entry (file eh-calfw-org-file)
+              "* %?\nSCHEDULED: %(cfw:org-capture-day)\n %a"))
       (setq org-capture-templates
             (append org-capture-templates (list cfw:org-capture-template))))))
 
