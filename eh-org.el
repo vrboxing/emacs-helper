@@ -108,8 +108,7 @@
     :ensure nil
     :bind (("C-c a" . org-agenda))
     :config
-    (setq org-agenda-files
-          (append (file-expand-wildcards "~/org/*.org")))
+    (setq org-agenda-files '("~/org/"))
     (setq org-agenda-include-diary t))
 
   (use-package ob-core
