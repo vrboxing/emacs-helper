@@ -80,25 +80,6 @@
     (add-hook 'emacs-lisp-mode-hook
               #'eh-elisp-setup)))
 
-;; ** org-journal
-(use-package org-journal
-  :bind (("C-c C-j" . org-journal-new-entry))
-  :ensure nil
-  :config
-  (setq org-journal-dir "E:/doc/journal/")
-  (setq org-journal-file-format "%Y%m%d.org")
-  (use-package org
-    :ensure nil
-    :config
-    (use-package org-agenda
-      :ensure nil
-      :config
-      (setq org-agenda-files
-            (if (file-directory-p org-journal-dir)
-                (append (directory-files org-journal-dir t ".org$")
-                        org-agenda-files)
-              org-agenda-files)))))
-
 ;; ** ESS
 (use-package ess
   :ensure nil
