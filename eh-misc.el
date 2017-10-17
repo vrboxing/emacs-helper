@@ -289,6 +289,7 @@
 (use-package holidays
   :ensure nil
   :config
+  (use-package cal-china-x :ensure nil)
   (defvar eh-calendar-holidays nil)
   (setq eh-calendar-holidays
         '(;;公历节日
