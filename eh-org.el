@@ -69,10 +69,6 @@
     :ensure nil
     :config (org2ctex-toggle t))
 
-  (use-package org-capture
-    :ensure nil
-    :bind (("C-c c" . org-capture)))
-
   (use-package ox-odt :ensure nil)
   (use-package ox-ascii :ensure nil)
   (use-package ox-beamer :ensure nil)
@@ -110,6 +106,10 @@
     :config
     (setq org-agenda-files '("~/org/"))
     (setq org-agenda-include-diary t))
+
+  (use-package org-capture
+    :ensure nil
+    :bind (("C-c c" . org-capture)))
 
   (use-package ob-core
     :ensure  nil
