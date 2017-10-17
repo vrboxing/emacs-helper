@@ -111,11 +111,9 @@
     (setq org-agenda-files
           (append (file-expand-wildcards "~/org/*.org")))
     (setq org-agenda-custom-commands
-          '(("l" "agenda:"
-             ((agenda  "" ((org-agenda-overriding-header "Two-Days")
-                           (org-agenda-span 2)))
-              (tags-todo "生活|IT|购物")))))
-    (setq org-agenda-remove-tags t))
+          '(("l" "Two weeks agenda" agenda ""
+             ((org-agenda-overriding-header "Two-Weeks")
+              (org-agenda-span 14))))))
 
   (use-package ob-core
     :ensure  nil
