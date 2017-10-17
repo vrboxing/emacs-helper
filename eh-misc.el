@@ -355,58 +355,6 @@
   ;; 一周第一天，0表示星期天, 1表示星期一
   (setq calendar-week-start-day 0))
 
-(use-package calfw
-  :ensure nil
-  :config
-  (use-package cal-china-x :ensure nil)
-
-  (defvar eh-calfw-org-file nil)
-  (setq eh-calfw-org-file "~/org/calfw.org")
-
-  ;; 日历表格边框设置
-  (setq cfw:fchar-junction ?+
-        cfw:fchar-vertical-line ?|
-        cfw:fchar-horizontal-line ?-
-        cfw:fchar-left-junction ?+
-        cfw:fchar-right-junction ?+
-        cfw:fchar-top-junction ?+
-        cfw:fchar-top-left-corner ?+
-        cfw:fchar-top-right-corner ?+)
-
-  (setq cfw:gettext-alist
-        '(("Today" . "t:今天")
-          ("Month" . "M:一月")
-          ("Week" . "W:一周")
-          ("Two Weeks" . "T:两周")
-          ("Day" . "D:一天")))
-
-  (use-package calfw-org
-    :ensure nil
-    :config
-    (defun eh-calendar ()
-      (interactive)
-      (cfw:open-calendar-buffer
-       :view 'two-weeks
-       :contents-sources
-       (list
-        ;; orgmode source
-        (cfw:org-create-source "Green")))))
-
-  (use-package org-agenda
-    :ensure nil
-    :config
-    (unless (member eh-calfw-org-file org-agenda-files)
-      (push eh-calfw-org-file org-agenda-files))
-    (use-package org-capture
-      :ensure nil
-      :config
-      ;; 为calfw设置一个capture模板并添加到org-capture-templates
-      (setq cfw:org-capture-template
-            '("calfw2org" "calfw2org" entry (file eh-calfw-org-file)
-              "* %?\nSCHEDULED: %(cfw:org-capture-day)\n %a"))
-      (setq org-capture-templates
-            (append org-capture-templates (list cfw:org-capture-template))))))
-
 ;; * Footer
 (provide 'eh-misc)
 
