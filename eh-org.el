@@ -109,11 +109,7 @@
     :bind (("C-c a" . org-agenda))
     :config
     (setq org-agenda-files
-          (append (file-expand-wildcards "~/org/*.org")))
-    (setq org-agenda-custom-commands
-          '(("l" "Two weeks agenda" agenda ""
-             ((org-agenda-overriding-header "Two-Weeks")
-              (org-agenda-span 14))))))
+          (append (file-expand-wildcards "~/org/*.org"))))
 
   (use-package ob-core
     :ensure  nil
