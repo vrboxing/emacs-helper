@@ -69,7 +69,10 @@
     :ensure nil
     :config (org2ctex-toggle t))
 
-  (use-package org-capture :ensure nil)
+  (use-package org-capture
+    :ensure nil
+    :bind (("C-c c" . org-capture)))
+
   (use-package ox-odt :ensure nil)
   (use-package ox-ascii :ensure nil)
   (use-package ox-beamer :ensure nil)
