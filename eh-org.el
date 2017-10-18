@@ -136,8 +136,16 @@
     :bind (("C-c c" . org-capture))
     :config
     (setq org-capture-templates
-          '(("k" "Agenda" entry (file "~/org/i-agenda.org")
-             "* TODO %?\nSCHEDULED: %t\n%i\n %a"))))
+          '(("n" "Note" entry (file "~/org/i-org.org")
+             "* %?\n%i\n %a")
+            ("a" "Appointment" entry (file "~/org/i-org.org")
+             "* %?\n  %t\n%i\n %a")
+            ("s" "Schedule" entry (file "~/org/i-org.org")
+             "* TODO %?\nSCHEDULED: %t\n%i\n %a")
+            ("d" "Deadline" entry (file "~/org/i-org.org")
+             "* TODO %?\nDEADLINE: %t\n%i\n %a")
+            ("t" "TODO" entry (file "~/org/i-org.org")
+             "* TODO %?\n%i\n %a"))))
 
   (use-package ob-core
     :ensure  nil
