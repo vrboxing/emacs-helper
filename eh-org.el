@@ -104,6 +104,7 @@
     :ensure nil
     :bind (("C-c a" . org-agenda))
     :config
+    (setq org-agenda-window-setup 'only-window)
     (setq org-agenda-files '("~/org/"))
     (setq org-agenda-include-diary t))
 
