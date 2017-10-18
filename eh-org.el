@@ -110,7 +110,11 @@
 
   (use-package org-capture
     :ensure nil
-    :bind (("C-c c" . org-capture)))
+    :bind (("C-c c" . org-capture))
+    :config
+    (setq org-capture-templates
+          '(("k" "Agenda" entry (file "~/org/agenda.org")
+             "* TODO %?\nSCHEDULED: %t\n%i\n %a"))))
 
   (use-package ob-core
     :ensure  nil
