@@ -133,7 +133,7 @@
     :bind (("C-c c" . org-capture))
     :config
     (setq org-capture-templates
-          '(("k" "Agenda" entry (file "~/org/agenda.org")
+          '(("k" "Agenda" entry (file "~/org/i-agenda.org")
              "* TODO %?\nSCHEDULED: %t\n%i\n %a"))))
 
   (use-package ob-core
