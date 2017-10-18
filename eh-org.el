@@ -38,6 +38,11 @@
   :ensure nil
   :config
 
+  (defvar eh-org-directory
+    (if (eq system-type 'windows-nt)
+        "d:/org/"
+      "~/org/"))
+
   (use-package ox
     :ensure nil
     :config
@@ -128,7 +133,7 @@
     :config
     (setq org-agenda-span 'fortnight );two-weeks
     (setq org-agenda-window-setup 'only-window)
-    (setq org-agenda-files '("~/org/"))
+    (setq org-agenda-files `(,eh-org-directory))
     (setq org-agenda-include-diary t))
 
   (use-package org-capture
@@ -136,16 +141,18 @@
     :bind (("C-c c" . org-capture))
     :config
     (setq org-capture-templates
-          '(("n" "Note" entry (file "~/org/i-org.org")
-             "* %?\n%i\n %a")
-            ("a" "Appointment" entry (file "~/org/i-org.org")
-             "* %?\n  %t\n%i\n %a")
-            ("s" "Schedule" entry (file "~/org/i-org.org")
-             "* TODO %?\nSCHEDULED: %t\n%i\n %a")
-            ("d" "Deadline" entry (file "~/org/i-org.org")
-             "* TODO %?\nDEADLINE: %t\n%i\n %a")
-            ("t" "TODO" entry (file "~/org/i-org.org")
-             "* TODO %?\n%i\n %a"))))
+          (let ((org-file (concat (file-name-as-directory eh-org-directory)
+                                  "i-org.org")))
+            `(("n" "Note" entry (file ,org-file)
+               "* %?\n%i\n %a")
+              ("a" "Appointment" (file ,org-file)
+               "* %?\n  %t\n%i\n %a")
+              ("s" "Schedule" entry (file ,org-file)
+               "* TODO %?\nSCHEDULED: %t\n%i\n %a")
+              ("d" "Deadline" entry (file ,org-file)
+               "* TODO %?\nDEADLINE: %t\n%i\n %a")
+              ("t" "TODO" entry (file ,org-file)
+               "* TODO %?\n%i\n %a")))))
 
   (use-package ob-core
     :ensure  nil
