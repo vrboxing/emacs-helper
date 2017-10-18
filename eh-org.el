@@ -100,6 +100,26 @@
     :config
     (setq org-plantuml-jar-path "~/bin/plantuml.jar"))
 
+  (use-package parse-time
+    :ensure nil
+    :config
+    (setq parse-time-months
+          (append
+           '(("yiy" . 1) ("ery" . 2) ("sany" . 3)
+             ("siy" . 4) ("wuy" . 5) ("liuy" . 6)
+             ("qiy" . 7) ("bay" . 8) ("jiuy" . 9)
+             ("shiy" . 10) ("shiyiy" . 11) ("shiery" . 12)
+             ("yiyue" . 1) ("eryue" . 2) ("sanyue" . 3)
+             ("siyue" . 4) ("wuyue" . 5) ("liuyue" . 6)
+             ("qiyue" . 7) ("bayue" . 8) ("jiuyue" . 9)
+             ("shiyue" . 10) ("shiyiyue" . 11) ("shieryue" . 12))
+           parse-time-months))
+    (setq parse-time-weekdays
+          (append '(("ri" . 0) ("qi" . 0)
+                    ("yi" . 1) ("er" . 2) ("san" . 3)
+                    ("si" . 4) ("wu" . 5) ("liu" . 6))
+                  parse-time-weekdays)))
+
   (use-package org-agenda
     :ensure nil
     :bind (("C-c a" . org-agenda))
