@@ -223,7 +223,7 @@
                                     "i-org.org")))
               `(("n" "Note" entry (file ,org-file)
                  "* %?\n%i\n %a")
-                ("a" "Appointment" (file ,org-file)
+                ("a" "Appointment" entry (file ,org-file)
                  "* %?\n  %t\n%i\n %a")
                 ("s" "Schedule" entry (file ,org-file)
                  "* TODO %?\nSCHEDULED: %t\n%i\n %a")
