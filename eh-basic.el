@@ -178,6 +178,11 @@
 (use-package files
   :ensure nil
   :config
+
+  ;; Window 系统下关闭 Emacs 时，强制确认，防止误操作。
+  (when (eq system-type 'windows-nt)
+    (setq confirm-kill-emacs 'yes-or-no-p))
+
   ;; 使用下面这一行配置后，org-mode 的源代码总是莫名其妙的
   ;;     (add-hook 'before-save-hook #'whitespace-cleanup)
   ;; 更改，这会导致生成的 diff 相当乱。
