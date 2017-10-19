@@ -131,7 +131,7 @@
     :ensure nil
     :bind (("C-c a" . org-agenda))
     :config
-    (setq org-agenda-span 'fortnight );two-weeks
+    (setq org-agenda-span 'week)
     (setq org-agenda-window-setup 'only-window)
     (setq org-agenda-files `(,eh-org-directory))
     (setq org-agenda-include-diary nil)
