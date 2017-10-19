@@ -135,6 +135,50 @@
     (setq org-agenda-window-setup 'only-window)
     (setq org-agenda-files `(,eh-org-directory))
     (setq org-agenda-include-diary nil)
+    (setq org-agenda-format-date 'eh-org-agenda-format-date-aligned)
+
+    (defun eh-org-agenda-format-date-aligned (date)
+      (require 'cal-iso)
+      (let* ((dayname (calendar-day-name date))
+             (day (cadr date))
+             (day-of-week (calendar-day-of-week date))
+             (month (car date))
+             (monthname (calendar-month-name month))
+             (year (nth 2 date))
+             (iso-week (org-days-to-iso-week
+                        (calendar-absolute-from-gregorian date)))
+             (weekyear (cond ((and (= month 1) (>= iso-week 52))
+                              (1- year))
+                             ((and (= month 12) (<= iso-week 1))
+                              (1+ year))
+                             (t year)))
+             (cn-date (calendar-chinese-from-absolute
+                       (calendar-absolute-from-gregorian date)))
+             (cn-year (cadr cn-date))
+             (cn-month (cl-caddr cn-date))
+             (cn-day (cl-cadddr cn-date))
+             (cn-month-name
+              ["正月" "二月" "三月" "四月" "五月" "六月"
+               "七月" "八月" "九月" "十月" "冬月" "腊月"])
+             (cn-day-name
+              ["初一" "初二" "初三" "初四" "初五" "初六" "初七" "初八" "初九" "初十"
+               "十一" "十二" "十三" "十四" "十五" "十六" "十七" "十八" "十九"  "廿"
+               "廿一" "廿二" "廿三" "廿四" "廿五" "廿六" "廿七" "廿八" "廿九" "三十"
+               "卅一" "卅二" "卅三" "卅四" "卅五" "卅六" "卅七" "卅八" "卅九" "卅十"])
+             (extra (format "(%s%s%s%s)"
+                            (if (= day-of-week 1)
+                                (aref cn-month-name (1-  (floor cn-month)))
+                              "")
+                            (if (= day-of-week 1)
+                                (if (integerp cn-month) "" "[闰]")
+                              "")
+                            (aref cn-day-name (1- cn-day))
+                            (if (= day-of-week 1)
+                                (format "，第%02d周" iso-week)
+                              ""))))
+        (format "%4d-%2d-%2d %s %s"
+                year month day dayname extra)))
+
     (use-package holidays
       :ensure nil
       :config
