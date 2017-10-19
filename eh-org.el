@@ -203,7 +203,7 @@
              "七月" "八月" "九月" "十月" "十一月" "十二月"])
       (setq calendar-day-name-array
             ["星期日" "星期一" "星期二" "星期三" "星期四" "星期五" "星期六"])
-      (defun eh-org-chinese-anniversary (lunar-month lunar-day &optional year mark)
+      (defun eh-org-chinese-anniversary (year lunar-month lunar-day &optional mark)
         (if year
             (let* ((d-date (diary-make-date lunar-month lunar-day year))
                    (a-date (calendar-absolute-from-gregorian d-date))
@@ -234,11 +234,21 @@
                 ("t" "TODO" entry (file ,org-file)
                  "* TODO %?\n%i\n %a")
                 ("A" "Anniversary" entry (file ,org-file)
-                 "* 生日提醒\n\%\%%(or \"(eh-org-chinese-anniversary 4 17 1985)\") 今天是%? 的%d岁生日")
-                ("D" "Diary" entry (file ,org-file)
-                 "* Holidays
+                 "* 阳历生日提醒
 :PROPERTIES:
-:CATEGORY: Holiday
+:CATEGORY: 生日
+:END:
+\%\%%(or \"(org-anniversary 1985 4 17)\") 今天是%? %d 岁生日")
+                ("C" "Chinese Anniversary" entry (file ,org-file)
+                 "* 农历生日提醒
+:PROPERTIES:
+:CATEGORY: 生日
+:END:
+\%\%%(or \"(eh-org-chinese-anniversary 1985 4 17)\") 今天是%? %d 岁生日")
+                ("D" "Diary" entry (file ,org-file)
+                 "* 节假日提醒
+:PROPERTIES:
+:CATEGORY: 节假日
 :END:
 \%\%%(or \"(org-calendar-holiday)\")"))))))
 
