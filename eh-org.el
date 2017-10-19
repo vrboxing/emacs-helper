@@ -134,7 +134,7 @@
     (setq org-agenda-span 'fortnight );two-weeks
     (setq org-agenda-window-setup 'only-window)
     (setq org-agenda-files `(,eh-org-directory))
-    (setq org-agenda-include-diary t)
+    (setq org-agenda-include-diary nil)
     (use-package holidays
       :ensure nil
       :config
@@ -234,7 +234,13 @@
                 ("t" "TODO" entry (file ,org-file)
                  "* TODO %?\n%i\n %a")
                 ("A" "Anniversary" entry (file ,org-file)
-                 "* 生日提醒\n\%\%%(or \"(eh-org-chinese-anniversary 4 17 1985)\") 今天是%? 的%d岁生日"))))))
+                 "* 生日提醒\n\%\%%(or \"(eh-org-chinese-anniversary 4 17 1985)\") 今天是%? 的%d岁生日")
+                ("D" "Diary" entry (file ,org-file)
+                 "* Holidays
+:PROPERTIES:
+:CATEGORY: Holiday
+:END:
+\%\%%(or \"(org-calendar-holiday)\")"))))))
 
   (use-package ob-core
     :ensure  nil
