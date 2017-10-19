@@ -193,6 +193,7 @@
                 (holiday-lunar 9 9 "重阳节" 0)
                 (holiday-lunar 12 22 "冬至" 0)))
         (setq calendar-holidays eh-calendar-holidays)))
+
     (use-package calendar
       :ensure nil
       :config
@@ -233,7 +234,7 @@
                 ("t" "TODO" entry (file ,org-file)
                  "* TODO %?\n%i\n %a")
                 ("A" "Anniversary" entry (file ,org-file)
-                 "* 生日提醒\n\%\%%(or \"(eh-org-chinese-anniversary 4 17 1985)\") 今天是%? 的%d岁生日")))))
+                 "* 生日提醒\n\%\%%(or \"(eh-org-chinese-anniversary 4 17 1985)\") 今天是%? 的%d岁生日"))))))
 
   (use-package ob-core
     :ensure  nil
