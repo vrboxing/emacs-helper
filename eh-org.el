@@ -131,6 +131,12 @@
     :ensure nil
     :bind (("C-c a" . org-agenda))
     :config
+
+    (setq org-agenda-span 'fortnight );two-weeks
+    (setq org-agenda-window-setup 'only-window)
+    (setq org-agenda-files `(,eh-org-directory))
+    (setq org-agenda-include-diary t)
+
     (use-package holidays
       :ensure nil
       :config
@@ -192,36 +198,44 @@
     (use-package calendar
       :ensure nil
       :config
+      (setq calendar-week-start-day 0) ; 一周第一天，0表示星期天, 1表示星期一
       (setq calendar-month-name-array
             ["一月" "二月" "三月" "四月" "五月" "六月"
              "七月" "八月" "九月" "十月" "十一月" "十二月"])
       (setq calendar-day-name-array
             ["星期日" "星期一" "星期二" "星期三" "星期四" "星期五" "星期六"])
-      ;; 一周第一天，0表示星期天, 1表示星期一
-      (setq calendar-week-start-day 0))
+      (defun eh-org-chinese-anniversary (lunar-month lunar-day &optional year mark)
+        (if year
+            (let* ((d-date (diary-make-date lunar-month lunar-day year))
+                   (a-date (calendar-absolute-from-gregorian d-date))
+                   (c-date (calendar-chinese-from-absolute a-date))
+                   (cycle (car c-date))
+                   (yy (cadr c-date))
+                   (y (+ (* 100 cycle) yy)))
+              (diary-chinese-anniversary lunar-month lunar-day y mark))
+          (diary-chinese-anniversary lunar-month lunar-day year mark))))
 
-    (setq org-agenda-span 'fortnight );two-weeks
-    (setq org-agenda-window-setup 'only-window)
-    (setq org-agenda-files `(,eh-org-directory))
-    (setq org-agenda-include-diary t))
-
-  (use-package org-capture
-    :ensure nil
-    :bind (("C-c c" . org-capture))
-    :config
-    (setq org-capture-templates
-          (let ((org-file (concat (file-name-as-directory eh-org-directory)
-                                  "i-org.org")))
-            `(("n" "Note" entry (file ,org-file)
-               "* %?\n%i\n %a")
-              ("a" "Appointment" (file ,org-file)
-               "* %?\n  %t\n%i\n %a")
-              ("s" "Schedule" entry (file ,org-file)
-               "* TODO %?\nSCHEDULED: %t\n%i\n %a")
-              ("d" "Deadline" entry (file ,org-file)
-               "* TODO %?\nDEADLINE: %t\n%i\n %a")
-              ("t" "TODO" entry (file ,org-file)
-               "* TODO %?\n%i\n %a")))))
+    (use-package org-capture
+      :ensure nil
+      :bind (("C-c c" . org-capture))
+      :config
+      (setq org-capture-templates
+            (let ((org-file (concat (file-name-as-directory eh-org-directory)
+                                    "i-org.org")))
+              `(("n" "Note" entry (file ,org-file)
+                 "* %?\n%i\n %a")
+                ("a" "Appointment" (file ,org-file)
+                 "* %?\n  %t\n%i\n %a")
+                ("s" "Schedule" entry (file ,org-file)
+                 "* TODO %?\nSCHEDULED: %t\n%i\n %a")
+                ("k" "Schedule" entry (file ,org-file)
+                 "* TODO %?\nSCHEDULED: %t\n%i\n %a")
+                ("d" "Deadline" entry (file ,org-file)
+                 "* TODO %?\nDEADLINE: %t\n%i\n %a")
+                ("t" "TODO" entry (file ,org-file)
+                 "* TODO %?\n%i\n %a")
+                ("A" "Anniversary" entry (file ,org-file)
+                 "* 生日提醒\n\%\%%(or \"(eh-org-chinese-anniversary 4 17 1985)\") 今天是%? 的%d岁生日")))))
 
   (use-package ob-core
     :ensure  nil
