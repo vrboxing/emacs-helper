@@ -246,7 +246,8 @@
             ["一月" "二月" "三月" "四月" "五月" "六月"
              "七月" "八月" "九月" "十月" "十一月" "十二月"])
       (setq calendar-day-name-array
-            ["星期日" "星期一" "星期二" "星期三" "星期四" "星期五" "星期六"])
+            ["周日" "周一" "周二" "周三" "周四" "周五" "周六"])
+
       (defun eh-org-chinese-anniversary (year lunar-month lunar-day &optional mark)
         (if year
             (let* ((d-date (diary-make-date lunar-month lunar-day year))
