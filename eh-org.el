@@ -166,10 +166,12 @@
                "廿一" "廿二" "廿三" "廿四" "廿五" "廿六" "廿七" "廿八" "廿九" "三十"
                "卅一" "卅二" "卅三" "卅四" "卅五" "卅六" "卅七" "卅八" "卅九" "卅十"])
              (extra (format "(%s%s%s%s)"
-                            (if (= day-of-week 1)
+                            (if (or (= day-of-week 1)
+                                    (= cn-day 1))
                                 (aref cn-month-name (1-  (floor cn-month)))
                               "")
-                            (if (= day-of-week 1)
+                            (if (or (= day-of-week 1)
+                                    (= cn-day 1))
                                 (if (integerp cn-month) "" "[闰]")
                               "")
                             (aref cn-day-name (1- cn-day))
