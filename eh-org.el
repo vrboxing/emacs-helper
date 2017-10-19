@@ -176,7 +176,7 @@
                             (if (= day-of-week 1)
                                 (format "，第%02d周" iso-week)
                               ""))))
-        (format "%4d-%2d-%2d %s %s"
+        (format "%04d-%02d-%02d %s %s"
                 year month day dayname extra)))
 
     (use-package holidays
