@@ -280,24 +280,12 @@
                  "* TODO %?\nDEADLINE: %t\n%i\n %a")
                 ("t" "TODO" entry (file ,org-file)
                  "* TODO %?\n%i\n %a")
-                ("A" "Anniversary" entry (file ,org-file)
-                 "* 阳历生日提醒
-:PROPERTIES:
-:CATEGORY: 生日
-:END:
-\%\%%(or \"(org-anniversary 1985 4 17)\") 今天是%? %d 岁生日")
-                ("C" "Chinese Anniversary" entry (file ,org-file)
-                 "* 农历生日提醒
-:PROPERTIES:
-:CATEGORY: 生日
-:END:
-\%\%%(or \"(eh-org-chinese-anniversary 1985 4 17)\") 今天是%? %d 岁生日")
-                ("D" "Diary" entry (file ,org-file)
-                 "* 节假日提醒
-:PROPERTIES:
-:CATEGORY: 节假日
-:END:
-\%\%%(or \"(org-calendar-holiday)\")"))))))
+                ("A" "Anniversary" plain (file+headline ,org-file "阳历生日")
+                 "\%\%%(or \"(org-anniversary 1985 4 17)\") 今天是%?%d岁生日")
+                ("C" "Chinese Anniversary" plain (file+headline ,org-file "农历生日")
+                 "\%\%%(or \"(eh-org-chinese-anniversary 1985 4 17)\") 今天是%?%d岁生日")
+                ("D" "Diary" plain (file+headline ,org-file "节假日")
+                 "\%\%%(or \"(org-calendar-holiday)\")"))))))
 
   (use-package ob-core
     :ensure  nil
