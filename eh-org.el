@@ -281,9 +281,9 @@
                 ("t" "TODO" entry (file ,org-file)
                  "* TODO %?\n%i\n %a")
                 ("A" "Anniversary" plain (file+headline ,org-file "阳历生日")
-                 "\%\%%(or \"(org-anniversary 1985 4 17)\") 今天是%?%d岁生日")
+                 "\%\%%(or \"(org-anniversary 1985 4 17)\") 今天是%?%d岁阳历生日")
                 ("C" "Chinese Anniversary" plain (file+headline ,org-file "农历生日")
-                 "\%\%%(or \"(eh-org-chinese-anniversary 1985 4 17)\") 今天是%?%d岁生日")
+                 "\%\%%(or \"(eh-org-chinese-anniversary 1985 4 17)\") 今天是%?%d岁农历生日")
                 ("D" "Diary" plain (file+headline ,org-file "节假日")
                  "\%\%%(or \"(org-calendar-holiday)\")"))))))
 
