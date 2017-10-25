@@ -202,6 +202,7 @@
                 (holiday-float 6 0 3 "父亲节")
                 (holiday-fixed 9 10 "教师节")
                 (holiday-fixed 10 1 "国庆节")
+                (holiday-fixed 10 24 "程序员节")
                 (holiday-fixed 12 25 "圣诞节")
                 ;; 农历节日
                 (holiday-lunar 1 1 "春节" 0)
