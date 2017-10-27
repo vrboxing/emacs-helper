@@ -270,7 +270,7 @@
       :config
       (setq org-capture-templates
             (let ((gtd-file (concat (file-name-as-directory eh-org-directory)
-                                    "i-gtd" "@" (substring (md5 system-name) 0 5)
+                                    "i-gtd" "@" (substring (md5 system-name) 0 3)
                                     ".org"))
                   (anniversary-file (concat (file-name-as-directory eh-org-directory)
                                             "i-anniversary.org"))
