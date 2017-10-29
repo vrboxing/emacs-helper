@@ -187,7 +187,7 @@
     :ensure nil
     :config
     (defvar eh-calendar-holidays nil)
-    (defvar eh-calendar-personal nil)
+    (defvar eh-calendar-personal-holidays nil)
 
     (defun eh-create-org-holiday-file ()
       "从 holiday 设置中生成一个 holiday org 文件，主要用于 orgzly."
@@ -199,7 +199,7 @@
                           (calendar-current-date)))
              (end-year (+ start-year 1))
              (calendar-holidays
-              (append eh-calendar-personal eh-calendar-holidays))
+              (append eh-calendar-personal-holidays eh-calendar-holidays))
              (s (calendar-absolute-from-gregorian (list 2 1 start-year)))
              (e (calendar-absolute-from-gregorian (list 11 1 end-year)))
              (displayed-month 2)
