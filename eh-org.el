@@ -192,39 +192,40 @@
     (defun eh-create-org-holiday-file ()
       "从 holiday 设置中生成一个 holiday org 文件，主要用于 orgzly."
       (interactive)
-      (let* ((org-file (concat (file-name-as-directory
-                                eh-org-directory)
-                               "i-other.org"))
-             (start-year (calendar-extract-year
-                          (calendar-current-date)))
-             (end-year start-year)
-             (calendar-holidays
-              (append eh-calendar-personal-holidays
-                      eh-calendar-holidays))
-             (s (calendar-absolute-from-gregorian (list 2 1 start-year)))
-             (e (calendar-absolute-from-gregorian (list 11 1 end-year)))
-             (displayed-month 2)
-             (displayed-year start-year)
-             holiday-list)
-        (while (<= s e)
-          (setq holiday-list (append holiday-list (calendar-holiday-list)))
-          (calendar-increment-month displayed-month displayed-year 3)
-          (setq s (calendar-absolute-from-gregorian
-                   (list displayed-month 1 displayed-year))))
-        (with-temp-buffer
-          (insert "# Auto generated, don't edit this file by hand!\n\n")
-          (insert
-           (mapconcat (lambda (x)
-                        (format "* TODO %s\n  SCHEDULED: <%s>"
-                                (cadr x)
-                                (let ((calendar-date-display-form
-                                       '((format "%s-%.2d-%.2d %s" year
-                                                 (string-to-number month)
-                                                 (string-to-number day)
-                                                 dayname))))
-                                  (calendar-date-string (car x)))))
-                      holiday-list "\n"))
-          (write-file org-file))))
+      (when (yes-or-no-p "这个命令运行后，旧文件会被强制覆盖，确定运行吗？ ")
+        (let* ((org-file (concat (file-name-as-directory
+                                  eh-org-directory)
+                                 "i-other.org"))
+               (start-year (calendar-extract-year
+                            (calendar-current-date)))
+               (end-year start-year)
+               (calendar-holidays
+                (append eh-calendar-personal-holidays
+                        eh-calendar-holidays))
+               (s (calendar-absolute-from-gregorian (list 2 1 start-year)))
+               (e (calendar-absolute-from-gregorian (list 11 1 end-year)))
+               (displayed-month 2)
+               (displayed-year start-year)
+               holiday-list)
+          (while (<= s e)
+            (setq holiday-list (append holiday-list (calendar-holiday-list)))
+            (calendar-increment-month displayed-month displayed-year 3)
+            (setq s (calendar-absolute-from-gregorian
+                     (list displayed-month 1 displayed-year))))
+          (with-temp-buffer
+            (insert "# Auto generated, don't edit this file by hand!\n\n")
+            (insert
+             (mapconcat (lambda (x)
+                          (format "* TODO %s\n  SCHEDULED: <%s>"
+                                  (cadr x)
+                                  (let ((calendar-date-display-form
+                                         '((format "%s-%.2d-%.2d %s" year
+                                                   (string-to-number month)
+                                                   (string-to-number day)
+                                                   dayname))))
+                                    (calendar-date-string (car x)))))
+                        holiday-list "\n"))
+            (write-file org-file)))))
 
     (use-package cal-china-x
       :ensure nil
