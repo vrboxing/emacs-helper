@@ -197,9 +197,10 @@
                                "i-other.org"))
              (start-year (calendar-extract-year
                           (calendar-current-date)))
-             (end-year (+ start-year 1))
+             (end-year start-year)
              (calendar-holidays
-              (append eh-calendar-personal-holidays eh-calendar-holidays))
+              (append eh-calendar-personal-holidays
+                      eh-calendar-holidays))
              (s (calendar-absolute-from-gregorian (list 2 1 start-year)))
              (e (calendar-absolute-from-gregorian (list 11 1 end-year)))
              (displayed-month 2)
@@ -211,7 +212,7 @@
           (setq s (calendar-absolute-from-gregorian
                    (list displayed-month 1 displayed-year))))
         (with-temp-buffer
-          (insert "### Auto generated, don't edit this file by hand!!! ###\n\n")
+          (insert "# Auto generated, don't edit this file by hand!\n\n")
           (insert
            (mapconcat (lambda (x)
                         (format "* TODO %s\n  SCHEDULED: <%s>"
