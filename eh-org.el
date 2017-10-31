@@ -134,7 +134,7 @@
 
     (use-package autorevert
       :config
-      (global-auto-revert-mode t))
+      (add-hook 'org-mode-hook #'turn-on-auto-revert-mode))
 
     (setq org-agenda-span 'week)
     (setq org-agenda-window-setup 'only-window)
