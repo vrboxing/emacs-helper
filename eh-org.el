@@ -127,6 +127,10 @@
                     ("zsi" . 4) ("zw" . 5) ("zl" . 6))
                   parse-time-weekdays)))
 
+  (use-package org-archive
+    :config
+    (setq org-archive-default-command 'org-archive-set-tag))
+
   (use-package org-agenda
     :ensure nil
     :bind (("C-c a" . org-agenda))
