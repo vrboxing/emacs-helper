@@ -128,6 +128,7 @@
                   parse-time-weekdays)))
 
   (use-package org-archive
+    :ensure nil
     :config
     (setq org-archive-default-command 'org-archive-set-tag))
 
