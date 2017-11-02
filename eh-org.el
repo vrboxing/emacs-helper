@@ -144,6 +144,10 @@
     (setq org-agenda-window-setup 'only-window)
     (setq org-agenda-files `(,eh-org-directory))
     (setq org-agenda-include-diary nil)
+
+    (setq org-agenda-todo-ignore-scheduled t)
+    (setq org-agenda-todo-ignore-deadlines t)
+
     (setq org-agenda-format-date 'eh-org-agenda-format-date-aligned)
 
     (defun eh-org-agenda-format-date-aligned (date)
