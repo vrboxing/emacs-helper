@@ -227,6 +227,7 @@
             (setq s (calendar-absolute-from-gregorian
                      (list displayed-month 1 displayed-year))))
           (with-temp-buffer
+            (insert "# -*- coding: utf-8-unix -*- \n")
             (insert "# Auto generated, don't edit this file by hand!\n\n")
             (insert
              (mapconcat (lambda (x)
