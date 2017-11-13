@@ -40,8 +40,8 @@
 
   (defvar eh-org-directory
     (if (eq system-type 'windows-nt)
-        "d:/org/"
-      "~/org/"))
+        "d:/org/org-files"
+      "~/org/org-files"))
 
   (use-package ox
     :ensure nil
