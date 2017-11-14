@@ -132,6 +132,11 @@
     :config
     (setq org-archive-default-command 'org-archive-set-tag))
 
+  (use-package org-attach
+    :ensure nil
+    :config
+    (setq org-attach-commit nil))
+
   (use-package org-agenda
     :ensure nil
     :bind (("C-c a" . org-agenda))
