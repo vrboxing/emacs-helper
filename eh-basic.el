@@ -35,7 +35,6 @@
 
 ;; * 代码                                                                 :code:
 (require 'cl-lib)
-(require 'eh-functions)
 
 ;; ** 设置 load-path (Can not use use-package)
 (defun eh-hack-load-path ()
@@ -123,18 +122,6 @@
 ;; ** 使用 use-package
 (require 'use-package)
 
-;; ** 设置主题
-(use-package cyberpunk-theme
-  :config
-  (add-hook 'after-init-hook
-            #'(lambda ()
-                (load-theme 'cyberpunk t)
-                ;; Adjust cyberpunk theme
-                (set-face-attribute 'font-lock-comment-face nil :italic nil)
-                (set-face-attribute 'org-agenda-date-today nil :slant 'normal))))
-;; ** 启用 async
-(use-package async)
-
 ;; ** 设置 elpa-mirror
 (use-package elpa-mirror
   :config
@@ -197,95 +184,6 @@
     (add-hook 'before-save-hook
               #'(lambda ()
                   (delete-trailing-whitespace)))))
-
-;; ** 设置 Eshell
-(use-package eshell
-  :bind (("C-x c" . eshell))
-  :ensure nil
-  :config
-  (use-package em-term :ensure nil)
-  (use-package em-unix :ensure nil)
-  (setq eshell-visual-commands
-        (append '("top" "htop" "aptitude" "mutt"
-                  "nano" "crontab" "vim" "less" "zile")
-                eshell-visual-commands))
-  (setq eshell-visual-subcommands
-        (list (append '("sudo") eshell-visual-commands)
-              '("git" "log" "diff" "show" "grep"
-                "commit" "rebase" "pull" "push")))
-  (setq eshell-visual-options
-        '(("git" "--help" "--paginate")))
-  (defun eh-eshell (&optional arg)
-    (interactive)
-    ;; 使用eshell-exec-visual第一次打开term时，
-    ;; 不能使用multi-term的键盘绑定，原因不知，
-    ;; 首先运行一下less, 从而让multi-term的键盘绑定生效。
-    (eshell-command "less")
-    (eshell arg)))
-
-;; ** 设置 EWW
-(use-package eww
-  :ensure nil
-  :config
-  (setq shr-width 90)
-  ;; 搜狗:  http://www.sogou.com/sogou?query=
-  ;; 百度:  http://m.baidu.com/ssid=0/s?word=
-  ;; 必应:  http://cn.bing.com/search?q=
-  (setq eww-search-prefix "http://www.sogou.com/sogou?query="))
-
-;; ** 设置拼音输入法
-(use-package pyim
-  :ensure nil
-  :config
-  ;; 激活 basedict 词库
-  (use-package pyim-basedict
-    :ensure nil
-    :config (pyim-basedict-enable))
-
-  (setq default-input-method "pyim")
-
-  ;; 使用全拼
-  (setq pyim-default-scheme 'quanpin)
-
-  ;; pyim 探针设置
-  (setq-default pyim-english-input-switch-functions
-                '(pyim-probe-dynamic-english
-                  pyim-probe-isearch-mode
-                  pyim-probe-program-mode
-                  pyim-probe-org-structure-template))
-
-  (setq-default pyim-punctuation-half-width-functions
-                '(pyim-probe-punctuation-line-beginning
-                  pyim-probe-punctuation-after-punctuation))
-
-  ;; 开启拼音搜索功能
-  (pyim-isearch-mode 1)
-
-  ;; 使用 pupup 来绘制选词框。
-  (setq pyim-page-tooltip 'popup)
-
-  ;; 显示5个候选词。
-  (setq pyim-page-length 5)
-
-  ;; emacs 启动时加载 pyim 词库
-  (add-hook 'emacs-startup-hook
-            #'(lambda ()
-                (pyim-restart-1 t)))
-  :bind
-  (("M-j" . pyim-convert-code-at-point)
-   ("C-;" . pyim-delete-word-from-personal-buffer)))
-
-;; ** 设置中文字体
-(use-package cnfonts
-  :demand t
-  :init (setq cnfonts-verbose nil)
-  :config
-  (setq cnfonts-use-face-font-rescale
-        (eq system-type 'gnu/linux))
-  (cnfonts-enable)
-  :bind (("C--" . cnfonts-decrease-fontsize)
-         ("C-=" . cnfonts-increase-fontsize)
-         ("C-+" . cnfonts-next-profile)))
 
 ;; ** 设置 recentf
 (use-package recentf
