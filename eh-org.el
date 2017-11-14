@@ -501,9 +501,8 @@
       (org-display-inline-images)))
 
   (defun eh-org-cdlatex ()
-    (if (featurep 'cdlatex)
-        (turn-on-org-cdlatex)
-      (message "Fail to active org-cdlatex, you should load cdlatex first.")))
+    (when (featurep 'cdlatex)
+      (turn-on-org-cdlatex)))
 
   (add-hook 'org-mode-hook 'eh-org-cdlatex)
   (add-hook 'org-mode-hook 'eh-org-visual-line-mode)
