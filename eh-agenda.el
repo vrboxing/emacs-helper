@@ -127,6 +127,9 @@
             ""
             "　----------------"))
 
+    (setq  org-agenda-current-time-string
+           "　now - - - - - - - - - - - - - - - - - - - - - - - - -")
+
     (setq org-agenda-prefix-format
           '((agenda  . " %-6t%s ")
             (todo  . " %i")
