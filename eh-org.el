@@ -154,6 +154,24 @@
     (setq org-agenda-todo-ignore-scheduled t)
     (setq org-agenda-todo-ignore-deadlines t)
 
+    (setq org-agenda-time-grid
+          '((daily today require-timed)
+            (800 1000 1200 1400 1600 1800 2000)
+            ""
+            "----------------"))
+
+    (setq org-agenda-prefix-format
+          '((agenda  . " %t%s ")
+            (todo  . " %i")
+            (tags  . " %i")
+            (search . " %i")))
+
+    (setq org-agenda-scheduled-leaders
+          '(" 预" " %d天前开始"))
+
+    (setq org-agenda-deadline-leaders
+          '(" 止" " %d天后到期" " 已过期%d天"))
+
     (setq org-agenda-format-date 'eh-org-agenda-format-date-aligned)
 
     (defun eh-org-agenda-format-date-aligned (date)
