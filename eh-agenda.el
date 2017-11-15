@@ -93,6 +93,25 @@
       :config
       (add-hook 'org-mode-hook #'turn-on-auto-revert-mode))
 
+    (defun eh-revert-org-buffers ()
+      "Refreshes all opened org buffers."
+      (interactive)
+      (dolist (buf (buffer-list))
+        (with-current-buffer buf
+          (when (and (buffer-file-name)
+                     (string-match-p "org$" (buffer-file-name))
+                     (file-exists-p (buffer-file-name))
+                     (not (buffer-modified-p)))
+            (revert-buffer t t t) )))
+      (message "Refreshed all opened org files."))
+
+    (defun eh-org-agenda-redo-all (&optional exhaustive)
+      (interactive "P")
+      (eh-revert-org-buffers)
+      (funcall-interactively #'org-agenda-redo-all))
+
+    (define-key org-agenda-mode-map (kbd "g") #'eh-org-agenda-redo-all)
+
     (setq org-agenda-span 'week)
     (setq org-agenda-window-setup 'only-window)
     (setq org-agenda-files `(,eh-org-directory))
