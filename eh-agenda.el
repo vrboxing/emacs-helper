@@ -313,6 +313,9 @@
     :ensure nil
     :bind (("C-c c" . org-capture))
     :config
+    (define-key org-capture-mode-map (kbd "C-c c") 'org-capture-finalize)
+    (define-key org-capture-mode-map (kbd "C-c k") 'org-capture-kill)
+    (define-key org-capture-mode-map (kbd "C-c w") 'org-capture-refile)
     (setq org-capture-templates
           (let ((gtd-file (concat (file-name-as-directory eh-org-directory)
                                   "i-gtd" "@" (substring (md5 system-name) 0 3)
