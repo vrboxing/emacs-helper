@@ -119,7 +119,7 @@
    ("C-;" . pyim-delete-word-from-personal-buffer)))
 
 (use-package pyim-basedict
-  :ensure nil
+  :after pyim
   :config (pyim-basedict-enable))
 
 ;; ** cnfonts
