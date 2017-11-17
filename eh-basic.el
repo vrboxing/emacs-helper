@@ -264,6 +264,8 @@
          ("C-x 3" . switch-window-then-split-right)
          ("C-x 0" . switch-window-then-delete))
   :config
+  (unless (display-graphic-p)
+    (setq switch-window-shortcut-appearance 'asciiart))
   (setq switch-window-increase 6)
   (setq switch-window-shortcut-style 'qwerty)
   (setq switch-window-input-style 'minibuffer))
