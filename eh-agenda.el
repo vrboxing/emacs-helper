@@ -334,7 +334,13 @@
               ("d" "Deadline" entry (file ,gtd-file)
                "* TODO %?\nDEADLINE: %t\n%i\n %a")
               ("t" "TODO" entry (file ,gtd-file)
-               "* TODO %?\n%i\n %a")))))
+               "* TODO %?\n%i\n %a")
+              ("A" "Anniversary" plain (file+headline ,gtd-file "阳历生日")
+               "\%\%%(or \"(org-anniversary 1985 4 17)\") 今天是%?%d岁生日")
+              ("C" "Chinese Anniversary" plain (file+headline ,gtd-file "农历生日")
+               "\%\%%(or \"(eh-org-chinese-anniversary 1985 4 17)\") 今天是%?%d岁生日")
+              ("D" "Diary" plain (file+headline ,gtd-file "节假日")
+               "\%\%%(or \"(org-calendar-holiday)\")")))))
 
   )
 
