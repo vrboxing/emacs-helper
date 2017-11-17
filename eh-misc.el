@@ -84,10 +84,6 @@
 (use-package pyim
   :ensure nil
   :config
-  ;; 激活 basedict 词库
-  (use-package pyim-basedict
-    :ensure nil
-    :config (pyim-basedict-enable))
 
   (setq default-input-method "pyim")
 
@@ -121,6 +117,10 @@
   :bind
   (("M-j" . pyim-convert-code-at-point)
    ("C-;" . pyim-delete-word-from-personal-buffer)))
+
+(use-package pyim-basedict
+  :ensure nil
+  :config (pyim-basedict-enable))
 
 ;; ** cnfonts
 (use-package cnfonts
@@ -162,23 +162,25 @@
   (setq epa-pinentry-mode 'loopback))
 
 ;; ** emms
-(use-package eh-emms :ensure nil)
+(use-package eh-emms
+  :ensure nil)
 
 ;; ** elisp setting
 (use-package lisp-mode
-  :ensure nil
+  :ensure nil)
+
+(use-package aggressive-indent
+  :after lisp-mode
   :config
-  (use-package aggressive-indent
-    :config
-    (defun eh-elisp-setup ()
-      ;; 跟踪行尾空格
-      (setq show-trailing-whitespace t)
-      ;; 高亮TAB
-      (setq highlight-tabs t)
-      ;; 自动缩进
-      (aggressive-indent-mode))
-    (add-hook 'emacs-lisp-mode-hook
-              #'eh-elisp-setup)))
+  (defun eh-elisp-setup ()
+    ;; 跟踪行尾空格
+    (setq show-trailing-whitespace t)
+    ;; 高亮TAB
+    (setq highlight-tabs t)
+    ;; 自动缩进
+    (aggressive-indent-mode))
+  (add-hook 'emacs-lisp-mode-hook
+            #'eh-elisp-setup))
 
 ;; ** ESS
 (use-package ess
@@ -252,10 +254,13 @@
 
 ;; ** wdired and dired-ranger
 (use-package dired
-  :ensure nil
-  :config
-  (use-package wdired :ensure nil)
-  (use-package dired-ranger :ensure nil))
+  :ensure nil)
+
+(use-package wdired
+  :ensure nil)
+
+(use-package dired-ranger
+  :ensure nil)
 
 ;; ** ace-jump
 (use-package ace-jump-mode
@@ -292,64 +297,72 @@
   (require 'ebdb-com)
   (require 'ebdb-vcard)
   (require 'ebdb-complete)
-  (ebdb-complete-enable)
+  (ebdb-complete-enable))
 
-  (use-package pyim
-    :config
-    (use-package ebdb-i18n-chn)
-    ;; (defun eh-ebdb-search-chinese (string)
-    ;;   (if (functionp 'pyim-isearch-build-search-regexp)
-    ;;       (pyim-isearch-build-search-regexp string)
-    ;;     string))
+(use-package ebdb-i18n-chn
+  :ensure nil)
 
-    ;; (setq ebdb-search-transform-functions
-    ;;       '(eh-ebdb-search-chinese))
-    (cl-defmethod ebdb-field-search
-        :around (field criterion)
-        (or (cl-call-next-method)
-            (when (stringp criterion)
-              (let ((str (ebdb-string field)))
-                (cl-some
-                 (lambda (pinyin)
-                   (string-match-p criterion pinyin))
-                 (append (pyim-hanzi2pinyin str nil "" t)
-                         (pyim-hanzi2pinyin str t "" t)))))))))
+(use-package pyim
+  :after ebdb-i18n-chn
+  :config
+  ;; (defun eh-ebdb-search-chinese (string)
+  ;;   (if (functionp 'pyim-isearch-build-search-regexp)
+  ;;       (pyim-isearch-build-search-regexp string)
+  ;;     string))
+
+  ;; (setq ebdb-search-transform-functions
+  ;;       '(eh-ebdb-search-chinese))
+  (cl-defmethod ebdb-field-search
+      :around (field criterion)
+      (or (cl-call-next-method)
+          (when (stringp criterion)
+            (let ((str (ebdb-string field)))
+              (cl-some
+               (lambda (pinyin)
+                 (string-match-p criterion pinyin))
+               (append (pyim-hanzi2pinyin str nil "" t)
+                       (pyim-hanzi2pinyin str t "" t))))))))
 
 ;; ** magit
 (use-package magit
   :bind (("C-c g" . magit-status)
          :map magit-status-mode-map
-         ("C-c f" . magit-format-patch))
+         ("C-c f" . magit-format-patch)))
+
+(use-package swiper
+  :after magit
   :config
-  (use-package swiper
-    :config
-    (setq magit-completing-read-function 'ivy-completing-read)))
+  (setq magit-completing-read-function 'ivy-completing-read))
 
 ;; git-commit
+(use-package git-commit
+  :bind (("C-c i" . counsel-git-log)))
+
 (use-package counsel
+  :after git-commit
   :config
   (setq counsel-yank-pop-separator
         (concat "\n\n" (make-string 70 ?-) "\n"))
 
   (setq counsel-git-log-cmd
         "GIT_PAGER=cat git log --pretty='TUMASHU%%s%%n%%n%%b' --grep '%s'")
-  (setq counsel-git-log-split-string-re "TUMASHU")
-
-  (use-package git-commit
-    :bind (("C-c i" . counsel-git-log))))
+  (setq counsel-git-log-split-string-re "TUMASHU"))
 
 ;; ** projectile
 (use-package projectile
   :bind (("C-x F" . projectile-find-file)
-         ("C-S-s" . projectile-grep))
+         ("C-S-s" . projectile-grep)))
+
+(use-package swiper
+  :after projectile
+  :ensure nil
+  :config (setq projectile-completion-system 'ivy))
+
+(use-package wgrep
+  :after projectile
   :config
-  (use-package swiper
-    :ensure nil
-    :config (setq projectile-completion-system 'ivy))
-  (use-package wgrep
-    :config
-    (projectile-global-mode 1)
-    (setq projectile-enable-caching nil)))
+  (projectile-global-mode 1)
+  (setq projectile-enable-caching nil))
 
 ;; ** guix
 (use-package guix
@@ -363,9 +376,12 @@
               ;; <https://notabug.org/alezost/emacs-guix/issues/2>.
               "--no-auto-compile"))
   (add-hook 'after-init-hook 'global-guix-prettify-mode)
-  (add-hook 'scheme-mode-hook 'guix-devel-mode)
-  (with-eval-after-load 'geiser-guile
-    (add-to-list 'geiser-guile-load-path "~/.config/guix/latest")))
+  (add-hook 'scheme-mode-hook 'guix-devel-mode))
+
+(use-package geiser-guile
+  :ensure geiser
+  :config
+  (add-to-list 'geiser-guile-load-path "~/.config/guix/latest"))
 
 ;; ** undo-tree
 (use-package undo-tree
