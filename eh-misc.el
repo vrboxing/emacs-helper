@@ -321,22 +321,22 @@
          :map magit-status-mode-map
          ("C-c f" . magit-format-patch))
   :config
-
-  (use-package counsel
-    :config
-    (setq counsel-yank-pop-separator
-          (concat "\n\n" (make-string 70 ?-) "\n"))
-
-    (setq counsel-git-log-cmd
-          "GIT_PAGER=cat git log --pretty='TUMASHU%%s%%n%%n%%b' --grep '%s'")
-    (setq counsel-git-log-split-string-re "TUMASHU")
-
-    (use-package git-commit
-      :bind (("C-c i" . counsel-git-log))))
-
   (use-package swiper
     :config
     (setq magit-completing-read-function 'ivy-completing-read)))
+
+;; git-commit
+(use-package counsel
+  :config
+  (setq counsel-yank-pop-separator
+        (concat "\n\n" (make-string 70 ?-) "\n"))
+
+  (setq counsel-git-log-cmd
+        "GIT_PAGER=cat git log --pretty='TUMASHU%%s%%n%%n%%b' --grep '%s'")
+  (setq counsel-git-log-split-string-re "TUMASHU")
+
+  (use-package git-commit
+    :bind (("C-c i" . counsel-git-log))))
 
 ;; ** projectile
 (use-package projectile
