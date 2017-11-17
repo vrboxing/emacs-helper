@@ -290,13 +290,22 @@
 
 ;; ** ebdb
 (use-package ebdb
-  :ensure nil
-  :config
-  (require 'ebdb-mua)
-  (require 'ebdb-gnus)
-  (require 'ebdb-com)
-  (require 'ebdb-vcard)
-  (require 'ebdb-complete)
+  :ensure nil)
+
+(use-package ebdb-mua
+  :ensure ebdb)
+
+(use-package ebdb-gnus
+  :ensure ebdb)
+
+(use-package ebdb-com
+  :ensure ebdb)
+
+(use-package ebdb-vcard
+  :ensure ebdb)
+
+(use-package ebdb-complete
+  :ensure ebdb
   (ebdb-complete-enable))
 
 (use-package ebdb-i18n-chn
@@ -335,11 +344,11 @@
   (setq magit-completing-read-function 'ivy-completing-read))
 
 ;; git-commit
-(use-package git-commit
-  :bind (("C-c i" . counsel-git-log)))
+(use-package git-commit)
 
 (use-package counsel
   :after git-commit
+  :bind (("C-c i" . counsel-git-log))
   :config
   (setq counsel-yank-pop-separator
         (concat "\n\n" (make-string 70 ?-) "\n"))
