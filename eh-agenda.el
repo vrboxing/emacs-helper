@@ -125,22 +125,22 @@
           '((daily today require-timed)
             (800 1000 1200 1400 1600 1800 2000)
             ""
-            "　----------------"))
+            "----------------"))
 
     (setq  org-agenda-current-time-string
-           "　now - - - - - - - - - - - - - - - - - - - - - - - - -")
+           "now - - - - - - - - - - - - - - - - - - - - - - - - -")
 
     (setq org-agenda-prefix-format
-          '((agenda  . " %-6t%s ")
+          '((agenda  . " %-6t%s")
             (todo  . " %i")
             (tags  . " %i")
             (search . " %i")))
 
     (setq org-agenda-scheduled-leaders
-          '("预" "应%02d天前开始"))
+          '("预 " "应%02d天前开始 "))
 
     (setq org-agenda-deadline-leaders
-          '("止" "过%02d天后到期" "已经过期%02d天"))
+          '("止 " "过%02d天后到期 " "已经过期%02d天 "))
 
     (setq org-agenda-format-date 'eh-org-agenda-format-date-aligned)
 
