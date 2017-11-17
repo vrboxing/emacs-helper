@@ -270,6 +270,48 @@
   (setq switch-window-shortcut-style 'qwerty)
   (setq switch-window-input-style 'minibuffer))
 
+;; ** 设置 smex
+(use-package smex
+  :config
+  (smex-initialize))
+
+;; ** 设置 swiper 和 ivy-mode
+(use-package swiper
+  :config
+  (use-package counsel
+    :config
+    (setq counsel-yank-pop-separator
+          (concat "\n\n" (make-string 70 ?-) "\n"))
+    (setq counsel-git-log-cmd
+          "GIT_PAGER=cat git log --pretty='TUMASHU%%s%%n%%n%%b' --grep '%s'")
+    (setq counsel-git-log-split-string-re "TUMASHU")
+
+    (use-package git-commit
+      :bind (("C-c i" . counsel-git-log)))
+
+    :bind
+    (("C-c C-r" . ivy-resume)
+     ("M-x" . counsel-M-x)
+     ("C-x b" . ivy-switch-buffer)
+     ("C-x f" . counsel-recentf)
+     ("C-x C-b" . ivy-switch-buffer)
+     ("C-x C-f" . counsel-find-file)
+     ("C-h f" . counsel-describe-function)
+     ("C-h v" . counsel-describe-variable)
+     ("C-c y" . counsel-yank-pop)))
+
+  (ivy-mode 1)
+  (setq ivy-count-format ""
+        ivy-use-virtual-buffers t
+        ivy-format-function #'ivy-format-function-arrow
+        ivy-display-style 'fancy)
+  (push '(counsel-M-x . "") ivy-initial-inputs-alist)
+  (push '(counsel-describe-function . "") ivy-initial-inputs-alist)
+  (push '(counsel-describe-variable . "") ivy-initial-inputs-alist)
+  ;; I use "C-x C-f" to open file, so bind "C-f" to
+  ;; `ivy-immediate-done' is very useful.
+  (define-key ivy-minibuffer-map (kbd "C-f") #'ivy-immediate-done))
+
 ;; * Footer
 (provide 'eh-basic)
 
