@@ -34,102 +34,10 @@
 ;;; Code:
 
 ;; * 代码                                                       :code:
+
 (use-package org
   :ensure nil
   :config
-
-  ;; org-agenda configure
-  (use-package eh-agenda
-    :ensure nil)
-
-  (use-package ox
-    :ensure nil
-    :config
-    ;; Export language
-    (setq org-export-default-language "zh-CN"))
-
-  (use-package ox-html
-    :ensure nil
-    :config
-    ;; html
-    (setq org-html-coding-system 'utf-8)
-    (setq org-html-head-include-default-style t)
-    (setq org-html-head-include-scripts t))
-
-  (use-package ox-latex
-    :ensure nil
-    :config
-    ;; 不要在latex输出文件中插入\maketitle
-    (setq org-latex-title-command "")
-    (setq org-latex-date-format "%Y-%m-%d")
-    ;; (setq org-latex-create-formula-image-program 'imagemagick)  ;默认支持中文
-    (setq org-latex-create-formula-image-program 'dvipng)          ;速度较快，但默认不支持中文
-    (setq org-format-latex-options
-          (plist-put org-format-latex-options :scale 2.5))
-    (setq org-format-latex-options
-          (plist-put org-format-latex-options :html-scale 2.5)))
-
-  (use-package org2ctex
-    :ensure nil
-    :config (org2ctex-toggle t))
-
-  (use-package ox-odt :ensure nil)
-  (use-package ox-ascii :ensure nil)
-  (use-package ox-beamer :ensure nil)
-  (use-package ox-md :ensure nil)
-  (use-package ox-deck :ensure nil)
-  (use-package ox-rss :ensure nil)
-  (use-package ox-s5 :ensure nil)
-  (use-package org-mime :ensure nil)
-  (use-package org-bookmark :ensure nil)
-  (use-package org-protocol :ensure nil)
-  (use-package org-screenshot :ensure nil)
-  (use-package ox-bibtex :ensure nil)
-  ;; (use-package ob-R :ensure nil)
-
-  ;; org-plus-contrib
-  (use-package ox-extra
-    :ensure nil
-    :config
-    ;; 如果一个标题包含TAG: “ignore” ,导出latex时直接忽略这个标题，
-    ;; 但对它的内容没有影响。
-    (ox-extras-activate '(latex-header-blocks ignore-headlines)))
-
-  (use-package ox-bibtex-chinese
-    :ensure nil
-    :config (ox-bibtex-chinese-enable))
-
-  (use-package ob-plantuml
-    :ensure nil
-    :config
-    (setq org-plantuml-jar-path "~/bin/plantuml.jar"))
-
-  (use-package parse-time
-    :ensure nil
-    :config
-    (setq parse-time-months
-          (append '(("yiy" . 1) ("ery" . 2) ("sany" . 3)
-                    ("siy" . 4) ("wuy" . 5) ("liuy" . 6)
-                    ("qiy" . 7) ("bay" . 8) ("jiuy" . 9)
-                    ("shiy" . 10) ("shiyiy" . 11) ("shiery" . 12)
-                    ("yiyue" . 1) ("eryue" . 2) ("sanyue" . 3)
-                    ("siyue" . 4) ("wuyue" . 5) ("liuyue" . 6)
-                    ("qiyue" . 7) ("bayue" . 8) ("jiuyue" . 9)
-                    ("shiyue" . 10) ("shiyiyue" . 11) ("shieryue" . 12))
-                  parse-time-months))
-    (setq parse-time-weekdays
-          (append '(("zri" . 0) ("zqi" . 0)
-                    ("zyi" . 1) ("zer" . 2) ("zsan" . 3)
-                    ("zsi" . 4) ("zwu" . 5) ("zliu" . 6)
-                    ("zr" . 0) ("zq" . 0)
-                    ("zy" . 1) ("ze" . 2) ("zs" . 3)
-                    ("zsi" . 4) ("zw" . 5) ("zl" . 6))
-                  parse-time-weekdays)))
-
-  (use-package ob-core
-    :ensure  nil
-    :config
-    (setq org-confirm-babel-evaluate nil))
 
   ;; 自定义变量
   (setq eh-org-mathtoweb-file "~/bin/mathtoweb.jar")
@@ -278,9 +186,103 @@
   (add-hook 'org-babel-after-execute-hook #'eh-org-show-babel-image)
   (add-hook 'org-babel-after-execute-hook #'eh-org-align-babel-table)
   (add-hook 'org-export-filter-headline-functions #'eh-org-wash-text)
-  (add-hook 'org-export-filter-paragraph-functions #'eh-org-wash-text)
+  (add-hook 'org-export-filter-paragraph-functions #'eh-org-wash-text))
 
-  )
+;; org-agenda configure
+(use-package eh-agenda
+  :ensure nil)
+
+(use-package ox
+  :ensure nil
+  :config
+  ;; Export language
+  (setq org-export-default-language "zh-CN"))
+
+(use-package ox-html
+  :ensure nil
+  :config
+  ;; html
+  (setq org-html-coding-system 'utf-8)
+  (setq org-html-head-include-default-style t)
+  (setq org-html-head-include-scripts t))
+
+(use-package ox-latex
+  :ensure nil
+  :config
+  ;; 不要在latex输出文件中插入\maketitle
+  (setq org-latex-title-command "")
+  (setq org-latex-date-format "%Y-%m-%d")
+  ;; (setq org-latex-create-formula-image-program 'imagemagick)  ;默认支持中文
+  (setq org-latex-create-formula-image-program 'dvipng)          ;速度较快，但默认不支持中文
+  (setq org-format-latex-options
+        (plist-put org-format-latex-options :scale 2.5))
+  (setq org-format-latex-options
+        (plist-put org-format-latex-options :html-scale 2.5)))
+
+(use-package org2ctex
+  :ensure nil
+  :config (org2ctex-toggle t))
+
+(use-package ox-odt
+  :ensure nil)
+
+(use-package ox-ascii
+  :ensure nil)
+
+(use-package ox-beamer
+  :ensure nil)
+
+(use-package ox-md
+  :ensure nil)
+
+(use-package ox-deck
+  :ensure nil)
+
+(use-package ox-rss
+  :ensure nil)
+
+(use-package ox-s5
+  :ensure nil)
+
+(use-package org-mime
+  :ensure nil)
+
+(use-package org-bookmark
+  :ensure nil)
+
+(use-package org-protocol
+  :ensure nil)
+
+(use-package org-screenshot
+  :ensure nil)
+
+(use-package ox-bibtex
+  :ensure nil)
+
+;; (use-package ob-R
+;;   :ensure nil)
+
+;; org-plus-contrib
+(use-package ox-extra
+  :ensure nil
+  :config
+  ;; 如果一个标题包含TAG: “ignore” ,导出latex时直接忽略这个标题，
+  ;; 但对它的内容没有影响。
+  (ox-extras-activate '(latex-header-blocks ignore-headlines)))
+
+(use-package ox-bibtex-chinese
+  :ensure nil
+  :config (ox-bibtex-chinese-enable))
+
+(use-package ob-plantuml
+  :ensure nil
+  :config
+  (setq org-plantuml-jar-path "~/bin/plantuml.jar"))
+
+(use-package ob-core
+  :ensure  nil
+  :config
+  (setq org-confirm-babel-evaluate nil))
 
 ;; * Footer
 (provide 'eh-org)
