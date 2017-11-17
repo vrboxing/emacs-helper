@@ -207,11 +207,6 @@
 ;; ** aggressive-indent
 (use-package aggressive-indent)
 
-;; ** autopair
-(use-package autopair
-  :config
-  (autopair-global-mode 1))
-
 ;; ** multi-term
 (use-package multi-term
   :ensure nil
@@ -266,18 +261,6 @@
 (use-package ace-jump-mode
   :ensure nil
   :bind (("C-j" . ace-jump-mode)))
-
-;; ** switch-window
-(use-package switch-window
-  :bind (("C-x o" . switch-window)
-         ("C-x 1" . switch-window-then-maximize)
-         ("C-x 2" . switch-window-then-split-below)
-         ("C-x 3" . switch-window-then-split-right)
-         ("C-x 0" . switch-window-then-delete))
-  :config
-  (setq switch-window-increase 6)
-  (setq switch-window-shortcut-style 'qwerty)
-  (setq switch-window-input-style 'minibuffer))
 
 ;; ** gitpatch
 (use-package gitpatch
