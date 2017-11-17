@@ -293,22 +293,29 @@
   :ensure nil)
 
 (use-package ebdb-mua
+  :after ebdb
   :ensure ebdb)
 
 (use-package ebdb-gnus
+  :after ebdb
   :ensure ebdb)
 
 (use-package ebdb-com
+  :after ebdb
   :ensure ebdb)
 
 (use-package ebdb-vcard
+  :after ebdb
   :ensure ebdb)
 
 (use-package ebdb-complete
+  :after ebdb
   :ensure ebdb
+  :config
   (ebdb-complete-enable))
 
 (use-package ebdb-i18n-chn
+  :after ebdb
   :ensure nil)
 
 (use-package pyim
