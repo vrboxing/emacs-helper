@@ -190,15 +190,18 @@
 
 ;; org-agenda configure
 (use-package eh-agenda
+  :after org
   :ensure nil)
 
 (use-package ox
+  :after org
   :ensure nil
   :config
   ;; Export language
   (setq org-export-default-language "zh-CN"))
 
 (use-package ox-html
+  :after org
   :ensure nil
   :config
   ;; html
@@ -207,6 +210,7 @@
   (setq org-html-head-include-scripts t))
 
 (use-package ox-latex
+  :after org
   :ensure nil
   :config
   ;; 不要在latex输出文件中插入\maketitle
@@ -220,43 +224,56 @@
         (plist-put org-format-latex-options :html-scale 2.5)))
 
 (use-package org2ctex
+  :after org
   :ensure nil
   :config (org2ctex-toggle t))
 
 (use-package ox-odt
+  :after org
   :ensure nil)
 
 (use-package ox-ascii
+  :after org
   :ensure nil)
 
 (use-package ox-beamer
+  :after org
   :ensure nil)
 
 (use-package ox-md
+  :after org
   :ensure nil)
 
 (use-package ox-deck
+  :after org
   :ensure nil)
 
 (use-package ox-rss
+  :after org
   :ensure nil)
 
 (use-package ox-s5
+  :after org
   :ensure nil)
 
 (use-package org-mime
+  :after org
   :ensure nil)
 
 (use-package org-bookmark
+  :after org
   :ensure nil)
 
 (use-package org-protocol
+  :after org
   :ensure nil)
 
 (use-package org-screenshot
+  :after org
   :ensure nil)
 
 (use-package ox-bibtex
+  :after org
   :ensure nil)
 
 ;; (use-package ob-R
@@ -264,6 +281,7 @@
 
 ;; org-plus-contrib
 (use-package ox-extra
+  :after org
   :ensure nil
   :config
   ;; 如果一个标题包含TAG: “ignore” ,导出latex时直接忽略这个标题，
@@ -271,16 +289,19 @@
   (ox-extras-activate '(latex-header-blocks ignore-headlines)))
 
 (use-package ox-bibtex-chinese
+  :after org
   :ensure nil
   :config (ox-bibtex-chinese-enable))
 
 (use-package ob-plantuml
+  :after org
   :ensure nil
   :config
   (setq org-plantuml-jar-path "~/bin/plantuml.jar"))
 
 (use-package ob-core
-  :ensure  nil
+  :after org
+  :ensure nil
   :config
   (setq org-confirm-babel-evaluate nil))
 
