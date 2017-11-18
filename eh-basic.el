@@ -174,19 +174,22 @@
     (setq confirm-kill-emacs 'yes-or-no-p))
 
   ;; ** 关闭自动备份功能，我有 git :-)
-  (setq make-backup-files nil)
+  (setq make-backup-files nil))
 
+(use-package whitespace
+  :ensure nil
+  :config
   ;; 使用下面这一行配置后，org-mode 的源代码总是莫名其妙的
   ;;     (add-hook 'before-save-hook #'whitespace-cleanup)
   ;; 更改，这会导致生成的 diff 相当乱。
-  (use-package whitespace
-    :ensure nil)
-  (use-package simple
-    :ensure nil
-    :config
-    (add-hook 'before-save-hook
-              #'(lambda ()
-                  (delete-trailing-whitespace)))))
+  )
+
+(use-package simple
+  :ensure nil
+  :config
+  (add-hook 'before-save-hook
+            #'(lambda ()
+                (delete-trailing-whitespace))))
 
 ;; ** 设置 recentf
 (use-package recentf
