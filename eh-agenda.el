@@ -192,7 +192,7 @@
     (eh-revert-org-buffers)
     (funcall-interactively #'org-agenda-redo-all)
     (message (substitute-command-keys
-              "Org 文件已经刷新，记得按快捷键 '\\[org-save-all-org-buffers]' 来保存更改。")))
+              "刷新完成，记得按快捷键 '\\[org-save-all-org-buffers]' 来保存更改。")))
 
   (setq org-agenda-span 'week)
   (setq org-agenda-window-setup 'only-window)
