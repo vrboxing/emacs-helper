@@ -281,9 +281,7 @@
          ("C-c w" . org-capture-refile))
   :config
   (setq org-capture-templates
-        (let ((gtd-file (concat (file-name-as-directory eh-org-directory)
-                                "i-gtd" "@" (substring (md5 system-name) 0 3)
-                                ".org")))
+        (let ((gtd-file (concat (file-name-as-directory eh-org-directory) "i-gtd.org")))
           `(("n" "Note" entry (file ,gtd-file)
              "* %?\n%i\n %a")
             ("a" "Appointment" entry (file ,gtd-file)
