@@ -160,6 +160,7 @@
 
 ;; ** EPG
 (use-package epg
+  :after gnus  ;; Only use it in gnus
   :config
   ;; 1. Put the below to your ~/.gnupg/gpg-agent.conf:
   ;;       allow-emacs-pinentry
