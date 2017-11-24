@@ -112,9 +112,10 @@
   (setq pyim-page-length 5)
 
   ;; emacs 启动时加载 pyim 词库
-  (add-hook 'emacs-startup-hook
-            #'(lambda ()
-                (pyim-restart-1 t)))
+  ;; (add-hook 'emacs-startup-hook
+  ;;           #'(lambda ()
+  ;;               (pyim-restart-1 t)))
+
   :bind
   (("M-j" . pyim-convert-code-at-point)
    ("C-;" . pyim-delete-word-from-personal-buffer)))
