@@ -399,6 +399,7 @@
 
 ;; ** guix
 (use-package guix
+  :commands guix-devel-mode
   :ensure nil
   :config
   (setq guix-directory "~/project/guix")
@@ -408,7 +409,6 @@
               ;; Avoid auto-compilation as it is slow and error-prone:
               ;; <https://notabug.org/alezost/emacs-guix/issues/2>.
               "--no-auto-compile"))
-  (add-hook 'after-init-hook 'global-guix-prettify-mode)
   (add-hook 'scheme-mode-hook 'guix-devel-mode))
 
 (use-package geiser-guile
