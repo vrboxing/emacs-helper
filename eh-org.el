@@ -36,6 +36,9 @@
 ;; * 代码                                                       :code:
 
 (use-package org
+  :bind (("C-c a" . org-agenda)
+         :map org-agenda-mode-map
+         ("g" . eh-org-agenda-redo-all))
   :commands org-mode
   :mode ("\\.org\\'" . org-mode)
   :mode ("\\.org_archive\\'" . org-mode)

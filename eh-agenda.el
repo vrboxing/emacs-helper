@@ -159,9 +159,6 @@
 (use-package org-agenda
   :after org
   :ensure nil
-  :bind (("C-c a" . org-agenda)
-         :map org-agenda-mode-map
-         ("g" . eh-org-agenda-redo-all))
   :config
 
   (defvar eh-org-directory
