@@ -138,7 +138,7 @@
 
 ;; ** eh-website
 (use-package org2web
-  :commands org2web-publish org2web-new-post)
+  :commands (org2web-publish org2web-new-post))
 
 (use-package eh-website
   :after org2web
