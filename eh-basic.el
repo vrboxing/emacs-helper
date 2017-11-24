@@ -232,16 +232,16 @@
 ;; ** 关闭 tool-bar
 (use-package tool-bar
   :ensure nil
+  :bind (("C-x k" . kill-this-buffer))
   :config
-  (tool-bar-mode -1)
-  :bind (("C-x k" . kill-this-buffer)))
+  (tool-bar-mode -1))
 
 ;; ** 关闭 menu-bar
 (use-package menu-bar
   :ensure nil
+  :bind (("C-x k" . kill-this-buffer))
   :config
-  (menu-bar-mode 0)
-  :bind (("C-x k" . kill-this-buffer)))
+  (menu-bar-mode 0))
 
 ;; ** 关闭 scroll-bar
 (use-package scroll-bar
@@ -274,13 +274,21 @@
   (setq switch-window-shortcut-style 'qwerty)
   (setq switch-window-input-style 'minibuffer))
 
-;; ** 设置 smex
-(use-package smex
-  :config
-  (smex-initialize))
+;; ** 设置 swiper , ivy-mode and counsel
+(use-package counsel
+  :bind
+  (("C-c C-r" . ivy-resume)
+   ("M-x" . counsel-M-x)
+   ("C-x b" . ivy-switch-buffer)
+   ("C-x f" . counsel-recentf)
+   ("C-x C-b" . ivy-switch-buffer)
+   ("C-x C-f" . counsel-find-file)
+   ("C-h f" . counsel-describe-function)
+   ("C-h v" . counsel-describe-variable)
+   ("C-c y" . counsel-yank-pop)))
 
-;; ** 设置 swiper 和 ivy-mode
 (use-package swiper
+  :after counsel
   :bind (;; I use "C-x C-f" to open file, so bind "C-f" to
          ;; `ivy-immediate-done' is very useful.
          :map ivy-minibuffer-map
@@ -295,17 +303,12 @@
   (push '(counsel-describe-function . "") ivy-initial-inputs-alist)
   (push '(counsel-describe-variable . "") ivy-initial-inputs-alist))
 
-(use-package counsel
-  :bind
-  (("C-c C-r" . ivy-resume)
-   ("M-x" . counsel-M-x)
-   ("C-x b" . ivy-switch-buffer)
-   ("C-x f" . counsel-recentf)
-   ("C-x C-b" . ivy-switch-buffer)
-   ("C-x C-f" . counsel-find-file)
-   ("C-h f" . counsel-describe-function)
-   ("C-h v" . counsel-describe-variable)
-   ("C-c y" . counsel-yank-pop)))
+;; ** 设置 smex
+(use-package smex
+  :after counsel
+  :config
+  (smex-initialize))
+
 
 ;; * Footer
 (provide 'eh-basic)
