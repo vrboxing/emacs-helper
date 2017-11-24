@@ -84,8 +84,10 @@
 ;; ** 设置拼音输入法
 (use-package pyim
   :ensure nil
-  :config
+  :bind (("M-j" . pyim-convert-code-at-point)
+         ("C-;" . pyim-delete-word-from-personal-buffer))
 
+  :config
   (setq default-input-method "pyim")
 
   ;; 使用全拼
@@ -116,9 +118,7 @@
   ;;           #'(lambda ()
   ;;               (pyim-restart-1 t)))
 
-  :bind
-  (("M-j" . pyim-convert-code-at-point)
-   ("C-;" . pyim-delete-word-from-personal-buffer)))
+  )
 
 (use-package pyim-basedict
   :after pyim
