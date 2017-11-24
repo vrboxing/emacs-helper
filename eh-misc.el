@@ -126,6 +126,7 @@
 
 ;; ** cnfonts
 (use-package cnfonts
+  :demand t
   :if (display-graphic-p)
   :init (setq cnfonts-verbose nil)
   :config
