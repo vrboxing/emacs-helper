@@ -409,6 +409,7 @@
   (add-hook 'scheme-mode-hook 'guix-devel-mode))
 
 (use-package geiser-guile
+  :commands run-guile
   :ensure geiser
   :config
   (add-to-list 'geiser-guile-load-path "~/.config/guix/latest"))
