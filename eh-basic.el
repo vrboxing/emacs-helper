@@ -124,6 +124,7 @@
 
 ;; ** 设置 elpa-mirror
 (use-package elpa-mirror
+  :commands (eh-elpa-mirror eh-elpa-mirror-github)
   :config
 
   (defun eh-elpa-mirror-github ()
