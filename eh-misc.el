@@ -125,6 +125,7 @@
 ;; ** cnfonts
 (use-package cnfonts
   :demand t
+  :if (display-graphic-p)
   :init (setq cnfonts-verbose nil)
   :config
   (setq cnfonts-use-face-font-rescale
