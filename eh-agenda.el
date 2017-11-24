@@ -140,13 +140,13 @@
       (diary-chinese-anniversary lunar-month lunar-day year mark))))
 
 (use-package org-archive
-  :after org
+  :after org-agenda
   :ensure nil
   :config
   (setq org-archive-default-command 'org-archive-set-tag))
 
 (use-package org-attach
-  :after org
+  :after org-agenda
   :ensure nil
   :config
   (setq org-attach-commit nil))
