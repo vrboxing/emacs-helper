@@ -157,7 +157,9 @@
   (add-hook 'org-mode-hook #'turn-on-auto-revert-mode))
 
 (use-package org-agenda
-  :after org
+  :bind (("C-c a" . org-agenda)
+         :map org-agenda-mode-map
+         ("g" . eh-org-agenda-redo-all))
   :ensure nil
   :config
 
