@@ -288,6 +288,7 @@
    ("C-c y" . counsel-yank-pop)))
 
 (use-package swiper
+  :demand t
   :bind (;; I use "C-x C-f" to open file, so bind "C-f" to
          ;; `ivy-immediate-done' is very useful.
          :map ivy-minibuffer-map
