@@ -309,6 +309,18 @@
   :config
   (smex-initialize))
 
+;; ** eh-function
+(use-package eh-function
+  :ensure nil
+  :commands (eh-wash-text
+             eh-dos2unix
+             eh-unix2dos
+             eh-revert-buffer-with-gbk
+             eh-revert-buffer-with-utf8
+             eh-save-buffer-with-gbk
+             eh-save-buffer-with-utf8
+             eh-utf8-language-environment
+             eh-gbk-language-environment))
 
 ;; * Footer
 (provide 'eh-basic)

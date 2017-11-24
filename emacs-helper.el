@@ -42,7 +42,6 @@
 ;; 5. 重启 Emacs
 
 ;; * 代码                                                                 :code:
-(load-library "eh-functions")
 (load-library "eh-basic")
 (load-library "eh-org")
 (load-library "eh-complete")
