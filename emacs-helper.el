@@ -44,6 +44,7 @@
 ;; * 代码                                                                 :code:
 (load-library "eh-basic")
 (load-library "eh-org")
+(load-library "eh-agenda")
 (load-library "eh-complete")
 (load-library "eh-misc")
 
