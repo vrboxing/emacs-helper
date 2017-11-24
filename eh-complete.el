@@ -36,7 +36,6 @@
 ;; * 代码                                                      :code:
 ;; ** 设置 company-mode
 (use-package company
-  :demand t
   :bind (("M-/" . company-complete)
          :map company-active-map
          ("M-i" . company-complete-selection)
