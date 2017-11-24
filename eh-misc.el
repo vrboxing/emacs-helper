@@ -367,11 +367,8 @@
   :config
   (setq magit-completing-read-function 'ivy-completing-read))
 
-;; git-commit
-(use-package git-commit)
-
 (use-package counsel
-  :after git-commit
+  :after magit
   :bind (("C-c i" . counsel-git-log))
   :config
   (setq counsel-yank-pop-separator
