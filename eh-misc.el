@@ -72,6 +72,7 @@
 
 ;; ** EWW
 (use-package eww
+  :commands eww
   :ensure nil
   :config
   (setq shr-width 90)
@@ -137,19 +138,25 @@
 
 ;; ** eh-website
 (use-package org2web
-  :config
-  ;; my website's org2web config
-  (use-package eh-website :ensure nil)
-  ;; org2web's org2web config
-  (use-package org2web-devtools :ensure nil)
-  (use-package pyim
-    :ensure nil
-    :config
-    ;; pyim org2web config
-    (use-package pyim-devtools :ensure nil)))
+  :commands org2web-publish org2web-new-post)
+
+(use-package eh-website
+  :after org2web
+  :ensure nil)
+
+(use-package org2web-devtools
+  :after org2web
+  :ensure nil)
+
+(use-package pyim-devtools
+  :after (and org2web pyim)
+  :ensure nil)
 
 ;; ** el2org
-(use-package el2org)
+(use-package el2org
+  :commands (el2org-generate-readme
+             el2org-generate-org
+             el2org-generate-html))
 
 ;; ** EPG
 (use-package epg
@@ -164,10 +171,12 @@
 
 ;; ** emms
 (use-package eh-emms
+  :commands (emms eh-emms emms-browser)
   :ensure nil)
 
 ;; ** elisp setting
 (use-package lisp-mode
+  :mode "\\.el\\'"
   :ensure nil)
 
 (use-package aggressive-indent
@@ -185,6 +194,8 @@
 
 ;; ** ESS
 (use-package ess
+  :mode "\\.R\\'"
+  :commands R
   :ensure nil
   :config
   (setq ess-eval-visibly-p nil)
@@ -212,6 +223,7 @@
 
 ;; ** multi-term
 (use-package multi-term
+  :commands multi-term
   :ensure nil
   :config
   (setq multi-term-program "/bin/bash")
@@ -255,12 +267,15 @@
 
 ;; ** wdired and dired-ranger
 (use-package dired
+  :commands dired
   :ensure nil)
 
 (use-package wdired
+  :after dired
   :ensure nil)
 
 (use-package dired-ranger
+  :after dired
   :ensure nil)
 
 ;; ** ace-jump
@@ -291,6 +306,7 @@
 
 ;; ** ebdb
 (use-package ebdb
+  :commands (ebdb ebdb-complete ebdb-complete-enable)
   :ensure nil)
 
 (use-package ebdb-mua

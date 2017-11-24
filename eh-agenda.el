@@ -35,6 +35,7 @@
 
 ;; * 代码                                                       :code:
 (use-package parse-time
+  :after org-agenda
   :ensure nil
   :config
 
@@ -59,6 +60,7 @@
                 parse-time-weekdays)))
 
 (use-package cal-china-x
+  :after org-agenda
   :ensure nil
   :config
   (defvar eh-calendar-holidays nil)
@@ -116,6 +118,7 @@
   (setq calendar-holidays eh-calendar-holidays))
 
 (use-package calendar
+  :after org-agenda
   :ensure nil
   :config
   (setq calendar-week-start-day 0) ; 一周第一天，0表示星期天, 1表示星期一
@@ -136,24 +139,14 @@
           (diary-chinese-anniversary lunar-month lunar-day y mark))
       (diary-chinese-anniversary lunar-month lunar-day year mark))))
 
-(use-package org
-  :ensure nil
-  :config
-
-  (setq org-todo-keywords
-        '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
-  (setq org-insert-heading-respect-content nil)
-  (setq org-log-done t)
-  (setq org-startup-indented nil)
-  (add-to-list 'auto-mode-alist
-               '("\.\(org\|org_archive\)$" . org-mode)))
-
 (use-package org-archive
+  :after org
   :ensure nil
   :config
   (setq org-archive-default-command 'org-archive-set-tag))
 
 (use-package org-attach
+  :after org
   :ensure nil
   :config
   (setq org-attach-commit nil))
@@ -164,6 +157,7 @@
   (add-hook 'org-mode-hook #'turn-on-auto-revert-mode))
 
 (use-package org-agenda
+  :after org
   :ensure nil
   :bind (("C-c a" . org-agenda)
          :map org-agenda-mode-map
@@ -273,6 +267,7 @@
               year month day dayname extra))))
 
 (use-package org-capture
+  :after org
   :ensure nil
   :bind (("C-c c" . org-capture)
          :map org-capture-mode-map

@@ -36,6 +36,9 @@
 ;; * 代码                                                       :code:
 
 (use-package org
+  :commands org-mode
+  :mode ("\\.org\\'" . org-mode)
+  :mode ("\\.org_archive\\'" . org-mode)
   :ensure nil
   :config
 
@@ -53,8 +56,6 @@
   (setq org-edit-src-content-indentation 0)
   (setq org-export-backends
         '(ascii beamer html latex md deck rss s5 odt))
-  (add-to-list 'auto-mode-alist
-               '("\.\(org\|org_archive\)$" . org-mode))
 
   ;; org默认使用"_下标"来定义一个下标，使用"^上标"定义一个上标，
   ;; 但这种方式在中文环境中与下划线冲突。
