@@ -266,7 +266,7 @@
               year month day dayname extra))))
 
 (use-package org-capture
-  :after org
+  :after org-agenda
   :ensure nil
   :bind (("C-c c" . org-capture)
          :map org-capture-mode-map
