@@ -156,7 +156,7 @@
   :ensure nil)
 
 (use-package pyim-devtools
-  :after (and org2web pyim)
+  :after (:all org2web pyim)
   :ensure nil)
 
 ;; ** el2org
