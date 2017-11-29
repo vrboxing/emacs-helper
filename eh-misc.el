@@ -188,8 +188,8 @@
   :ensure nil)
 
 (use-package aggressive-indent
-  :after lisp-mode
   :config
+
   (defun eh-elisp-setup ()
     ;; 跟踪行尾空格
     (setq show-trailing-whitespace t)
@@ -197,6 +197,7 @@
     (setq highlight-tabs t)
     ;; 自动缩进
     (aggressive-indent-mode))
+
   (add-hook 'emacs-lisp-mode-hook
             #'eh-elisp-setup))
 
