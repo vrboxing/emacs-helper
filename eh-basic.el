@@ -298,7 +298,8 @@
   (setq ivy-count-format ""
         ivy-use-virtual-buffers t
         ivy-format-function #'ivy-format-function-arrow
-        ivy-display-style 'fancy)
+        ivy-display-style 'fancy
+        ivy-use-selectable-prompt t)
   (push '(counsel-M-x . "") ivy-initial-inputs-alist)
   (push '(counsel-describe-function . "") ivy-initial-inputs-alist)
   (push '(counsel-describe-variable . "") ivy-initial-inputs-alist))
