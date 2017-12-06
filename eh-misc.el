@@ -113,8 +113,10 @@
   ;; 开启拼音搜索功能
   (pyim-isearch-mode 1)
 
-  ;; 使用 pupup 来绘制选词框。
-  (setq pyim-page-tooltip 'popup)
+  ;; 设置选词框的绘制方式
+  (if (>= emacs-major-version 26)
+      (setq pyim-page-tooltip 'child-frame)
+    (setq pyim-page-tooltip 'popup))
 
   ;; 显示5个候选词。
   (setq pyim-page-length 5)
