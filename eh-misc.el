@@ -114,7 +114,8 @@
   (pyim-isearch-mode 1)
 
   ;; 设置选词框的绘制方式
-  (if (>= emacs-major-version 26)
+  (if (and (display-graphic-p)
+           (>= emacs-major-version 26))
       (setq pyim-page-tooltip 'child-frame)
     (setq pyim-page-tooltip 'popup))
 
