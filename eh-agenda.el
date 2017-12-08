@@ -278,6 +278,7 @@
   (add-hook 'org-capture-mode-hook #'eh-org-capture-mode-hook)
 
   (defun eh-org-capture-mode-hook ()
+    (setq-local header-line-format nil)
     (setq-local mode-line-format
                 (list "Capture: "
                       (propertize
