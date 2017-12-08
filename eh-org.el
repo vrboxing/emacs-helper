@@ -53,6 +53,10 @@
   (setq org-startup-indented nil)
   (setq org-edit-src-content-indentation 0)
 
+  ;; 在 termux 环境下，C-TAB 无法正常工作，所以必须
+  ;; 设置这个变量为 t, 否则展开 ARCHIVE 就很麻烦了。
+  (setq org-cycle-open-archived-trees t)
+
   (defun eh-org-fill-paragraph ()
     "Fill org paragraph"
     (interactive)
