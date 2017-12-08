@@ -278,28 +278,30 @@
   (add-hook 'org-capture-mode-hook #'eh-org-capture-mode-hook)
 
   (defun eh-org-capture-mode-hook ()
-    (setq-local header-line-format
+    (setq-local mode-line-format
                 (list "Capture: "
                       (propertize
-                       "1.完成 "
+                       "[完成]"
                        'mouse-face 'mode-line-highlight
                        'keymap
                        (let ((map (make-sparse-keymap)))
-                         (define-key map [header-line mouse-1] 'org-capture-finalize)
+                         (define-key map [mode-line mouse-1] 'org-capture-finalize)
                          map))
+                      " "
                       (propertize
-                       "2.丢弃 "
+                       "[取消]"
                        'mouse-face 'mode-line-highlight
                        'keymap
                        (let ((map (make-sparse-keymap)))
-                         (define-key map [header-line mouse-1] 'org-capture-kill)
+                         (define-key map [mode-line mouse-1] 'org-capture-kill)
                          map))
+                      " "
                       (propertize
-                       "3.Refile"
+                       "[Refile]"
                        'mouse-face 'mode-line-highlight
                        'keymap
                        (let ((map (make-sparse-keymap)))
-                         (define-key map [header-line mouse-1] 'org-capture-refile)
+                         (define-key map [mode-line mouse-1] 'org-capture-refile)
                          map)))))
 
   (setq org-capture-templates
