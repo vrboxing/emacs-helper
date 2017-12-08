@@ -98,6 +98,7 @@
 
   ;; 使用 emacs thread 来生成 dcache。
   (setq pyim-dcache-prefer-emacs-thread t)
+
   ;; 使用全拼
   (setq pyim-default-scheme 'quanpin)
 
