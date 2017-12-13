@@ -90,6 +90,9 @@
 ;; ** 关闭 beep (Can not use use-package)
 (setq visible-bell t)
 
+;; ** 使用英文 day-name, 而不是中文： “星期XX”
+(setq system-time-locale "C")
+
 ;; ** 让 *scratch* buffer 无法删除 (Can not use use-package)
 (defun eh-unkillable-scratch-buffer ()
   (if (string= (buffer-name (current-buffer)) "*scratch*")
