@@ -56,7 +56,9 @@
 (defun eh-update-load-path ()
   (interactive)
   (let (dirs)
-    (dolist (x '("~" "c:" "d:" "e:" "f:" "g:" "h:" "i:" "~/storage/shared/"))
+    (dolist (x '("~" "c:" "d:" "e:" "f:"
+                 "/c" "/d" "/e" "/f"
+                 "~/storage/shared/"))
       (push (file-name-as-directory
              (concat x "/projects/emacs-packages")) dirs)
       (push (file-name-as-directory
