@@ -56,24 +56,24 @@
        " "
        '(:eval
          (when (buffer-file-name)
-           (propertize
-            "[保存]"
-            'mouse-face 'mode-line-highlight
-            'keymap
-            (let ((map (make-sparse-keymap)))
-              (define-key map [mode-line mouse-1] 'save-buffer)
-              map))))
-       " "
+           (list (propertize
+                  "[保存]"
+                  'mouse-face 'mode-line-highlight
+                  'keymap
+                  (let ((map (make-sparse-keymap)))
+                    (define-key map [mode-line mouse-1] 'save-buffer)
+                    map))
+                 " ")))
        '(:eval
          (when (eq major-mode 'org-mode)
-           (propertize
-            "[C-c C-c]"
-            'mouse-face 'mode-line-highlight
-            'keymap
-            (let ((map (make-sparse-keymap)))
-              (define-key map [mode-line mouse-1] 'org-ctrl-c-ctrl-c)
-              map))))
-       " "
+           (list (propertize
+                  "[C-c C-c]"
+                  'mouse-face 'mode-line-highlight
+                  'keymap
+                  (let ((map (make-sparse-keymap)))
+                    (define-key map [mode-line mouse-1] 'org-ctrl-c-ctrl-c)
+                    map))
+                 " ")))
        "%b"))
 
 ;; * Footer
