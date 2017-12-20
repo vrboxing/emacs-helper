@@ -58,15 +58,15 @@
             (define-key map [mode-line mouse-1] 'save-buffer)
             map))
          " "
-         (list :eval
-               (when (eq major-mode 'org-mode)
-                 (propertize
-                  "[C-c C-c]"
-                  'mouse-face 'mode-line-highlight
-                  'keymap
-                  (let ((map (make-sparse-keymap)))
-                    (define-key map [mode-line mouse-1] 'org-ctrl-c-ctrl-c)
-                    map)))))))
+         '(:eval
+           (when (eq major-mode 'org-mode)
+             (propertize
+              "[C-c C-c]"
+              'mouse-face 'mode-line-highlight
+              'keymap
+              (let ((map (make-sparse-keymap)))
+                (define-key map [mode-line mouse-1] 'org-ctrl-c-ctrl-c)
+                map)))))))
 
 ;; * Footer
 (provide 'eh-termux)
