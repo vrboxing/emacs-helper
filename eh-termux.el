@@ -39,11 +39,19 @@
  mode-line-format
  (list " "
        (propertize
-        "[关闭]"
+        "[切换]"
         'mouse-face 'mode-line-highlight
         'keymap
         (let ((map (make-sparse-keymap)))
-          (define-key map [mode-line mouse-1] 'kill-this-buffer)
+          (define-key map [mode-line mouse-1] 'next-buffer)
+          map))
+       " "
+       (propertize
+        "[最大]"
+        'mouse-face 'mode-line-highlight
+        'keymap
+        (let ((map (make-sparse-keymap)))
+          (define-key map [mode-line mouse-1] 'delete-other-windows)
           map))
        " "
        '(:eval
@@ -66,7 +74,7 @@
               (define-key map [mode-line mouse-1] 'org-ctrl-c-ctrl-c)
               map))))
        " "
-       mode-line-buffer-identification))
+       "%b"))
 
 ;; * Footer
 (provide 'eh-termux)
