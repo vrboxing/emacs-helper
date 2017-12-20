@@ -35,38 +35,38 @@
 
 ;; * 代码                                                                 :code:
 
-(defun eh-termux-enable ()
-  (interactive)
-  (setq-default
-   mode-line-format
-   (list " "
-         mode-line-buffer-identification
-         " "
-         (propertize
-          "[关闭]"
-          'mouse-face 'mode-line-highlight
-          'keymap
-          (let ((map (make-sparse-keymap)))
-            (define-key map [mode-line mouse-1] 'kill-this-buffer)
-            map))
-         " "
-         (propertize
-          "[保存]"
-          'mouse-face 'mode-line-highlight
-          'keymap
-          (let ((map (make-sparse-keymap)))
-            (define-key map [mode-line mouse-1] 'save-buffer)
-            map))
-         " "
-         '(:eval
-           (when (eq major-mode 'org-mode)
-             (propertize
-              "[C-c C-c]"
-              'mouse-face 'mode-line-highlight
-              'keymap
-              (let ((map (make-sparse-keymap)))
-                (define-key map [mode-line mouse-1] 'org-ctrl-c-ctrl-c)
-                map)))))))
+(setq-default
+ mode-line-format
+ (list " "
+       (propertize
+        "[关闭]"
+        'mouse-face 'mode-line-highlight
+        'keymap
+        (let ((map (make-sparse-keymap)))
+          (define-key map [mode-line mouse-1] 'kill-this-buffer)
+          map))
+       " "
+       '(:eval
+         (when (buffer-file-name)
+           (propertize
+            "[保存]"
+            'mouse-face 'mode-line-highlight
+            'keymap
+            (let ((map (make-sparse-keymap)))
+              (define-key map [mode-line mouse-1] 'save-buffer)
+              map))))
+       " "
+       '(:eval
+         (when (eq major-mode 'org-mode)
+           (propertize
+            "[C-c C-c]"
+            'mouse-face 'mode-line-highlight
+            'keymap
+            (let ((map (make-sparse-keymap)))
+              (define-key map [mode-line mouse-1] 'org-ctrl-c-ctrl-c)
+              map))))
+       " "
+       mode-line-buffer-identification))
 
 ;; * Footer
 (provide 'eh-termux)
