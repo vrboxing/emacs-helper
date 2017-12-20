@@ -280,30 +280,30 @@
   (defun eh-org-capture-mode-hook ()
     (setq-local header-line-format nil)
     (setq-local mode-line-format
-                '("Capture: "
-                  (:propertize
-                   "[完成]"
-                   'mouse-face 'mode-line-highlight
-                   'keymap
-                   (let ((map (make-sparse-keymap)))
-                     (define-key map [mode-line mouse-1] 'org-capture-finalize)
-                     map))
-                  " "
-                  (:propertize
-                   "[取消]"
-                   'mouse-face 'mode-line-highlight
-                   'keymap
-                   (let ((map (make-sparse-keymap)))
-                     (define-key map [mode-line mouse-1] 'org-capture-kill)
-                     map))
-                  " "
-                  (:propertize
-                   "[Refile]"
-                   'mouse-face 'mode-line-highlight
-                   'keymap
-                   (let ((map (make-sparse-keymap)))
-                     (define-key map [mode-line mouse-1] 'org-capture-refile)
-                     map)))))
+                (list "Capture: "
+                      (propertize
+                       "[完成]"
+                       'mouse-face 'mode-line-highlight
+                       'keymap
+                       (let ((map (make-sparse-keymap)))
+                         (define-key map [mode-line mouse-1] 'org-capture-finalize)
+                         map))
+                      " "
+                      (propertize
+                       "[取消]"
+                       'mouse-face 'mode-line-highlight
+                       'keymap
+                       (let ((map (make-sparse-keymap)))
+                         (define-key map [mode-line mouse-1] 'org-capture-kill)
+                         map))
+                      " "
+                      (propertize
+                       "[Refile]"
+                       'mouse-face 'mode-line-highlight
+                       'keymap
+                       (let ((map (make-sparse-keymap)))
+                         (define-key map [mode-line mouse-1] 'org-capture-refile)
+                         map)))))
 
   (setq org-capture-templates
         (let ((gtd-file (concat (file-name-as-directory eh-org-directory) "i-gtd.org")))
