@@ -39,7 +39,7 @@
         (message-mail-p
          (name    "My Name")
          (address "myname@163.com")
-         ("Cc" "My Name <myname@163.com>")
+         ;; ("Cc" "My Name <myname@163.com>")
          ("X-Message-SMTP-Method" "smtp smtp.163.com 465")
          (eval (setq smtpmail-stream-type 'ssl)
                (setq mm-coding-system-priorities
