@@ -361,15 +361,15 @@
   ;; (setq ebdb-search-transform-functions
   ;;       '(eh-ebdb-search-chinese))
   (cl-defmethod ebdb-field-search
-      :around (field criterion)
-      (or (cl-call-next-method)
-          (when (stringp criterion)
-            (let ((str (ebdb-string field)))
-              (cl-some
-               (lambda (pinyin)
-                 (string-match-p criterion pinyin))
-               (append (pyim-hanzi2pinyin str nil "" t)
-                       (pyim-hanzi2pinyin str t "" t))))))))
+    :around (field criterion)
+    (or (cl-call-next-method)
+        (when (stringp criterion)
+          (let ((str (ebdb-string field)))
+            (cl-some
+             (lambda (pinyin)
+               (string-match-p criterion pinyin))
+             (append (pyim-hanzi2pinyin str nil "" t)
+                     (pyim-hanzi2pinyin str t "" t))))))))
 
 ;; ** magit
 (use-package magit
