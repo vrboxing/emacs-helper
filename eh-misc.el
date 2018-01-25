@@ -189,7 +189,7 @@
   :ensure nil)
 
 ;; ** elisp setting
-(use-package lisp-mode
+(use-package elisp-mode
   :mode "\\.el\\'"
   :ensure nil)
 
