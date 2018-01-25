@@ -81,6 +81,7 @@
 ;; ** 启动时默认打开的 buffer. (Can not use use-package)
 (setq inhibit-startup-screen t)
 (setq initial-buffer-choice nil)
+(setq initial-major-mode 'emacs-lisp-mode)
 (setq initial-scratch-message
       ";; This is *scratch* buffer.\n\n")
 

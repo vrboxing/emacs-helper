@@ -190,7 +190,7 @@
 
 ;; ** elisp setting
 (use-package elisp-mode
-  :mode "\\.el\\'"
+  :mode ("\\.el\\'" . emacs-lisp-mode)
   :ensure nil)
 
 (use-package aggressive-indent
