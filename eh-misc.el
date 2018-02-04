@@ -119,7 +119,7 @@
   ;; 设置选词框的绘制方式
   (if (and (display-graphic-p)
            (>= emacs-major-version 26))
-      (setq pyim-page-tooltip 'child-frame)
+      (setq pyim-page-tooltip 'posframe)
     (setq pyim-page-tooltip 'popup))
 
   ;; 显示5个候选词。
