@@ -113,8 +113,7 @@
           (holiday-lunar 8 15 "中秋节" 0)
           (holiday-lunar 7 7 "七夕情人节" 0)
           (holiday-lunar 12 8 "腊八节" 0)
-          (holiday-lunar 9 9 "重阳节" 0)
-          (holiday-lunar 12 22 "冬至" 0)))
+          (holiday-lunar 9 9 "重阳节" 0)))
   (setq calendar-holidays eh-calendar-holidays))
 
 (use-package calendar
