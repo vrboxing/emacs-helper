@@ -291,7 +291,12 @@
    ("C-x C-f" . counsel-find-file)
    ("C-h f" . counsel-describe-function)
    ("C-h v" . counsel-describe-variable)
-   ("C-c y" . counsel-yank-pop)))
+   ("C-c y" . counsel-yank-pop))
+
+  :config
+  ;; Default setting is not suitable for GuixSD.
+  (setq counsel-linux-app-format-function
+        #'counsel-linux-app-format-function-name-only))
 
 (use-package swiper
   :demand t
