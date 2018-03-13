@@ -47,6 +47,7 @@
 (load-library "eh-org")
 (load-library "eh-agenda")
 (load-library "eh-complete")
+(load-library "eh-termux")
 (load-library "eh-misc")
 
 ;; * Footer
