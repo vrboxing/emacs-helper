@@ -74,12 +74,14 @@
                 " "))
         "%b"))
 
-(defun eh-termux-update-mode-line ()
-  (setq-local mode-line-format '(:eval (eh-termux-mode-line))))
-
 (defun eh-termux-enable ()
   (interactive)
-  (add-hook 'buffer-list-update-hook #'eh-termux-update-mode-line))
+  (setq-default mode-line-format
+                '(:eval (eh-termux-mode-line)))
+  (add-hook 'buffer-list-update-hook
+            #'(lambda ()
+                (setq mode-line-format
+                      '(:eval (eh-termux-mode-line))))))
 
 ;; * Footer
 (provide 'eh-termux)
