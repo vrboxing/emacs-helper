@@ -92,6 +92,8 @@
               :around #'eh-company-dabbrev--prefix))
 
 (use-package company-childframe
+  :when (and (> emacs-major-version 26)
+             (display-graphic-p))
   :after company
   :config (company-childframe-mode 1))
 
