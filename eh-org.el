@@ -92,10 +92,6 @@
   (add-hook 'org-mode-hook 'eh-org-visual-line-mode)
   (add-hook 'org-mode-hook 'eh-org-smart-truncate-lines))
 
-(use-package org-mime
-  :after org
-  :ensure nil)
-
 (use-package org-bookmark
   :after org
   :ensure nil)
