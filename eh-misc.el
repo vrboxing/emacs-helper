@@ -411,7 +411,7 @@
 
 ;; ** guix
 (use-package guix
-  :commands guix-devel-mode
+  :commands (guix-scheme-mode guix-devel-mode)
   :ensure nil
   :config
   (setq guix-directory "~/project/guix")
