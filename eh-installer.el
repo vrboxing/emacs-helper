@@ -56,7 +56,8 @@
         (unless refreshed
           (package-refresh-contents)
           (setq refreshed t))
-        (package-install pkg)))))
+        (ignore-errors
+          (package-install pkg))))))
 
 (defun eh-get-mirror-packages (mirror-directory)
   "Return all package's name in a mirror directory: MIRROR-DIRECTROY."
