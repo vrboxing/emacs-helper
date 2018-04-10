@@ -45,6 +45,13 @@
                 (set-face-attribute 'font-lock-comment-face nil :italic nil)
                 (set-face-attribute 'org-agenda-date-today nil :slant 'normal))))
 
+;; ** Tramp
+(use-package tramp
+  :ensure nil
+  :config
+  ;; Make tramp works well with termux
+  (push "/data/data/com.termux/files/usr/bin" tramp-remote-path))
+
 ;; ** Eshell
 (use-package eshell
   :bind (("C-x c" . eshell))
