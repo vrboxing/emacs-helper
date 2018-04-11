@@ -323,7 +323,21 @@
             ("C" "Chinese Anniversary" plain (file+headline ,gtd-file "农历生日")
              "\%\%%(or \"(eh-org-chinese-anniversary 1985 4 17)\") 今天是%?%d岁农历生日")
             ("D" "Diary" plain (file+headline ,gtd-file "节假日")
-             "\%\%%(or \"(org-calendar-holiday)\")")))))
+             "\%\%%(or \"(org-calendar-holiday)\")"))))
+
+  (defun eh-org-capture-finalize (&optional stay-with-capture)
+    (interactive "P")
+    ;; 使用 tramp 的时候，我不想频繁的保存文件，因为速度太慢了，
+    ;; 严重影响体验，这个函数让 capture 仅仅更新 buffer, 但不保存
+    ;; buffer, 用户在合适的时候自己手动保存文件。
+    (cl-letf (((symbol-function 'save-buffer) #'ignore))
+      (org-capture-finalize stay-with-capture))
+    (org-agenda-redo-all)
+    (message "Capture 已经发送到对应 buffer，记得手动保存这个 buffer！"))
+
+  (define-key org-capture-mode-map "\C-c\C-c" 'eh-org-capture-finalize)
+
+  )
 
 
 ;; * Footer
