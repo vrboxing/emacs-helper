@@ -50,6 +50,7 @@
   :ensure nil
   :config
   ;; I use magit instead of vc :-)
+  (setq vc-handled-backends nil)
   (setq vc-ignore-dir-regexp ".*"))
 
 ;; ** Tramp
