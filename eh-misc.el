@@ -45,6 +45,13 @@
                 (set-face-attribute 'font-lock-comment-face nil :italic nil)
                 (set-face-attribute 'org-agenda-date-today nil :slant 'normal))))
 
+;; ** VC
+(use-package vc
+  :ensure nil
+  :config
+  ;; I use magit instead of vc :-)
+  (setq vc-ignore-dir-regexp ".*"))
+
 ;; ** Tramp
 (use-package tramp
   :ensure nil
