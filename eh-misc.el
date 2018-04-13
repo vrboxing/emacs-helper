@@ -60,7 +60,7 @@
   ;; Tramp (msys2's emacs) 和 termux 的 sshd 配合使用需要如下设置：
   ;; 1. ssh 和 scp 两种 tramp 方法不能使用，会让 emacs 卡死，原因未知。
   ;; 2. sshx 和 scpx 可以正常使用，大文件访问使用 scpx 方法速度比较快。
-  ;; 3. plink, plinks, psftp 或者 pscp 三种方法可以使用，但需要作较多设置：
+  ;; 3. plink, plinks, psftp 或者 pscp 四种方法可以使用，但需要作较多设置：
   ;;    1. 安装 putty 和 plink: pacman -Ss mingw-w64-i686-putty mingw-w64-i686-putty-ssh
   ;;    2. 更改 termux 文件： /data/data/com.termux/files/usr/etc/moted
   ;;       清空文件或者删除文件中所有的 "<" 和 ">", 因为这两个字符会影响 tramp 登录，
