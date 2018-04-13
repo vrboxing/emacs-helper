@@ -57,22 +57,23 @@
 (use-package tramp
   :ensure nil
   :config
-  ;; tramp (msys2's emacs) 和 termux 的 sshd 配合使用需要如下设置：
-  ;; 1. tramp method:  ssh 和 scp 不能使用，原因未知，sshx 和 scpx 可以正常使用。
-  ;;    大文件访问使用 scpx 方法速度比较快。
-  ;; 2. plink, plinkx, psftp 或者 pscp 四种方法可以使用，但设置比较麻烦：
-  ;;    1. msys2 安装 putty: pacman -Ss mingw-w64-i686-putty mingw-w64-i686-putty-ssh
-  ;;    2. 更改 termux 文件：  /data/data/com.termux/files/usr/etc/moted
-  ;;       最简单的方式是清空这个文件的内容，也可以删除文件中所有的 "<" 和 ">".
-  ;;       因为这两个字符会影响 tramp 登录。具体细节见： https://www.gnu.org/software/tramp/ 的FAQ
-  ;;    3. 设置 putty, 我这里设置为免密码登录。
+  ;; Tramp (msys2's emacs) 和 termux 的 sshd 配合使用需要如下设置：
+  ;; 1. ssh 和 scp 两种 tramp 方法不能使用，会让 emacs 卡死，原因未知。
+  ;; 2. sshx 和 scpx 可以正常使用，大文件访问使用 scpx 方法速度比较快。
+  ;; 3. plink, psftp 或者 pscp 三种方法可以使用，但需要作较多设置：
+  ;;    1. 安装 putty 和 plink: pacman -Ss mingw-w64-i686-putty mingw-w64-i686-putty-ssh
+  ;;    2. 更改 termux 文件： /data/data/com.termux/files/usr/etc/moted
+  ;;       清空文件或者删除文件中所有的 "<" 和 ">", 因为这两个字符会影响 tramp 登录，
+  ;;       具体细节见 Tramp FAQ： https://www.gnu.org/software/tramp/
+  ;;    3. 设置 putty, 最好设置为免密码登录。
   ;;    4. 在 msys2 的 .bashrc 中设置环境变量: MSYS2_ARG_CONV_EXCL
-  ;;       这个非常重要， 不然 pscp 会报错误： "ssh_init Host does not exit"
-  ;;       具体细节可以看： https://stackoverflow.com/questions/41789559/how-to-prevent-msys-from-converting-remote-file-path-for-pscp
-  ;;       但如果设置了这个环境变量， plinkx 可能就不能使用了，总的来说，
-  ;;       putty 可能更适合使用 emacs win32 的同学，使用 emacs msys2 的同学还是使用
-  ;;       scpx 比较靠谱。
-  ;; 3. 调整 vc 的设置，用于加快 tramp 访问, 比如完全禁用 VC: (setq vc-handled-backends nil)
+  ;;       这个步骤非常重要， 不然 pscp 会报错： "ssh_init Host does not exit"
+  ;;       想了解具体细节同学可以阅读：
+  ;;       1. https://github.com/msys2/msys2/wiki/Porting#user-content-filesystem-namespaces
+  ;;       2. https://stackoverflow.com/questions/41789559/how-to-prevent-msys-from-converting-remote-file-path-for-pscp
+  ;; 4. plinkx 方法几乎不能使用，原因可能与 MSYS2_ARG_CONV_EXCL 有关，
+  ;;    可能需要更改 elisp 代码，不建议折腾。
+  ;; 5. 如果不使用 VC, 建议禁用: (setq vc-handled-backends nil)
   (push "/data/data/com.termux/files/usr/bin" tramp-remote-path))
 
 ;; ** Eshell
