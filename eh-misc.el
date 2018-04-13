@@ -60,20 +60,21 @@
   ;; Tramp (msys2's emacs) 和 termux 的 sshd 配合使用需要如下设置：
   ;; 1. ssh 和 scp 两种 tramp 方法不能使用，会让 emacs 卡死，原因未知。
   ;; 2. sshx 和 scpx 可以正常使用，大文件访问使用 scpx 方法速度比较快。
-  ;; 3. plink, psftp 或者 pscp 三种方法可以使用，但需要作较多设置：
+  ;; 3. plink, plinks, psftp 或者 pscp 三种方法可以使用，但需要作较多设置：
   ;;    1. 安装 putty 和 plink: pacman -Ss mingw-w64-i686-putty mingw-w64-i686-putty-ssh
   ;;    2. 更改 termux 文件： /data/data/com.termux/files/usr/etc/moted
   ;;       清空文件或者删除文件中所有的 "<" 和 ">", 因为这两个字符会影响 tramp 登录，
   ;;       具体细节见 Tramp FAQ： https://www.gnu.org/software/tramp/
-  ;;    3. 设置 putty, 最好设置为免密码登录。
-  ;;    4. 在 msys2 的 .bashrc 中设置环境变量: MSYS2_ARG_CONV_EXCL
+  ;;    3. 设置 putty, 最好设置为免密码登录，如果要使用 plinkx 方法, 还需要保存一个
+  ;;       putty session, 这个 putty session 的名字与 host 的名字一致， 比如：
+  ;;       如果你想访问： /plinkx:192.168.1.101: 你就需要保存一个 putty session, 它的
+  ;;       名字为： 192.168.1.101
+  ;;    4. (pscp 和 psftp 需要) 在 msys2 的 .bashrc 中设置环境变量: MSYS2_ARG_CONV_EXCL
   ;;       这个步骤非常重要， 不然 pscp 会报错： "ssh_init Host does not exit"
   ;;       想了解具体细节同学可以阅读：
   ;;       1. https://github.com/msys2/msys2/wiki/Porting#user-content-filesystem-namespaces
   ;;       2. https://stackoverflow.com/questions/41789559/how-to-prevent-msys-from-converting-remote-file-path-for-pscp
-  ;; 4. plinkx 方法几乎不能使用，原因可能与 MSYS2_ARG_CONV_EXCL 有关，
-  ;;    可能需要更改 elisp 代码，不建议折腾。
-  ;; 5. 如果不使用 VC, 建议禁用: (setq vc-handled-backends nil)
+  ;; 4. 如果不使用 VC, 建议禁用: (setq vc-handled-backends nil)
   (push "/data/data/com.termux/files/usr/bin" tramp-remote-path))
 
 ;; ** Eshell
