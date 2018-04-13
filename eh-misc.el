@@ -57,7 +57,20 @@
 (use-package tramp
   :ensure nil
   :config
-  ;; Make tramp works well with termux
+  ;; tramp (msys2's emacs) 和 termux 的 sshd 配合使用需要如下设置：
+  ;; 1. tramp ssh method 不能使用，原因未知，但 sshx 和 scpx
+  ;;    两种方法可以正常使用， scpx 大文件速度比较快。
+  ;; 2. plink, plinkx, psftp 或者 pscp 四种方法可以使用，但设置比较麻烦
+  ;;    1. msys2 安装 putty: pacman -Ss mingw-w64-i686-putty mingw-w64-i686-putty-ssh
+  ;;    2. 更改 termux 文件：  /data/data/com.termux/files/usr/etc/moted
+  ;;       最简单的方式是清空，也可以删除所有的 "<" 和 ">", 这两个字符会
+  ;;       影响 tramp 登录。具体细节见： https://www.gnu.org/software/tramp/ 的
+  ;;       "TRAMP does not connect to the remote host".
+  ;;    3. 设置 putty, 我这里设置为免密码登录。
+  ;;    4. 在 msys2 的 .bashrc 中设置环境变量 MSYS2_ARG_CONV_EXCL
+  ;;       这个非常重要， 不然 pscp 就不能正常使用，会报 "ssh_init Host does not exit" 错误
+  ;;       具体细节可以看： https://stackoverflow.com/questions/41789559/how-to-prevent-msys-from-converting-remote-file-path-for-pscp
+  ;; 3. 调整 vc 的设置，用于加快 tramp, 比如完全禁用 VC: (setq vc-handled-backends nil)
   (push "/data/data/com.termux/files/usr/bin" tramp-remote-path))
 
 ;; ** Eshell
