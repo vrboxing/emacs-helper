@@ -70,6 +70,15 @@
   ;;       如果你想访问： /plinkx:192.168.1.101: 你就需要保存一个 putty session, 它的
   ;;       名字为： 192.168.1.101
   ;;    4. (pscp 和 psftp 需要) 在 msys2 的 .bashrc 中设置环境变量: MSYS2_ARG_CONV_EXCL
+  ;;       比如：
+  ;;
+  ;;       export MSYS2_ARG_CONV_EXCL="192.168.137.250:;feng@192.168.137.250:"
+  ;;
+  ;;       这个设置的意思是： 所有以 "192.168.137.250:" 或者 "feng@192.168.137.250:"
+  ;;       开头的命令参数，都保持原样，不要作 msys2 文件路径转换，比如：
+  ;;       "pscp feng@192.168.137.250:/test.org ~/test.org" 这个命令中
+  ;;       "feng@192.168.137.250:/test.org" 这个参数实例将被保护，不作转换。
+  ;;
   ;;       这个步骤非常重要， 不然 pscp 会报错： "ssh_init Host does not exit"
   ;;       想了解具体细节同学可以阅读：
   ;;       1. https://github.com/msys2/msys2/wiki/Porting#user-content-filesystem-namespaces
