@@ -66,8 +66,23 @@
   ;;    2. 更改 termux 文件： /data/data/com.termux/files/usr/etc/motd
   ;;       清空文件或者删除文件中所有的 "<" 和 ">", 因为这两个字符会影响 tramp 登录，
   ;;       具体细节见 Tramp FAQ： https://www.gnu.org/software/tramp/
-  ;;    3. 设置 putty, 最好设置为免密码登录，如果要使用 plinkx 方法, 还需要保存一个
-  ;;       putty session, 这个 putty session 的名字与 host 的名字一致， 比如：
+  ;;    3. 设置 putty, 最好设置为免密码登录，比如：key + ssh-agenda/ssh-pageant.exe
+  ;;       可以将下面这个例子更改以下放到 ~/.bashrc 里面
+  ;;         if [ -f ~/.agent.env ]; then
+  ;;             . ~/.agent.env >/dev/null
+  ;;             if ! kill -0 $SSH_AGENT_PID >/dev/null 2>&1; then
+  ;;                 echo "Stale agent file found. Spawning new agent..."
+  ;;                 eval `ssh-agent |tee ~/.agent.env`
+  ;;                 ssh-add
+  ;;             fi
+  ;;         else
+  ;;             echo "Starting ssh-agent..."
+  ;;             eval `ssh-agent |tee ~/.agent.env`
+  ;;             ssh-add
+  ;;         fi
+  ;;
+  ;;       如果要使用 plinkx 方法, 还需要保存一个 putty session,
+  ;;       这个 putty session 的名字与 host 的名字一致， 比如：
   ;;       如果你想访问： /plinkx:192.168.1.101: 你就需要保存一个 putty session, 它的
   ;;       名字为： 192.168.1.101
   ;;    4. (pscp 和 psftp 需要) 在 msys2 的 .bashrc 中设置环境变量: MSYS2_ARG_CONV_EXCL
