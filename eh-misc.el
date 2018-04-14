@@ -63,7 +63,7 @@
   ;; 3. sshx 和 scpx 可以正常使用，大文件访问使用 scpx 方法速度比较快。
   ;; 4. plink, plinks, psftp 或者 pscp 四种方法可以使用，但需要作较多设置：
   ;;    1. 安装 putty 和 plink: pacman -Ss mingw-w64-i686-putty mingw-w64-i686-putty-ssh
-  ;;    2. 更改 termux 文件： /data/data/com.termux/files/usr/etc/moted
+  ;;    2. 更改 termux 文件： /data/data/com.termux/files/usr/etc/motd
   ;;       清空文件或者删除文件中所有的 "<" 和 ">", 因为这两个字符会影响 tramp 登录，
   ;;       具体细节见 Tramp FAQ： https://www.gnu.org/software/tramp/
   ;;    3. 设置 putty, 最好设置为免密码登录，如果要使用 plinkx 方法, 还需要保存一个
