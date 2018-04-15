@@ -53,58 +53,103 @@
   (setq vc-handled-backends nil)
   (setq vc-ignore-dir-regexp ".*"))
 
-;; ** Tramp
+;;  Tramp (msys2's emacs) 和 termux 的 sshd 配合使用需要如下设置：
+;;
+;; * 基本设置
+;; 1. 将 "/data/data/com.termux/files/usr/bin" 添加到 tramp-remote-path
+;; 2. 清理 termux 文件：/data/data/com.termux/files/usr/etc/motd ,
+;;    去掉文件中的所有的 "<" 和 ">",因为这两个字符会影响 tramp 登录，
+;;    具体细节见 Tramp FAQ： https://www.gnu.org/software/tramp/
+;;
+;; * 使用 ssh 相关方法的设置
+;; 使用 ssh 的相关 tramp 方法有： ssh, sshx, scp, scpx
+;;
+;; 1. ssh 和 scp 两种 tramp 方法会让 emacs 卡死，原因可能和 cygwin 遇到
+;;    的情况类似：
+;;
+;;    #+BEGIN_EXAMPLE
+;;    Pseudo-terminal will not be allocated because stdin is not a terminal.
+;;    #+END_EXAMPLE
+;;
+;;    具体请参考 Tramp 文档的相关章节： "Issues with Cygwin ssh"
+;;    https://www.gnu.org/software/tramp/
+;;
+;; 2. sshx 和 scpx 可以正常使用，大文件访问使用 scpx 方法速度比较快。
+;; 3. 建议使用 key + ssh-agent 的方式登录，具体设置方法请自行搜索。
+;;
+;;    下面是一个启动 ssh-agent 的脚本，调整以下贴到 ~/.bashrc 文件就可以了。
+;;
+;;    #+BEGIN_SRC shell
+;;    if [ -f ~/.agent.env ]; then
+;;        . ~/.agent.env >/dev/null
+;;        if ! kill -0 $SSH_AGENT_PID >/dev/null 2>&1; then
+;;            echo "Stale agent file found. Spawning new agent..."
+;;            eval `ssh-agent |tee ~/.agent.env`
+;;            ssh-add
+;;        fi
+;;    else
+;;        echo "Starting ssh-agent..."
+;;        eval `ssh-agent |tee ~/.agent.env`
+;;        ssh-add
+;;    fi
+;;    #+END_SRC
+;;
+;; * 使用 Putty 相关方法的设置
+;; 使用 putty 的 tramp 方法有四种： plink, plinks, pscp 和 psftp
+;;
+;; putty 在 window 平台下有图形界面，使用起来很方便，推荐使用，
+;; 但 putty, msys2 和 termux 三者配合需要做一些配置。
+;;
+;; 1. 安装 putty, plink 和 ssh-pageant 三个外部程序：
+;;
+;;    #+BEGIN_EXAMPLE
+;;    pacman -Ss mingw-w64-i686-putty mingw-w64-i686-putty-ssh ssh-pageant-git
+;;    #+END_EXAMPLE
+;;
+;; 2. 在 msys2 的 .bashrc 中设置环境变量: MSYS2_ARG_CONV_EXCL, 比如：
+;;
+;;    #+BEGIN_EXAMPLE
+;;    export MSYS2_ARG_CONV_EXCL="192.168.137.250:;feng@192.168.137.250:"
+;;    #+END_EXAMPLE
+;;
+;;    这个设置的意思是：在调用命令时，所有以 "192.168.137.250:" 或者
+;;    "feng@192.168.137.250:" 开头的命令参数，都保持原样，不要作 msys2
+;;    文件路径转换，比如：
+;;
+;;    #+BEGIN_EXAMPLE
+;;    pscp feng@192.168.137.250:/test.org ~/test.org
+;;    #+END_EXAMPLE
+;;
+;;    这个命令中 "feng@192.168.137.250:/test.org" 这个参数实例将被保护，
+;;    不作转换。
+;;
+;;    这个步骤对于 pscp 和 psftp 两个 tramp 方法非常重要， 不然 pscp 会报错：
+;;    "ssh_init Host does not exit"
+;;
+;;    想了解具体细节同学可以阅读：
+;;    1. https://github.com/msys2/msys2/wiki/Porting#user-content-filesystem-namespaces
+;;    2. https://stackoverflow.com/questions/41789559/how-to-prevent-msys-from-converting-remote-file-path-for-pscp
+;;
+;; 3. 设置 putty, 最好设置为免密码登录，比如：key + ssh-pageant 的方式。
+;;    具体方法请自行搜索。
+;; 4. 将 "C:\msys32\mingw32\bin\pageant.exe" 的快捷方式添加到启动菜单。
+;;    更改快捷方式的目标：
+;;
+;;    #+BEGIN_EXAMPLE
+;;    C:\msys32\mingw32\bin\pageant.exe YOUR-PUTTY-KEY-PATH
+;;    #+END_EXAMPLE
+;;
+;; 5. 如果用户使用 plinkx 方法, 还需要设置保存一个 putty session, 这个
+;;    putty session 的名字与 host 的名字一致， 比如用 tramp 访问：
+;;
+;;    #+BEGIN_EXAMPLE
+;;    /plinkx:192.168.1.101:/
+;;    #+END_EXAMPLE
+;;
+;;    就需要设置保存一个名字为 "192.168.1.101" 的 putty session .
 (use-package tramp
   :ensure nil
   :config
-  ;; Tramp (msys2's emacs) 和 termux 的 sshd 配合使用需要如下设置：
-  ;; 1  将 "/data/data/com.termux/files/usr/bin" 添加到 tramp-remote-path
-  ;; 2. ssh 和 scp 两种 tramp 方法不能使用，会让 emacs 卡死，原因未知。
-  ;; 3. sshx 和 scpx 可以正常使用，大文件访问使用 scpx 方法速度比较快。
-  ;; 4. plink, plinks, psftp 或者 pscp 四种方法可以使用，但需要作较多设置：
-  ;;    1. 安装 putty 和 plink: pacman -Ss mingw-w64-i686-putty mingw-w64-i686-putty-ssh
-  ;;    2. 更改 termux 文件： /data/data/com.termux/files/usr/etc/motd
-  ;;       清空文件或者删除文件中所有的 "<" 和 ">", 因为这两个字符会影响 tramp 登录，
-  ;;       具体细节见 Tramp FAQ： https://www.gnu.org/software/tramp/
-  ;;    3. 设置 putty, 最好设置为免密码登录，比如：key + ssh-agenda/ssh-pageant.exe
-  ;;       可以将下面这个例子更改一下放到 ~/.bashrc 里面。
-  ;;
-  ;;       #+BEGIN_SRC shell
-  ;;       if [ -f ~/.agent.env ]; then
-  ;;           . ~/.agent.env >/dev/null
-  ;;           if ! kill -0 $SSH_AGENT_PID >/dev/null 2>&1; then
-  ;;               echo "Stale agent file found. Spawning new agent..."
-  ;;               eval `ssh-agent |tee ~/.agent.env`
-  ;;               ssh-add
-  ;;           fi
-  ;;       else
-  ;;           echo "Starting ssh-agent..."
-  ;;           eval `ssh-agent |tee ~/.agent.env`
-  ;;           ssh-add
-  ;;       fi
-  ;;       #+END_SRC
-  ;;
-  ;;       如果要使用 plinkx 方法, 还需要保存一个 putty session,
-  ;;       这个 putty session 的名字与 host 的名字一致， 比如：
-  ;;       如果你想访问： /plinkx:192.168.1.101: 你就需要保存一个 putty session, 它的
-  ;;       名字为： 192.168.1.101
-  ;;    4. (pscp 和 psftp 需要) 在 msys2 的 .bashrc 中设置环境变量: MSYS2_ARG_CONV_EXCL
-  ;;       比如：
-  ;;
-  ;;       #+BEGIN_EXAMPLE
-  ;;       export MSYS2_ARG_CONV_EXCL="192.168.137.250:;feng@192.168.137.250:"
-  ;;       #+END_EXAMPLE
-  ;;
-  ;;       这个设置的意思是： 所有以 "192.168.137.250:" 或者 "feng@192.168.137.250:"
-  ;;       开头的命令参数，都保持原样，不要作 msys2 文件路径转换，比如：
-  ;;       "pscp feng@192.168.137.250:/test.org ~/test.org" 这个命令中
-  ;;       "feng@192.168.137.250:/test.org" 这个参数实例将被保护，不作转换。
-  ;;
-  ;;       这个步骤非常重要， 不然 pscp 会报错： "ssh_init Host does not exit"
-  ;;       想了解具体细节同学可以阅读：
-  ;;       1. https://github.com/msys2/msys2/wiki/Porting#user-content-filesystem-namespaces
-  ;;       2. https://stackoverflow.com/questions/41789559/how-to-prevent-msys-from-converting-remote-file-path-for-pscp
-  ;; 5. 如果不使用 VC, 建议禁用: (setq vc-handled-backends nil)
   (push "/data/data/com.termux/files/usr/bin" tramp-remote-path))
 
 ;; ** Eshell
