@@ -53,15 +53,15 @@
   (setq vc-handled-backends nil)
   (setq vc-ignore-dir-regexp ".*"))
 
-;;  Tramp (msys2's emacs) 和 termux 的 sshd 配合使用需要如下设置：
+;; ** Tramp (msys2's emacs) 和 termux 的 sshd 配合使用需要如下设置：
 ;;
-;; * 基本设置
+;; *** 基本设置
 ;; 1. 将 "/data/data/com.termux/files/usr/bin" 添加到 tramp-remote-path
 ;; 2. 清理 termux 文件：/data/data/com.termux/files/usr/etc/motd ,
 ;;    去掉文件中的所有的 "<" 和 ">",因为这两个字符会影响 tramp 登录，
 ;;    具体细节见 Tramp FAQ： https://www.gnu.org/software/tramp/
 ;;
-;; * 使用 ssh 相关方法的设置
+;; *** 使用 ssh 相关方法的设置
 ;; 使用 ssh 的相关 tramp 方法有： ssh, sshx, scp, scpx
 ;;
 ;; 1. ssh 和 scp 两种 tramp 方法会让 emacs 卡死，原因可能和 cygwin 遇到
@@ -94,7 +94,7 @@
 ;;    fi
 ;;    #+END_SRC
 ;;
-;; * 使用 Putty 相关方法的设置
+;; *** 使用 Putty 相关方法的设置
 ;; 使用 putty 的 tramp 方法有四种： plink, plinks, pscp 和 psftp
 ;;
 ;; putty 在 window 平台下有图形界面，使用起来很方便，推荐使用，
