@@ -114,7 +114,8 @@
             #'(lambda ()
                 (setq header-line-format nil)
                 (setq mode-line-format
-                      '(:eval (eh-termux-create-mode-line))))))
+                      '(:eval (eh-termux-create-mode-line)))
+                (force-mode-line-update t))))
 
 ;; * Footer
 (provide 'eh-termux)
