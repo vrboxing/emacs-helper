@@ -35,7 +35,6 @@
 
 ;; * 代码                                                                 :code:
 
-
 (defun eh-termux-mode-line ()
   (list " "
         (propertize
@@ -74,12 +73,42 @@
                 " "))
         "%b"))
 
+(defun eh-termux-capture-mode-line ()
+  (list "Capture: "
+        (propertize
+         "[完成]"
+         'mouse-face 'mode-line-highlight
+         'keymap
+         (let ((map (make-sparse-keymap)))
+           (define-key map [mode-line mouse-1] 'org-capture-finalize)
+           map))
+        " "
+        (propertize
+         "[取消]"
+         'mouse-face 'mode-line-highlight
+         'keymap
+         (let ((map (make-sparse-keymap)))
+           (define-key map [mode-line mouse-1] 'org-capture-kill)
+           map))
+        " "
+        (propertize
+         "[Refile]"
+         'mouse-face 'mode-line-highlight
+         'keymap
+         (let ((map (make-sparse-keymap)))
+           (define-key map [mode-line mouse-1] 'org-capture-refile)
+           map))))
+
 (defun eh-termux-enable ()
   (interactive)
   (setq-default mode-line-format
-                '(:eval (eh-termux-mode-line)))
+                '(:eval
+                  (if (eq major-mode 'org-capture-mode)
+                      (eh-termux-capture-mode-line)
+                    (eh-termux-mode-line))))
   (add-hook 'buffer-list-update-hook
             #'(lambda ()
+                (setq-local header-line-format nil)
                 (setq mode-line-format
                       '(:eval (eh-termux-mode-line))))))
 
