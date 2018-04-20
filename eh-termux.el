@@ -99,7 +99,7 @@
            (define-key map [mode-line mouse-1] 'org-capture-refile)
            map))))
 
-(defun eh-termux-create-mode-link ()
+(defun eh-termux-create-mode-line ()
   (cond ((and (boundp 'org-capture-mode)
               org-capture-mode)
          (eh-termux-capture-mode-line))
