@@ -99,18 +99,21 @@
            (define-key map [mode-line mouse-1] 'org-capture-refile)
            map))))
 
+(defun eh-termux-create-mode-link ()
+  (cond ((and (boundp 'org-capture-mode)
+              org-capture-mode)
+         (eh-termux-capture-mode-line))
+        (t (eh-termux-default-mode-line))))
+
 (defun eh-termux-enable ()
   (interactive)
   (setq-default mode-line-format
-                '(:eval
-                  (if (and (boundp 'org-capture-mode) org-capture-mode)
-                      (eh-termux-capture-mode-line)
-                    (eh-termux-default-mode-line))))
+                '(:eval (eh-termux-create-mode-line)))
   (add-hook 'buffer-list-update-hook
             #'(lambda ()
                 (setq header-line-format nil)
                 (setq mode-line-format
-                      '(:eval (eh-termux-mode-line))))))
+                      '(:eval (eh-termux-create-mode-line))))))
 
 ;; * Footer
 (provide 'eh-termux)
