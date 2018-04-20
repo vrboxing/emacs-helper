@@ -107,6 +107,7 @@
 
 (defun eh-termux-enable ()
   (interactive)
+  (setq-default header-line-format nil)
   (setq-default mode-line-format
                 '(:eval (eh-termux-create-mode-line)))
   (add-hook 'buffer-list-update-hook
