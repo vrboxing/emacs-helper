@@ -114,8 +114,10 @@
             #'(lambda ()
                 (setq header-line-format nil)
                 (setq mode-line-format
-                      '(:eval (eh-termux-create-mode-line)))
-                (force-mode-line-update t))))
+                      '(:eval (eh-termux-create-mode-line)))))
+  (add-hook 'org-capture-mode-hook
+            #'(lambda ()
+                (setq-local header-line-format nil))))
 
 ;; * Footer
 (provide 'eh-termux)
