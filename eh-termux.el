@@ -35,7 +35,7 @@
 
 ;; * 代码                                                                 :code:
 
-(defun eh-termux-mode-line ()
+(defun eh-termux-default-mode-line ()
   (list " "
         (propertize
          "[切换]"
@@ -103,12 +103,12 @@
   (interactive)
   (setq-default mode-line-format
                 '(:eval
-                  (if (eq major-mode 'org-capture-mode)
+                  (if (and (boundp 'org-capture-mode) org-capture-mode)
                       (eh-termux-capture-mode-line)
-                    (eh-termux-mode-line))))
+                    (eh-termux-default-mode-line))))
   (add-hook 'buffer-list-update-hook
             #'(lambda ()
-                (setq-local header-line-format nil)
+                (setq header-line-format nil)
                 (setq mode-line-format
                       '(:eval (eh-termux-mode-line))))))
 
