@@ -79,6 +79,7 @@
     (org-defkey org-mode-map "\C-c\C-c" 'eh-org-ctrl-c-ctrl-c))
 
   (defun eh-org-visual-line-mode ()
+    (interactive)
     (setq visual-line-fringe-indicators '(nil nil))
     (visual-line-mode)
     (if visual-line-mode
@@ -89,7 +90,7 @@
       (turn-on-org-cdlatex)))
 
   (add-hook 'org-mode-hook 'eh-org-cdlatex)
-  (add-hook 'org-mode-hook 'eh-org-visual-line-mode)
+  ;; (add-hook 'org-mode-hook 'eh-org-visual-line-mode)
   (add-hook 'org-mode-hook 'eh-org-smart-truncate-lines))
 
 (use-package org-bookmark
