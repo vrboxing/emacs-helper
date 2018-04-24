@@ -107,7 +107,7 @@
 
 (defun eh-termux-enable ()
   (interactive)
-  (setq truncate-lines t)
+  (setq-default truncate-lines t)
   (setq-default header-line-format nil)
   (setq-default mode-line-format
                 '(:eval (eh-termux-create-mode-line)))
