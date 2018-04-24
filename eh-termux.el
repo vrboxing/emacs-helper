@@ -42,7 +42,7 @@
          'mouse-face 'mode-line-highlight
          'keymap
          (let ((map (make-sparse-keymap)))
-           (define-key map [mode-line mouse-1] 'next-buffer)
+           (define-key map [mode-line mouse-1] 'ibuffer)
            map))
         " "
         (propertize
