@@ -36,9 +36,8 @@
 ;; * 代码                                                                 :code:
 
 (defun eh-termux-default-mode-line ()
-  (list " "
-        (propertize
-         "[切换]"
+  (list (propertize
+         "[切]"
          'mouse-face 'mode-line-highlight
          'keymap
          (let ((map (make-sparse-keymap)))
@@ -46,7 +45,7 @@
            map))
         " "
         (propertize
-         "[最大]"
+         "[大]"
          'mouse-face 'mode-line-highlight
          'keymap
          (let ((map (make-sparse-keymap)))
@@ -54,7 +53,7 @@
            map))
         " "
         (propertize
-         "[折行]"
+         "[折]"
          'mouse-face 'mode-line-highlight
          'keymap
          (let ((map (make-sparse-keymap)))
@@ -63,7 +62,7 @@
         " "
         (when (buffer-file-name)
           (list (propertize
-                 "[保存]"
+                 "[存]"
                  'mouse-face 'mode-line-highlight
                  'keymap
                  (let ((map (make-sparse-keymap)))
@@ -72,7 +71,7 @@
                 " "))
         (when (eq major-mode 'org-mode)
           (list (propertize
-                 "[CC]"
+                 "[C-c C-c]"
                  'mouse-face 'mode-line-highlight
                  'keymap
                  (let ((map (make-sparse-keymap)))
