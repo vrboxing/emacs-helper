@@ -45,6 +45,14 @@
                 (set-face-attribute 'font-lock-comment-face nil :italic nil)
                 (set-face-attribute 'org-agenda-date-today nil :slant 'normal))))
 
+;; ibuffer
+(use-package ibuffer
+  :ensure nil
+  :config
+  ;; Make ibuffer work well with termux
+  (define-key ibuffer-name-map [(mouse-2)] 'ibuffer-mouse-toggle-mark)
+  (define-key ibuffer-name-map [(mouse-1)] 'ibuffer-mouse-visit-buffer))
+
 ;; ** VC
 (use-package vc
   :ensure nil
