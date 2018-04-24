@@ -53,6 +53,14 @@
            (define-key map [mode-line mouse-1] 'delete-other-windows)
            map))
         " "
+        (propertize
+         "[折行]"
+         'mouse-face 'mode-line-highlight
+         'keymap
+         (let ((map (make-sparse-keymap)))
+           (define-key map [mode-line mouse-1] 'visual-line-mode)
+           map))
+        " "
         (when (buffer-file-name)
           (list (propertize
                  "[保存]"
@@ -64,7 +72,7 @@
                 " "))
         (when (eq major-mode 'org-mode)
           (list (propertize
-                 "[C-c C-c]"
+                 "[CC]"
                  'mouse-face 'mode-line-highlight
                  'keymap
                  (let ((map (make-sparse-keymap)))
