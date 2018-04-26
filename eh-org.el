@@ -57,10 +57,12 @@
   ;;         ("DONE" . (:foreground "light sea green"))
   ;;         ("CANCELLED" . (:foreground "forest green"))
   ;;         ("TASK" . (:foreground "blue"))))
-  (setq org-tags-exclude-from-inheritance '("prj"))
-  (setq org-stuck-projects '("+prj/-MAYBE-DONE"
-                             ("TODO" "TASK")
-                             ()))
+  (setq org-tags-exclude-from-inheritance '("PROJECT"))
+  (setq org-stuck-projects
+        '("+PROJECT/-MAYBE-DONE"
+          ("NEXT" "TODO" "TASK")
+          ("@SHOP")
+          "\\<IGNORE\\>"))
   (setq org-insert-heading-respect-content nil)
   (setq org-log-done t)
   (setq org-startup-indented nil)
