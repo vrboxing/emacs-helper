@@ -168,7 +168,10 @@
         "d:/org/"
       "~/org/"))
 
-  (defvar eh-org-remote-directory nil)
+  (defvar eh-org-remote-directory eh-org-local-directory)
+
+  (setq org-agenda-files
+        `(,eh-org-local-directory ,eh-org-remote-directory))
 
   (defun eh-revert-org-buffers ()
     "Refreshes all opened org buffers."
@@ -191,10 +194,6 @@
 
   (setq org-agenda-span 'week)
   (setq org-agenda-window-setup 'only-window)
-  (setq org-agenda-files
-        (if eh-org-remote-directory
-            `(,eh-org-local-directory ,eh-org-remote-directory)
-          `(,eh-org-local-directory)))
   (setq org-agenda-include-diary nil)
 
   (setq org-agenda-todo-ignore-scheduled t)
