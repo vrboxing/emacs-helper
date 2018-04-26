@@ -167,6 +167,8 @@
         "d:/org/org-files"
       "~/org/org-files"))
 
+  (defvar eh-org-remote-file nil)
+
   (defun eh-revert-org-buffers ()
     "Refreshes all opened org buffers."
     (interactive)
@@ -188,7 +190,8 @@
 
   (setq org-agenda-span 'week)
   (setq org-agenda-window-setup 'only-window)
-  (setq org-agenda-files `(,eh-org-directory))
+  (setq org-agenda-files `(,eh-org-directory
+                           ,eh-org-remote-file))
   (setq org-agenda-include-diary nil)
 
   (setq org-agenda-todo-ignore-scheduled t)
@@ -281,17 +284,21 @@
              "* %?\n  %t\n%i")
             ("s" "Schedule" entry (file ,gtd-file)
              "* TODO %?\nSCHEDULED: %t\n%i")
-            ("k" "Schedule" entry (file ,gtd-file)
+            ("k" "Schedule" entry (file ,eh-org-remote-file)
              "* TODO %?\nSCHEDULED: %t\n%i")
             ("d" "Deadline" entry (file ,gtd-file)
              "* TODO %?\nDEADLINE: %t\n%i")
+            ("D" "Deadline" entry (file ,eh-org-remote-file)
+             "* TODO %?\nDEADLINE: %t\n%i")
             ("t" "TODO" entry (file ,gtd-file)
+             "* TODO %?\n%i")
+            ("T" "TODO" entry (file ,eh-org-remote-file)
              "* TODO %?\n%i")
             ("A" "Anniversary" plain (file+headline ,gtd-file "阳历生日")
              "\%\%%(or \"(org-anniversary 1985 4 17)\") 今天是%?%d阳历岁生日")
             ("C" "Chinese Anniversary" plain (file+headline ,gtd-file "农历生日")
              "\%\%%(or \"(eh-org-chinese-anniversary 1985 4 17)\") 今天是%?%d岁农历生日")
-            ("D" "Diary" plain (file+headline ,gtd-file "节假日")
+            ("H" "Diary" plain (file+headline ,gtd-file "节假日")
              "\%\%%(or \"(org-calendar-holiday)\")"))))
 
   (defun eh-org-capture-finalize (&optional stay-with-capture)
