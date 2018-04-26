@@ -142,7 +142,8 @@
   :after org-agenda
   :ensure nil
   :config
-  (setq org-archive-default-command 'org-archive-set-tag))
+  ;; (setq org-archive-default-command 'org-archive-set-tag)
+  (setq org-archive-default-command 'org-archive-subtree))
 
 (use-package org-attach
   :after org-agenda
