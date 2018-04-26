@@ -190,8 +190,10 @@
 
   (setq org-agenda-span 'week)
   (setq org-agenda-window-setup 'only-window)
-  (setq org-agenda-files `(,eh-org-directory
-                           ,eh-org-remote-file))
+  (setq org-agenda-files
+        (if eh-org-remote-file
+            `(,eh-org-directory ,eh-org-remote-file)
+          `(,eh-org-directory)))
   (setq org-agenda-include-diary nil)
 
   (setq org-agenda-todo-ignore-scheduled t)
