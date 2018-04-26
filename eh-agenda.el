@@ -168,10 +168,13 @@
         "d:/org/"
       "~/org/"))
 
-  (defvar eh-org-remote-directory eh-org-local-directory)
+  (defvar eh-org-remote-directory
+    eh-org-local-directory)
 
   (setq org-agenda-files
-        `(,eh-org-local-directory ,eh-org-remote-directory))
+        (delete-dups
+         `(,eh-org-local-directory
+           ,eh-org-remote-directory)))
 
   (defun eh-revert-org-buffers ()
     "Refreshes all opened org buffers."
