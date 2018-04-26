@@ -163,12 +163,12 @@
   :ensure nil
   :config
 
-  (defvar eh-org-directory
+  (defvar eh-org-local-directory
     (if (eq system-type 'windows-nt)
-        "d:/org/org-files"
-      "~/org/org-files"))
+        "d:/org/"
+      "~/org/"))
 
-  (defvar eh-org-remote-file nil)
+  (defvar eh-org-remote-directory nil)
 
   (defun eh-revert-org-buffers ()
     "Refreshes all opened org buffers."
@@ -192,9 +192,9 @@
   (setq org-agenda-span 'week)
   (setq org-agenda-window-setup 'only-window)
   (setq org-agenda-files
-        (if eh-org-remote-file
-            `(,eh-org-directory ,eh-org-remote-file)
-          `(,eh-org-directory)))
+        (if eh-org-remote-directory
+            `(,eh-org-local-directory ,eh-org-remote-directory)
+          `(,eh-org-local-directory)))
   (setq org-agenda-include-diary nil)
 
   (setq org-agenda-todo-ignore-scheduled t)
@@ -280,28 +280,29 @@
          ("C-c w" . org-capture-refile))
   :config
   (setq org-capture-templates
-        (let ((inbox-file (concat (file-name-as-directory eh-org-directory) "INBOX.org")))
-          `(("n" "Note" entry (file ,inbox-file)
+        (let ((local-inbox (concat (file-name-as-directory eh-org-local-directory) "INBOX.org"))
+              (remote-inbox (concat (file-name-as-directory eh-org-remote-directory) "INBOX.org")))
+          `(("n" "Note" entry (file ,local-inbox)
              "* %?\n%i")
-            ("a" "Appointment" entry (file ,inbox-file)
+            ("a" "Appointment" entry (file ,local-inbox)
              "* %?\n  %t\n%i")
-            ("s" "Schedule" entry (file ,inbox-file)
+            ("s" "Schedule" entry (file ,local-inbox)
              "* TODO %?\nSCHEDULED: %t\n%i")
-            ("k" "Schedule" entry (file ,eh-org-remote-file)
+            ("k" "Schedule" entry (file ,remote-inbox)
              "* TODO %?\nSCHEDULED: %t\n%i")
-            ("d" "Deadline" entry (file ,inbox-file)
+            ("d" "Deadline" entry (file ,local-inbox)
              "* TODO %?\nDEADLINE: %t\n%i")
-            ("D" "Deadline" entry (file ,eh-org-remote-file)
+            ("D" "Deadline" entry (file ,remote-inbox)
              "* TODO %?\nDEADLINE: %t\n%i")
-            ("t" "TODO" entry (file ,inbox-file)
+            ("t" "TODO" entry (file ,local-inbox)
              "* TODO %?\n%i")
-            ("T" "TODO" entry (file ,eh-org-remote-file)
+            ("T" "TODO" entry (file ,remote-inbox)
              "* TODO %?\n%i")
-            ("A" "Anniversary" plain (file+headline ,inbox-file "阳历生日")
+            ("A" "Anniversary" plain (file+headline ,local-inbox "阳历生日")
              "\%\%%(or \"(org-anniversary 1985 4 17)\") 今天是%?%d阳历岁生日")
-            ("C" "Chinese Anniversary" plain (file+headline ,inbox-file "农历生日")
+            ("C" "Chinese Anniversary" plain (file+headline ,local-inbox "农历生日")
              "\%\%%(or \"(eh-org-chinese-anniversary 1985 4 17)\") 今天是%?%d岁农历生日")
-            ("H" "Diary" plain (file+headline ,inbox-file "节假日")
+            ("H" "Diary" plain (file+headline ,local-inbox "节假日")
              "\%\%%(or \"(org-calendar-holiday)\")"))))
 
   (defun eh-org-capture-finalize (&optional stay-with-capture)
