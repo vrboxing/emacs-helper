@@ -47,7 +47,20 @@
 
   ;; 自定义变量
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
+        '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")
+          (sequence "TODO(t)" "|" "DONE(d)" "CANCELLED(c)")
+          (sequence "TASK(f)" "|" "DONE(d)")
+          (sequence "MAYBE(m)" "|" "CANCELLED(c)")))
+  ;; (setq org-todo-keyword-faces
+  ;;       '(("TODO" . (:foreground "DarkOrange1" :weight bold))
+  ;;         ("MAYBE" . (:foreground "sea green"))
+  ;;         ("DONE" . (:foreground "light sea green"))
+  ;;         ("CANCELLED" . (:foreground "forest green"))
+  ;;         ("TASK" . (:foreground "blue"))))
+  (setq org-tags-exclude-from-inheritance '("prj"))
+  (setq org-stuck-projects '("+prj/-MAYBE-DONE"
+                             ("TODO" "TASK")
+                             ()))
   (setq org-insert-heading-respect-content nil)
   (setq org-log-done t)
   (setq org-startup-indented nil)
