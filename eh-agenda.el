@@ -237,10 +237,10 @@
             (search . " %i"))))
 
   (setq org-agenda-scheduled-leaders
-        '("预定! " "应%02d天前开始 "))
+        '("预 " "应%02d天前开始 "))
 
   (setq org-agenda-deadline-leaders
-        '("截止! " "过%02d天后到期 " "已经过期%02d天 "))
+        '("止 " "过%02d天后到期 " "已经过期%02d天 "))
 
   (setq org-agenda-format-date 'eh-org-agenda-format-date-aligned)
 
