@@ -128,7 +128,7 @@
                 (setq-local header-line-format nil)))
 
   (setq org-agenda-prefix-format
-        '((agenda  . " %-6t%s")
+        '((agenda  . " %-5t %s")
           (todo  . " %i")
           (tags  . " %i")
           (search . " %i"))))

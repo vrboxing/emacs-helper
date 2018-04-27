@@ -226,16 +226,16 @@
          "now - - - - - - - - - - - - -")
 
   (setq org-agenda-prefix-format
-        '((agenda  . " %i %-12:c%-6t%s%b")
+        '((agenda  . " %i %-12:c%5t %s%b")
           (todo  . " %i %-12:c")
           (tags  . " %i %-12:c")
           (search . " %i %-12:c")))
 
   (setq org-agenda-scheduled-leaders
-        '("预 " "应%02d天前开始 "))
+        '("预定  " "应%02d天前开始 "))
 
   (setq org-agenda-deadline-leaders
-        '("止 " "过%02d天后到期 " "已经过期%02d天 "))
+        '("截止  " "过%02d天后到期 " "已经过期%02d天 "))
 
   (setq org-agenda-format-date 'eh-org-agenda-format-date-aligned)
 
