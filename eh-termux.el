@@ -125,13 +125,7 @@
                       '(:eval (eh-termux-create-mode-line)))))
   (add-hook 'org-capture-mode-hook
             #'(lambda ()
-                (setq-local header-line-format nil)))
-
-  (setq org-agenda-prefix-format
-        '((agenda  . " %-5t %s")
-          (todo  . " %i")
-          (tags  . " %i")
-          (search . " %i"))))
+                (setq-local header-line-format nil))))
 
 ;; * Footer
 (provide 'eh-termux)
