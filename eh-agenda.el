@@ -226,10 +226,10 @@
          "now - - - - - - - - - - - - -")
 
   (setq org-agenda-prefix-format
-        '((agenda  . " %-6t%s")
-          (todo  . " %i")
-          (tags  . " %i")
-          (search . " %i")))
+        '((agenda  . " %i %-12:c%-6t%s%b")
+          (todo  . " %i %-12:c")
+          (tags  . " %i %-12:c")
+          (search . " %i %-12:c")))
 
   (setq org-agenda-scheduled-leaders
         '("预 " "应%02d天前开始 "))
