@@ -37,6 +37,14 @@
 
 (defun eh-termux-default-mode-line ()
   (list (propertize
+         "[M-x]"
+         'mouse-face 'mode-line-highlight
+         'keymap
+         (let ((map (make-sparse-keymap)))
+           (define-key map [mode-line mouse-1] 'counsel-M-x)
+           map))
+        " "
+        (propertize
          "[切]"
          'mouse-face 'mode-line-highlight
          'keymap
@@ -78,14 +86,6 @@
                    (define-key map [mode-line mouse-1] 'org-ctrl-c-ctrl-c)
                    map))
                 " "))
-        (propertize
-         "[M-x]"
-         'mouse-face 'mode-line-highlight
-         'keymap
-         (let ((map (make-sparse-keymap)))
-           (define-key map [mode-line mouse-1] 'counsel-M-x)
-           map))
-        " "
         "%b"))
 
 (defun eh-termux-capture-mode-line ()
