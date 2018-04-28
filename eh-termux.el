@@ -35,91 +35,56 @@
 
 ;; * 代码                                                                 :code:
 
+(defun eh-termux-create-button (button)
+  (when (or (not (nth 2 button))
+            (and (functionp (nth 2 button))
+                 (funcall (nth 2 button))))
+    (if (nth 1 button)
+        (list (propertize (car button)
+                          'mouse-face 'mode-line-highlight
+                          'keymap
+                          (let ((map (make-sparse-keymap)))
+                            (define-key map [mode-line mouse-1] (nth 1 button))
+                            map))
+              " ")
+      (list (nth 0 button) " "))))
+
+(defun eh-termux-create-buttons (buttons)
+  (mapcar #'eh-termux-create-button buttons))
+
 (defun eh-termux-default-mode-line ()
-  (list
-   (if (not (active-minibuffer-window))
-       (propertize
-        "[M-x]"
-        'mouse-face 'mode-line-highlight
-        'keymap
-        (let ((map (make-sparse-keymap)))
-          (define-key map [mode-line mouse-1] 'counsel-M-x)
-          map))
-     (propertize
-      "[C-g]"
-      'mouse-face 'mode-line-highlight
-      'keymap
-      (let ((map (make-sparse-keymap)))
-        (define-key map [mode-line mouse-1] 'minibuffer-keyboard-quit)
-        map)))
-   " "
-   (propertize
-    "[切]"
-    'mouse-face 'mode-line-highlight
-    'keymap
-    (let ((map (make-sparse-keymap)))
-      (define-key map [mode-line mouse-1] 'ibuffer)
-      map))
-   " "
-   (propertize
-    "[大]"
-    'mouse-face 'mode-line-highlight
-    'keymap
-    (let ((map (make-sparse-keymap)))
-      (define-key map [mode-line mouse-1] 'delete-other-windows)
-      map))
-   " "
-   (when (and (buffer-file-name)
-              (buffer-modified-p))
-     (list (propertize
-            "[存]"
-            'mouse-face 'mode-line-highlight
-            'keymap
-            (let ((map (make-sparse-keymap)))
-              (define-key map [mode-line mouse-1] 'save-buffer)
-              map))
-           " "))
-   (when (eq major-mode 'org-mode)
-     (list (propertize
-            "[C-c C-c]"
-            'mouse-face 'mode-line-highlight
-            'keymap
-            (let ((map (make-sparse-keymap)))
-              (define-key map [mode-line mouse-1] 'org-ctrl-c-ctrl-c)
-              map))
-           " "))
-   "%b"))
+  (eh-termux-create-buttons
+   '(("[M-x]" counsel-M-x)
+     ("[切]" ibuffer)
+     ("[大]" delete-other-windows)
+     ("[存]" save-buffer
+      (lambda () (and (buffer-file-name)
+                      (buffer-modified-p))))
+     ("[C-c C-c]" org-ctrl-c-ctrl-c
+      (lambda () (eq major-mode 'org-mode)))
+     ("%b"))))
 
 (defun eh-termux-capture-mode-line ()
-  (list "Capture: "
-        (propertize
-         "[完成]"
-         'mouse-face 'mode-line-highlight
-         'keymap
-         (let ((map (make-sparse-keymap)))
-           (define-key map [mode-line mouse-1] 'org-capture-finalize)
-           map))
-        " "
-        (propertize
-         "[取消]"
-         'mouse-face 'mode-line-highlight
-         'keymap
-         (let ((map (make-sparse-keymap)))
-           (define-key map [mode-line mouse-1] 'org-capture-kill)
-           map))
-        " "
-        (propertize
-         "[Refile]"
-         'mouse-face 'mode-line-highlight
-         'keymap
-         (let ((map (make-sparse-keymap)))
-           (define-key map [mode-line mouse-1] 'org-capture-refile)
-           map))))
+  (eh-termux-create-buttons
+   '(("Capture:")
+     ("[完成]" org-capture-finalize)
+     ("[取消]" org-capture-kill)
+     ("[Refile]" org-capture-refile))))
+
+(defun eh-termux-ivy-mode-line ()
+  (eh-termux-create-buttons
+   '(("[C-g]" minibuffer-keyboard-quit)
+     ("[C-n]" ivy-next-line)
+     ("[C-p]" ivy-previous-line)
+     ("[C-v]" ivy-scroll-up-command)
+     ("[M-v]" ivy-scroll-down-command))))
 
 (defun eh-termux-create-mode-line ()
   (cond ((and (boundp 'org-capture-mode)
               org-capture-mode)
          (eh-termux-capture-mode-line))
+        ((active-minibuffer-window)
+         (eh-termux-ivy-mode-line))
         (t (eh-termux-default-mode-line))))
 
 (defun eh-termux-enable ()
