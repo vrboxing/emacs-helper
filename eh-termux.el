@@ -71,7 +71,8 @@
            (define-key map [mode-line mouse-1] 'delete-other-windows)
            map))
         " "
-        (when (buffer-file-name)
+        (when (and (buffer-file-name)
+                   (buffer-modified-p))
           (list (propertize
                  "[存]"
                  'mouse-face 'mode-line-highlight
