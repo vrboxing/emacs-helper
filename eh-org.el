@@ -47,7 +47,7 @@
 
   ;; 自定义变量
   (setq org-todo-keywords
-        '((sequence "MAYBE(m)" "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
+        '((sequence "TODO(t)" "MAYBE(m)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
   ;; (setq org-todo-keyword-faces
   ;;       '(("TODO" . (:foreground "DarkOrange1" :weight bold))
   ;;         ("MAYBE" . (:foreground "sea green"))
