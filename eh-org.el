@@ -54,10 +54,10 @@
   ;;         ("DONE" . (:foreground "light sea green"))
   ;;         ("CANCELLED" . (:foreground "forest green"))
   ;;         ("TASK" . (:foreground "blue"))))
-  (setq org-tag-alist
-        '(("@SHOP" . ?s)
-          ("ignore" . ?i)
-          ("PROJECT" . ?p)))
+  (setq org-tag-persistent-alist
+        '(("PROJECT" . ?p)
+          ("@SHOP" . ?s)
+          ("ignore" . ?i)))
   (setq org-tags-exclude-from-inheritance
         '("PROJECT"))
   (setq org-stuck-projects
