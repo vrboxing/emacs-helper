@@ -36,61 +36,59 @@
 ;; * 代码                                                                 :code:
 
 (defun eh-termux-default-mode-line ()
-  (list (propertize
-         "[M-x]"
-         'mouse-face 'mode-line-highlight
-         'keymap
-         (let ((map (make-sparse-keymap)))
-           (define-key map [mode-line mouse-1] 'counsel-M-x)
-           map))
-        " "
-        (propertize
-         "[C-g]"
-         'mouse-face 'mode-line-highlight
-         'keymap
-         (let ((map (make-sparse-keymap)))
-           (define-key map [mode-line mouse-1]
-             #'(lambda ()
-                 (interactive)
-                 (execute-kbd-macro (kbd "C-g"))))
-           map))
-        " "
-        (propertize
-         "[切]"
-         'mouse-face 'mode-line-highlight
-         'keymap
-         (let ((map (make-sparse-keymap)))
-           (define-key map [mode-line mouse-1] 'ibuffer)
-           map))
-        " "
-        (propertize
-         "[大]"
-         'mouse-face 'mode-line-highlight
-         'keymap
-         (let ((map (make-sparse-keymap)))
-           (define-key map [mode-line mouse-1] 'delete-other-windows)
-           map))
-        " "
-        (when (and (buffer-file-name)
-                   (buffer-modified-p))
-          (list (propertize
-                 "[存]"
-                 'mouse-face 'mode-line-highlight
-                 'keymap
-                 (let ((map (make-sparse-keymap)))
-                   (define-key map [mode-line mouse-1] 'save-buffer)
-                   map))
-                " "))
-        (when (eq major-mode 'org-mode)
-          (list (propertize
-                 "[C-c C-c]"
-                 'mouse-face 'mode-line-highlight
-                 'keymap
-                 (let ((map (make-sparse-keymap)))
-                   (define-key map [mode-line mouse-1] 'org-ctrl-c-ctrl-c)
-                   map))
-                " "))
-        "%b"))
+  (list
+   (if (not (active-minibuffer-window))
+       (propertize
+        "[M-x]"
+        'mouse-face 'mode-line-highlight
+        'keymap
+        (let ((map (make-sparse-keymap)))
+          (define-key map [mode-line mouse-1] 'counsel-M-x)
+          map))
+     (propertize
+      "[C-g]"
+      'mouse-face 'mode-line-highlight
+      'keymap
+      (let ((map (make-sparse-keymap)))
+        (define-key map [mode-line mouse-1] 'minibuffer-keyboard-quit)
+        map)))
+   " "
+   (propertize
+    "[切]"
+    'mouse-face 'mode-line-highlight
+    'keymap
+    (let ((map (make-sparse-keymap)))
+      (define-key map [mode-line mouse-1] 'ibuffer)
+      map))
+   " "
+   (propertize
+    "[大]"
+    'mouse-face 'mode-line-highlight
+    'keymap
+    (let ((map (make-sparse-keymap)))
+      (define-key map [mode-line mouse-1] 'delete-other-windows)
+      map))
+   " "
+   (when (and (buffer-file-name)
+              (buffer-modified-p))
+     (list (propertize
+            "[存]"
+            'mouse-face 'mode-line-highlight
+            'keymap
+            (let ((map (make-sparse-keymap)))
+              (define-key map [mode-line mouse-1] 'save-buffer)
+              map))
+           " "))
+   (when (eq major-mode 'org-mode)
+     (list (propertize
+            "[C-c C-c]"
+            'mouse-face 'mode-line-highlight
+            'keymap
+            (let ((map (make-sparse-keymap)))
+              (define-key map [mode-line mouse-1] 'org-ctrl-c-ctrl-c)
+              map))
+           " "))
+   "%b"))
 
 (defun eh-termux-capture-mode-line ()
   (list "Capture: "
