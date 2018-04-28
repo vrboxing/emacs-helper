@@ -91,40 +91,6 @@
   (advice-add 'company-dabbrev--prefix
               :around #'eh-company-dabbrev--prefix))
 
-(use-package pyim
-  :after ivy
-  :config
-
-  (defun eh-ivy-build-cregexp (str)
-    (cond ((equal str ".*")
-           ".*")
-          (t (pyim-cregexp-build str))))
-
-  (defun eh-ivy-regexp-helper (str)
-    (cond ((equal str " ")
-           ".*")
-          ((equal str "")
-           nil)
-          (t str)))
-
-  (defun eh-ivy-cregexp-1 (str)
-    (cond ((equal 0 (length str))
-           nil)
-          (t (mapconcat
-              #'eh-ivy-build-cregexp
-              (remove nil
-                      (mapcar 'eh-ivy-regexp-helper
-                              (split-string str "")))
-              ""))
-          nil))
-
-  (defun eh-ivy-cregexp (str)
-    (or (eh-ivy-cregexp-1 str)
-        (ivy--regex-plus str)))
-
-  (setq ivy-re-builders-alist
-        '((t . eh-ivy-cregexp))))
-
 (use-package company-childframe
   :after company
   :config (company-childframe-mode 1))

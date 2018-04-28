@@ -251,6 +251,18 @@
   :after pyim
   :config (pyim-basedict-enable))
 
+(use-package pyim
+  :after ivy
+  :config
+
+  (defun eh-ivy-cregexp (str)
+    (if (string-match-p "^\\." str)
+        (pyim-cregexp-build (substring str 1))
+      (ivy--regex-plus str)))
+
+  (setq ivy-re-builders-alist
+        '((t . eh-ivy-cregexp))))
+
 ;; ** cnfonts
 (use-package cnfonts
   :demand t
