@@ -45,6 +45,14 @@
            map))
         " "
         (propertize
+         "[折]"
+         'mouse-face 'mode-line-highlight
+         'keymap
+         (let ((map (make-sparse-keymap)))
+           (define-key map [mode-line mouse-1] 'visual-line-mode)
+           map))
+        " "
+        (propertize
          "[切]"
          'mouse-face 'mode-line-highlight
          'keymap
@@ -58,14 +66,6 @@
          'keymap
          (let ((map (make-sparse-keymap)))
            (define-key map [mode-line mouse-1] 'delete-other-windows)
-           map))
-        " "
-        (propertize
-         "[折]"
-         'mouse-face 'mode-line-highlight
-         'keymap
-         (let ((map (make-sparse-keymap)))
-           (define-key map [mode-line mouse-1] 'visual-line-mode)
            map))
         " "
         (when (buffer-file-name)
