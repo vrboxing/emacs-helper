@@ -54,7 +54,12 @@
   ;;         ("DONE" . (:foreground "light sea green"))
   ;;         ("CANCELLED" . (:foreground "forest green"))
   ;;         ("TASK" . (:foreground "blue"))))
-  (setq org-tags-exclude-from-inheritance '("PROJECT"))
+  (setq org-tag-alist
+        '(("@SHOP" . ?s)
+          ("ignore" . ?i)
+          ("PROJECT" . ?p)))
+  (setq org-tags-exclude-from-inheritance
+        '("PROJECT"))
   (setq org-stuck-projects
         '("+PROJECT/-MAYBE-DONE"
           ("NEXT" "TODO" "TASK")
