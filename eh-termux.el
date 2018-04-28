@@ -45,11 +45,14 @@
            map))
         " "
         (propertize
-         "[折]"
+         "[C-g]"
          'mouse-face 'mode-line-highlight
          'keymap
          (let ((map (make-sparse-keymap)))
-           (define-key map [mode-line mouse-1] 'visual-line-mode)
+           (define-key map [mode-line mouse-1]
+             #'(lambda ()
+                 (interactive)
+                 (execute-kbd-macro (kbd "C-g"))))
            map))
         " "
         (propertize
