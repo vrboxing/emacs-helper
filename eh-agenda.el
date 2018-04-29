@@ -227,10 +227,10 @@
 
   (setq org-agenda-prefix-format
         (if (display-graphic-p)
-            '((agenda  . " %i %-12:c%5t %s%b")
-              (todo  . " %i %-12:c")
-              (tags  . " %i %-12:c")
-              (search . " %i %-12:c"))
+            '((agenda  . " %i %-12:c %5t %s%b")
+              (todo  . " %i %-12:c ")
+              (tags  . " %i %-12:c ")
+              (search . " %i %-12:c "))
           '((agenda  . " %-5t %s")
             (todo  . " %i")
             (tags  . " %i")
