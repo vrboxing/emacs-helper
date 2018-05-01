@@ -44,9 +44,6 @@
                 ;; Adjust cyberpunk theme
                 (set-face-attribute 'font-lock-comment-face nil :italic nil)
                 (set-face-attribute 'org-agenda-date-today nil :slant 'normal)
-                (eval-after-load 'org-column
-                  (set-face-attribute 'org-column nil :background "#4D4D4D")
-                  (set-face-attribute 'org-column-title nil :background "#4D4D4D"))
                 )))
 
 ;; ibuffer
