@@ -52,8 +52,7 @@
 
   ;; 自定义变量
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)")
-          (sequence "|" "CANCELED(c@)")))
+        '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
   ;; (setq org-todo-keyword-faces
   ;;       '(("TODO" . (:foreground "DarkOrange1" :weight bold))
   ;;         ("MAYBE" . (:foreground "sea green"))
@@ -72,6 +71,7 @@
   (setq org-startup-indented nil)
   (setq org-edit-src-content-indentation 0)
   (setq org-id-link-to-org-use-id t)
+  (setq org-log-into-drawer t)
 
   ;; 在 termux 环境下，C-TAB 无法正常工作，所以必须
   ;; 设置这个变量为 t, 否则展开 ARCHIVE 就很麻烦了。
