@@ -71,6 +71,7 @@
   (setq org-log-done t)
   (setq org-startup-indented nil)
   (setq org-edit-src-content-indentation 0)
+  (setq org-id-link-to-org-use-id t)
 
   ;; 在 termux 环境下，C-TAB 无法正常工作，所以必须
   ;; 设置这个变量为 t, 否则展开 ARCHIVE 就很麻烦了。
