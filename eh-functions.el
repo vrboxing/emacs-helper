@@ -35,6 +35,11 @@
 ;;; Code:
 
 ;; * 代码                                                      :code:
+(defun eh-termux-p ()
+  "Test termux environment."
+  (and (equal system-configuration "aarch64-unknown-linux-android")
+       (not (display-graphic-p))))
+
 (defun eh-wash-text (text &optional fill-width indent)
   "Insert text into a temp buffer and wash it,
 if `fill-width' is a number, the temp buffer will be filled to the number,

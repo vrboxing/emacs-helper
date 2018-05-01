@@ -37,12 +37,17 @@
 
 (use-package org
   :commands org-mode
+  :bind (("C-c a" . org-agenda)
+         ("C-c l" . org-store-link)
+         ("C-c c" . org-capture)
+         ("C-c b" . org-switchb))
   :mode ("\\.org\\'" . org-mode)
   :mode ("\\.org_archive\\'" . org-mode)
   :ensure nil
   :init
   ;; 鼠标点击链接时，不打开链接，这样设置适合在 termux 中使用 org-agenda
-  (setq org-mouse-1-follows-link nil) ;
+  (when (eh-termux-p)
+    (setq org-mouse-1-follows-link nil))
   :config
 
   ;; 自定义变量

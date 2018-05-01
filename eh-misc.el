@@ -204,7 +204,7 @@
 
   :config
 
-  (when (equal system-configuration "aarch64-unknown-linux-android")
+  (when (eh-termux-p)
     ;; 在 Termux 上 emacs-async 暂时无法正常工作，所以没法
     ;; 自动更新 dcache.
     (setq pyim-dcache-auto-update nil))
