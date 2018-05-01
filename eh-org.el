@@ -125,6 +125,10 @@
   :after org
   :ensure nil)
 
+(use-package org-habit
+  :after org
+  :ensure nil)
+
 (use-package ox
   :commands (org-export-as
              org-export-to-file)

@@ -310,6 +310,13 @@
              "* TODO %?\nSCHEDULED: %t\n%i")
             ("k" "Schedule" entry (file ,remote-inbox)
              "* TODO %?\nSCHEDULED: %t\n%i")
+            ("h" "Schedule" entry (file ,remote-inbox)
+             "* TODO %?
+  SCHEDULED: %t
+  :PROPERTIES:
+  :STYLE:    habit
+  :END:
+%i")
             ("d" "Deadline" entry (file ,local-inbox)
              "* TODO %?\nDEADLINE: %t\n%i")
             ("D" "Deadline" entry (file ,remote-inbox)
