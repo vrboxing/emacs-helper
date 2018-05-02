@@ -231,10 +231,10 @@
               (todo  . " %i")
               (tags  . " %i")
               (search . " %i"))
-          '((agenda  . " %i %-12:c %5t %s%b")
-            (todo  . " %i %-12:c ")
-            (tags  . " %i %-12:c ")
-            (search . " %i %-12:c "))))
+          '((agenda  . " %i %-20:c %5t %s%b")
+            (todo  . " %i %-20:c ")
+            (tags  . " %i %-20:c ")
+            (search . " %i %-20:c "))))
 
   (setq org-agenda-scheduled-leaders
         '("预 " "应%02d天前开始 "))
