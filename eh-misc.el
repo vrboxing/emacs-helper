@@ -54,21 +54,6 @@
 
 (use-package yasnippet-snippets)
 
-;; ibuffer
-(use-package ibuffer
-  :ensure nil
-  :config
-  ;; Make ibuffer work well with termux
-  (define-key ibuffer-name-map [(mouse-2)] 'ibuffer-mouse-toggle-mark)
-  (define-key ibuffer-name-map [(mouse-1)] 'ibuffer-mouse-visit-buffer))
-
-;; ** VC
-(use-package vc
-  :ensure nil
-  :config
-  ;; I use magit instead of vc :-)
-  (setq vc-handled-backends nil)
-  (setq vc-ignore-dir-regexp ".*"))
 
 ;; ** Tramp (msys2's emacs) 和 termux 的 sshd 配合使用需要如下设置：
 ;;
@@ -324,11 +309,7 @@
   :commands (emms eh-emms emms-browser)
   :ensure nil)
 
-;; ** elisp setting
-(use-package elisp-mode
-  :mode ("\\.el\\'" . emacs-lisp-mode)
-  :ensure nil)
-
+;; ** aggressive-indent
 (use-package aggressive-indent
   :config
 

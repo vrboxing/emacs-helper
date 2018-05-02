@@ -322,6 +322,40 @@
   :config
   (smex-initialize))
 
+;; ibuffer
+(use-package ibuffer
+  :ensure nil
+  :config
+  ;; Make ibuffer work well with termux
+  (define-key ibuffer-name-map [(mouse-2)] 'ibuffer-mouse-toggle-mark)
+  (define-key ibuffer-name-map [(mouse-1)] 'ibuffer-mouse-visit-buffer))
+
+;; ** VC
+(use-package vc
+  :ensure nil
+  :config
+  ;; I use magit instead of vc :-)
+  (setq vc-handled-backends nil)
+  (setq vc-ignore-dir-regexp ".*"))
+
+;; ** elisp setting
+(use-package elisp-mode
+  :mode ("\\.el\\'" . emacs-lisp-mode)
+  :ensure nil)
+
+;; ** wdired and dired-ranger
+(use-package dired
+  :commands dired
+  :ensure nil)
+
+(use-package wdired
+  :after dired
+  :ensure nil)
+
+(use-package dired-ranger
+  :after dired
+  :ensure nil)
+
 ;; ** eh-function
 (use-package eh-function
   :ensure nil

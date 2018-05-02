@@ -42,13 +42,13 @@
 ;; 5. 重启 Emacs
 
 ;; * 代码                                                                 :code:
-(load-library "eh-basic")
-(load-library "eh-functions")
-(load-library "eh-org")
-(load-library "eh-agenda")
-(load-library "eh-complete")
-(load-library "eh-termux")
-(load-library "eh-misc")
+(require 'eh-basic)
+(require 'eh-functions)
+(require 'eh-org)
+(require 'eh-agenda)
+(require 'eh-complete)
+(require 'eh-theme)
+(require 'eh-misc)
 
 ;; * Footer
 (provide 'emacs-helper)
