@@ -36,7 +36,7 @@
 ;; * 代码                                                      :code:
 ;; ** 设置 company-mode
 (use-package company
-  :defer 10
+  :defer 5
   :bind (("M-/" . company-complete)
          :map company-active-map
          ("M-i" . company-complete-selection)
@@ -92,6 +92,7 @@
               :around #'eh-company-dabbrev--prefix))
 
 (use-package company-childframe
+  :ensure nil
   :after company
   :config (company-childframe-mode 1))
 
