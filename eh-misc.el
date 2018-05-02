@@ -46,6 +46,14 @@
                 (set-face-attribute 'org-agenda-date-today nil :slant 'normal)
                 )))
 
+;; ** yasnippet
+(use-package yasnippet
+  :config
+  (add-to-list 'yas-snippet-dirs "d:/org/snippets" t)
+  (yas-global-mode 1))
+
+(use-package yasnippet-snippets)
+
 ;; ibuffer
 (use-package ibuffer
   :ensure nil
