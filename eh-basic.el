@@ -126,6 +126,7 @@
         ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
 
 ;; ** 使用 use-package
+(setq use-package-verbose 'errors)
 (require 'use-package)
 
 ;; ** 设置 elpa-mirror

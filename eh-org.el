@@ -113,13 +113,6 @@
   ;; (add-hook 'org-mode-hook 'eh-org-visual-line-mode)
   (add-hook 'org-mode-hook 'eh-org-smart-truncate-lines))
 
-(use-package org-colview
-  :after org
-  :ensure nil
-  :config
-  (set-face-attribute 'org-column nil :background "#4D4D4D")
-  (set-face-attribute 'org-column-title nil :background "#4D4D4D"))
-
 (use-package org-bookmark
   :after org
   :ensure nil)
