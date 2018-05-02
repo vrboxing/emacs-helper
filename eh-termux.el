@@ -38,7 +38,6 @@
 (require 'eh-functions)
 (require 'eh-org)
 (require 'eh-agenda)
-(require 'eh-termux)
 (require 'eh-theme)
 
 (defun eh-termux-create-button (button)
