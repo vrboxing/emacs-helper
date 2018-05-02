@@ -92,7 +92,6 @@
               :around #'eh-company-dabbrev--prefix))
 
 (use-package company-childframe
-  :ensure nil
   :after company
   :config (company-childframe-mode 1))
 
