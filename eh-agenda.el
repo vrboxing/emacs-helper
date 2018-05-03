@@ -181,13 +181,10 @@
 
   (defvar eh-org-ignore-remote-directory nil)
 
-  (setq org-agenda-files
-        (delete-dups
-         (remove
-          nil
-          `(,eh-org-local-directory
-            ,(unless eh-org-ignore-remote-directory
-               eh-org-remote-directory)))))
+  (add-to-list 'org-agenda-files eh-org-local-directory t)
+  (when (and (not eh-org-ignore-remote-directory)
+             (not (member eh-org-remote-directory org-agenda-files)))
+    (add-to-list 'org-agenda-files eh-org-remote-directory t))
 
   (defun eh-revert-org-buffers ()
     "Refreshes all opened org buffers."
