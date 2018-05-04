@@ -52,7 +52,7 @@
 
   ;; 自定义变量
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
+        '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "DELAY(e@/!)" "CANCELED(c@)")))
   ;; (setq org-todo-keyword-faces
   ;;       '(("TODO" . (:foreground "DarkOrange1" :weight bold))
   ;;         ("MAYBE" . (:foreground "sea green"))
