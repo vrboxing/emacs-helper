@@ -162,6 +162,7 @@
          ("g" . eh-org-agenda-redo-all))
   :ensure nil
   :config
+  (setq org-agenda-span 'day)
 
   (defvar eh-org-local-directory
     (cl-find-if #'file-exists-p
