@@ -162,8 +162,6 @@
          ("g" . eh-org-agenda-redo-all))
   :ensure nil
   :config
-  (setq org-agenda-span 'day)
-
   (defvar eh-org-local-directory
     (cl-find-if #'file-exists-p
                 '("d:/org/org-files/"
@@ -206,7 +204,7 @@
     (message (substitute-command-keys
               "刷新完成，记得按快捷键 '\\[org-save-all-org-buffers]' 来保存更改。")))
 
-  (setq org-agenda-span 'week)
+  (setq org-agenda-span 'day)
   (setq org-agenda-window-setup 'only-window)
   (setq org-agenda-include-diary nil)
 
