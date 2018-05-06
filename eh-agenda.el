@@ -159,7 +159,8 @@
 (use-package org-agenda
   :bind (("C-c a" . org-agenda)
          :map org-agenda-mode-map
-         ("g" . eh-org-agenda-redo-all))
+         ("g" . eh-org-agenda-redo-all)
+         ("h" . ignore))
   :ensure nil
   :config
   (defvar eh-org-local-directory
