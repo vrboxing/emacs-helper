@@ -160,6 +160,7 @@
   :bind (("C-c a" . org-agenda)
          :map org-agenda-mode-map
          ("g" . eh-org-agenda-redo-all)
+         ("i" . (lambda () (interactive) (org-capture nil "s")))
          ("h" . ignore))
   :ensure nil
   :config
