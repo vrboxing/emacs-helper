@@ -50,6 +50,16 @@
     (setq org-mouse-1-follows-link nil))
   :config
 
+  ;; 确保 tag 可以对齐
+  (dolist (face '(org-level-1
+                  org-level-2
+                  org-level-3
+                  org-level-4
+                  org-level-5
+                  org-level-6
+                  org-level-7))
+    (set-face-attribute face nil :height 1.0))
+
   ;; 自定义变量
   (setq org-todo-keywords
         '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
