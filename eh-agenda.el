@@ -223,13 +223,18 @@
   (setq  org-agenda-current-time-string
          "now - - - - - - - - - - - - -")
 
+  (setq org-agenda-tags-column
+        (if (eh-termux-p)
+            50
+          60))
+
   (setq org-agenda-prefix-format
         (if (eh-termux-p)
             '((agenda  . " %-5t %s")
               (todo  . " %i")
               (tags  . " %i")
               (search . " %i"))
-          '((agenda  . " %i %-20:c %5t %s%b")
+          '((agenda  . " %i %-20:c %5t %s")
             (todo  . " %i %-20:c ")
             (tags  . " %i %-20:c ")
             (search . " %i %-20:c "))))
