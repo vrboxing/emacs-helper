@@ -224,7 +224,7 @@
          "now - - - - - - - - - - - - -")
 
   ;; Set it to 'auto can not work well for Chinese user.
-  (setq org-agenda-tags-column 70)
+  (setq org-agenda-tags-column -120)
 
   (setq org-agenda-prefix-format
         (if (eh-termux-p)
