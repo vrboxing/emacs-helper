@@ -301,13 +301,13 @@
          ("C-c w" . org-capture-refile))
   :config
   (setq org-capture-templates
-        (let ((local-inbox (concat (file-name-as-directory eh-org-local-directory) "INBOX.org"))
-              (remote-inbox (concat (file-name-as-directory eh-org-remote-directory) "INBOX.org")))
-          `(("n" "Note" entry (file ,local-inbox)
+        (let ((local-inbox (concat (file-name-as-directory eh-org-local-directory) "Local-INBOX.org"))
+              (remote-inbox (concat (file-name-as-directory eh-org-remote-directory) "Remote-INBOX.org")))
+          `(("n" "Note on Local-INBOX" entry (file ,local-inbox)
              "* %?\n%i")
-            ("a" "Appointment" entry (file ,local-inbox)
+            ("a" "Appointment on Local-INBOX" entry (file ,local-inbox)
              "* %?\n  %t\n%i")
-            ("s" "Schedule" entry (file ,local-inbox)
+            ("s" "Schedule on Local-INBOX" entry (file ,local-inbox)
              "* TODO %?\nSCHEDULED: %t\n%i")
             ("k" "Schedule" entry (file ,remote-inbox)
              "* TODO %?\nSCHEDULED: %t\n%i")
@@ -318,11 +318,11 @@
   :STYLE:    habit
   :END:
 %i")
-            ("d" "Deadline" entry (file ,local-inbox)
+            ("d" "Deadline on Local-INBOX" entry (file ,local-inbox)
              "* TODO %?\nDEADLINE: %t\n%i")
             ("D" "Deadline" entry (file ,remote-inbox)
              "* TODO %?\nDEADLINE: %t\n%i")
-            ("t" "TODO" entry (file ,local-inbox)
+            ("t" "TODO on Local-INBOX" entry (file ,local-inbox)
              "* TODO %?\n%i")
             ("T" "TODO" entry (file ,remote-inbox)
              "* TODO %?\n%i")
