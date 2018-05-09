@@ -318,7 +318,7 @@
   :STYLE:    habit
   :END:
 %i")
-            ("d" "Local-Deadline" entry (file ,local-inbox)
+            ("d" "Deadline" entry (file ,local-inbox)
              "* TODO %?\nDEADLINE: %t\n%i")
             ("D" "Deadline-Remote" entry (file ,remote-inbox)
              "* TODO %?\nDEADLINE: %t\n%i")
