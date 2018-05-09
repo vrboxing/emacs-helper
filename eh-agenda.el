@@ -301,7 +301,7 @@
          ("C-c w" . org-capture-refile))
   :config
   (setq org-capture-templates
-        (let ((local-inbox (concat (file-name-as-directory eh-org-local-directory) "Local-INBOX.org"))
+        (let ((local-inbox (concat (file-name-as-directory eh-org-local-directory) "INBOX.org"))
               (remote-inbox (concat (file-name-as-directory eh-org-remote-directory) "Remote-INBOX.org")))
           `(("n" "Note on Local-INBOX" entry (file ,local-inbox)
              "* %?\n%i")
