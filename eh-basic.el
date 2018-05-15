@@ -301,10 +301,13 @@
 
 (use-package swiper
   :demand t
-  :bind (;; I use "C-x C-f" to open file, so bind "C-f" to
-         ;; `ivy-immediate-done' is very useful.
+  :bind (
          :map ivy-minibuffer-map
-              ("C-f" . ivy-immediate-done))
+         ;; I use "C-x C-f" to open file, so bind "C-f" to
+         ;; `ivy-immediate-done' is very useful.
+         ("C-f" . ivy-immediate-done)
+         ([mouse-4] . ivy-next-line)
+         ([mouse-5] . ivy-previous-line))
   :config
   (ivy-mode 1)
   (setq ivy-count-format ""
