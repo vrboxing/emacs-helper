@@ -89,6 +89,14 @@
   ;; 设置这个变量为 t, 否则展开 ARCHIVE 就很麻烦了。
   (setq org-cycle-open-archived-trees t)
 
+  (setq org-refile-targets
+        '((nil . (:maxlevel . 9))
+          (org-agenda-files . (:maxlevel . 9))))
+
+  (setq org-outline-path-complete-in-steps nil)
+  (setq org-refile-allow-creating-parent-nodes 'confirm)
+  (setq org-refile-use-outline-path 'full-file-path)
+
   (defun eh-org-fill-paragraph ()
     "Fill org paragraph"
     (interactive)
