@@ -301,36 +301,24 @@
          ("C-c w" . org-capture-refile))
   :config
   (setq org-capture-templates
-        (let ((local-inbox (concat (file-name-as-directory eh-org-local-directory) "INBOX.org"))
-              (remote-inbox (concat (file-name-as-directory eh-org-remote-directory) "Remote-INBOX.org")))
+        (let ((local-inbox (concat (file-name-as-directory eh-org-local-directory) "INBOX.org")))
           `(("n" "Note" entry (file ,local-inbox)
              "* %?\n%i")
             ("a" "Appointment" entry (file ,local-inbox)
              "* %?\n  %t\n%i")
             ("s" "Schedule" entry (file ,local-inbox)
              "* TODO %?\nSCHEDULED: %t\n%i")
-            ("k" "Schedule-Remote" entry (file ,remote-inbox)
+            ("k" "Schedule" entry (file ,local-inbox)
              "* TODO %?\nSCHEDULED: %t\n%i")
-            ("h" "Schedule-Remote" entry (file ,remote-inbox)
-             "* TODO %?
-  SCHEDULED: %t
-  :PROPERTIES:
-  :STYLE:    habit
-  :END:
-%i")
             ("d" "Deadline" entry (file ,local-inbox)
-             "* TODO %?\nDEADLINE: %t\n%i")
-            ("D" "Deadline-Remote" entry (file ,remote-inbox)
              "* TODO %?\nDEADLINE: %t\n%i")
             ("t" "TODO" entry (file ,local-inbox)
              "* TODO %?\n%i")
-            ("T" "TODO-Remote" entry (file ,remote-inbox)
-             "* TODO %?\n%i")
-            ("A" "Anniversary" plain (file+headline ,remote-inbox "阳历生日")
+            ("A" "Anniversary" plain (file+headline ,local-inbox "阳历生日")
              "\%\%%(or \"(org-anniversary 1985 4 17)\") 今天是%?%d阳历岁生日")
-            ("C" "Chinese Anniversary" plain (file+headline ,remote-inbox "农历生日")
+            ("C" "Chinese Anniversary" plain (file+headline ,local-inbox "农历生日")
              "\%\%%(or \"(eh-org-chinese-anniversary 1985 4 17)\") 今天是%?%d岁农历生日")
-            ("H" "Diary" plain (file+headline ,remote-inbox "节假日")
+            ("H" "Diary" plain (file+headline ,local-inbox "节假日")
              "\%\%%(or \"(org-calendar-holiday)\")"))))
 
   (defun eh-org-capture-finalize (&optional stay-with-capture)
