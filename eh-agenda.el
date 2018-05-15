@@ -161,7 +161,10 @@
          :map org-agenda-mode-map
          ("g" . eh-org-agenda-redo-all)
          ("i" . (lambda () (interactive) (org-capture nil "s")))
-         ("h" . ignore))
+         ("A" . org-agenda-archive-default-with-confirmation)
+         ("h" . ignore)
+         ("y" . ignore)
+         ("a" . ignore))
   :ensure nil
   :config
   (defvar eh-org-local-directory
