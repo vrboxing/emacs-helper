@@ -265,8 +265,11 @@
   :ensure nil
   :config
   (setq ess-eval-visibly-p nil)
+  (setq ess-history-file nil)
   (setq ess-ask-for-ess-directory nil)
   (setq ess-smart-S-assign-key "@")
+
+  (setq inferior-ess-r-program "C:/Program Files/R/R-3.4.4/bin/i386/Rterm.exe")
 
   (defun eh-ess-popup-ESS-buffer (eob-p)
     (interactive "P")
