@@ -260,7 +260,7 @@
 
 ;; ** ESS
 (use-package ess
-  :mode "\\.R\\'"
+  :mode (("\\.R\\'" . R-mode))
   :commands R
   :ensure nil
   :config
