@@ -279,7 +279,8 @@
     (setq switch-window-shortcut-appearance 'asciiart))
   (setq switch-window-increase 6)
   (setq switch-window-shortcut-style 'qwerty)
-  (setq switch-window-input-style 'minibuffer))
+  (setq switch-window-input-style 'minibuffer)
+  (setq switch-window-multiple-frames t))
 
 ;; ** 设置 swiper , ivy-mode and counsel
 (use-package counsel
