@@ -261,7 +261,7 @@
 ;; ** ESS
 (use-package ess
   :mode (("\\.R\\'" . R-mode))
-  :commands R
+  :commands (R run-ess-r)
   :ensure nil
   :config
   (setq ess-eval-visibly-p nil)
@@ -269,7 +269,10 @@
   (setq ess-ask-for-ess-directory nil)
   (setq ess-smart-S-assign-key "@")
 
-  (setq inferior-ess-r-program "C:/Program Files/R/R-3.4.4/bin/i386/Rterm.exe")
+  (setq inferior-ess-r-program
+        (or (executable-find "Rterm")
+            (executable-find "R")
+            "R"))
 
   (defun eh-ess-popup-ESS-buffer (eob-p)
     (interactive "P")
