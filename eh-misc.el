@@ -278,14 +278,26 @@
       (ess-switch-to-ESS eob-p)
       (ess-show-buffer buffer t)))
 
-  (defun eh-ess-eval-paragraph (vis)
+  (defun eh-ess-eval-region-or-line-and-step (vis)
     (interactive "P")
-    (ess-eval-paragraph-and-step vis)
+    (ess-eval-region-or-line-and-step vis)
+    (eh-ess-popup-ESS-buffer t))
+
+  (defun eh-ess-eval-region-or-function-or-paragraph (vis)
+    (interactive "P")
+    (ess-eval-region-or-function-or-paragraph vis)
+    (eh-ess-popup-ESS-buffer t))
+
+  (defun eh-ess-eval-region-or-function-or-paragraph-and-step (vis)
+    (interactive "P")
+    (ess-eval-region-or-function-or-paragraph-and-step vis)
     (eh-ess-popup-ESS-buffer t))
 
   :bind (:map
          ess-mode-map
-         ("C-c C-c" . eh-ess-eval-paragraph)))
+         ("C-<return>" . eh-ess-eval-region-or-line-and-step)
+         ("C-M-<return>" . eh-ess-eval-region-or-function-or-paragraph)
+         ("C-c C-c" . eh-ess-eval-region-or-function-or-paragraph-and-step)))
 
 ;; ** aggressive-indent
 (use-package aggressive-indent)
