@@ -321,11 +321,11 @@
   (push '(counsel-describe-function . "") ivy-initial-inputs-alist)
   (push '(counsel-describe-variable . "") ivy-initial-inputs-alist))
 
-;; ** 设置 smex
-(use-package smex
+;; ** 设置 amx
+(use-package amx
   :after counsel
   :config
-  (smex-initialize))
+  (amx-initialize))
 
 ;; ibuffer
 (use-package ibuffer
