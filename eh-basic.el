@@ -108,6 +108,11 @@
 (add-hook 'kill-buffer-query-functions
           #'eh-unkillable-scratch-buffer)
 
+(defun eh-termux-p ()
+  "Test termux environment."
+  (and (equal system-configuration "aarch64-unknown-linux-android")
+       (not (display-graphic-p))))
+
 ;; ** 设置 emacs 包管理器 (Can not use use-package)
 (require 'package)
 (package-initialize)
@@ -368,16 +373,6 @@
          ("C-;" . pyim-delete-word-from-personal-buffer))
 
   :config
-
-  (defun eh-termux-p ()
-    "Test termux environment."
-    (and (equal system-configuration "aarch64-unknown-linux-android")
-         (not (display-graphic-p))))
-
-  (when (eh-termux-p)
-    ;; 在 Termux 上 emacs-async 暂时无法正常工作，所以没法
-    ;; 自动更新 dcache.
-    (setq pyim-dcache-auto-update nil))
 
   (setq default-input-method "pyim")
 
