@@ -226,7 +226,11 @@
              el2org-generate-org
              el2org-generate-html))
 
-;; ** EPG
+;; ** poporg
+(use-package poporg
+  :bind (("C-c \"" . poporg-dwim)))
+
+;; EPG
 (use-package epg
   :after gnus  ;; Only use it in gnus
   :config
