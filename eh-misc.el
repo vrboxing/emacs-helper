@@ -269,7 +269,7 @@
          ("C-<return>" . eh-ess-eval-region-or-line-and-step)
          ("C-M-<return>" . eh-ess-eval-region-or-function-or-paragraph)
          ("C-c C-c" . eh-ess-eval-region-or-function-or-paragraph-and-step))
-  :config
+  :init
   (setq ess-eval-visibly-p nil)
   (setq ess-history-file nil)
   (setq ess-ask-for-ess-directory nil)
