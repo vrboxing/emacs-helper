@@ -264,19 +264,17 @@
 
 ;; ** ESS
 (use-package ess
-  :mode (("\\.R\\'" . R-mode))
-  :commands (R run-ess-r)
-  :ensure nil
+  :bind (:map
+         ess-mode-map
+         ("C-<return>" . eh-ess-eval-region-or-line-and-step)
+         ("C-M-<return>" . eh-ess-eval-region-or-function-or-paragraph)
+         ("C-c C-c" . eh-ess-eval-region-or-function-or-paragraph-and-step))
   :config
   (setq ess-eval-visibly-p nil)
   (setq ess-history-file nil)
   (setq ess-ask-for-ess-directory nil)
-  (setq ess-smart-S-assign-key "@")
-
-  (setq inferior-ess-r-program
-        (or (executable-find "Rterm")
-            (executable-find "R")
-            "R"))
+  (setq ess-smart-S-assign-key nil)
+  ;; (setq inferior-ess-r-program "R")
 
   (defun eh-ess-popup-ESS-buffer (eob-p)
     (interactive "P")
@@ -298,13 +296,7 @@
   (defun eh-ess-eval-region-or-function-or-paragraph-and-step (vis)
     (interactive "P")
     (ess-eval-region-or-function-or-paragraph-and-step vis)
-    (eh-ess-popup-ESS-buffer t))
-
-  :bind (:map
-         ess-mode-map
-         ("C-<return>" . eh-ess-eval-region-or-line-and-step)
-         ("C-M-<return>" . eh-ess-eval-region-or-function-or-paragraph)
-         ("C-c C-c" . eh-ess-eval-region-or-function-or-paragraph-and-step)))
+    (eh-ess-popup-ESS-buffer t)))
 
 ;; ** aggressive-indent
 (use-package aggressive-indent)
