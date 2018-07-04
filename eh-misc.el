@@ -263,13 +263,14 @@
             #'eh-elisp-setup))
 
 ;; ** ESS
-(use-package ess
+(use-package ess-r-mode
+  :ensure ess
   :bind (:map
          ess-mode-map
          ("C-<return>" . eh-ess-eval-region-or-line-and-step)
          ("C-M-<return>" . eh-ess-eval-region-or-function-or-paragraph)
          ("C-c C-c" . eh-ess-eval-region-or-function-or-paragraph-and-step))
-  :init
+  :config
   (setq ess-eval-visibly-p nil)
   (setq ess-history-file nil)
   (setq ess-ask-for-ess-directory nil)
@@ -296,7 +297,12 @@
   (defun eh-ess-eval-region-or-function-or-paragraph-and-step (vis)
     (interactive "P")
     (ess-eval-region-or-function-or-paragraph-and-step vis)
-    (eh-ess-popup-ESS-buffer t)))
+    (eh-ess-popup-ESS-buffer t))
+
+  ;; (define-key ess-mode-map (kbd "C-<return>") #'eh-ess-eval-region-or-line-and-step)
+  ;; (define-key ess-mode-map (kbd "C-M-<return>") #'eh-ess-eval-region-or-function-or-paragraph)
+  ;; (define-key ess-mode-map (kbd "C-c C-c") #'eh-ess-eval-region-or-function-or-paragraph-and-step)
+  )
 
 ;; ** aggressive-indent
 (use-package aggressive-indent)
