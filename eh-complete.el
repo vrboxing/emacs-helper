@@ -91,9 +91,9 @@
   (advice-add 'company-dabbrev--prefix
               :around #'eh-company-dabbrev--prefix))
 
-(use-package company-childframe
+(use-package company-posframe
   :after company
-  :config (company-childframe-mode 1))
+  :config (company-posframe-mode 1))
 
 ;; * Footer
 (provide 'eh-complete)
