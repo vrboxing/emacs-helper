@@ -271,7 +271,8 @@
          ("C-M-<return>" . eh-ess-eval-region-or-function-or-paragraph)
          ("C-c C-c" . eh-ess-eval-region-or-function-or-paragraph-and-step))
   :config
-  (setq ess-eval-visibly-p nil)
+  ;; 这个变量设置为 nil 后 org-babel 会有奇怪的问题
+  (setq ess-eval-visibly-p t)
   (setq ess-history-file nil)
   (setq ess-ask-for-ess-directory nil)
   (setq ess-smart-S-assign-key nil)
