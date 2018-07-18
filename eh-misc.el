@@ -263,8 +263,7 @@
             #'eh-elisp-setup))
 
 ;; ** ESS
-(use-package ess-r-mode
-  :ensure ess
+(use-package ess
   :bind (:map
          ess-mode-map
          ("C-<return>" . eh-ess-eval-region-or-line-and-step)
@@ -393,7 +392,6 @@
 
 ;; ** ebdb
 (use-package ebdb
-  :commands (ebdb ebdb-complete ebdb-complete-enable)
   :ensure nil)
 
 (use-package ebdb-mua
