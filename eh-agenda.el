@@ -217,6 +217,9 @@
   (setq org-agenda-todo-ignore-deadlines t)
   (setq org-agenda-time-leading-zero nil)
 
+  (setq org-agenda-todo-list-sublevels t)
+  (setq org-agenda-todo-ignore-scheduled t)
+
   (setq org-agenda-time-grid
         '((daily today require-timed)
           (800 1000 1200 1400 1600 1800 2000)
