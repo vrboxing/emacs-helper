@@ -133,19 +133,7 @@
   ;; (add-hook 'org-mode-hook 'eh-org-visual-line-mode)
   (add-hook 'org-mode-hook 'eh-org-smart-truncate-lines))
 
-(use-package org-bookmark
-  :after org
-  :ensure nil)
-
 (use-package org-protocol
-  :after org
-  :ensure nil)
-
-(use-package org-screenshot
-  :after org
-  :ensure nil)
-
-(use-package org-habit
   :after org
   :ensure nil)
 
@@ -234,28 +222,8 @@
   :after ox
   :ensure nil)
 
-(use-package ox-beamer
-  :after ox
-  :ensure nil)
-
 (use-package ox-md
   :after ox
-  :ensure nil)
-
-(use-package ox-deck
-  :after ox
-  :ensure nil)
-
-(use-package ox-rss
-  :after ox
-  :ensure nil)
-
-(use-package ox-s5
-  :after ox
-  :ensure nil)
-
-(use-package ox-bibtex
-  :after org
   :ensure nil)
 
 ;; (use-package ob-R
@@ -269,11 +237,6 @@
   ;; 如果一个标题包含TAG: “ignore” ,导出latex时直接忽略这个标题，
   ;; 但对它的内容没有影响。
   (ox-extras-activate '(latex-header-blocks ignore-headlines)))
-
-(use-package ox-bibtex-chinese
-  :after ox
-  :ensure nil
-  :config (ox-bibtex-chinese-enable))
 
 (use-package ob-core
   :commands (org-babel-execute-maybe
@@ -346,12 +309,6 @@
 
   (add-hook 'org-babel-after-execute-hook #'eh-org-show-babel-image)
   (add-hook 'org-babel-after-execute-hook #'eh-org-align-babel-table))
-
-(use-package ob-plantuml
-  :after ob
-  :ensure nil
-  :config
-  (setq org-plantuml-jar-path "~/bin/plantuml.jar"))
 
 ;; * Footer
 (provide 'eh-org)
