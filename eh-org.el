@@ -137,6 +137,12 @@
   :after org
   :ensure nil)
 
+(use-package org-download
+  :after org
+  :config
+  (setq org-download-method 'attach)
+  (org-download-enable))
+
 (use-package ox
   :commands (org-export-as
              org-export-to-file)
