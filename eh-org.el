@@ -141,12 +141,6 @@
   :after org
   :config
   (setq org-download-method 'attach)
-
-  (defun eh-org-download--fullname (orig-func link &optional ext)
-    (replace-regexp-in-string "%" "" (funcall orig-func link ext)))
-
-  (advice-add 'org-download--fullname :around #'eh-org-download--fullname)
-
   (org-download-enable))
 
 (use-package ox
