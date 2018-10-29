@@ -129,6 +129,8 @@
     (when (featurep 'cdlatex)
       (turn-on-org-cdlatex)))
 
+  (org-defkey org-mode-map "\C-c\C-q" 'counsel-org-tag)
+
   (add-hook 'org-mode-hook 'eh-org-cdlatex)
   ;; (add-hook 'org-mode-hook 'eh-org-visual-line-mode)
   (add-hook 'org-mode-hook 'eh-org-smart-truncate-lines))
