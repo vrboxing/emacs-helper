@@ -321,6 +321,28 @@
              "* TODO %?\nDEADLINE: %t\n%i")
             ("t" "TODO" entry (file ,local-inbox)
              "* TODO %?\n%i")
+            ("p" "Project" entry (file ,local-inbox)
+             "* %?
+
+** 项目背景介绍
+
+** 为什么要开启这个项目?
+-
+-
+-
+-
+-
+-
+** 这个项目会有什么产出？
+
+** 头脑风暴（点子数>20）
+*** Who?
+*** What?
+*** When?
+*** Where?
+*** Why?
+*** How?
+")
             ("A" "Anniversary" plain (file+headline ,local-inbox "阳历生日")
              "\%\%%(or \"(org-anniversary 1985 4 17)\") 今天是%?%d阳历岁生日")
             ("C" "Chinese Anniversary" plain (file+headline ,local-inbox "农历生日")
