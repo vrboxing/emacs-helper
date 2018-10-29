@@ -52,9 +52,6 @@
   (add-to-list 'yas-snippet-dirs "d:/org/snippets" t)
   (yas-global-mode 1))
 
-(use-package yasnippet-snippets)
-
-
 ;; ** Tramp (msys2's emacs) 和 termux 的 sshd 配合使用需要如下设置：
 ;;
 ;; *** 基本设置

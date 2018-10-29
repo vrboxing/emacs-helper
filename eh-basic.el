@@ -311,6 +311,7 @@
          ;; I use "C-x C-f" to open file, so bind "C-f" to
          ;; `ivy-immediate-done' is very useful.
          ("C-f" . ivy-immediate-done)
+         ("S-<return>" . ivy-immediate-done)
          ([mouse-1] . ignore)
          ([mouse-3] . ignore)
          ([mouse-4] . ivy-next-line)
