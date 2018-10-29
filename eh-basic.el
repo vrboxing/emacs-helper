@@ -421,7 +421,7 @@
   :config
 
   (defun eh-ivy-cregexp (str)
-    (if (string-match-p "^\\." str)
+    (if (string-match-p "^\\," str)
         (pyim-cregexp-build (substring str 1))
       (ivy--regex-plus str)))
 
