@@ -323,9 +323,17 @@
         ivy-format-function #'ivy-format-function-arrow
         ivy-display-style 'fancy
         ivy-use-selectable-prompt t)
-  (push '(counsel-M-x . "") ivy-initial-inputs-alist)
-  (push '(counsel-describe-function . "") ivy-initial-inputs-alist)
-  (push '(counsel-describe-variable . "") ivy-initial-inputs-alist))
+
+  (setq ivy-initial-inputs-alist
+        '((org-refile . "")
+          (org-agenda-refile . "")
+          (org-capture-refile . "")
+          (counsel-M-x . "")
+          (counsel-describe-function . "")
+          (counsel-describe-variable . "")
+          (counsel-org-capture . "")
+          (Man-completion-table . "")
+          (woman . ""))))
 
 ;; ** 设置 amx
 (use-package amx
