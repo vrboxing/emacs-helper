@@ -90,12 +90,12 @@
   (setq org-cycle-open-archived-trees t)
 
   (setq org-refile-targets
-        '((nil . (:level . 1))
-          (org-agenda-files . (:level . 1))))
+        '((nil . (:maxlevel . 2))
+          (org-agenda-files . (:maxlevel . 2))))
 
   (setq org-outline-path-complete-in-steps nil)
   (setq org-refile-allow-creating-parent-nodes 'confirm)
-  (setq org-refile-use-outline-path 'full-file-path)
+  (setq org-refile-use-outline-path 'file)
 
   (defun eh-org-fill-paragraph ()
     "Fill org paragraph"
