@@ -160,7 +160,6 @@
 (use-package org-agenda
   :bind (("C-c a" . org-agenda)
          :map org-agenda-mode-map
-         (":" . counsel-org-tag-agenda)
          ("g" . eh-org-agenda-redo-all)
          ("i" . (lambda () (interactive) (org-capture nil "s")))
          ("A" . org-agenda-archive-default-with-confirmation)
