@@ -323,24 +323,20 @@
             ("t" "TODO" entry (file ,local-inbox)
              "* TODO %?\n%i")
             ("p" "Project" entry (file ,local-inbox)
-             "* TODO %?
-** 项目成立的背景
-** 项目主要解决什么问题，或者说为什么要启动此项目?
--
--
--
--
--
--
-** 项目有什么目标产出？
-** 头脑风暴（点子数>20）
-*** Who?
-*** What?
-*** When?
-*** Where?
-*** Why?
-*** How?
+             "* %?                      :PROJECT:
+** 为什么要启动此项目？想要解决什么问题？
+项目背景分析，可以从战略、客户需求、利益相关者、
+领导等方面思考，至少说出6条理由。
+
+** 项目的目标和产出是什么？
+
+** 头脑风暴
+可以用 5W2H 法来协助思考
+(Who? What? When? Where? Why? How? How much?)
+点子越多越好，不求质量，只求数量。
+
 ** 项目的里程碑及时间计划
+
 ** 项目团队成员安排
 ")
             ("A" "Anniversary" plain (file+headline ,local-inbox "阳历生日")
