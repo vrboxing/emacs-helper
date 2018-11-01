@@ -474,8 +474,8 @@
   (setq org-agenda-custom-commands
         '(;; 大归档只适用于一级项目，并且这个项目已经在平常通过 ARCHIVE 标签隐藏了。
           ("A" "Find all projects which need archive."
-           ;; tags "+ARCHIVE+TODO={DONE\\|CANCELED}"
-           search "+{^\\*\\s-+\\(DONE\\|CANCELED\\)} +{:ARCHIVE:}"
+           tags "+LEVEL=1+ARCHIVE+TODO={DONE\\|CANCELED}"
+           ;; search "+{^\\*\\s-+\\(DONE\\|CANCELED\\)} +{:ARCHIVE:}"
            ((org-agenda-skip-archived-trees nil))))
         )
 
