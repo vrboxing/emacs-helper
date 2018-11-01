@@ -426,7 +426,7 @@
   :config
   ;; 使用 org-archive-subtree 时，原来的 header 层级容易被打乱，而且容易
   ;; 因为保存不及时而导致 archive 文件内容丢失， 所以这个命令适合每月的
-  ;; 大归档, 日常情况下，使用TAG归档似乎更加安全和方便。
+  ;; 大归档, 日常情况下，使用 ARCHIVE TAG 来隐藏已经完成的任务，安全又方便。
   ;; (setq org-archive-default-command 'org-archive-subtree)
   (setq org-archive-default-command 'org-archive-set-tag)
   )
@@ -470,6 +470,14 @@
     eh-org-local-directory)
 
   (defvar eh-org-ignore-remote-directory nil)
+
+  (setq org-agenda-custom-commands
+        '(;; 大归档只适用于一级项目，并且这个项目已经在平常通过 ARCHIVE 标签隐藏了。
+          ("A" "Find all projects which need archive."
+           ;; tags "+ARCHIVE+TODO={DONE\\|CANCELED}"
+           search "+{^\\*\\s-+\\(DONE\\|CANCELED\\)} +{:ARCHIVE:}"
+           ((org-agenda-skip-archived-trees nil))))
+        )
 
   (add-to-list 'org-agenda-files eh-org-local-directory t)
   (when (and (not eh-org-ignore-remote-directory)
