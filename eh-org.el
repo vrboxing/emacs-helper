@@ -316,6 +316,335 @@
   (add-hook 'org-babel-after-execute-hook #'eh-org-show-babel-image)
   (add-hook 'org-babel-after-execute-hook #'eh-org-align-babel-table))
 
+(use-package parse-time
+  :after org-agenda
+  :ensure nil
+  :config
+
+  (setq parse-time-months
+        (append '(("yiy" . 1) ("ery" . 2) ("sany" . 3)
+                  ("siy" . 4) ("wuy" . 5) ("liuy" . 6)
+                  ("qiy" . 7) ("bay" . 8) ("jiuy" . 9)
+                  ("shiy" . 10) ("shiyiy" . 11) ("shiery" . 12)
+                  ("yiyue" . 1) ("eryue" . 2) ("sanyue" . 3)
+                  ("siyue" . 4) ("wuyue" . 5) ("liuyue" . 6)
+                  ("qiyue" . 7) ("bayue" . 8) ("jiuyue" . 9)
+                  ("shiyue" . 10) ("shiyiyue" . 11) ("shieryue" . 12))
+                parse-time-months))
+
+  (setq parse-time-weekdays
+        (append '(("zri" . 0) ("zqi" . 0)
+                  ("zyi" . 1) ("zer" . 2) ("zsan" . 3)
+                  ("zsi" . 4) ("zwu" . 5) ("zliu" . 6)
+                  ("zr" . 0) ("zq" . 0)
+                  ("zy" . 1) ("ze" . 2) ("zs" . 3)
+                  ("zsi" . 4) ("zw" . 5) ("zl" . 6))
+                parse-time-weekdays)))
+
+(use-package cal-china-x
+  :after org-agenda
+  :ensure nil
+  :config
+  (defvar eh-calendar-holidays nil)
+  (setq eh-calendar-holidays
+        '(;;公历节日
+          (holiday-fixed 1 1 "元旦")
+          (holiday-fixed 2 14 "情人节")
+          (holiday-fixed 3 8 "妇女节")
+          (holiday-fixed 3 14 "白色情人节")
+          (holiday-fixed 4 1 "愚人节")
+          (holiday-fixed 5 1 "劳动节")
+          (holiday-fixed 5 4 "青年节")
+          (holiday-float 5 0 2 "母亲节")
+          (holiday-fixed 6 1 "儿童节")
+          (holiday-float 6 0 3 "父亲节")
+          (holiday-fixed 9 10 "教师节")
+          (holiday-fixed 10 1 "国庆节")
+          (holiday-fixed 10 24 "程序员节")
+          (holiday-fixed 12 25 "圣诞节")
+          ;; 农历节日
+          (holiday-lunar 1 1 "春节" 0)
+          (holiday-lunar 1 2 "春节" 0)
+          (holiday-lunar 1 3 "春节" 0)
+          (holiday-lunar 1 15 "元宵节" 0)
+          (holiday-solar-term "清明" "清明节")
+          (holiday-solar-term "小寒" "小寒")
+          (holiday-solar-term "大寒" "大寒")
+          (holiday-solar-term "立春" "立春")
+          (holiday-solar-term "雨水" "雨水")
+          (holiday-solar-term "惊蛰" "惊蛰")
+          (holiday-solar-term "春分" "春分")
+          (holiday-solar-term "谷雨" "谷雨")
+          (holiday-solar-term "立夏" "立夏")
+          (holiday-solar-term "小满" "小满")
+          (holiday-solar-term "芒种" "芒种")
+          (holiday-solar-term "夏至" "夏至")
+          (holiday-solar-term "小暑" "小暑")
+          (holiday-solar-term "大暑" "大暑")
+          (holiday-solar-term "立秋" "立秋")
+          (holiday-solar-term "处暑" "处暑")
+          (holiday-solar-term "白露" "白露")
+          (holiday-solar-term "秋分" "秋分")
+          (holiday-solar-term "寒露" "寒露")
+          (holiday-solar-term "霜降" "霜降")
+          (holiday-solar-term "立冬" "立冬")
+          (holiday-solar-term "小雪" "小雪")
+          (holiday-solar-term "大雪" "大雪")
+          (holiday-solar-term "冬至" "冬至")
+          (holiday-lunar 5 5 "端午节" 0)
+          (holiday-lunar 8 15 "中秋节" 0)
+          (holiday-lunar 7 7 "七夕情人节" 0)
+          (holiday-lunar 12 8 "腊八节" 0)
+          (holiday-lunar 9 9 "重阳节" 0)))
+  (setq calendar-holidays eh-calendar-holidays))
+
+(use-package calendar
+  :after org-agenda
+  :ensure nil
+  :config
+  (setq calendar-week-start-day 0) ; 一周第一天，0表示星期天, 1表示星期一
+  (setq calendar-month-name-array
+        ["一月" "二月" "三月" "四月" "五月" "六月"
+         "七月" "八月" "九月" "十月" "十一月" "十二月"])
+  (setq calendar-day-name-array
+        ["周日" "周一" "周二" "周三" "周四" "周五" "周六"])
+
+  (defun eh-org-chinese-anniversary (year lunar-month lunar-day &optional mark)
+    (if year
+        (let* ((d-date (diary-make-date lunar-month lunar-day year))
+               (a-date (calendar-absolute-from-gregorian d-date))
+               (c-date (calendar-chinese-from-absolute a-date))
+               (cycle (car c-date))
+               (yy (cadr c-date))
+               (y (+ (* 100 cycle) yy)))
+          (diary-chinese-anniversary lunar-month lunar-day y mark))
+      (diary-chinese-anniversary lunar-month lunar-day year mark))))
+
+(use-package org-archive
+  :after org-agenda
+  :ensure nil
+  :config
+  ;; 使用 org-archive-subtree 时，原来的 header 层级容易被打乱，而且容易
+  ;; 因为保存不及时而导致 archive 文件内容丢失， 所以这个命令适合每月的
+  ;; 大归档, 日常情况下，使用TAG归档似乎更加安全和方便。
+  ;; (setq org-archive-default-command 'org-archive-subtree)
+  (setq org-archive-default-command 'org-archive-set-tag)
+  )
+
+(use-package org-attach
+  :after org-agenda
+  :ensure nil
+  :config
+  (setq org-attach-commit nil))
+
+(use-package autorevert
+  :after org-agenda
+  :config
+  (add-hook 'org-mode-hook #'turn-on-auto-revert-mode))
+
+(use-package org-agenda
+  :bind (("C-c a" . org-agenda)
+         :map org-agenda-mode-map
+         ("g" . eh-org-agenda-redo-all)
+         ("i" . (lambda () (interactive) (org-capture nil "s")))
+         ("A" . org-agenda-archive-default-with-confirmation)
+         ("h" . ignore)
+         ("y" . ignore)
+         ("a" . ignore))
+  :ensure nil
+  :config
+  (defvar eh-org-local-directory
+    (cl-find-if #'file-exists-p
+                '("d:/org/org-files/"
+                  "d:/org/"
+                  "e:/org/org-files/"
+                  "e:/org/"
+                  "f:/org/org-files/"
+                  "f:/org/"
+                  "~/org/org-files/"
+                  "~/org/"
+                  "~/storage/shared/org/org-files"
+                  "~/storage/shared/org/")))
+
+  (defvar eh-org-remote-directory
+    eh-org-local-directory)
+
+  (defvar eh-org-ignore-remote-directory nil)
+
+  (add-to-list 'org-agenda-files eh-org-local-directory t)
+  (when (and (not eh-org-ignore-remote-directory)
+             (not (member eh-org-remote-directory org-agenda-files)))
+    (add-to-list 'org-agenda-files eh-org-remote-directory t))
+
+  (defun eh-revert-org-buffers ()
+    "Refreshes all opened org buffers."
+    (interactive)
+    (dolist (buf (buffer-list))
+      (with-current-buffer buf
+        (when (and (buffer-file-name)
+                   (string-match-p "org$" (buffer-file-name))
+                   (file-exists-p (buffer-file-name))
+                   (not (buffer-modified-p)))
+          (revert-buffer t t t) )))
+    (message "Refreshed all opened org files."))
+
+  (defun eh-org-agenda-redo-all (&optional exhaustive)
+    (interactive "P")
+    (eh-revert-org-buffers)
+    (funcall-interactively #'org-agenda-redo-all)
+    (message (substitute-command-keys
+              "刷新完成，记得按快捷键 '\\[org-save-all-org-buffers]' 来保存更改。")))
+
+  (setq org-agenda-span 'day)
+  (setq org-agenda-window-setup 'only-window)
+  (setq org-agenda-include-diary nil)
+
+  (setq org-agenda-todo-ignore-scheduled t)
+  (setq org-agenda-todo-ignore-deadlines t)
+  (setq org-agenda-time-leading-zero nil)
+
+  (setq org-agenda-todo-list-sublevels t)
+  (setq org-agenda-todo-ignore-scheduled t)
+
+  (setq org-agenda-time-grid
+        '((daily today require-timed)
+          (800 1000 1200 1400 1600 1800 2000)
+          ""
+          "----------------"))
+
+  (setq  org-agenda-current-time-string
+         "now - - - - - - - - - - - - -")
+
+  ;; Set it to 'auto can not work well for Chinese user.
+  (setq org-agenda-tags-column -120)
+
+  (setq org-agenda-prefix-format
+        (if (eh-termux-p)
+            '((agenda  . " %-5t %s")
+              (todo  . " %i")
+              (tags  . " %i")
+              (search . " %i"))
+          '((agenda  . " %i %-20:c %5t %s")
+            (todo  . " %i %-20:c ")
+            (tags  . " %i %-20:c ")
+            (search . " %i %-20:c "))))
+
+  (setq org-agenda-scheduled-leaders
+        '("预 " "应%02d天前开始 "))
+
+  (setq org-agenda-deadline-leaders
+        '("止 " "过%02d天后到期 " "已经过期%02d天 "))
+
+  (setq org-agenda-format-date 'eh-org-agenda-format-date-aligned)
+
+  (defun eh-org-agenda-format-date-aligned (date)
+    (require 'cal-iso)
+    (let* ((dayname (calendar-day-name date))
+           (day (cadr date))
+           (day-of-week (calendar-day-of-week date))
+           (month (car date))
+           (monthname (calendar-month-name month))
+           (year (nth 2 date))
+           (iso-week (org-days-to-iso-week
+                      (calendar-absolute-from-gregorian date)))
+           (weekyear (cond ((and (= month 1) (>= iso-week 52))
+                            (1- year))
+                           ((and (= month 12) (<= iso-week 1))
+                            (1+ year))
+                           (t year)))
+           (cn-date (calendar-chinese-from-absolute
+                     (calendar-absolute-from-gregorian date)))
+           (cn-year (cadr cn-date))
+           (cn-month (cl-caddr cn-date))
+           (cn-day (cl-cadddr cn-date))
+           (cn-month-name
+            ["正月" "二月" "三月" "四月" "五月" "六月"
+             "七月" "八月" "九月" "十月" "冬月" "腊月"])
+           (cn-day-name
+            ["初一" "初二" "初三" "初四" "初五" "初六" "初七" "初八" "初九" "初十"
+             "十一" "十二" "十三" "十四" "十五" "十六" "十七" "十八" "十九" "二十"
+             "廿一" "廿二" "廿三" "廿四" "廿五" "廿六" "廿七" "廿八" "廿九" "三十"
+             "卅一" "卅二" "卅三" "卅四" "卅五" "卅六" "卅七" "卅八" "卅九" "卅十"])
+           (extra (format "(%s%s%s%s)"
+                          (if (or (eq org-agenda-current-span 'day)
+                                  (= day-of-week 1)
+                                  (= cn-day 1))
+                              (aref cn-month-name (1-  (floor cn-month)))
+                            "")
+                          (if (or (= day-of-week 1)
+                                  (= cn-day 1))
+                              (if (integerp cn-month) "" "[闰]")
+                            "")
+                          (aref cn-day-name (1- cn-day))
+                          (if (or (= day-of-week 1)
+                                  (eq org-agenda-current-span 'day))
+                              (format "，第%02d周" iso-week)
+                            ""))))
+      (format "%04d-%02d-%02d %s %s"
+              year month day dayname extra))))
+
+(use-package org-capture
+  :after org-agenda
+  :ensure nil
+  :bind (("C-c c" . org-capture)
+         :map org-capture-mode-map
+         ("C-c c" . org-capture-finalize)
+         ("C-c k" . org-capture-kill)
+         ("C-c w" . org-capture-refile))
+  :config
+  (setq org-capture-templates
+        (let ((local-inbox (concat (file-name-as-directory eh-org-local-directory) "INBOX.org")))
+          `(("n" "Note" entry (file ,local-inbox)
+             "* %?\n%i")
+            ("a" "Appointment" entry (file ,local-inbox)
+             "* %?\n  %t\n%i")
+            ("s" "Schedule" entry (file ,local-inbox)
+             "* TODO %?\nSCHEDULED: %t\n%i")
+            ("k" "Schedule" entry (file ,local-inbox)
+             "* TODO %?\nSCHEDULED: %t\n%i")
+            ("d" "Deadline" entry (file ,local-inbox)
+             "* TODO %?\nDEADLINE: %t\n%i")
+            ("t" "TODO" entry (file ,local-inbox)
+             "* TODO %?\n%i")
+            ("p" "Project" entry (file ,local-inbox)
+             "* %?                      :PROJECT:
+** 为什么要启动此项目？想要解决什么问题？
+项目背景分析，可以从战略、客户需求、利益相关者、
+领导等方面思考，至少说出6条理由。
+
+** 项目的目标和产出是什么？
+
+** 头脑风暴
+可以用 5W2H 法来协助思考
+(Who? What? When? Where? Why? How? How much?)
+点子越多越好，不求质量，只求数量。
+
+** 项目的里程碑及时间计划
+
+** 项目团队成员安排
+")
+            ("A" "Anniversary" plain (file+headline ,local-inbox "阳历生日")
+             "\%\%%(or \"(org-anniversary 1985 4 17)\") 今天是%?%d阳历岁生日")
+            ("C" "Chinese Anniversary" plain (file+headline ,local-inbox "农历生日")
+             "\%\%%(or \"(eh-org-chinese-anniversary 1985 4 17)\") 今天是%?%d岁农历生日")
+            ("H" "Diary" plain (file+headline ,local-inbox "节假日")
+             "\%\%%(or \"(org-calendar-holiday)\")"))))
+
+  (defun eh-org-capture-finalize (&optional stay-with-capture)
+    (interactive "P")
+    ;; 使用 tramp 的时候，我不想频繁的保存文件，因为速度太慢了，
+    ;; 严重影响体验，这个函数让 capture 仅仅更新 buffer, 但不保存
+    ;; buffer, 用户在合适的时候自己手动保存文件。
+    (cl-letf (((symbol-function 'save-buffer) #'ignore))
+      (org-capture-finalize stay-with-capture))
+    (org-agenda-redo-all)
+    (message "Capture 已经发送到对应 buffer，记得手动保存这个 buffer！"))
+
+  (define-key org-capture-mode-map "\C-c\C-c" 'eh-org-capture-finalize)
+
+  )
+
+
 ;; * Footer
 (provide 'eh-org)
 

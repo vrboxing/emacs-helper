@@ -45,7 +45,6 @@
 (require 'eh-basic)
 (require 'eh-functions)
 (require 'eh-org)
-(require 'eh-agenda)
 (require 'eh-complete)
 (require 'eh-theme)
 (require 'eh-misc)
