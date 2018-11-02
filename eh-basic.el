@@ -312,6 +312,8 @@
          ;; `ivy-immediate-done' is very useful.
          ("C-f" . ivy-immediate-done)
          ("S-<return>" . ivy-immediate-done)
+         ("M-j" . pyim-convert-code-at-point)
+         ("C-M-j" . ivy-yank-word)
          ([mouse-1] . ignore)
          ([mouse-3] . ignore)
          ([mouse-4] . ivy-next-line)
