@@ -312,8 +312,6 @@
          ;; `ivy-immediate-done' is very useful.
          ("C-f" . ivy-immediate-done)
          ("S-<return>" . ivy-immediate-done)
-         ("M-j" . pyim-convert-code-at-point)
-         ("C-M-j" . ivy-yank-word)
          ([mouse-1] . ignore)
          ([mouse-3] . ignore)
          ([mouse-4] . ivy-next-line)
@@ -380,9 +378,7 @@
 ;; ** 设置拼音输入法
 (use-package pyim
   :ensure nil
-  :bind (("M-j" . pyim-convert-code-at-point)
-         ("C-;" . pyim-delete-word-from-personal-buffer))
-
+  :bind* (("M-j" . pyim-convert-code-at-point))
   :config
 
   (setq default-input-method "pyim")
