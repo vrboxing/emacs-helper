@@ -83,8 +83,6 @@
   (setq org-id-link-to-org-use-id t)
   (setq org-log-into-drawer t)
 
-  (setq org-attach-store-link-p 'attached)
-
   ;; 在 termux 环境下，C-TAB 无法正常工作，所以必须
   ;; 设置这个变量为 t, 否则展开 ARCHIVE 就很麻烦了。
   (setq org-cycle-open-archived-trees t)
@@ -435,7 +433,14 @@
   :after org-agenda
   :ensure nil
   :config
-  (setq org-attach-commit nil))
+  (setq org-attach-commit nil)
+  (setq org-attach-store-link-p 'attached)
+
+  (defun eh-org-attach-sync-all ()
+    (interactive)
+    (org-map-entries #'org-attach-sync)
+    (org-align-all-tags))
+  )
 
 (use-package autorevert
   :after org-agenda
