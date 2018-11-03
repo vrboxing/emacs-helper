@@ -480,6 +480,10 @@
            ((org-agenda-skip-archived-trees nil))))
         )
 
+  ;; 我更习惯类似 google 的搜索方式。
+  (setq org-agenda-search-view-always-boolean t)
+  (setq org-agenda-search-view-force-full-words nil)
+
   (add-to-list 'org-agenda-files eh-org-local-directory t)
   (when (and (not eh-org-ignore-remote-directory)
              (not (member eh-org-remote-directory org-agenda-files)))
