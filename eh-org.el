@@ -487,7 +487,7 @@
            agenda ""
            ((org-agenda-files
              (delete-dups
-              `(,@org-agenda-files ,eh-org-remote-directory)))))))
+              `(,eh-org-remote-directory ,@org-agenda-files)))))))
 
   ;; 我更习惯类似 google 的搜索方式。
   (setq org-agenda-search-view-always-boolean t)
