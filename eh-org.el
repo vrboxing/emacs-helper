@@ -485,7 +485,9 @@
            ((org-agenda-skip-archived-trees nil)))
           ("A" "Work agenda and personal agenda."
            agenda ""
-           ((org-agenda-files `(,@org-agenda-files ,eh-org-remote-directory))))))
+           ((org-agenda-files
+             (delete-dups
+              `(,@org-agenda-files ,eh-org-remote-directory)))))))
 
   ;; 我更习惯类似 google 的搜索方式。
   (setq org-agenda-search-view-always-boolean t)
