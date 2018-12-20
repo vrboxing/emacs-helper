@@ -479,11 +479,13 @@
 
   (setq org-agenda-custom-commands
         '(;; 大归档只适用于一级项目，并且这个项目已经在平常通过 ARCHIVE 标签隐藏了。
-          ("A" "Find all projects which need archive."
+          ("F" "Find items which need to be archived."
            tags "+LEVEL=1+ARCHIVE+TODO={DONE\\|CANCELED}"
            ;; search "+{^\\*\\s-+\\(DONE\\|CANCELED\\)} +{:ARCHIVE:}"
-           ((org-agenda-skip-archived-trees nil))))
-        )
+           ((org-agenda-skip-archived-trees nil)))
+          ("A" "Work agenda and personal agenda."
+           agenda ""
+           ((org-agenda-files `(,@org-agenda-files ,eh-org-remote-directory))))))
 
   ;; 我更习惯类似 google 的搜索方式。
   (setq org-agenda-search-view-always-boolean t)

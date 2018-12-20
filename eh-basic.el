@@ -197,12 +197,12 @@
   ;; 更改，这会导致生成的 diff 相当乱。
   )
 
-(use-package simple
-  :ensure nil
-  :config
-  (add-hook 'before-save-hook
-            #'(lambda ()
-                (delete-trailing-whitespace))))
+;; (use-package simple
+;;   :ensure nil
+;;   :config
+;;   (add-hook 'before-save-hook
+;;             #'(lambda ()
+;;                 (delete-trailing-whitespace))))
 
 ;; ** 设置 recentf
 (use-package recentf
