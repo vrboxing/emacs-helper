@@ -78,10 +78,7 @@
 (defun eh-termux-ivy-mode-line ()
   (eh-termux-create-buttons
    '(("[C-g]" minibuffer-keyboard-quit)
-     ("[C-n]" ivy-next-line)
-     ("[C-p]" ivy-previous-line)
-     ("[C-v]" ivy-scroll-up-command)
-     ("[M-v]" ivy-scroll-down-command))))
+     ("[C-']" ivy-avy))))
 
 (defun eh-termux-create-mode-line ()
   (cond ((and (boundp 'org-capture-mode)
