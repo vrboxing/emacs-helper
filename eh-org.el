@@ -542,7 +542,7 @@
 
   (setq org-agenda-prefix-format
         (if (eh-termux-p)
-            '((agenda  . " %-5t %s")
+            '((agenda  . " %t %s")
               (todo  . " %i")
               (tags  . " %i")
               (search . " %i"))
