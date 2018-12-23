@@ -58,12 +58,12 @@
 
 (defun eh-termux-ibuffer ()
   (interactive)
-  (let ((ibuffer-formats '((" " name)))
-        (ibuffer-display-summary nil)
-        (ibuffer-always-show-last-buffer t)
-        (ibuffer-use-header-line nil))
-    (call-interactively 'ibuffer)
-    (message "")))
+  (ibuffer nil "ibuffer-termux" nil nil nil nil '((" " name)))
+  (with-current-buffer "ibuffer-termux"
+    (setq-local ibuffer-display-summary nil)
+    (setq-local ibuffer-use-header-line nil))
+  (ibuffer-update nil)
+  (message ""))
 
 (defun eh-termux-default-mode-line ()
   (eh-termux-create-buttons
