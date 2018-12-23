@@ -115,7 +115,6 @@
 
 ;; ** 设置 emacs 包管理器 (Can not use use-package)
 (require 'package)
-(package-initialize)
 
 (defun eh-elpa-directory ()
   "返回 emacs-helper 内置 elpa 镜像的目录。"
