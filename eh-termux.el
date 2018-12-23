@@ -56,10 +56,15 @@
 (defun eh-termux-create-buttons (buttons)
   (mapcar #'eh-termux-create-button buttons))
 
+(defun eh-termux-ibuffer ()
+  (interactive)
+  (let ((ibuffer-formats '((" " name))))
+    (call-interactively 'ibuffer)))
+
 (defun eh-termux-default-mode-line ()
   (eh-termux-create-buttons
    '(("[M-x]" counsel-M-x)
-     ("[切]" ibuffer)
+     ("[切]" eh-termux-ibuffer)
      ("[大]" delete-other-windows)
      ("[存]" save-buffer
       (lambda () (and (buffer-file-name)
@@ -73,7 +78,7 @@
    '(("Capture:")
      ("[完成]" org-capture-finalize)
      ("[取消]" org-capture-kill)
-     ("[Refile]" org-capture-refile))))
+     ("[归整]" org-capture-refile))))
 
 (defun eh-termux-ivy-mode-line ()
   (eh-termux-create-buttons
