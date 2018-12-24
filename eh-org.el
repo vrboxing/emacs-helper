@@ -451,6 +451,7 @@
   :bind (("C-c a" . org-agenda)
          :map org-agenda-mode-map
          ("g" . eh-org-agenda-redo-all)
+         ("q" . org-agenda-exit)
          ("i" . (lambda () (interactive) (org-capture nil "s")))
          ("A" . org-agenda-archive-default-with-confirmation)
          ("J" . counsel-org-agenda-headlines)
