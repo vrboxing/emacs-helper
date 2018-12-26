@@ -141,6 +141,9 @@
   (setq org-download-method 'attach)
   (org-download-enable))
 
+(use-package org-collector
+  :after org)
+
 (use-package ox
   :commands (org-export-as
              org-export-to-file)
