@@ -621,19 +621,58 @@
   (setq org-capture-templates
         (let ((local-inbox (concat (file-name-as-directory eh-org-local-directory) "INBOX.org")))
           `(("n" "Note" entry (file ,local-inbox)
-             "* %?\n%i")
+             "* %?
+  :PROPERTIES:
+  :created: %U
+  :END:
+
+%i")
             ("a" "Appointment" entry (file ,local-inbox)
-             "* %?\n  %t\n%i")
+             "* %?
+  %t
+  :PROPERTIES:
+  :created: %U
+  :END:
+
+%i")
             ("s" "Schedule" entry (file ,local-inbox)
-             "* TODO %?\nSCHEDULED: %t\n%i")
+             "* TODO %?
+  SCHEDULED: %t
+  :PROPERTIES:
+  :created: %U
+  :END:
+
+%i")
             ("k" "Deadline" entry (file ,local-inbox)
-             "* TODO %?\nDEADLINE: %t\n%i")
+             "* TODO %?
+  DEADLINE: %t
+  :PROPERTIES:
+  :created: %U
+  :END:
+
+%i")
             ("d" "Deadline" entry (file ,local-inbox)
-             "* TODO %?\nDEADLINE: %t\n%i")
+             "* TODO %?
+  DEADLINE: %t
+  :PROPERTIES:
+  :created: %U
+  :END:
+
+%i")
             ("t" "TODO" entry (file ,local-inbox)
-             "* TODO %?\n%i")
+             "* TODO %?
+  :PROPERTIES:
+  :created: %U
+  :END:
+
+%i"
+             )
             ("p" "Project" entry (file ,local-inbox)
              "* %?                      :PROJECT:
+  :PROPERTIES:
+  :created: %U
+  :END:
+
 ** 为什么要启动此项目？想要解决什么问题？
 项目背景分析，可以从战略、客户需求、利益相关者、
 领导等方面思考，至少说出6条理由。
