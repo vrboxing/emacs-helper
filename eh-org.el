@@ -612,11 +612,7 @@
 (use-package org-capture
   :after org-agenda
   :ensure nil
-  :bind (("C-c c" . org-capture)
-         :map org-capture-mode-map
-         ("C-c c" . org-capture-finalize)
-         ("C-c k" . org-capture-kill)
-         ("C-c w" . org-capture-refile))
+  :bind (("C-c c" . org-capture))
   :config
   (setq org-capture-templates
         (let ((local-inbox (concat (file-name-as-directory eh-org-local-directory) "INBOX.org")))
