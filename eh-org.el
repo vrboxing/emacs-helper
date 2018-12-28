@@ -565,10 +565,10 @@
             (search . " %i %-20:c "))))
 
   (setq org-agenda-scheduled-leaders
-        '("预 " "拖延%02d天 "))
+        '("预: " "拖延%02d天 "))
 
   (setq org-agenda-deadline-leaders
-        '("止 " "还剩%02d天 " "过期%02d天 "))
+        '("止: " "剩余%02d天 " "过期%02d天 "))
 
   (setq org-agenda-format-date 'eh-org-agenda-format-date-aligned)
 
