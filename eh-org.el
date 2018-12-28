@@ -50,6 +50,24 @@
     (setq org-mouse-1-follows-link nil))
   :config
 
+  (defvar eh-org-local-directory
+    (cl-find-if #'file-exists-p
+                '("d:/org/org-files/"
+                  "d:/org/"
+                  "e:/org/org-files/"
+                  "e:/org/"
+                  "f:/org/org-files/"
+                  "f:/org/"
+                  "~/org/org-files/"
+                  "~/org/"
+                  "~/storage/shared/org/org-files"
+                  "~/storage/shared/org/")))
+
+  (defvar eh-org-remote-directory
+    eh-org-local-directory)
+
+  (defvar eh-org-ignore-remote-directory nil)
+
   ;; 确保 tag 可以对齐
   (dolist (face '(org-level-1
                   org-level-2
@@ -433,7 +451,7 @@
   )
 
 (use-package org-attach
-  :after org-agenda
+  :after org
   :ensure nil
   :config
   (setq org-attach-commit nil)
@@ -446,7 +464,7 @@
   )
 
 (use-package autorevert
-  :after org-agenda
+  :after org
   :config
   (add-hook 'org-mode-hook #'turn-on-auto-revert-mode))
 
@@ -463,23 +481,6 @@
          ("a" . ignore))
   :ensure nil
   :config
-  (defvar eh-org-local-directory
-    (cl-find-if #'file-exists-p
-                '("d:/org/org-files/"
-                  "d:/org/"
-                  "e:/org/org-files/"
-                  "e:/org/"
-                  "f:/org/org-files/"
-                  "f:/org/"
-                  "~/org/org-files/"
-                  "~/org/"
-                  "~/storage/shared/org/org-files"
-                  "~/storage/shared/org/")))
-
-  (defvar eh-org-remote-directory
-    eh-org-local-directory)
-
-  (defvar eh-org-ignore-remote-directory nil)
 
   (setq org-agenda-custom-commands
         '(;; 大归档只适用于一级项目，并且这个项目已经在平常通过 ARCHIVE 标签隐藏了。
@@ -610,7 +611,7 @@
               year month day dayname extra))))
 
 (use-package org-capture
-  :after org-agenda
+  :after org
   :ensure nil
   :bind (("C-c c" . org-capture))
   :config
@@ -691,16 +692,6 @@
             ("H" "Diary" plain (file+headline ,local-inbox "节假日")
              "\%\%%(or \"(org-calendar-holiday)\")"))))
 
-  (defun eh-org-capture-finalize (&optional stay-with-capture)
-    (interactive "P")
-    ;; 使用 tramp 的时候，我不想频繁的保存文件，因为速度太慢了，
-    ;; 严重影响体验，这个函数让 capture 仅仅更新 buffer, 但不保存
-    ;; buffer, 用户在合适的时候自己手动保存文件。
-    (cl-letf (((symbol-function 'save-buffer) #'ignore))
-      (org-capture-finalize stay-with-capture))
-    (org-agenda-redo-all)
-    (message "Capture 已经发送到对应 buffer，记得手动保存这个 buffer！"))
-
   (defun eh-org-capture (orig-fun &optional goto keys)
     "Advice function of org-capture."
     (interactive)
@@ -708,9 +699,6 @@
     (delete-other-windows))
 
   (advice-add 'org-capture :around #'eh-org-capture)
-
-  (define-key org-capture-mode-map "\C-c\C-c" 'eh-org-capture-finalize)
-
   )
 
 
