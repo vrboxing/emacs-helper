@@ -555,10 +555,10 @@
 
   (setq org-agenda-prefix-format
         (if (eh-termux-p)
-            '((agenda  . "%?-6t%s")
-              (todo  . "%i")
-              (tags  . "%i")
-              (search . "%i"))
+            '((agenda  . " %?-6t%s")
+              (todo  . " %i")
+              (tags  . " %i")
+              (search . " %i"))
           '((agenda  . " %i %-20:c %?-6t%s")
             (todo  . " %i %-20:c ")
             (tags  . " %i %-20:c ")
