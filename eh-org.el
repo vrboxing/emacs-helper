@@ -489,16 +489,15 @@
 
   (setq org-agenda-custom-commands
         '(;; 大归档只适用于一级项目，并且这个项目已经在平常通过 ARCHIVE 标签隐藏了。
-          ("F" "Find items which need to be archived."
+          ("f" "Find items which need to be archived."
            tags "+LEVEL=1+ARCHIVE+TODO={DONE\\|CANCELED}"
            ;; search "+{^\\*\\s-+\\(DONE\\|CANCELED\\)} +{:ARCHIVE:}"
            ((org-agenda-skip-archived-trees nil)))
-          ("A" "Work agenda and personal agenda."
+          ("p" "Personal agenda."
            agenda ""
            ((org-agenda-files
-             (delete-dups
-              `(,eh-org-remote-directory ,@org-agenda-files)))))
-          ("B" "List all bugs."
+             `(,eh-org-remote-directory))))
+          ("b" "List all bugs."
            tags "+TODO={BUG\\|ISSUE\\|FIXED}")
           ))
 
