@@ -83,7 +83,7 @@
      ("[完成]" org-capture-finalize)
      ("[取消]" org-capture-kill)
      ("[归整]" org-capture-refile)
-     ("[C-c C-c]" org-ctrl-c-ctrl-c))))
+     ("[CC键]" org-ctrl-c-ctrl-c))))
 
 (defun eh-termux-ivy-mode-line ()
   (eh-termux-create-buttons

@@ -87,13 +87,16 @@
   ;;         ("DONE" . (:foreground "light sea green"))
   ;;         ("CANCELLED" . (:foreground "forest green"))
   ;;         ("TASK" . (:foreground "blue"))))
+
   (setq org-tags-exclude-from-inheritance
         '("PROJECT"))
+
   (setq org-stuck-projects
         '("+PROJECT/-MAYBE-DONE"
           ("NEXT" "TODO" "TASK")
           ("@SHOP")
           "\\<IGNORE\\>"))
+  
   (setq org-insert-heading-respect-content nil)
   (setq org-log-done t)
   (setq org-startup-indented nil)
@@ -440,7 +443,7 @@
       (diary-chinese-anniversary lunar-month lunar-day year mark))))
 
 (use-package org-archive
-  :after org-agenda
+  :after org
   :ensure nil
   :config
   ;; 使用 org-archive-subtree 时，原来的 header 层级容易被打乱，而且容易
