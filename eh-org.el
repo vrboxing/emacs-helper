@@ -80,8 +80,8 @@
 
   ;; 自定义变量
   (setq org-todo-keywords
-        '((sequence "MAYBE(m)" "TODO(t)" "|" "DONE(d!)")
-          (sequence "BUG(b)" "|" "FIXED(f!)")
+        '((type "TODO(t)" "MAYBE(m)" "|" "DONE(d!)")
+          (type "BUG(b)" "ISSUE(i)" "|" "FIXED(f!)")
           (type "|" "SKIP(s@)" "CANCELED(c@)")))
 
   ;; (setq org-todo-keyword-faces
@@ -497,7 +497,10 @@
            agenda ""
            ((org-agenda-files
              (delete-dups
-              `(,eh-org-remote-directory ,@org-agenda-files)))))))
+              `(,eh-org-remote-directory ,@org-agenda-files)))))
+          ("B" "List all bugs."
+           tags "+TODO={BUG\\|ISSUE\\|FIXED}")
+          ))
 
   ;; 我更习惯类似 google 的搜索方式。
   (setq org-agenda-search-view-always-boolean t)
@@ -552,11 +555,11 @@
 
   (setq org-agenda-prefix-format
         (if (eh-termux-p)
-            '((agenda  . "%t %s")
+            '((agenda  . "%?-6t%s")
               (todo  . "%i")
               (tags  . "%i")
               (search . "%i"))
-          '((agenda  . " %i %-20:c %5t %s")
+          '((agenda  . " %i %-20:c %?-6t%s")
             (todo  . " %i %-20:c ")
             (tags  . " %i %-20:c ")
             (search . " %i %-20:c "))))
