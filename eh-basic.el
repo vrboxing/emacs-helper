@@ -429,10 +429,12 @@
   :config
 
   (defun eh-ivy-cregexp (str)
-    (concat
-     (ivy--regex-plus str)
-     "\\|"
-     (pyim-cregexp-build str)))
+    (let ((a (ivy--regex-plus str))
+          (b (let ((case-fold-search nil))
+               (pyim-cregexp-build str))))
+      (if (and a (stringp a))
+          (concat a "\\|" b)
+        a)))
 
   (setq ivy-re-builders-alist
         '((t . eh-ivy-cregexp))))
