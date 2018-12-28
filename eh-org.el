@@ -62,7 +62,7 @@
 
   ;; 自定义变量
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
+        '((sequence "TODO(t)" "WAIT(w@/!)" "MAYBE(m)" "|" "DONE(d!)" "CANCELED(c@)")))
   ;; (setq org-todo-keyword-faces
   ;;       '(("TODO" . (:foreground "DarkOrange1" :weight bold))
   ;;         ("MAYBE" . (:foreground "sea green"))
@@ -700,6 +700,14 @@
       (org-capture-finalize stay-with-capture))
     (org-agenda-redo-all)
     (message "Capture 已经发送到对应 buffer，记得手动保存这个 buffer！"))
+
+  (defun eh-org-capture (orig-fun &optional goto keys)
+    "Advice function of org-capture."
+    (interactive)
+    (funcall orig-fun goto keys)
+    (delete-other-windows))
+
+  (advice-add 'org-capture :around #'eh-org-capture)
 
   (define-key org-capture-mode-map "\C-c\C-c" 'eh-org-capture-finalize)
 
