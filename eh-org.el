@@ -164,6 +164,7 @@
   (org-download-enable))
 
 (use-package org-collector
+  :ensure nil
   :after org)
 
 (use-package ox
