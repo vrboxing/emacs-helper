@@ -554,20 +554,20 @@
 
   (setq org-agenda-prefix-format
         (if (eh-termux-p)
-            '((agenda  . " %?-6t%s")
+            '((agenda  . " %?-7t%s")
               (todo  . " %i")
               (tags  . " %i")
               (search . "%i"))
-          '((agenda  . " %i %-20:c %?-6t%s")
+          '((agenda  . " %i %-20:c %?-7t%s")
             (todo  . " %i %-20:c ")
             (tags  . " %i %-20:c ")
             (search . " %i %-20:c "))))
 
   (setq org-agenda-scheduled-leaders
-        '("预: " "拖延%02d天 "))
+        '("[计划] " "拖%02d天 "))
 
   (setq org-agenda-deadline-leaders
-        '("止: " "剩余%02d天 " "过期%02d天 "))
+        '("[截止] " "剩%02d天 " "逾%02d天 "))
 
   (setq org-agenda-format-date 'eh-org-agenda-format-date-aligned)
 
