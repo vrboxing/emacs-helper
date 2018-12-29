@@ -159,6 +159,7 @@
 
 (use-package org-download
   :after org
+  :ensure nil
   :config
   (setq org-download-method 'attach)
   (org-download-enable))
