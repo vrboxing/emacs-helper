@@ -80,9 +80,8 @@
 
   ;; 自定义变量
   (setq org-todo-keywords
-        '((type "TODO(t)" "MAYBE(m)" "|" "DONE(d!)")
-          (type "BUG(b)" "ISSUE(i)" "|" "FIXED(f!)")
-          (type "|" "SKIP(s@)" "CANCELED(c@)")))
+        '((type "TODO(t)" "MAYBE(m)" "ISSUE(i)"
+                "|" "DONE(d!)" "FIXED(f!)" "SKIP(s@)" "CANCELED(c@)")))
 
   ;; (setq org-todo-keyword-faces
   ;;       '(("TODO" . (:foreground "DarkOrange1" :weight bold))
