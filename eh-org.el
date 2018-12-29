@@ -80,7 +80,7 @@
 
   ;; 自定义变量
   (setq org-todo-keywords
-        '((type "TODO(t)" "MAYBE(m)" "ISSUE(i)"
+        '((type "TODO(t)" "MAYBE(m)" "BUG(b)" "ISSUE(i)"
                 "|" "DONE(d!)" "FIXED(f!)" "SKIP(s@)" "CANCELED(c@)")))
 
   ;; (setq org-todo-keyword-faces
