@@ -555,20 +555,40 @@
 
   (setq org-agenda-prefix-format
         (if (eh-termux-p)
-            '((agenda  . " %?-7t%s")
+            '((agenda  . " %?- t%(eh-org-agenda-%s-format)")
               (todo  . " %i")
               (tags  . " %i")
               (search . "%i"))
-          '((agenda  . " %i %-20:c %?-7t%s")
+          '((agenda  . " %i %-20:c %?- t%(eh-org-agenda-%s-format)")
             (todo  . " %i %-20:c ")
             (tags  . " %i %-20:c ")
             (search . " %i %-20:c "))))
 
   (setq org-agenda-scheduled-leaders
-        '("[计划] " "拖%02d天 "))
+        '("计划行动 " "拖延%02d天 "))
 
   (setq org-agenda-deadline-leaders
-        '("[截止] " "剩%02d天 " "逾%02d天 "))
+        '("截止期限 " "剩余%02d天 " "逾期%02d天 "))
+
+  (defun eh-org-agenda-%s-format ()
+    (format "%s"
+            (if (or (equal extra "") (equal extra nil))
+                ""
+              (concat
+               (if (or (equal "" time) (equal nil time))
+                   extra
+                 (replace-regexp-in-string
+                  (car org-agenda-deadline-leaders)
+                  "[止] "
+                  (replace-regexp-in-string
+                   (car org-agenda-scheduled-leaders)
+                   "[预] " extra)))
+               "" (get-text-property 0 'extra-space extra)))))
+
+  (setq org-agenda-entry-text-leaders
+        (if (eh-termux-p)
+            "    > "
+          "                       |  "))
 
   (setq org-agenda-format-date 'eh-org-agenda-format-date-aligned)
 
