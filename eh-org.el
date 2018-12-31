@@ -577,7 +577,9 @@
 
   (defun eh-org-agenda-prefix-format-1 ()
     (if (or (equal extra "") (equal extra nil))
-        "         "
+        (if (or (equal "" time) (equal nil time))
+            "         "
+          "   ")
       (let ((str1 (car org-agenda-scheduled-leaders))
             (str2 (car org-agenda-deadline-leaders))
             (s extra))
