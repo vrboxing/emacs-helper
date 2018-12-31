@@ -560,24 +560,24 @@
 
   (setq org-agenda-prefix-format
         (if (eh-termux-p)
-            '((agenda  . " %?- t%(eh-org-agenda-prefix-format-1)")
+            '((agenda  . " %? t%(eh-org-agenda-prefix-format-1)")
               (todo  . " %i")
               (tags  . " %i")
               (search . "%i"))
-          '((agenda  . " %i %-20:c %?- t%(eh-org-agenda-prefix-format-1)")
+          '((agenda  . " %i %-20:c %? t%(eh-org-agenda-prefix-format-1)")
             (todo  . " %i %-20:c ")
             (tags  . " %i %-20:c ")
             (search . " %i %-20:c "))))
 
   (setq org-agenda-scheduled-leaders
-        '("该行动了 " "拖延%02d天 "))
+        '("      预 " "拖延%02d天 "))
 
   (setq org-agenda-deadline-leaders
-        '("截止期限 " "剩余%02d天 " "逾期%02d天 "))
+        '("      止 " "剩余%02d天 " "逾期%02d天 "))
 
   (defun eh-org-agenda-prefix-format-1 ()
     (if (or (equal extra "") (equal extra nil))
-        ""
+        "         "
       (let ((str1 (car org-agenda-scheduled-leaders))
             (str2 (car org-agenda-deadline-leaders))
             (s extra))
