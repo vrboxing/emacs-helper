@@ -556,7 +556,7 @@
   (setq org-agenda-entry-text-leaders
         (if (eh-termux-p)
             "          > "
-          "                                > "))
+          "                       |          > "))
 
   (setq org-agenda-prefix-format
         (if (eh-termux-p)
@@ -564,7 +564,7 @@
               (todo  . " %i")
               (tags  . " %i")
               (search . "%i"))
-          '((agenda  . " %i %-20:c %? t%(eh-org-agenda-prefix-format-1)")
+          '((agenda  . " %i %-20:c | %? t%(eh-org-agenda-prefix-format-1)")
             (todo  . " %i %-20:c ")
             (tags  . " %i %-20:c ")
             (search . " %i %-20:c "))))
