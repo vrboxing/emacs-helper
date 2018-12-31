@@ -80,8 +80,8 @@
 
   ;; 自定义变量
   (setq org-todo-keywords
-        '((type "TODO(t)" "MAYBE(m)" "BUG(b)" "ISSUE(i)"
-                "|" "DONE(d!)" "FIXED(f!)" "SKIP(s@)" "CANCELED(c@)")))
+        '((type "TODO(t)" "ISSUE(i)" "MAYBE(m)" 
+                "|" "DONE(d!)" "FIXED(f!)" "CANCELED(c@)")))
 
   ;; (setq org-todo-keyword-faces
   ;;       '(("TODO" . (:foreground "DarkOrange1" :weight bold))
@@ -498,8 +498,8 @@
            agenda ""
            ((org-agenda-files
              `(,eh-org-remote-directory))))
-          ("b" "List all bugs."
-           tags "+TODO={BUG\\|ISSUE\\|FIXED}")
+          ("b" "List all issues."
+           tags "+TODO={ISSUE\\|FIXED}")
           ))
 
   ;; 我更习惯类似 google 的搜索方式。
