@@ -498,7 +498,7 @@
            agenda ""
            ((org-agenda-files
              `(,eh-org-remote-directory))))
-          ("b" "List all issues."
+          ("i" "List all issues."
            tags "+TODO={ISSUE\\|FIXED}")
           ))
 
