@@ -553,6 +553,11 @@
   ;; Set it to 'auto can not work well for Chinese user.
   (setq org-agenda-tags-column -120)
 
+  (setq org-agenda-entry-text-leaders
+        (if (eh-termux-p)
+            "    > "
+          "                       |  "))
+
   (setq org-agenda-prefix-format
         (if (eh-termux-p)
             '((agenda  . " %?- t%(eh-org-agenda-%s-format)")
@@ -584,11 +589,6 @@
                    (car org-agenda-scheduled-leaders)
                    "预 " extra)))
                "" (get-text-property 0 'extra-space extra)))))
-
-  (setq org-agenda-entry-text-leaders
-        (if (eh-termux-p)
-            "    > "
-          "                       |  "))
 
   (setq org-agenda-format-date 'eh-org-agenda-format-date-aligned)
 
