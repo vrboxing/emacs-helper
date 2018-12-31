@@ -555,8 +555,8 @@
 
   (setq org-agenda-entry-text-leaders
         (if (eh-termux-p)
-            "    > "
-          "                       |  "))
+            " > "
+          "                       > "))
 
   (setq org-agenda-prefix-format
         (if (eh-termux-p)
