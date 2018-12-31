@@ -579,10 +579,10 @@
                    extra
                  (replace-regexp-in-string
                   (car org-agenda-deadline-leaders)
-                  "[止] "
+                  "止 "
                   (replace-regexp-in-string
                    (car org-agenda-scheduled-leaders)
-                   "[预] " extra)))
+                   "预 " extra)))
                "" (get-text-property 0 'extra-space extra)))))
 
   (setq org-agenda-entry-text-leaders
