@@ -555,8 +555,8 @@
 
   (setq org-agenda-entry-text-leaders
         (if (eh-termux-p)
-            "          > "
-          "                       |          > "))
+            " > "
+          "                       |       "))
 
   (setq org-agenda-prefix-format
         (if (eh-termux-p)
@@ -570,16 +570,16 @@
             (search . " %i %-20:c "))))
 
   (setq org-agenda-scheduled-leaders
-        '("      预 " "拖延%02d天 "))
+        '("计 划 " "拖%03d "))
 
   (setq org-agenda-deadline-leaders
-        '("      止 " "剩余%02d天 " "逾期%02d天 "))
+        '("截 止 " "剩%03d " "逾%03d "))
 
   (defun eh-org-agenda-prefix-format-1 ()
     (if (or (equal extra "") (equal extra nil))
         (if (or (equal "" time) (equal nil time))
-            "         "
-          "   ")
+            "提 醒 "
+          "")
       (let ((str1 (car org-agenda-scheduled-leaders))
             (str2 (car org-agenda-deadline-leaders))
             (s extra))
