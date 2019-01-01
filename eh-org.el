@@ -571,15 +571,15 @@
             (search . " %i %-20:c "))))
 
   (setq org-agenda-scheduled-leaders
-        '("计划@  " "拖%03d  "))
+        '("计★划 @" "拖%03d  "))
 
   (setq org-agenda-deadline-leaders
-        '("截止!  " "剩%03d  " "逾%03d  "))
+        '("截★止 !" "剩%03d  " "逾%03d  "))
 
   (defun eh-org-agenda-prefix-format-1 ()
     (if (or (equal extra "") (equal extra nil))
         (if (or (equal "" time) (equal nil time))
-            "提醒?  "
+            "提★醒  "
           "  ")
       (let ((str1 (car org-agenda-scheduled-leaders))
             (str2 (car org-agenda-deadline-leaders))
