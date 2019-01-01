@@ -571,22 +571,22 @@
             (search . " %i %-20:c "))))
 
   (setq org-agenda-scheduled-leaders
-        '("@计划  " "@拖%02d  "))
+        '("计划@  " "拖%03d  "))
 
   (setq org-agenda-deadline-leaders
-        '("$截止  " "$剩%02d  " "$逾%02d  "))
+        '("截止!  " "剩%03d  " "逾%03d  "))
 
   (defun eh-org-agenda-prefix-format-1 ()
     (if (or (equal extra "") (equal extra nil))
         (if (or (equal "" time) (equal nil time))
-            "?提醒  "
+            "提醒?  "
           "  ")
       (let ((str1 (car org-agenda-scheduled-leaders))
             (str2 (car org-agenda-deadline-leaders))
             (s extra))
         (unless (or (equal "" time) (equal nil time))
           (setq s (replace-regexp-in-string (regexp-quote str1) " @" extra))
-          (setq s (replace-regexp-in-string (regexp-quote str2) " $" s)))
+          (setq s (replace-regexp-in-string (regexp-quote str2) " !" s)))
         (concat s "" (get-text-property 0 'extra-space extra)))))
 
   (setq org-agenda-format-date 'eh-org-agenda-format-date-aligned)
