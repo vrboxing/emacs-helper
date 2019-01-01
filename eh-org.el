@@ -556,7 +556,7 @@
   (setq org-agenda-entry-text-leaders
         (if (eh-termux-p)
             "      | "
-          "                            | "))
+          "                             | "))
 
   (setq org-agenda-prefix-format
         (if (eh-termux-p)
@@ -570,22 +570,22 @@
             (search . " %i %-20:c "))))
 
   (setq org-agenda-scheduled-leaders
-        '("计 划| " "拖%03d| "))
+        '("计 划 | " "拖%03d | "))
 
   (setq org-agenda-deadline-leaders
-        '("截 止| " "剩%03d| " "逾%03d| "))
+        '("截 止 | " "剩%03d | " "逾%03d | "))
 
   (defun eh-org-agenda-prefix-format-1 ()
     (if (or (equal extra "") (equal extra nil))
         (if (or (equal "" time) (equal nil time))
-            "提 醒| "
-          "| ")
+            "提 醒 | "
+          " | ")
       (let ((str1 (car org-agenda-scheduled-leaders))
             (str2 (car org-agenda-deadline-leaders))
             (s extra))
         (unless (or (equal "" time) (equal nil time))
-          (setq s (replace-regexp-in-string (regexp-quote str1) "S " extra))
-          (setq s (replace-regexp-in-string (regexp-quote str2) "D " s)))
+          (setq s (replace-regexp-in-string (regexp-quote str1) " S " extra))
+          (setq s (replace-regexp-in-string (regexp-quote str2) " D " s)))
         (concat s "" (get-text-property 0 'extra-space extra)))))
 
   (setq org-agenda-format-date 'eh-org-agenda-format-date-aligned)
