@@ -77,7 +77,7 @@
                   org-level-6
                   org-level-7))
     (set-face-attribute face nil :height 1.0))
-  (set-face-attribute 'org-todo nil :box nil)
+  ;; (set-face-attribute 'org-todo nil :box nil)
 
   ;; 自定义变量
   (setq org-todo-keywords
@@ -498,10 +498,7 @@
           ("p" "Personal agenda."
            agenda ""
            ((org-agenda-files
-             `(,eh-org-remote-directory))))
-          ("i" "List all issues."
-           tags "+TODO={ISSUE\\|FIXED}")
-          ))
+             `(,eh-org-remote-directory))))))
 
   ;; 我更习惯类似 google 的搜索方式。
   (setq org-agenda-search-view-always-boolean t)
@@ -571,15 +568,15 @@
             (search . " %i %-20:c "))))
 
   (setq org-agenda-scheduled-leaders
-        '("计 划 @" "拖%03d  "))
+        '("§计划 @" "拖%03d  "))
 
   (setq org-agenda-deadline-leaders
-        '("截 止 !" "剩%03d  " "逾%03d  "))
+        '("§截止 !" "剩%03d  " "逾%03d  "))
 
   (defun eh-org-agenda-prefix-format-1 ()
     (if (or (equal extra "") (equal extra nil))
         (if (or (equal "" time) (equal nil time))
-            "提 醒  "
+            "§提醒  "
           "  ")
       (let ((str1 (car org-agenda-scheduled-leaders))
             (str2 (car org-agenda-deadline-leaders))
