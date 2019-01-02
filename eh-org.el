@@ -568,10 +568,10 @@
             (search . " %i %-20:c "))))
 
   (setq org-agenda-scheduled-leaders
-        '("§计划 @" "拖%03d  "))
+        '("§计划 @" "§拖%02d  "))
 
   (setq org-agenda-deadline-leaders
-        '("§截止 !" "剩%03d  " "逾%03d  "))
+        '("§截止 ?" "§剩%02d  " "§逾%02d  "))
 
   (defun eh-org-agenda-prefix-format-1 ()
     (if (or (equal extra "") (equal extra nil))
@@ -583,7 +583,7 @@
             (s extra))
         (unless (or (equal "" time) (equal nil time))
           (setq s (replace-regexp-in-string (regexp-quote str1) " @" extra))
-          (setq s (replace-regexp-in-string (regexp-quote str2) " !" s)))
+          (setq s (replace-regexp-in-string (regexp-quote str2) " ?" s)))
         (concat s "" (get-text-property 0 'extra-space extra)))))
 
   (setq org-agenda-format-date 'eh-org-agenda-format-date-aligned)
