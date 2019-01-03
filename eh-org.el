@@ -498,7 +498,9 @@
           ("p" "Personal agenda."
            agenda ""
            ((org-agenda-files
-             `(,eh-org-remote-directory))))))
+             `(,eh-org-remote-directory))))
+          ("i" "List of Issues"
+           tags "TODO={ISSUE}")))
 
   ;; 我更习惯类似 google 的搜索方式。
   (setq org-agenda-search-view-always-boolean t)
