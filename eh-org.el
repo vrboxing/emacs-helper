@@ -94,10 +94,9 @@
         '("PROJECT"))
 
   (setq org-stuck-projects
-        '("+PROJECT/-MAYBE-DONE"
-          ("NEXT" "TODO" "TASK")
-          ("@SHOP")
-          "\\<IGNORE\\>"))
+        '("+PROJECT/-MAYBE-DONE-CANCELED"
+          ("TODO")
+          nil ""))
 
   (setq org-insert-heading-respect-content nil)
   (setq org-log-done t)
