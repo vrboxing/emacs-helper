@@ -315,14 +315,7 @@
 
   (add-hook 'gnus-summary-exit-hook
             #'gnus-group-first-unread-group)
-
-  ;; org struct 支持
-  (use-package org
-    :ensure nil
-    :config
-    ;; 在message-mode中使用org-mode
-    (add-hook 'message-mode-hook #'turn-on-orgstruct)
-    (add-hook 'message-mode-hook #'turn-on-orgstruct++)))
+  )
 
 ;; * Footer
 (provide 'eh-gnus-common)
