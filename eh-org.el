@@ -105,6 +105,9 @@
   (setq org-id-link-to-org-use-id t)
   (setq org-log-into-drawer t)
 
+  ;; 插入日期戳的命令不弹出日历表，太占地方。
+  (setq org-read-date-popup-calendar nil)
+
   ;; 在 termux 环境下，C-TAB 无法正常工作，所以必须
   ;; 设置这个变量为 t, 否则展开 ARCHIVE 就很麻烦了。
   (setq org-cycle-open-archived-trees t)
@@ -347,23 +350,15 @@
   :config
 
   (setq parse-time-months
-        (append '(("yiy" . 1) ("ery" . 2) ("sany" . 3)
-                  ("siy" . 4) ("wuy" . 5) ("liuy" . 6)
-                  ("qiy" . 7) ("bay" . 8) ("jiuy" . 9)
-                  ("shiy" . 10) ("shiyiy" . 11) ("shiery" . 12)
-                  ("yiyue" . 1) ("eryue" . 2) ("sanyue" . 3)
-                  ("siyue" . 4) ("wuyue" . 5) ("liuyue" . 6)
-                  ("qiyue" . 7) ("bayue" . 8) ("jiuyue" . 9)
-                  ("shiyue" . 10) ("shiyiyue" . 11) ("shieryue" . 12))
+        (append '(("yi" . 1) ("er" . 2) ("san" . 3)
+                  ("si" . 4) ("wu" . 5) ("liu" . 6)
+                  ("qi" . 7) ("ba" . 8) ("jiu" . 9)
+                  ("shi" . 10) ("shiyi" . 11) ("shier" . 12))
                 parse-time-months))
 
   (setq parse-time-weekdays
-        (append '(("zri" . 0) ("zqi" . 0)
-                  ("zyi" . 1) ("zer" . 2) ("zsan" . 3)
-                  ("zsi" . 4) ("zwu" . 5) ("zliu" . 6)
-                  ("zr" . 0) ("zq" . 0)
-                  ("zy" . 1) ("ze" . 2) ("zs" . 3)
-                  ("zsi" . 4) ("zw" . 5) ("zl" . 6))
+        (append '(("zri" . 0) ("zyi" . 1) ("zer" . 2) ("zsan" . 3)
+                  ("zsi" . 4) ("zwu" . 5) ("zliu" . 6))
                 parse-time-weekdays)))
 
 (use-package cal-china-x
