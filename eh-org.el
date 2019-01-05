@@ -105,6 +105,9 @@
   (setq org-id-link-to-org-use-id t)
   (setq org-log-into-drawer t)
 
+  ;; org 文件显示内嵌图片的时候，首先缩放一下。
+  (setq org-image-actual-width 600)
+
   ;; 插入日期戳的命令不弹出日历表，太占地方。
   (setq org-read-date-popup-calendar nil)
 
@@ -484,10 +487,8 @@
   :config
 
   (setq org-agenda-custom-commands
-        '(;; 大归档只适用于一级项目，并且这个项目已经在平常通过 ARCHIVE 标签隐藏了。
-          ("f" "Find items which need to be refiled or archived."
-           tags "+LEVEL=1TODO={DONE\\|CANCELED}"
-           ;; search "+{^\\*\\s-+\\(DONE\\|CANCELED\\)} +{:ARCHIVE:}"
+        '(("f" "Find items which need to be refiled or archived."
+           tags "+LEVEL=1TODO={DONE\\|CANCELED\\|FIXED}"
            ((org-agenda-skip-archived-trees nil)))
           ("p" "Personal agenda."
            agenda ""
@@ -530,11 +531,11 @@
 
   (setq org-agenda-todo-ignore-scheduled t)
   (setq org-agenda-todo-ignore-deadlines t)
-  (setq org-agenda-time-leading-zero nil)
 
   (setq org-agenda-todo-list-sublevels t)
   (setq org-agenda-todo-ignore-scheduled t)
 
+  (setq org-agenda-time-leading-zero nil)
   (setq org-agenda-time-grid
         '((daily today require-timed)
           (800 1000 1200 1400 1600 1800 2000)
