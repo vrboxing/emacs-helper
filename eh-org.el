@@ -106,7 +106,7 @@
   (setq org-log-into-drawer t)
 
   ;; org 文件显示内嵌图片的时候，首先缩放一下。
-  (setq org-image-actual-width 600)
+  (setq org-image-actual-width '(600))
 
   ;; 插入日期戳的命令不弹出日历表，太占地方。
   (setq org-read-date-popup-calendar nil)
