@@ -104,6 +104,9 @@
   (setq org-edit-src-content-indentation 0)
   (setq org-id-link-to-org-use-id t)
   (setq org-log-into-drawer t)
+
+  ;; org 创建链接的时候，不要hexify, 不然中文链接
+  ;; 就是一堆百分号。。。。
   (setq org-url-hexify-p nil)
 
   ;; org 文件显示内嵌图片的时候，首先缩放一下。
