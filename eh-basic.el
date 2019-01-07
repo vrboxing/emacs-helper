@@ -115,6 +115,7 @@
 
 ;; ** 设置 emacs 包管理器 (Can not use use-package)
 (require 'package)
+(setq use-package-always-ensure nil)
 (unless package--initialized
   (package-initialize))
 
