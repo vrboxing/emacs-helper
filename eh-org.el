@@ -104,6 +104,7 @@
   (setq org-edit-src-content-indentation 0)
   (setq org-id-link-to-org-use-id t)
   (setq org-log-into-drawer t)
+  (setq org-url-hexify-p nil)
 
   ;; org 文件显示内嵌图片的时候，首先缩放一下。
   (setq org-image-actual-width '(600))
