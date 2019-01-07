@@ -2,7 +2,7 @@
 
 
 ;; * Header
-;; Copyright (c) 2011-2016, Feng Shu
+;; Copyright (c) 2011-2019, Feng Shu
 
 ;; Author: Feng Shu <tumashu@163.com>
 ;; URL: https://github.com/tumashu/emacs-helper

@@ -2,7 +2,7 @@
 
 ;; * Header
 ;; Copyright (c) 2008-2009, Andy Stewart
-;;               2011-2016, Feng Shu
+;;               2011-2019, Feng Shu
 
 ;; Author: Andy Stewartf <lazycat.manatee@gmail.com>
 ;;         Feng Shu <tumashu@163.com>
