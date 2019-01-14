@@ -63,10 +63,7 @@
                   "~/storage/shared/org/org-files"
                   "~/storage/shared/org/")))
 
-  (defvar eh-org-remote-directory
-    eh-org-local-directory)
-
-  (defvar eh-org-ignore-remote-directory nil)
+  (defvar eh-org-remote-directory eh-org-local-directory)
 
   ;; 确保 tag 可以对齐
   (dolist (face '(org-level-1
@@ -521,9 +518,6 @@
   (setq org-agenda-search-view-force-full-words nil)
 
   (add-to-list 'org-agenda-files eh-org-local-directory t)
-  ;; (when (and (not eh-org-ignore-remote-directory)
-  ;;            (not (member eh-org-remote-directory org-agenda-files)))
-  ;;   (add-to-list 'org-agenda-files eh-org-remote-directory t))
 
   (defun eh-revert-org-buffers ()
     "Refreshes all opened org buffers."
