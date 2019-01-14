@@ -498,14 +498,14 @@
   :config
 
   (setq org-agenda-custom-commands
-        '(("f" "Find items which need to be refiled or archived."
+        '(("f" "Find items which need to be refiled or archived"
            tags "+LEVEL=1TODO={DONE\\|CANCELED\\|FIXED}"
            ((org-agenda-skip-archived-trees nil)))
-          ("p" "Personal agenda."
+          ("p" "Personal agenda"
            agenda ""
            ((org-agenda-files
              `(,eh-org-remote-directory))))
-          ("i" "List of issues."
+          ("i" "List of issues"
            tags "TODO={ISSUE}")))
 
   ;; 我更习惯类似 google 的搜索方式。
