@@ -52,15 +52,10 @@
 
   (defvar eh-org-local-directory
     (cl-find-if #'file-exists-p
-                '("d:/org/org-files/"
-                  "d:/org/"
-                  "e:/org/org-files/"
+                '("d:/org/"
                   "e:/org/"
-                  "f:/org/org-files/"
                   "f:/org/"
-                  "~/org/org-files/"
                   "~/org/"
-                  "~/storage/shared/org/org-files"
                   "~/storage/shared/org/")))
 
   (defvar eh-org-remote-directory eh-org-local-directory)
