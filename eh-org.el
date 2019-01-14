@@ -255,9 +255,6 @@
   :after ox
   :ensure nil)
 
-;; (use-package ob-R
-;;   :ensure nil)
-
 ;; org-plus-contrib
 (use-package ox-extra
   :after org
@@ -295,26 +292,6 @@
      ;; (shell . nil)
      (sql . nil)
      (sqlite . nil)))
-
-  ;; Use Cairo graphics device by default,which can get better graphics quality.
-  ;; you shoule add below lines to you ~/.Rprofile
-  ;;    require("Cairo")
-  ;;    CairoFonts(regular="SimSun:style=Regular",
-  ;;             bold="SimHei:style=Regular",
-  ;;             italic="KaiTi_GB2312:style=Regular",
-  ;;             symbol="Symbol")
-  ;;
-  ;; (setq org-babel-R-graphics-devices
-  ;;   '((:bmp "bmp" "filename")
-  ;;     (:jpg "jpeg" "filename")
-  ;;     (:jpeg "jpeg" "filename")
-  ;;     (:tikz "tikz" "file")
-  ;;     (:tiff "tiff" "filename")
-  ;;     (:png "CairoPNG" "filename")
-  ;;     (:svg "CairoSVG" "file")
-  ;;     (:pdf "CairoPDF" "file")
-  ;;     (:ps "CairoPS" "file")
-  ;;     (:postscript "postscript" "file")))
 
   (defun eh-org-align-babel-table (&optional info)
     "Align all tables in the result of the current babel source."
