@@ -148,7 +148,7 @@
       (turn-on-org-cdlatex)))
 
   (add-hook 'org-mode-hook 'eh-org-cdlatex)
-  ;; (add-hook 'org-mode-hook 'eh-org-visual-line-mode)
+  (add-hook 'org-mode-hook 'eh-org-visual-line-mode)
   (add-hook 'org-mode-hook 'eh-org-smart-truncate-lines))
 
 (use-package org-protocol
