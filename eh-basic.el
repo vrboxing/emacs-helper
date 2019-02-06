@@ -385,8 +385,8 @@
 
   (setq default-input-method "pyim")
 
-  ;; 使用 emacs thread 来生成 dcache。
-  (setq pyim-dcache-prefer-emacs-thread t)
+  ;; 只有在 termux 环境下用 emacs thread 生成 dcache。
+  (setq pyim-dcache-prefer-emacs-thread (eh-termux-p))
 
   ;; 使用全拼
   (setq pyim-default-scheme 'quanpin)
