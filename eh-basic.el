@@ -380,7 +380,7 @@
 ;; ** 设置拼音输入法
 (use-package pyim
   :ensure nil
-  :bind* (("M-j" . pyim-convert-code-at-point))
+  :bind* (("M-j" . pyim-convert-string-at-point))
   :config
 
   (setq default-input-method "pyim")
