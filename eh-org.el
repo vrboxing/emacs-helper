@@ -83,10 +83,10 @@
   ;;         ("CANCELLED" . (:foreground "forest green")))
 
   (setq org-tags-exclude-from-inheritance
-        '("PROJECT"))
+        '("proj"))
 
   (setq org-stuck-projects
-        '("+PROJECT/-MAYBE-DONE-CANCELED"
+        '("+proj/-MAYBE-DONE-CANCELED"
           ("TODO")
           nil ""))
 
@@ -544,7 +544,7 @@
               (todo  . " %i")
               (tags  . " %i")
               (search . "%i"))
-          '((agenda  . " %i %-20:c %?t%(eh-org-agenda-prefix-format-1)")
+          '((agenda  . " %i %-20:c %?t%(eh-org-agenda-prefix-format-1) ")
             (todo  . " %i %-20:c ")
             (tags  . " %i %-20:c ")
             (search . " %i %-20:c "))))
@@ -698,13 +698,13 @@
             ("H" "Diary" plain (file+headline ,local-inbox "节假日")
              "\%\%%(or \"(org-calendar-holiday)\")"))))
 
-  (defun eh-org-capture (orig-fun &optional goto keys)
-    "Advice function of org-capture."
-    (interactive)
-    (funcall orig-fun goto keys)
-    (delete-other-windows))
+  ;; (defun eh-org-capture (orig-fun &optional goto keys)
+  ;;   "Advice function of org-capture."
+  ;;   (interactive)
+  ;;   (funcall orig-fun goto keys)
+  ;;   (delete-other-windows))
 
-  (advice-add 'org-capture :around #'eh-org-capture)
+  ;; (advice-add 'org-capture :around #'eh-org-capture)
   )
 
 
