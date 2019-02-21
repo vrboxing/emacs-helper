@@ -270,9 +270,10 @@
   (show-paren-mode 1))
 
 ;; ** 括号自动匹配
-(use-package autopair
+(use-package elec-pair
+  :ensure nil
   :config
-  (autopair-global-mode 1))
+  (electric-pair-mode 1))
 
 ;; ** switch-window
 (use-package switch-window

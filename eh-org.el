@@ -132,6 +132,15 @@
         (_ (toggle-truncate-lines -1))))
     (org-ctrl-c-ctrl-c arg))
 
+  (defun eh-org-set-tags-command (orig-fun &optional arg)
+    (interactive)
+    (if (functionp 'counsel-org-tag)
+        (funcall-interactively 'counsel-org-tag)
+      (funcall orig-fun goto keys)))
+
+  (advice-add 'org-set-tags-command
+              :around #'eh-org-set-tags-command)
+
   (defun eh-org-smart-truncate-lines (&optional arg)
     (interactive)
     (org-defkey org-mode-map "\C-c\C-c" 'eh-org-ctrl-c-ctrl-c))
