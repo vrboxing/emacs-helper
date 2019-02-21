@@ -134,9 +134,10 @@
 
   (defun eh-org-set-tags-command (orig-fun &optional arg)
     (interactive)
-    (if (functionp 'counsel-org-tag)
+    (if (and (functionp 'counsel-org-tag)
+             (not arg))
         (funcall-interactively 'counsel-org-tag)
-      (funcall orig-fun goto keys)))
+      (funcall orig-fun arg)))
 
   (advice-add 'org-set-tags-command
               :around #'eh-org-set-tags-command)
