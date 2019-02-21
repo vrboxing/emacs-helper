@@ -133,9 +133,8 @@
     (org-ctrl-c-ctrl-c arg))
 
   (defun eh-org-set-tags-command (orig-fun &optional arg)
-    (interactive)
-    (if (and (functionp 'counsel-org-tag)
-             (not arg))
+    (interactive "P")
+    (if (functionp 'counsel-org-tag)
         (funcall-interactively 'counsel-org-tag)
       (funcall orig-fun arg)))
 
