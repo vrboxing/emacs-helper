@@ -87,8 +87,6 @@
 
 ;; ** 使用空格缩进 (Can not use use-package)
 (setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
-(setq tab-width 4)
 
 ;; ** 关闭 beep (Can not use use-package)
 (setq visible-bell t)
