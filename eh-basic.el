@@ -338,6 +338,10 @@
           (Man-completion-table . "")
           (woman . ""))))
 
+(use-package ivy-hydra
+  :after counsel
+  :demand t)
+
 ;; ** 设置 amx
 (use-package amx
   :after counsel
