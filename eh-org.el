@@ -114,6 +114,7 @@
   (setq org-outline-path-complete-in-steps nil)
   (setq org-refile-allow-creating-parent-nodes 'confirm)
   (setq org-refile-use-outline-path 'file)
+  (setq org-refile-active-region-within-subtree t)
 
   (defun eh-org-fill-paragraph ()
     "Fill org paragraph"
