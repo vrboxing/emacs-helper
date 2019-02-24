@@ -436,7 +436,15 @@ Taken from elpy-shell-send-current-statement"
 
 (use-package ebdb-gnus
   :after ebdb
-  :ensure ebdb)
+  :ensure ebdb
+  :config
+  (setq ebdb-gnus-window-configuration
+        '(article
+          (vertical 1.0
+		    (summary 0.25 point)
+		    (horizontal 1.0
+			        (article 1.0)
+			        (ebdb-gnus 0.25))))))
 
 (use-package ebdb-com
   :after ebdb
