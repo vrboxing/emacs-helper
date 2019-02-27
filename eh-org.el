@@ -483,9 +483,13 @@
   :ensure nil
   :config
 
+  ;; 加快 agenda 启动速度
+  (setq org-agenda-dim-blocked-tasks t)
+  (setq org-agenda-inhibit-startup t)
+
   (setq org-agenda-custom-commands
         '(("f" "Find items which need to be refiled or archived"
-           tags "+LEVEL=1TODO={DONE\\|CANCELED\\|FIXED}"
+           tags "+LEVEL=1+TODO={DONE\\|CANCELED\\|FIXED}"
            ((org-agenda-skip-archived-trees nil)))
           ("p" "Personal agenda"
            agenda ""
