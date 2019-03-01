@@ -543,9 +543,6 @@
   (setq  org-agenda-current-time-string
          "now - - - - - - - - - - - - -")
 
-  ;; Set it to 'auto can not work well for Chinese user.
-  (setq org-agenda-tags-column -120)
-
   (setq org-agenda-entry-text-leaders
         (if (eh-termux-p)
             "        "
