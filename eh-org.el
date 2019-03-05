@@ -717,6 +717,15 @@
   ;; (advice-add 'org-capture :around #'eh-org-capture)
   )
 
+(use-package org-brain
+  :after org
+  :init
+  (setq org-brain-path eh-org-local-directory)
+  :config
+  (setq org-id-track-globally t)
+  (setq org-brain-file-entries-use-title nil)
+  (setq org-brain-visualize-default-choices 'all)
+  (setq org-brain-title-max-length 30))
 
 ;; * Footer
 (provide 'eh-org)
