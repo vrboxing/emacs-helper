@@ -719,6 +719,7 @@
 
 (use-package org-brain
   :after org
+  :bind (("C-c b" . org-brain-visualize))
   :init
   (setq org-brain-path eh-org-local-directory)
   :config
