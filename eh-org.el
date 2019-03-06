@@ -726,7 +726,10 @@
   (setq org-id-track-globally t)
   (setq org-brain-file-entries-use-title nil)
   (setq org-brain-visualize-default-choices 'all)
-  (setq org-brain-title-max-length 30))
+  (setq org-brain-title-max-length 30)
+  (setq org-brain-headline-entries-match "proj|ref")
+  (setq org-brain-files-transparent "project")
+  )
 
 ;; * Footer
 (provide 'eh-org)
